@@ -8,13 +8,28 @@ This is a minimalist unofficial script tool for [Blood on the Clocktower](https:
 
 ## Another one?
 
-I wanted a completely self-contained webapp that can run well on any device and I couldn’t find one. The [official script editor](https://script.bloodontheclocktower.com/) is a useful tool but:
+I wanted a completely self-contained webapp script tool that runs well on any device and I couldn’t find one. The [official script editor](https://script.bloodontheclocktower.com/) is a useful tool but:
 
 - The top listed character is not added to the script when the enter key is pressed. A minor annoyance, but it really is annoying. This makes it slow to create scripts.
-- I’m not a huge fan of the single-column output. It’s hard to read and results in occasionally squished text if the character ability is long. I would much prefer a two-column output.
+- I’m not a huge fan of the single-column output. It’s hard to read and results in squished text if the character ability is long. I would much prefer a two-column output.
 - It doesn’t work on mobile.
 
 I also didn’t want to use the official editor to generate the JSON and then feed that to an external tool to create the PDF because, well, it’s a pain. There’s no reason why this shouldn’t be self-contained.
+
+## Examples
+
+Here’s some script PDFs I generated with this tool.
+
+- The three base scripts:
+  - [Trouble Brewing](examples/Trouble Brewing.pdf)
+  - [Sects and Violets](examples/Sects and Violets.pdf)
+  - [Bad Moon Rising](examples/Bad Moon Rising.pdf)
+- [Catfishing](examples/Catfishing.pdf) by Emily ([link](https://botc-scripts.azurewebsites.net/script/3/11.1.0))
+- [No Roles Barred](examples/No Roles Barred.pdf) by Andrew Pichot ([link](https://botc-scripts.azurewebsites.net/script/258/1.0.1))
+- [Boozling! v7](examples/Boozling! v7.pdf) by Lau ([link](https://botc-scripts.azurewebsites.net/script/173/8.0.0))
+- [Extension Cord](examples/Extension Cord.pdf) by Viva La Sam ([link](https://botc-scripts.azurewebsites.net/script/42/5.1.0))
+- [Dusk in the House of the Damned 2.4](examples/Dusk in the House of the Damned 2.4.pdf) by Shade ([link](https://botc-scripts.azurewebsites.net/script/181/2.4.0))
+- [Chaos in the Streets](examples/Chaos in the Streets.pdf) by Zets ([link](https://botc-scripts.azurewebsites.net/script/75/2.1.2))
 
 ## Basic Usage
 
@@ -25,6 +40,8 @@ Much of the UI is self-explanatory. The buttons on the top right allow you to (i
 - clear the script
 - print the script (Ctrl+P or Cmd+P works also)
 
+You can change the name and author of the script on the top left.
+
 ### Adding Characters
 
 Either import the script using the import JSON button on the top right, or start typing characters into the text box. Pressing Enter will immediately add the currently underlined character. Alternatively you can click any entry listed.
@@ -33,7 +50,7 @@ Either import the script using the import JSON button on the top right, or start
 
 Just click the character’s icon on the script – same as in the official tool.
 
-### Exporting Script
+### Exporting the Script
 
 You can download the script JSON using the button on the top right.
 
@@ -55,7 +72,7 @@ Disclaimer: I haven’t tried anything on Windows, but it should be simple to ge
 
 ## Acknowledgements
 
-All of the character icons are taken from [clocktower.live](https://github.com/nicholas-eden/townsquare). The other icons are from [Font Awesome](https://fontawesome.com/). The fonts are all in the [IBM Plex family](https://www.ibm.com/plex/). The character text and jinxes are taken from the excellent [Blood on the Clocktower wiki](https://wiki.bloodontheclocktower.com).
+All of the character icons are taken directly from [clocktower.live](https://github.com/nicholas-eden/townsquare). (I modified the Harpy icon since it was a flat, bright red.) The other icons are from [Font Awesome](https://fontawesome.com/). The fonts are all in the [IBM Plex family](https://www.ibm.com/plex/). The character text and jinxes are taken from the excellent [Blood on the Clocktower wiki](https://wiki.bloodontheclocktower.com).
 
 The sole JavaScript library we depend on is [fuzzysort](https://github.com/farzher/fuzzysort).
 
