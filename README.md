@@ -45,6 +45,14 @@ The tool is barebones and isn’t suitable for all (or even most) use cases. Mos
 
 Another useful feature would be to see a list of characters and filter them by their properties. It’s sometimes hard to think of what to add if there isn’t a big list of characters that you can peruse. The official tool does this. Currently it lets you filter by character type and edition. We could do the same, and even extend it to other more fancy filters like ‘prevents night deaths’, ‘does not wake’, etc., which can be useful in the script building process.
 
+## Building the Tool
+
+There’s no building required. There’s a very basic [Makefile](Makefile) which runs `python3 -m http.server` and watches the main [Sass](https://sass-lang.com/) file for changes. Launch any server in the root directory and you can try it out.
+
+Note that the generated CSS files are not part of the repository, so you will have to compile the Sass files before launching the server.
+
+Disclaimer: I haven’t tried anything on Windows, but it should be simple to get working.
+
 ## Acknowledgements
 
 All of the character icons are taken from [clocktower.live](https://github.com/nicholas-eden/townsquare). The other icons are from [Font Awesome](https://fontawesome.com/). The fonts are all in the [IBM Plex family](https://www.ibm.com/plex/). The character text and jinxes are taken from the excellent [Blood on the Clocktower wiki](https://wiki.bloodontheclocktower.com).
