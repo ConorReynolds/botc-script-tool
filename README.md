@@ -21,15 +21,15 @@ I also didn’t want to use the official editor to generate the JSON and then fe
 Here’s some script PDFs I generated with this tool.
 
 - The three base scripts:
-  - [Trouble Brewing](examples/Trouble Brewing.pdf)
-  - [Sects and Violets](examples/Sects and Violets.pdf)
-  - [Bad Moon Rising](examples/Bad Moon Rising.pdf)
-- [Catfishing](examples/Catfishing.pdf) by Emily ([link](https://botc-scripts.azurewebsites.net/script/3/11.1.0))
-- [No Roles Barred](examples/No Roles Barred.pdf) by Andrew Pichot ([link](https://botc-scripts.azurewebsites.net/script/258/1.0.1))
-- [Boozling! v7](examples/Boozling! v7.pdf) by Lau ([link](https://botc-scripts.azurewebsites.net/script/173/8.0.0))
-- [Extension Cord](examples/Extension Cord.pdf) by Viva La Sam ([link](https://botc-scripts.azurewebsites.net/script/42/5.1.0))
-- [Dusk in the House of the Damned 2.4](examples/Dusk in the House of the Damned 2.4.pdf) by Shade ([link](https://botc-scripts.azurewebsites.net/script/181/2.4.0))
-- [Chaos in the Streets](examples/Chaos in the Streets.pdf) by Zets ([link](https://botc-scripts.azurewebsites.net/script/75/2.1.2))
+  - [Trouble Brewing](<examples/Trouble Brewing.pdf>)
+  - [Sects and Violets](<examples/Sects and Violets.pdf>)
+  - [Bad Moon Rising](<examples/Bad Moon Rising.pdf>)
+- [Catfishing](<examples/Catfishing.pdf>) by Emily ([link](https://botc-scripts.azurewebsites.net/script/3/11.1.0))
+- [No Roles Barred](<examples/No Roles Barred.pdf>) by Andrew Pichot ([link](https://botc-scripts.azurewebsites.net/script/258/1.0.1))
+- [Boozling! v7](<examples/Boozling! v7.pdf>) by Lau ([link](https://botc-scripts.azurewebsites.net/script/173/8.0.0))
+- [Extension Cord](<examples/Extension Cord.pdf>) by Viva La Sam ([link](https://botc-scripts.azurewebsites.net/script/42/5.1.0))
+- [Dusk in the House of the Damned 2.4](<examples/Dusk in the House of the Damned 2.4.pdf>) by Shade ([link](https://botc-scripts.azurewebsites.net/script/181/2.4.0))
+- [Chaos in the Streets](<examples/Chaos in the Streets.pdf>) by Zets ([link](https://botc-scripts.azurewebsites.net/script/75/2.1.2))
 
 ## Basic Usage
 
