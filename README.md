@@ -20,10 +20,9 @@ I also didn’t want to use the official editor to generate the JSON and then fe
 
 Here’s some script PDFs I generated with this tool.
 
-- The three base scripts:
-  - [Trouble Brewing](<examples/Trouble Brewing.pdf>)
-  - [Sects and Violets](<examples/Sects and Violets.pdf>)
-  - [Bad Moon Rising](<examples/Bad Moon Rising.pdf>)
+- [Trouble Brewing](<examples/Trouble Brewing.pdf>)
+- [Sects and Violets](<examples/Sects and Violets.pdf>)
+- [Bad Moon Rising](<examples/Bad Moon Rising.pdf>)
 - [Catfishing](<examples/Catfishing.pdf>) by Emily ([link](https://botc-scripts.azurewebsites.net/script/3/11.1.0))
 - [No Roles Barred](<examples/No Roles Barred.pdf>) by Andrew Pichot ([link](https://botc-scripts.azurewebsites.net/script/258/1.0.1))
 - [Boozling! v7](<examples/Boozling! v7.pdf>) by Lau ([link](https://botc-scripts.azurewebsites.net/script/173/8.0.0))
