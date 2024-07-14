@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="src/styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous">
+    <link rel="icon" href="src/assets/unofficial-icons/TinyIcon_imp.webp" />
+    <title>Unofficial BotC Script Tool</title>
+    <script src="https://cdn.jsdelivr.net/npm/fuzzysort@3.0.2/fuzzysort.min.js"></script>
+    <script type="module" src="src/main.js" defer></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <h1 id="title" class="onlyprint"></h1>
+
+      <div class="header-container row noprint">
+        <div id="metadata">
+          <form id="script-name-form">
+            <input id="script-name-input" placeholder="Script name" />
+          </form>
+          <form id="script-author-form">
+            <input id="script-author-input" placeholder="Author" />
+          </form>
+        </div>
+        <div class="input-container noprint">
+          <div class="row">
+            <div class="character-form-container">
+              <form id="character-form">
+                <input id="character-input" placeholder="Add a character..." autocorrect="off" autocomplete="off" />
+              </form>
+              <div id="current-matches" class="column noprint"></div>
+            </div>
+          </div>
+          <div class="row">
+            <form id="import-form">
+              <button type="submit" title="Import JSON"><i class="fa-solid fa-upload"></i></button>
+            </form>
+            <form id="export-form">
+              <button type="submit" title="Download JSON"><i class="fa-solid fa-floppy-disk"></i></button>
+            </form>
+            <form id="clear-form">
+              <button type="submit" title="Clear script"><i class="fa-solid fa-trash"></i></button>
+            </form>
+            <form id="print-form">
+              <button type="submit" title="Print"><i class="fa-solid fa-print"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="script"/>
+    </div>
+
+    <div id="footer" class="onlyprint">
+      © Steven Medway, bloodontheclocktower.com
+    </div>
+  </body>
+</html>

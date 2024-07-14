@@ -1,0 +1,549 @@
+// As will become clear, this file is the result of brain-dead trial and error.
+// It needs to be substantially rewritten to reduce code duplication and to use
+// better practice.
+
+@import "fonts.scss";
+@import "normalize.scss";
+@import "mixins.scss";
+
+:root {
+  font-family: IBMPlexSansCondensed, Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  color: #0f0f0f;
+  background-color: #f6f6f6;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+.character-icon {
+  height: 6em;
+  padding: 0em;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.input-container {
+  // Not sure if this is a great way to do this, but it successfully prevents
+  // the (large) input container from blocking pointer events to the script
+  // when you scroll down
+  pointer-events: none;
+  * {
+    pointer-events: auto;
+  }
+
+  position: fixed;
+  font-size: 0.9rem;
+  width: min(55rem, 95%);
+  display: flex;
+  justify-content: right;
+  align-items: end;
+  filter: drop-shadow(0 0 1rem #f6f6f6);
+
+  // @media (max-width: 800px) {
+    flex-direction: column-reverse;
+    top: 1rem;
+  // }
+}
+
+#character-input {
+    width: 9.3rem;
+}
+
+.header-container {
+  position: relative;
+  display: flex;
+  align-items: end;
+  padding-top: 2rem;
+  margin-bottom: 1rem;
+  width: min(55rem, 95%);
+  max-height: 3rem;
+  margin: auto;
+  #metadata {
+    // max-width: 75%;
+    width: calc(100% - 9.3rem - 2.5rem);
+    input {
+      all: unset;
+      &#script-name-input {
+        width: 100%;
+      }
+      &#script-author-input {
+        width: calc(100% - 2em);
+      }
+    }
+    margin: 0;
+    margin-right: auto;
+    display: block;
+    justify-content: left;
+    #script-name-form {
+      text-align: left;
+      font-size: 2rem;
+      font-weight: 400;
+      font-family: IBMPlexSerif, Georgia, Times, serif;
+      vertical-align: middle;
+    }
+    #script-author-form {
+      text-align: left;
+      font-size: 1.2rem;
+      font-family: IBMPlexSerif, Georgia, Times, serif;
+      font-style: italic;
+      vertical-align: middle;
+      &::before {
+        content: "by ";
+      }
+    }
+  }
+  @media (max-width: 520px) {
+    // flex-direction: column-reverse;
+    #metadata {
+      #script-name-form {
+        font-size: 1.25rem;
+      }
+      #script-author-form {
+        font-size: 1rem;
+      }
+    } 
+  }
+}
+
+.character-form-container {
+  position: sticky;
+  #current-matches {
+    font-size: 1rem;
+    // line-height: 1.8;
+    &:empty {
+      display: none;
+    }
+
+    .match {
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 0.2em 0.5em;
+      &:hover {
+        background-color: #f3f3f3;
+      }
+      img.thumbnail {
+        height: 1.25em;
+        width: 1.25em;
+        padding-right: 0.3em;
+        object-fit: contain;
+        vertical-align: middle;
+      }
+      &:first-child {
+        text-decoration: underline;
+        text-decoration-skip-ink: all;
+      }
+    }
+    position: absolute;
+    z-index: 2;
+    text-align: left;
+    width: 10.9rem;
+    // margin-left: 1.1rem;
+    // background-color: white;
+    border-radius: 0px 0px 8px 8px;
+    border: 1px solid transparent;
+    padding: 0;
+    top: 2rem;
+    // font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    color: #0f0f0f;
+    background-color: #ffffff;
+    transition: border-color 0.25s;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    // left: 50%;
+    // @media not all and (max-width: 800px) {
+    //   width: 12.1rem;
+    // }
+  }
+}
+
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: #535bf2;
+}
+
+#metadata {
+  position: relative;
+  z-index: 3;
+  // width: 100%;
+  // padding-bottom: 1rem;
+  input {
+    margin-right: 3px;
+    margin-bottom: 3px;
+  }
+  display: flex;
+  flex-flow: row wrap;
+  // flex-direction:column;
+}
+
+input,
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 0.9em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  color: #0f0f0f;
+  background-color: #ffffff;
+  transition: border-color 0.25s;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: #396cd8;
+}
+
+button:active {
+  border-color: #396cd8;
+  background-color: #e8e8e8;
+}
+
+input,
+button {
+  outline: none;
+}
+
+#import-form, #export-form, #clear-form, #print-form {
+  margin-left: 3px;
+}
+
+@media print {
+  .noprint {
+    display: none;
+  }
+}
+
+@media not print {
+  .onlyprint {
+    display: none;
+  }
+}
+
+// @media print {
+//   @page {
+//     margin-top: 0.5in;
+//     margin-bottom: 0.75in;
+//     margin-left: 1.25in;
+//     margin-right: 1in;
+//   }
+// }
+
+#script {
+  // @media (max-width: 520px) 
+  //   font-family: "Avenir Next Condensed";
+  // }
+  h3 {
+    font-size: 1.1rem;
+    color: #555;
+    padding: 0;
+    margin-bottom: 1rem;
+    padding-top: 0.5rem;
+    position: relative;
+    margin-left: 0;
+    background-color: #f6f6f6;
+    z-index: -1;
+    // border-top: 0.5px solid black;
+    // letter-spacing: 1.3px;
+    span {
+      position: relative;
+      z-index: 1;
+      background-color: #f6f6f6;
+      padding-right: 1em;
+    }
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      border-top: 0.5px solid black;
+      top: 1.2rem;
+      width: 100%;
+      left: 0%;
+      z-index: 0;
+    }
+  }
+  
+  h4 {
+    font-family: IBMPlexSans;
+    font-size: 1.1rem;
+  }
+
+  width: min(55rem, 95%);
+
+  margin: auto;
+  text-align: left;
+  border-spacing: 0 0.5rem;
+  // margin-top: 2rem;
+  // margin: 1rem;
+  .script .item {
+    page-break-inside: avoid;
+    display: grid;
+    // grid-template-rows: ;
+    grid-template-columns: 4.5em 1fr;
+    column-gap: 1rem;
+    // row-gap: 1.5rem;
+
+    // margin-bottom: 1rem;
+    .icon {
+      // display: table-cell;
+      width: 4.5em;
+      height: 4.5em;
+      // padding-right: 1.5rem;
+      margin: 0;
+      object-fit: contain;
+      vertical-align: middle;
+      align-self: center;
+    }
+    .imported-icon {
+      object-fit: cover;
+      scale: 1.5;
+    }
+    .name-and-summary {
+      // display: table-cell;
+      font-weight: 500;
+      margin: 0;
+      padding: 0;
+      margin-right: auto;
+      align-self: center;
+      // height: 4em;
+      .character-name {
+        margin: 0;
+        padding: 0;
+        font-weight: bold;
+        a {
+          color: inherit;
+          font-weight: bold;
+        }
+      }
+      .character-summary {
+        vertical-align: middle;
+        line-height: 1.4;
+      }
+    }
+  }
+  .script {
+    // h3:has(+ div:empty) {
+    //   display: none;
+    // }
+
+    .townsfolk,
+    .outsider,
+    .minion,
+    .demon {
+      margin-bottom: 1rem;
+      // page-break-inside: avoid;
+      --nitems: 0;
+      @media print, not all and (max-width: 650px) {
+        display: grid;
+        grid-auto-rows: max-content;
+        grid-template-rows: repeat(calc(var(--nitems) / 2), 1fr);
+        grid-template-columns: repeat(2, 1fr);
+        grid-auto-flow: column;
+        column-gap: 2rem;
+        row-gap: 1rem; 
+      }
+
+      @media (max-width: 650px) {
+        display: grid;
+        grid-auto-flow: row;
+        row-gap: 1rem;
+      }
+
+      @include nitems-map;
+    }
+  }
+}
+
+.jinxes-heading {
+  page-break-before: always;
+}
+
+.jinxes {
+  &:empty {
+    display: none;
+  }
+  @media not print {
+    border-top: 3px double grey;
+  }
+  line-height: 1.4;
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  padding-top: 2rem;
+
+  --nitems: 0;
+  @media print, not all and (max-width: 650px) {
+    display: grid;
+    grid-auto-rows: max-content;
+    grid-template-rows: repeat(calc(var(--nitems) / 2), 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-flow: column;
+    column-gap: 2rem;
+    row-gap: 1rem; 
+  }
+
+  @media (max-width: 650px) {
+    display: grid;
+    grid-auto-flow: row;
+    row-gap: 1rem;
+  }
+
+  @include nitems-map;
+
+  .item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    column-gap: 1rem;
+    .icons {
+      display: flex;
+      flex-direction: row;
+      column-gap: 0.5rem;
+      img {
+        width: 3rem;
+        height: 3rem;
+        object-fit: contain;
+      }
+    }
+    .jinx-text {
+      text-align: left;
+    }
+  }
+  h3 {
+    font-size: 1.1rem;
+    color: #555;
+    padding: 0;
+    margin-bottom: 1rem;
+    padding-top: 0.5rem;
+    position: relative;
+    margin-left: 0;
+    background-color: #f6f6f6;
+    // border-top: 0.5px solid black;
+    // letter-spacing: 1.3px;
+    span {
+      position: relative;
+      z-index: 1;
+      background-color: #f6f6f6;
+      padding-right: 1em;
+    }
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      border-top: 0.5px solid black;
+      top: 1.2rem;
+      width: 100%;
+      left: 0%;
+      z-index: 0;
+    }
+  }
+}
+
+h1 {
+  // float: left;
+  width: 68rem;
+  margin: auto;
+  text-align: left;
+  font-size: 2rem;
+  font-weight: 400;
+  font-family: IBMPlexSerif, Georgia, Times, serif;
+  padding-top: 2rem;
+  // margin-right: 1rem;
+
+  span {
+    font-size: 1.2rem;
+    font-style: italic;
+    padding-left: 2rem;
+    // margin: 0 auto;
+    // margin-right: 0;
+    // margin-bottom: 1rem;
+    vertical-align: middle;
+  }
+}
+
+#footer {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: left;
+  margin: auto;
+  width: 68rem;
+}
+
+@media print {
+  @page {
+    margin: 0;
+  }
+
+  :root {
+    font-size: 10px;
+    background-color: white;
+    // width: 55rem;
+  }
+
+  #script, .jinxes {
+    width: 68rem;
+    max-width: 68rem;
+    padding: 1rem;
+    // width: 70rem;
+    margin: auto;
+    h3 {
+      margin: 0;
+      padding: 0;
+      background-color: white;
+      span {
+        background-color: white;
+      }
+      &::after {
+        top: 1.1rem;
+        // border-top: 1px solid grey;
+      }
+    }
+    .townsfolk, .outsider, .minion, .demon {
+      column-gap: 3rem;
+    }
+  }
+
+  #script .jinxes-heading {
+    padding-top: 3rem;
+    &::after {
+      top: calc(1.1rem + 3rem);
+    }
+  }
+
+  .jinxes-heading:has(+ .jinxes:empty) {
+    display: none;
+  }
+
+  .jinxes {
+    font-size: 1rem;
+  }
+
+
+  .container {
+    padding-top: 0.5rem;
+  }
+}
+
