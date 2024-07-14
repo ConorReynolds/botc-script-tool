@@ -57,5 +57,7 @@ Disclaimer: I haven’t tried anything on Windows, but it should be simple to ge
 
 All of the character icons are taken from [clocktower.live](https://github.com/nicholas-eden/townsquare). The other icons are from [Font Awesome](https://fontawesome.com/). The fonts are all in the [IBM Plex family](https://www.ibm.com/plex/). The character text and jinxes are taken from the excellent [Blood on the Clocktower wiki](https://wiki.bloodontheclocktower.com).
 
+The sole JavaScript library we depend on is [fuzzysort](https://github.com/farzher/fuzzysort).
+
 [Blood on the Clocktower](https://bloodontheclocktower.com/) is a trademark of Steven Medway and [The Pandemonium Institute](https://www.thepandemoniuminstitute.com/). I’m not affiliated with them and they don’t endorse this tool.
 
