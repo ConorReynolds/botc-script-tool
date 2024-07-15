@@ -132,18 +132,6 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     scriptAuthorInput.value = script.author;
   }
 
-  if (localStorage.getItem("compact-night-sheet")) {
-    const b = localStorage.getItem("compact-night-sheet");
-    const checkbox = document.querySelector("#compact-night-sheet-checkbox");
-
-    if (b === "true") {
-      checkbox.checked = true;
-    }
-    if (b === "false") {
-      checkbox.checked = false;
-    }
-  }
-
   renderScript();
 
   if (localStorage.getItem("compact-night-sheet")) {
@@ -293,7 +281,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("compact-night-sheet", "true");
       } else {
         document.querySelector(".night-sheet").classList.remove("compact");
-        localStorage.setItem("compact-night-sheet", "true");
+        localStorage.setItem("compact-night-sheet", "false");
       }
     },
   );
