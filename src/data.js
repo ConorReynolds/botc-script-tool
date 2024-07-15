@@ -1536,7 +1536,7 @@ export const charmap = [
     "name": "Alchemist",
     "edition": "",
     "team": "townsfolk",
-    "firstNightReminder": "Show the Alchemist a not-in-play Minion token",
+    "firstNightReminder": "Show the Alchemist a not-in-play Minion token.",
     "otherNightReminder": "",
     "reminders": [],
     "remindersGlobal": [
@@ -1587,7 +1587,7 @@ export const charmap = [
     "name": "Poppy Grower",
     "edition": "",
     "team": "townsfolk",
-    "firstNightReminder": "Do not inform the Demon/Minions who each other are",
+    "firstNightReminder": "Do not inform the Demon/Minions who each other are.",
     "otherNightReminder":
       "If the Poppy Grower has died, show the Minions/Demon who each other are.",
     "reminders": [
@@ -1616,7 +1616,7 @@ export const charmap = [
     "team": "townsfolk",
     "firstNightReminder": "",
     "otherNightReminder":
-      "The Cannibal wakes in the night at the time the role they gained would wake.  This is a reminder to ensure it is not forgotte.",
+      "The Cannibal wakes in the night at the time the role they gained would wake. This is a reminder to ensure it is not forgotten.",
     "reminders": [
       "Poisoned",
       "Died today",
