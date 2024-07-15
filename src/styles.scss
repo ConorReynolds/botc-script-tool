@@ -287,6 +287,20 @@ button {
   h4 {
     font-family: IBMPlexSans;
     font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.25em;
+
+    a + img {
+      padding-left: 0.5em;
+    }
+
+    img.jinx-icon {
+      width: 1.2em;
+      height: 1.2em;
+      object-fit: contain;
+      cursor: pointer;
+    }
   }
 
   width: min(55rem, 95%);
@@ -314,6 +328,7 @@ button {
       object-fit: contain;
       vertical-align: middle;
       align-self: center;
+      cursor: pointer;
     }
     .imported-icon {
       object-fit: cover;

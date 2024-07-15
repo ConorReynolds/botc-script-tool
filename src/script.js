@@ -200,7 +200,7 @@ export class Script {
   render() {
     let str = `<div class="script">`;
     for (
-      const [i, a] of [
+      const [i, chars] of [
         this.townsfolk,
         this.outsiders,
         this.minions,
@@ -212,21 +212,30 @@ export class Script {
         ? Script.asType(i)
         : Script.asType(i) + "s";
       str += `<h3><span>${plural?.toUpperCase()}</span></h3>`;
-      str += `<div nitems="${a.length}" class="${
+      str += `<div nitems="${chars.length}" class="${
         Script.asType(i)?.toLowerCase()
       }">`;
-      for (const c of a) {
+      for (const c of chars) {
         str += `<div id="${c.id}" class="item">`;
         if (c.iconSrc) {
           str +=
-            `<img id="${c.id}-icon-script" class="icon imported-icon" src="${c.iconSrc}"/>`;
+            `<img id="${c.id}-icon-script" title="Remove the ${c.name}" class="icon imported-icon" src="${c.iconSrc}"/>`;
         } else {
           str +=
-            `<img id="${c.id}-icon-script" class="icon" src="src/assets/unofficial-icons/Icon_${c.id}.webp"/>`;
+            `<img id="${c.id}-icon-script" title="Remove the ${c.name}" class="icon" src="src/assets/unofficial-icons/Icon_${c.id}.webp"/>`;
         }
         str += `<div class="name-and-summary">`;
-        str +=
-          `<h4 class="character-name"><a href="${c.wikilink}" target="_blank">${c.name}</a></h4>`;
+        str += `<h4 class="character-name">`;
+        str += `<a href="${c.wikilink}" target="_blank">${c.name}</a>`;
+        for (const otherID of this.charSet) {
+          const other = new Character(otherID);
+          const jinx = c.jinx(other);
+          if (jinx) {
+            str +=
+              `<img title="${jinx}" class="jinx-icon" onclick="location.assign('#${c.id}-${other.id}-jinx')" src="src/assets/unofficial-icons/TinyIcon_${other.id}.webp"/>`;
+          }
+        }
+        str += `</h4>`;
         str += `<div class="character-summary">${c.summary}</div>`;
         str += `</div>`;
         str += `</div>`;
