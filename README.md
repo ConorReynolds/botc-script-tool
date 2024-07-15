@@ -51,6 +51,9 @@ The UI is largely self-explanatory. The buttons on the top right allow you to
 - clear the script
 - print the script (Ctrl+P or Cmd+P works also)
 
+The checkbox toggles the compact night sheet – you can see the difference in
+the examples above.
+
 You can change the name and author of the script on the top left.
 
 ### Adding Characters
