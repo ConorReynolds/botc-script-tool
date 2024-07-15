@@ -69,7 +69,7 @@ Further in the future, it would be cool to integrate some script-building tips d
 
 ## Building the Tool
 
-There’s no building required. There’s a very basic [Makefile](Makefile) which runs `python3 -m http.server` and watches the [Sass](https://sass-lang.com/) files for changes. Launch any server in the root directory and you can try it out.
+There’s no building required. There’s a very basic [Makefile](Makefile) which runs `python3 -m http.server` and watches the [Sass](https://sass-lang.com/) files for changes. Launch any server in the project root and you can try it out.
 
 Note that the generated CSS files are not part of the repository, so you will have to compile the Sass files before launching the server.
 
