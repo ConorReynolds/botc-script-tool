@@ -34,22 +34,12 @@ no reason why this shouldn’t be self-contained.
 
 Here’s some script PDFs I generated with this tool.
 
-- [Trouble Brewing](examples/Trouble Brewing.pdf)
-- [Sects and Violets](examples/Sects and Violets.pdf)
-- [Bad Moon Rising](examples/Bad Moon Rising.pdf)
-- [Catfishing](examples/Catfishing.pdf) by Emily
-  ([link](https://botc-scripts.azurewebsites.net/script/3/11.1.0))
-- [No Roles Barred](examples/No Roles Barred.pdf) by Andrew Pichot
-  ([link](https://botc-scripts.azurewebsites.net/script/258/1.0.1))
-- [Boozling! v7](examples/Boozling! v7.pdf) by Lau
-  ([link](https://botc-scripts.azurewebsites.net/script/173/8.0.0))
-- [Extension Cord](examples/Extension Cord.pdf) by Viva La Sam
-  ([link](https://botc-scripts.azurewebsites.net/script/42/5.1.0))
-- [Dusk in the House of the Damned 2.4](examples/Dusk in the House of the Damned
-  2.4.pdf) by Shade
-  ([link](https://botc-scripts.azurewebsites.net/script/181/2.4.0))
-- [Chaos in the Streets](examples/Chaos in the Streets.pdf) by Zets
-  ([link](https://botc-scripts.azurewebsites.net/script/75/2.1.2))
+- [Sects and Violets](https://drive.google.com/uc?export=download&id=17iYBXGlN3pION7jXl1b79aCKt7Z9bQJQ)<br/>
+  ([compact night sheet version](https://drive.google.com/uc?export=download&id=1Cabp0K8AVOFqFlCO5Z9qZ_uxuyx8qySQ))
+- [No Roles Barred](https://drive.google.com/uc?export=download&id=16wBqcn7G5cwZTGrT9dVp8FhECCQF6xff) by Andrew Pichot<br/>
+([compact night sheet version](https://drive.google.com/uc?export=download&id=19wnYRgeQ2k5pZDcqowYrKCGo9xqIETkz)) ([JSON](https://botc-scripts.azurewebsites.net/script/258/1.0.1))
+- [Boozling! v7](https://drive.google.com/uc?export=download&id=1EUW_h3nx4NKRl9BpUtUX0CM_8jnv2lHQ) by Lau<br/>
+  ([compact night sheet version](https://drive.google.com/uc?export=download&id=1iZfDeaWGnkHqlpGdnjSmJbKKvrHeZMj3)) ([JSON](https://botc-scripts.azurewebsites.net/script/173/8.0.0))
 
 ## Basic Usage
 
@@ -85,6 +75,17 @@ should be OK. Android mobile output is generally acceptable once the output is
 correctly scaled. Safari and browsers on iOS are currently not great but support
 will probably improve soon.
 
+If you print with the full night sheet, you’ll get four (PDF) pages (two
+double-sided printed pages). The first two are the character sheet and the
+jinxes (if any). The second two are the first night and other night
+order/reminders. The full night sheet includes all the reminder text.
+
+If you print with the compact night sheet, you’ll get two (PDF) pages (one
+double-sided printed page). The first is the character sheet, same as before,
+and the second has the jinxes and the night order without the reminder text.
+This option is nice if you don’t care about the night order reminder text and
+want something that fits on a single printed page.
+
 ## Missing Features
 
 The tool does not support travelers, fabled, or homebrew characters. These
@@ -102,9 +103,10 @@ directly into the editor.
 
 ## Building the Tool
 
-There’s no building required. There’s a very basic [Makefile](Makefile) which
-runs `python3 -m http.server` and watches the [Sass](https://sass-lang.com/)
-files for changes. Launch any server in the project root and you can try it out.
+There’s no building required. Launch any server in the project root and you can
+try it out. There’s a very basic [Makefile](Makefile) which runs `python3 -m
+http.server` and watches the [Sass](https://sass-lang.com/) files for changes.
+(This requires Sass to be installed.)
 
 Note that the generated CSS files are not part of the repository, so you will
 have to compile the Sass files before launching the server.
@@ -114,7 +116,7 @@ working.
 
 ## Acknowledgements
 
-All of the character icons are taken directly from
+All of the character icons and much of the raw data are taken directly from
 [clocktower.live](https://github.com/nicholas-eden/townsquare). (I modified the
 Harpy icon since it was a flat, bright red.) The other icons are from
 [Font Awesome](https://fontawesome.com/). The fonts are all in the
