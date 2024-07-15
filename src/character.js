@@ -1,4 +1,4 @@
-import { charmap, jinxes } from "./data.js";
+import { charmap, jinxes, sao } from "./data.js";
 
 export class Character {
   id;
@@ -10,10 +10,14 @@ export class Character {
   customAbility;
   customWikiLink;
 
-  static data = charmap;
-  static flat = Object.entries(charmap).map(([k, v]) => {
-    return Object.assign({ id: k }, v);
-  });
+  static flat = charmap;
+  static sao = sao;
+  static data = {};
+  static {
+    this.flat.forEach((obj) => {
+      this.data[obj["id"]] = obj;
+    });
+  }
 
   // Can be initialised with an identifier for an official character. For
   // custom characters, all information needs to be provided by the user – need
@@ -22,7 +26,7 @@ export class Character {
     if (typeof obj === "string") {
       // Probably an identifier for a character
       const id = obj;
-      if (Character.data[id]) {
+      if (Character.data[id] && Character.data[id]["team"] !== "traveler") {
         this.id = id;
       } else {
         throw new Error(`can’t find character with id ‘${id}’`);
@@ -47,19 +51,27 @@ export class Character {
   }
 
   get name() {
-    return Character.data[this.id]["Name"];
+    return Character.data[this.id]["name"];
   }
 
   get summary() {
-    return Character.data[this.id]["Summary"];
+    return Character.data[this.id]["ability"];
   }
 
   get type() {
-    return Character.data[this.id]["Type"];
+    return Character.data[this.id]["team"];
   }
 
   get homeScript() {
-    return Character.data[this.id]["Script"];
+    return Character.data[this.id]["edition"];
+  }
+
+  get firstNightReminder() {
+    return Character.data[this.id]["firstNightReminder"];
+  }
+
+  get otherNightReminder() {
+    return Character.data[this.id]["otherNightReminder"];
   }
 
   get wikilink() {
@@ -93,7 +105,11 @@ export class Character {
   }
 
   static fuzzyMatch(str) {
-    const results = fuzzysort.go(str, Character.flat, { key: "Name" });
+    const results = fuzzysort.go(
+      str,
+      Character.flat.filter((obj) => obj["team"] !== "traveler"),
+      { key: "name" },
+    );
     if (results.length === 0) {
       return {
         result: [],
@@ -110,35 +126,35 @@ export class Character {
   }
 
   get firstNight() {
-    return Character.data[this.id]["first night"];
+    return Character.sao[this.id]["first night"];
   }
 
   get eachNight() {
-    return Character.data[this.id]["each night"];
+    return Character.sao[this.id]["each night"];
   }
 
   get eachNightStar() {
-    return Character.data[this.id]["each night*"];
+    return Character.sao[this.id]["each night*"];
   }
 
   get day() {
-    return Character.data[this.id]["day"];
+    return Character.sao[this.id]["day"];
   }
 
   get oncePerGame() {
-    return Character.data[this.id]["once per game"];
+    return Character.sao[this.id]["once per game"];
   }
 
   get actsOnTrigger() {
-    return Character.data[this.id]["on trigger"];
+    return Character.sao[this.id]["on trigger"];
   }
 
   get isPassive() {
-    return Character.data[this.id]["passive"];
+    return Character.sao[this.id]["passive"];
   }
 
   get team() {
-    if (this.type === "Townsfolk" || this.type === "Outsider") {
+    if (this.type === "townsfolk" || this.type === "outsider") {
       return "Good";
     } else {
       return "Evil";
@@ -147,13 +163,13 @@ export class Character {
 
   static typeRank(t) {
     switch (t) {
-      case "Townsfolk":
+      case "townsfolk":
         return 1;
-      case "Outsider":
+      case "outsider":
         return 2;
-      case "Minion":
+      case "minion":
         return 3;
-      case "Demon":
+      case "demon":
         return 4;
       default:
         throw Error(`not a valid character type: ${t}`);

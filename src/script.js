@@ -1,5 +1,5 @@
 import { Character } from "./character.js";
-import { jinxes } from "./data.js";
+import { nightorder } from "./nightorder.js";
 
 // Need a full list of characters that can be added.
 export class Script {
@@ -11,6 +11,8 @@ export class Script {
   demons;
   charSet;
   jinxList;
+
+  static nightorder = nightorder;
 
   constructor() {
     this.townsfolk = [];
@@ -81,13 +83,13 @@ export class Script {
   static asType(n) {
     switch (n) {
       case 0:
-        return "Townsfolk";
+        return "townsfolk";
       case 1:
-        return "Outsider";
+        return "outsider";
       case 2:
-        return "Minion";
+        return "minion";
       case 3:
-        return "Demon";
+        return "demon";
     }
   }
 
@@ -95,19 +97,19 @@ export class Script {
     this.charSet.delete(cid);
 
     const char = new Character(cid);
-    if (char.type === "Townsfolk") {
+    if (char.type === "townsfolk") {
       const idx = this.townsfolk.findIndex((c) => c.id === char.id);
       this.townsfolk.splice(idx, 1);
     }
-    if (char.type === "Outsider") {
+    if (char.type === "outsider") {
       const idx = this.outsiders.findIndex((c) => c.id === char.id);
       this.outsiders.splice(idx, 1);
     }
-    if (char.type === "Minion") {
+    if (char.type === "minion") {
       const idx = this.minions.findIndex((c) => c.id === char.id);
       this.minions.splice(idx, 1);
     }
-    if (char.type === "Demon") {
+    if (char.type === "demon") {
       const idx = this.demons.findIndex((c) => c.id === char.id);
       this.demons.splice(idx, 1);
     }
@@ -123,32 +125,34 @@ export class Script {
   }
 
   add(newChar) {
-    this.charSet.add(newChar.id);
-
     switch (newChar.type) {
-      case "Townsfolk":
+      case "townsfolk":
         if (this.townsfolk.some((c0) => newChar.id === c0.id)) {
           break;
         }
         this.townsfolk.push(newChar);
+        this.charSet.add(newChar.id);
         break;
-      case "Outsider":
+      case "outsider":
         if (this.outsiders.some((c0) => newChar.id === c0.id)) {
           break;
         }
         this.outsiders.push(newChar);
+        this.charSet.add(newChar.id);
         break;
-      case "Minion":
+      case "minion":
         if (this.minions.some((c0) => newChar.id === c0.id)) {
           break;
         }
         this.minions.push(newChar);
+        this.charSet.add(newChar.id);
         break;
-      case "Demon":
+      case "demon":
         if (this.demons.some((c0) => newChar.id === c0.id)) {
           break;
         }
         this.demons.push(newChar);
+        this.charSet.add(newChar.id);
         break;
     }
 
@@ -208,7 +212,7 @@ export class Script {
       ]
         .entries()
     ) {
-      const plural = Script.asType(i) === "Townsfolk"
+      const plural = Script.asType(i) === "townsfolk"
         ? Script.asType(i)
         : Script.asType(i) + "s";
       str += `<h3><span>${plural?.toUpperCase()}</span></h3>`;
@@ -245,7 +249,8 @@ export class Script {
     }
     str += `</div>`;
 
-    str += `<h3 class="jinxes-heading onlyprint"><span>JINXES</span></h3>`;
+    str += `<div class="jinxes-container">`;
+    str += `<h3 class="jinxes-heading"><span>JINXES</span></h3>`;
     str += `<div nitems="${this.jinxList.length}" class="jinxes">`;
     for (const jinx of this.jinxList) {
       const c1 = new Character(jinx.char1);
@@ -264,6 +269,95 @@ export class Script {
 
       str += `</div>`;
     }
+    str += `</div>`;
+    str += `</div>`;
+
+    str += `<div class="night-sheet">`;
+
+    str += `<div class="first-night-container">`;
+    str += `<h3><span>FIRST NIGHT</span></h3>`;
+    str += `<div class="first-night">`;
+    for (const name of Script.nightorder.firstNight) {
+      if (this.charSet.has(Character.nameToID(name))) {
+        const char = new Character(Character.nameToID(name));
+        if (char.firstNightReminder) {
+          str += `<div class="item">`;
+          str +=
+            `<img src="src/assets/unofficial-icons/Icon_${char.id}.webp"/>`;
+          str += `<div>`;
+          str += `<div class="night-sheet-char-name">${char.name}</div>`;
+          str +=
+            `<div class="night-sheet-reminder">${char.firstNightReminder}</div>`;
+          str += `</div>`;
+          str += `</div>`;
+        }
+      }
+      if (name === "MINION") {
+        str += `<div class="item">`;
+        str += `<div class="night-order-text">MINION</div>`;
+        str += `<div>Minion info</div>`;
+        str += `</div>`;
+      }
+      if (name === "DEMON") {
+        str += `<div class="item">`;
+        str += `<div class="night-order-text">DEMON</div>`;
+        str += `<div>Demon info</div>`;
+        str += `</div>`;
+      }
+      if (name === "DUSK") {
+        str += `<div class="item">`;
+        str += `<div class="night-order-text">DUSK</div>`;
+        str +=
+          `<div>Check that all eyes are closed. Some travellers act.</div>`;
+        str += `</div>`;
+      }
+      if (name === "DAWN") {
+        str += `<div class="item">`;
+        str += `<div class="night-order-text">DAWN</div>`;
+        str +=
+          `<div>Wait approximately 10 seconds. Call for eyes open, then immediately announce which players (if any) died.</div>`;
+        str += `</div>`;
+      }
+    }
+    str += `</div>`;
+    str += `</div>`;
+
+    str += `<div class="other-night-container">`;
+    str += `<h3><span>OTHER NIGHTS</span></h3>`;
+    str += `<div class="other-night">`;
+    for (const name of Script.nightorder.otherNight) {
+      if (this.charSet.has(Character.nameToID(name))) {
+        const char = new Character(Character.nameToID(name));
+        if (char.otherNightReminder) {
+          str += `<div class="item">`;
+          str +=
+            `<img src="src/assets/unofficial-icons/Icon_${char.id}.webp"/>`;
+          str += `<div>`;
+          str += `<div class="night-sheet-char-name">${char.name}</div>`;
+          str +=
+            `<div class="night-sheet-reminder">${char.otherNightReminder}</div>`;
+          str += `</div>`;
+          str += `</div>`;
+        }
+      }
+      if (name === "DUSK") {
+        str += `<div class="item">`;
+        str += `<div class="night-order-text">DUSK</div>`;
+        str +=
+          `<div>Check that all eyes are closed. Some travellers act.</div>`;
+        str += `</div>`;
+      }
+      if (name === "DAWN") {
+        str += `<div class="item">`;
+        str += `<div class="night-order-text">DAWN</div>`;
+        str +=
+          `<div>Wait approximately 10 seconds. Call for eyes open, then immediately announce which players (if any) died.</div>`;
+        str += `</div>`;
+      }
+    }
+    str += `</div>`;
+    str += `</div>`; // end first-night-container
+
     str += `</div>`;
     return str;
   }

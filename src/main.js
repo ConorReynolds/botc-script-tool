@@ -67,9 +67,9 @@ function preloadImages(srcs) {
 }
 
 const thumbnails = [];
-for (const char of Character.flat) {
+for (const charObj of Character.flat) {
   thumbnails.push(
-    `src/assets/unofficial-icons/TinyIcon_${char.id}.webp`,
+    `src/assets/unofficial-icons/TinyIcon_${charObj.id}.webp`,
   );
 }
 
@@ -132,7 +132,32 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     scriptAuthorInput.value = script.author;
   }
 
+  if (localStorage.getItem("compact-night-sheet")) {
+    const b = localStorage.getItem("compact-night-sheet");
+    const checkbox = document.querySelector("#compact-night-sheet-checkbox");
+
+    if (b === "true") {
+      checkbox.checked = true;
+    }
+    if (b === "false") {
+      checkbox.checked = false;
+    }
+  }
+
   renderScript();
+
+  if (localStorage.getItem("compact-night-sheet")) {
+    const b = localStorage.getItem("compact-night-sheet");
+    const checkbox = document.querySelector("#compact-night-sheet-checkbox");
+
+    if (b === "true") {
+      checkbox.checked = true;
+      document.querySelector(".night-sheet").classList.add("compact");
+    }
+    if (b === "false") {
+      checkbox.checked = false;
+    }
+  }
 
   document.getElementById("script-name-form").addEventListener(
     "input",
@@ -256,6 +281,20 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       document.title = script.name;
       h1.innerHTML = `${script.name}<span>by ${script.author}</span>`;
       globalThis.print();
+    },
+  );
+
+  document.querySelector("#compact-night-sheet-form").addEventListener(
+    "change",
+    function (event) {
+      event.preventDefault();
+      if (event.target.checked === true) {
+        document.querySelector(".night-sheet").classList.add("compact");
+        localStorage.setItem("compact-night-sheet", "true");
+      } else {
+        document.querySelector(".night-sheet").classList.remove("compact");
+        localStorage.setItem("compact-night-sheet", "true");
+      }
     },
   );
 
