@@ -226,7 +226,8 @@ export class Script {
         }
         str += `<div class="name-and-summary">`;
         str += `<h4 class="character-name">`;
-        str += `<a href="${c.wikilink}" target="_blank">${c.name}</a>`;
+        str +=
+          `<a title="Read more about the ${c.name}" href="${c.wikilink}" target="_blank">${c.name}</a>`;
         for (const otherID of this.charSet) {
           const other = new Character(otherID);
           const jinx = c.jinx(other);
