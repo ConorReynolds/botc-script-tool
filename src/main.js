@@ -82,6 +82,9 @@ let script;
 function renderScript() {
   h1.innerHTML = `${script.name}<span>by ${script.author}</span>`;
   document.querySelector("#script").innerHTML = script.render();
+  if (localStorage.getItem("compact-night-sheet") === "true") {
+    document.querySelector(".night-sheet").classList.add("compact");
+  }
   // Add listeners to all icons
   document.querySelectorAll(".script img.icon").forEach(function (element) {
     element.addEventListener("click", function (event) {
