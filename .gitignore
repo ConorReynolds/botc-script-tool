@@ -1,5 +1,7 @@
 .DS_Store
 
+examples/*.json
+
 # Generated files
 *.css
 *.css.map
