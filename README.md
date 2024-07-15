@@ -87,7 +87,8 @@ will probably improve soon.
 
 ## Missing Features
 
-Currently the tool does not support homebrew characters yet.
+The tool does not support travelers, fabled, or homebrew characters. These
+features are high-priority.
 
 It would be nice to see a list of characters and filter them by their
 properties. It’s sometimes hard to think of what to add if there isn’t a big
