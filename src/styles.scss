@@ -479,11 +479,8 @@ button {
       .night-sheet-reminder {
         display: none;
       }
-      .night-order-text {
+      .item:has(> .night-order-text) {
         display: none;
-        & + div {
-          display: none;
-        }
       }
 
       .first-night, .other-night {
