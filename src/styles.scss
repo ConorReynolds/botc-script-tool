@@ -389,6 +389,11 @@ button {
 
 .jinxes-container {
   page-break-before: always;
+  &:has(> .jinxes:empty) {
+    // If display: none is used then the page-break instructions are not
+    // obeyed.
+    visibility: hidden;
+  }
 }
 
 .jinxes {
