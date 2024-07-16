@@ -40,6 +40,11 @@ export class Character {
     }
   }
 
+  static clearCustoms() {
+    Character.custom = {};
+    Character.customFlat = [];
+  }
+
   index(i) {
     return (Character.custom[this.id] && Character.custom[this.id][i]) ||
       (Character.data[this.id] && Character.data[this.id][i]);

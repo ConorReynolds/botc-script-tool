@@ -258,6 +258,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     function (event) {
       event.preventDefault();
       script.clear();
+      Character.clearCustoms();
       scriptNameInput.value = "";
       scriptAuthorInput.value = "";
       renderScript();

@@ -274,7 +274,7 @@ export class Script {
           if (jinx) {
             str += `<img title="${jinx}" class="jinx-icon ${
               iconCls(c)
-            }" onclick="location.assign('#${c.id}-${other.id}-jinx')" src="${c.tinyIcon}"/>`;
+            }" onclick="location.assign('#${c.id}-${other.id}-jinx')" src="${other.tinyIcon}"/>`;
           }
         }
         str += `</h4>`;
