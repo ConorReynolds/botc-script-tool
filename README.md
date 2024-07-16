@@ -56,6 +56,50 @@ the examples above.
 
 You can change the name and author of the script on the top left.
 
+Importing directly from [bloodstar](bloodstar.xyz) is supported. Characters are
+added in the order they appear on the script and are not SAO sorted. The tool
+should mostly handle the night order you create in bloodstar, but if you want
+more control, you can add it explicitly in the metadata for the script. (The
+[official
+app](https://github.com/ThePandemoniumInstitute/botc-release/blob/7f0d23cf5b144f3175f505e1db74317fac417442/script-schema.json#L393) supports the same format, also explained in [this Reddit
+comment](https://www.reddit.com/r/BloodOnTheClocktower/comments/1c6h0d5/comment/l02cbsd/).)
+
+```js
+{
+    "id": "_meta",
+    "author": "Author Name",
+    // other fields 
+    "firstNight": [
+        "dusk",
+        "char1",
+        "minioninfo",
+        "char2",
+        "demoninfo",
+        "char3",
+        ...,
+        "dawn",
+        "char4"
+    ],
+    "otherNight": [
+        "char5"
+        "dusk",
+        "char6",
+        ..., 
+        "dawn",
+        "char7"
+    ]
+}
+```
+
+Note `char1`, `char2`, … are character IDs, not their names. This format gives
+you maximum flexibility. Bloodstar by default does not seem to support
+characters that act or have reminders before dusk, before/between minion and
+demon info steps (like the Lunatic), or after dawn (like the Leviathan). It’s
+possible to tweak the numbers in the exported JSON but that requires knowledge
+of where these standard steps ‘usually’ go and what numbers they are assigned.
+This is much simpler, but requires that you create the night order in the JSON
+yourself.
+
 ### Adding Characters
 
 Either import the script using the import JSON button on the top right, or start
@@ -91,8 +135,8 @@ want something that fits on a single printed page.
 
 ## Missing Features
 
-The tool does not support travelers, fabled, or homebrew characters. These
-features are high-priority.
+The tool does not yet support travelers or fabled. These features are
+high-priority.
 
 It would be nice to see a list of characters and filter them by their
 properties. It’s sometimes hard to think of what to add if there isn’t a big
