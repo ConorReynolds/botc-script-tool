@@ -70,9 +70,6 @@ export class Character {
   }
 
   get wikilink() {
-    if (this.isCustom) {
-      return `#${this.id}`;
-    }
     // the display name works, but I added some proper apostrophes which need
     // to be reverted to straight quotes first
     const cleaned = this.name.replace("’", "'");

@@ -231,6 +231,8 @@ export class Script {
     const wikilink = (c) => {
       if (!c.isCustom) {
         return c.wikilink;
+      } else if (c.isCustom && !this.almanac) {
+        return c.wikilink;
       } else if (this.almanac) {
         return `${this.almanac}#${c.id}`;
       } else {
@@ -367,10 +369,7 @@ export class Script {
       // Handle custom characters at this position
       for (const charID of this.charSet) {
         const char = new Character(charID);
-        if (char.firstNightOrder === position) {
-          if (char.id === "lich_dnd") {
-            console.log(charID);
-          }
+        if (char.firstNightOrder === position && !Character.data[charID]) {
           str += `<div class="item">`;
           str += `<img class="${iconCls(char)}" src="${char.icon}"/>`;
           str += `<div>`;
@@ -428,7 +427,7 @@ export class Script {
       }
       for (const charID of this.charSet) {
         const char = new Character(charID);
-        if (char.otherNightOrder === position) {
+        if (char.otherNightOrder === position && !Character.data[charID]) {
           str += `<div class="item">`;
           str += `<img class="${iconCls(char)}" src="${char.icon}"/>`;
           str += `<div>`;
