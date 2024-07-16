@@ -9,8 +9,18 @@ export class Script {
   outsiders;
   minions;
   demons;
+  travelers;
+  fabled;
+
+  // Represents all characters on the script
   charSet;
+
   jinxList;
+
+  // // Used for bloodstar imported scripts
+  alamanac;
+  firstNightOrder;
+  otherNightOrder;
 
   static nightorder = nightorder;
 
@@ -25,9 +35,6 @@ export class Script {
     this.jinxList = [];
   }
 
-  // I don’t know if it’s possible to just call the constructor on self again,
-  // but at some point the constructor and clear function might diverge so
-  // this is probably fine
   clear() {
     this.townsfolk = [];
     this.outsiders = [];
@@ -37,6 +44,9 @@ export class Script {
     this.author = "";
     this.charSet = new Set();
     this.jinxList = [];
+    this.alamanac = undefined;
+    this.firstNightOrder = undefined;
+    this.otherNightOrder = undefined;
   }
 
   loadFromJSON(obj) {
@@ -54,14 +64,29 @@ export class Script {
       if (typeof item === "object" && item["id"] === "_meta") {
         this.name = item["name"] ? item["name"] : "";
         this.author = item["author"] ? item["author"] : "";
+        this.almanac = item["almanac"];
+        this.firstNightOrder = item["firstNight"];
+        this.otherNightOrder = item["otherNight"];
       }
 
       if (typeof item === "object" && item["id"] !== "_meta") {
+        const id = item["id"];
         try {
-          const char = new Character(item["id"]);
           if (item["image"]) {
-            char.iconSrc = item["image"];
+            // I choose this as the marker of a custom character. I should
+            // check this more rigorously.
+            Character.custom[id] = item;
+
+            const idx = Character.customFlat.findIndex((c) => c.id === id);
+            // If we see another character with the same ID, just overwrite it,
+            // it’s probably an update.
+            if (idx !== -1) {
+              Character.customFlat.splice(idx, 1);
+            }
+
+            Character.customFlat.push(item);
           }
+          const char = new Character(id);
           this.add(char);
         } catch (e) {
           console.error(e);
@@ -202,6 +227,17 @@ export class Script {
   }
 
   render() {
+    const iconCls = (c) => c.index("image") ? "imported-icon" : "";
+    const wikilink = (c) => {
+      if (!c.isCustom) {
+        return c.wikilink;
+      } else if (this.almanac) {
+        return `${this.almanac}#${c.id}`;
+      } else {
+        return `#`;
+      }
+    };
+
     let str = `<div class="script">`;
     for (
       const [i, chars] of [
@@ -221,23 +257,22 @@ export class Script {
       }">`;
       for (const c of chars) {
         str += `<div id="${c.id}" class="item">`;
-        if (c.iconSrc) {
-          str +=
-            `<img id="${c.id}-icon-script" title="Remove the ${c.name}" class="icon imported-icon" src="${c.iconSrc}"/>`;
-        } else {
-          str +=
-            `<img id="${c.id}-icon-script" title="Remove the ${c.name}" class="icon" src="src/assets/unofficial-icons/Icon_${c.id}.webp"/>`;
-        }
+        str +=
+          `<img id="${c.id}-icon-script" title="Remove the ${c.name}" class="icon ${
+            iconCls(c)
+          }" src="${c.icon}"/>`;
         str += `<div class="name-and-summary">`;
         str += `<h4 class="character-name">`;
-        str +=
-          `<a title="Read more about the ${c.name}" href="${c.wikilink}" target="_blank">${c.name}</a>`;
+        str += `<a title="Read more about the ${c.name}" href="${
+          wikilink(c)
+        }" ${wikilink(c) === "#" ? "" : 'target="_blank"'}>${c.name}</a>`;
         for (const otherID of this.charSet) {
           const other = new Character(otherID);
           const jinx = c.jinx(other);
           if (jinx) {
-            str +=
-              `<img title="${jinx}" class="jinx-icon" onclick="location.assign('#${c.id}-${other.id}-jinx')" src="src/assets/unofficial-icons/TinyIcon_${other.id}.webp"/>`;
+            str += `<img title="${jinx}" class="jinx-icon ${
+              iconCls(c)
+            }" onclick="location.assign('#${c.id}-${other.id}-jinx')" src="${c.tinyIcon}"/>`;
           }
         }
         str += `</h4>`;
@@ -257,10 +292,12 @@ export class Script {
       const c2 = new Character(jinx.char2);
       str += `<div id="${c1.id}-${c2.id}-jinx" class="item">`;
       str += `<div class="icons">`;
-      str +=
-        `<img id="${c1.id}-icon-jinxes" class="icon" src="src/assets/unofficial-icons/Icon_${c1.id}.webp"/>`;
-      str +=
-        `<img id="${c2.id}-icon-jinxes" class="icon" src="src/assets/unofficial-icons/Icon_${c2.id}.webp"/>`;
+      str += `<img id="${c1.id}-icon-jinxes" class="icon ${
+        iconCls(c1)
+      }" src="${c1.icon}"/>`;
+      str += `<img id="${c2.id}-icon-jinxes" class="icon ${
+        iconCls(c2)
+      }" src="${c2.icon}"/>`;
       str += `</div>`;
 
       str += `<div class="jinx-text">`;
@@ -277,13 +314,19 @@ export class Script {
     str += `<div class="first-night-container">`;
     str += `<h3><span>FIRST NIGHT</span></h3>`;
     str += `<div class="first-night">`;
-    for (const name of Script.nightorder.firstNight) {
+    let firstNightOrder;
+    if (this.firstNightOrder) {
+      firstNightOrder = this.firstNightOrder;
+    } else {
+      firstNightOrder = Script.nightorder.firstNight;
+    }
+    console.log(firstNightOrder);
+    for (const [position, name] of firstNightOrder.entries()) {
       if (this.charSet.has(Character.nameToID(name))) {
         const char = new Character(Character.nameToID(name));
         if (char.firstNightReminder) {
           str += `<div class="item">`;
-          str +=
-            `<img src="src/assets/unofficial-icons/Icon_${char.id}.webp"/>`;
+          str += `<img class="${iconCls(char)}" src="${char.icon}"/>`;
           str += `<div>`;
           str += `<div class="night-sheet-char-name">${char.name}</div>`;
           str +=
@@ -292,31 +335,51 @@ export class Script {
           str += `</div>`;
         }
       }
-      if (name === "MINION") {
+      if (name === "MINION" || name === "minioninfo") {
         str += `<div class="item">`;
         str += `<div class="night-order-text">MINION</div>`;
         str += `<div>Minion info</div>`;
         str += `</div>`;
       }
-      if (name === "DEMON") {
+      if (name === "DEMON" || name === "demoninfo") {
         str += `<div class="item">`;
         str += `<div class="night-order-text">DEMON</div>`;
         str += `<div>Demon info</div>`;
         str += `</div>`;
       }
-      if (name === "DUSK") {
+      if (name === "DUSK" || name === "dusk") {
         str += `<div class="item">`;
         str += `<div class="night-order-text">DUSK</div>`;
         str +=
           `<div>Check that all eyes are closed. Some travellers act.</div>`;
         str += `</div>`;
       }
-      if (name === "DAWN") {
+      if (name === "DAWN" || name === "dawn") {
         str += `<div class="item">`;
         str += `<div class="night-order-text">DAWN</div>`;
         str +=
           `<div>Wait approximately 10 seconds. Call for eyes open, then immediately announce which players (if any) died.</div>`;
         str += `</div>`;
+      }
+      if (this.firstNightOrder) {
+        continue;
+      }
+      // Handle custom characters at this position
+      for (const charID of this.charSet) {
+        const char = new Character(charID);
+        if (char.firstNightOrder === position) {
+          if (char.id === "lich_dnd") {
+            console.log(charID);
+          }
+          str += `<div class="item">`;
+          str += `<img class="${iconCls(char)}" src="${char.icon}"/>`;
+          str += `<div>`;
+          str += `<div class="night-sheet-char-name">${char.name}</div>`;
+          str +=
+            `<div class="night-sheet-reminder">${char.firstNightReminder}</div>`;
+          str += `</div>`;
+          str += `</div>`;
+        }
       }
     }
     str += `</div>`;
@@ -325,13 +388,19 @@ export class Script {
     str += `<div class="other-night-container">`;
     str += `<h3><span>OTHER NIGHTS</span></h3>`;
     str += `<div class="other-night">`;
-    for (const name of Script.nightorder.otherNight) {
+    let otherNightOrder;
+    if (this.otherNightOrder) {
+      otherNightOrder = this.otherNightOrder;
+    } else {
+      otherNightOrder = Script.nightorder.otherNight;
+    }
+    console.log(otherNightOrder);
+    for (const [position, name] of otherNightOrder.entries()) {
       if (this.charSet.has(Character.nameToID(name))) {
         const char = new Character(Character.nameToID(name));
         if (char.otherNightReminder) {
           str += `<div class="item">`;
-          str +=
-            `<img src="src/assets/unofficial-icons/Icon_${char.id}.webp"/>`;
+          str += `<img class="${iconCls(char)}" src="${char.icon}"/>`;
           str += `<div>`;
           str += `<div class="night-sheet-char-name">${char.name}</div>`;
           str +=
@@ -354,6 +423,22 @@ export class Script {
           `<div>Wait approximately 10 seconds. Call for eyes open, then immediately announce which players (if any) died.</div>`;
         str += `</div>`;
       }
+      if (this.otherNightOrder) {
+        continue;
+      }
+      for (const charID of this.charSet) {
+        const char = new Character(charID);
+        if (char.otherNightOrder === position) {
+          str += `<div class="item">`;
+          str += `<img class="${iconCls(char)}" src="${char.icon}"/>`;
+          str += `<div>`;
+          str += `<div class="night-sheet-char-name">${char.name}</div>`;
+          str +=
+            `<div class="night-sheet-reminder">${char.otherNightReminder}</div>`;
+          str += `</div>`;
+          str += `</div>`;
+        }
+      }
     }
     str += `</div>`;
     str += `</div>`; // end first-night-container
@@ -369,11 +454,20 @@ export class Script {
         "author": this.author,
         "name": this.name,
       },
-      ...this.townsfolk.map((c) => c.id),
-      ...this.outsiders.map((c) => c.id),
-      ...this.minions.map((c) => c.id),
-      ...this.demons.map((c) => c.id),
+      ...this.townsfolk.map((c) => c.toJSON()),
+      ...this.outsiders.map((c) => c.toJSON()),
+      ...this.minions.map((c) => c.toJSON()),
+      ...this.demons.map((c) => c.toJSON()),
     ];
+    if (this.almanac) {
+      obj[0]["almanac"] = this.almanac;
+    }
+    if (this.firstNightOrder) {
+      obj[0]["firstNight"] = this.firstNightOrder;
+    }
+    if (this.otherNightOrder) {
+      obj[0]["otherNight"] = this.otherNightOrder;
+    }
     return JSON.stringify(obj);
   }
 }

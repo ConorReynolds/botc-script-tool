@@ -250,6 +250,11 @@ button {
 //   }
 // }
 
+img.imported-icon {
+  object-fit: cover;
+  scale: 1.6;
+}
+
 #script {
   h3 {
     font-size: 1.1rem;
@@ -326,10 +331,6 @@ button {
       vertical-align: middle;
       align-self: center;
       cursor: pointer;
-    }
-    .imported-icon {
-      object-fit: cover;
-      scale: 1.5;
     }
     .name-and-summary {
       // display: table-cell;

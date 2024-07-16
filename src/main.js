@@ -212,10 +212,9 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       const res = result.result;
       let html = "";
       for (let i = 0; i < res.length; i++) {
+        const char = new Character(res[i][0].id);
         html +=
-          `<div class="match"><img class="thumbnail" src="src/assets/unofficial-icons/TinyIcon_${
-            res[i][0]
-          }.webp"/>` +
+          `<div class="match"><img class="thumbnail" src="${char.tinyIcon}"/>` +
           res[i][1] + `</div>`;
       }
       document.querySelector("#current-matches").innerHTML = html;

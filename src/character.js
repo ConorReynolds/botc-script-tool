@@ -3,14 +3,14 @@ import { charmap, jinxes, sao } from "./data.js";
 export class Character {
   id;
 
-  // If the character is homebrewed (id not found in official list) these
-  // fields are used instead.
-  iconSrc;
-  customName;
-  customAbility;
-  customWikiLink;
+  isCustom;
+
+  // Stores any custom characters that are uploaded.
+  static custom = {};
+  static customFlat = [];
 
   static flat = charmap;
+  // temporary dataset before I merge everything
   static sao = sao;
   static data = {};
   static {
@@ -26,59 +26,74 @@ export class Character {
     if (typeof obj === "string") {
       // Probably an identifier for a character
       const id = obj;
-      if (Character.data[id] && Character.data[id]["team"] !== "traveler") {
+      if (Character.custom[id] && Character.custom[id]["team"] !== "traveler") {
+        this.isCustom = true;
+        this.id = id;
+      } else if (
+        Character.data[id] && Character.data[id]["team"] !== "traveler"
+      ) {
+        this.isCustom = false;
         this.id = id;
       } else {
         throw new Error(`can’t find character with id ‘${id}’`);
       }
     }
-
-    // if (
-    //   typeof info === "object" && info["name"] && info["ability"] &&
-    //   info["image"]
-    // ) {
-    //   this.customName = info["name"];
-    //   this.customAbility = info["ability"];
-    //   this.iconSrc = info["image"];
-    //   // TODO: homebrew scripts often have a bloodstar link, would be nice to
-    //   // support that
-    //   this.customWikiLink = "#";
-    // }
   }
 
-  valueOf() {
-    return this.id;
+  index(i) {
+    return (Character.custom[this.id] && Character.custom[this.id][i]) ||
+      (Character.data[this.id] && Character.data[this.id][i]);
   }
 
   get name() {
-    return Character.data[this.id]["name"];
+    return this.index("name");
   }
 
   get summary() {
-    return Character.data[this.id]["ability"];
+    return this.index("ability");
   }
 
   get type() {
-    return Character.data[this.id]["team"];
+    return this.index("team");
   }
 
   get homeScript() {
-    return Character.data[this.id]["edition"];
+    return this.index("edition");
   }
 
   get firstNightReminder() {
-    return Character.data[this.id]["firstNightReminder"];
+    return this.index("firstNightReminder");
   }
 
   get otherNightReminder() {
-    return Character.data[this.id]["otherNightReminder"];
+    return this.index("otherNightReminder");
   }
 
   get wikilink() {
+    if (this.isCustom) {
+      return `#${this.id}`;
+    }
     // the display name works, but I added some proper apostrophes which need
     // to be reverted to straight quotes first
     const cleaned = this.name.replace("’", "'");
     return `https://wiki.bloodontheclocktower.com/${cleaned}`;
+  }
+
+  get icon() {
+    if (this.index("image")) {
+      return this.index("image");
+    } else {
+      return `src/assets/unofficial-icons/Icon_${this.id}.webp`;
+    }
+  }
+
+  get tinyIcon() {
+    if (this.index("image")) {
+      // no tiny icons for customs
+      return this.index("image");
+    } else {
+      return `src/assets/unofficial-icons/TinyIcon_${this.id}.webp`;
+    }
   }
 
   // Only gets the jinx if the jinx is on self – always check both sides.
@@ -107,7 +122,8 @@ export class Character {
   static fuzzyMatch(str) {
     const results = fuzzysort.go(
       str,
-      Character.flat.filter((obj) => obj["team"] !== "traveler"),
+      Character.customFlat.filter((obj) => obj["team"] !== "traveler")
+        .concat(Character.flat.filter((obj) => obj["team"] !== "traveler")),
       { key: "name" },
     );
     if (results.length === 0) {
@@ -120,9 +136,25 @@ export class Character {
     return {
       result: results.slice(0, 8).map((
         r,
-      ) => [Character.nameToID(r.target), r.highlight("<b>", "</b>")]),
-      match: new Character(Character.nameToID(results[0].target)),
+      ) => [r.obj, r.highlight("<b>", "</b>")]),
+      match: new Character(results[0].obj.id),
     };
+  }
+
+  get firstNightOrder() {
+    if (this.isCustom) {
+      return this.index("firstNight") ?? -1;
+    } else {
+      return null;
+    }
+  }
+
+  get otherNightOrder() {
+    if (this.isCustom) {
+      return this.index("otherNight") ?? -1;
+    } else {
+      return null;
+    }
   }
 
   get firstNight() {
@@ -176,7 +208,30 @@ export class Character {
     }
   }
 
+  toJSON() {
+    if (this.isCustom) {
+      return {
+        "id": this.id,
+        "name": this.name,
+        "image": this.icon,
+        "team": this.type,
+        "ability": this.summary,
+        "firstNight": this.firstNightOrder,
+        "otherNight": this.otherNightOrder,
+        "firstNightReminder": this.firstNightReminder,
+        "otherNightReminder": this.otherNightReminder,
+      };
+    } else {
+      return { "id": this.id };
+    }
+  }
+
   static compare(c1, c2) {
+    // Ignore custom characters entirely
+    if (c1.isCustom || c2.isCustom) {
+      return 0;
+    }
+
     // Sort teams and types.
     const type1 = Character.typeRank(c1.type);
     const type2 = Character.typeRank(c2.type);
