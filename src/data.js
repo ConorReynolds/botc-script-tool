@@ -1299,7 +1299,7 @@ export const charmap = [
     "team": "traveler",
     "firstNightReminder": "",
     "otherNightReminder":
-      "The Bone Collector either shakes their head no or points at any dead player. If they pointed at any dead player, put the Bone Collector’s ’Has Ability’ reminder by the chosen player’s character token. (They may need to be woken tonight to use it.)",
+      "The Bone Collector either shakes their head no or points at any dead player. If they pointed at any dead player, put the Bone Collector’s ‘Has Ability’ reminder by the chosen player’s character token. (They may need to be woken tonight to use it.)",
     "reminders": [
       "No ability",
       "Has ability",
@@ -1810,7 +1810,7 @@ export const charmap = [
     "edition": "",
     "team": "minion",
     "firstNightReminder":
-      "Show the Grimoire to the Widow for as long as they need. The Widow points to a player. That player is poisoned. Wake a good player. Show the ’These characters are in play’ card, then the Widow character token.",
+      "Show the Grimoire to the Widow for as long as they need. The Widow points to a player. That player is poisoned. Wake a good player. Show the ‘These characters are in play’ card, then the Widow character token.",
     "otherNightReminder": "",
     "reminders": [
       "Poisoned",
@@ -1944,9 +1944,9 @@ export const charmap = [
     "edition": "",
     "team": "minion",
     "firstNightReminder":
-      "Wake the Harpy; they point at one player, then another. Wake the 1st player the Harpy pointed to, show them the ’This character has selected you’ card, show them the Harpy token, then point at the 2nd player the Harpy pointed to.",
+      "Wake the Harpy; they point at one player, then another. Wake the 1st player the Harpy pointed to, show them the ‘This character has selected you’ card, show them the Harpy token, then point at the 2nd player the Harpy pointed to.",
     "otherNightReminder":
-      "Wake the Harpy; they point at one player, then another. Wake the 1st player the Harpy pointed to, show them the ’This character has selected you’ card, show them the Harpy token, then point at the 2nd player the Harpy pointed to.",
+      "Wake the Harpy; they point at one player, then another. Wake the 1st player the Harpy pointed to, show them the ‘This character has selected you’ card, show them the Harpy token, then point at the 2nd player the Harpy pointed to.",
     "reminders": [
       "Mad",
       "2nd",
@@ -1961,7 +1961,7 @@ export const charmap = [
     "edition": "",
     "team": "minion",
     "firstNightReminder":
-      "Show the ’These characters are not in play’ card. Show 3 character tokens of good characters not in play.",
+      "Show the ‘These characters are not in play’ card. Show 3 character tokens of good characters not in play.",
     "otherNightReminder":
       "If it is the 3rd night, wake the Summoner. They point to a player and a Demon on the character sheet - that player becomes that Demon.",
     "reminders": [
@@ -1989,7 +1989,7 @@ export const charmap = [
     ],
     "setup": true,
     "ability":
-      "Each night, Minions choose who babysits Lil’ Monsta & ’is the Demon’. Each night*, a player might die. [+1 Minion]",
+      "Each night, Minions choose who babysits Lil’ Monsta & ‘is the Demon’. Each night*, a player might die. [+1 Minion]",
   },
   {
     "id": "lleech",
@@ -2059,7 +2059,7 @@ export const charmap = [
     "edition": "",
     "team": "demon",
     "firstNightReminder":
-      "Place the Leviathan ’Day 1’ marker. Announce ’The Leviathan is in play; this is Day 1.’",
+      "Place the Leviathan ‘Day 1’ marker. Announce ‘The Leviathan is in play; this is Day 1.’",
     "otherNightReminder": "Change the Leviathan Day reminder for the next day.",
     "reminders": [
       "Day 1",
@@ -2091,7 +2091,7 @@ export const charmap = [
     "edition": "",
     "team": "demon",
     "firstNightReminder":
-      "The Kazali points to a player and a Minion on the character sheet. They do this for as many Minions as should be in play. Change those players’ tokens to the chosen Minion tokens in the Grim. Wake those players, show them the ’You Are’ card, the Minions they have become, and a thumbs down.",
+      "The Kazali points to a player and a Minion on the character sheet. They do this for as many Minions as should be in play. Change those players’ tokens to the chosen Minion tokens in the Grim. Wake those players, show them the ‘You are’ card, the Minions they have become, and a thumbs down.",
     "otherNightReminder": "The Kazali points to a player. That player dies",
     "reminders": [
       "Dead",
