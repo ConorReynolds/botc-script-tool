@@ -474,6 +474,9 @@ button {
 }
 
 #script {
+  .jinxes-container:has(> .jinxes:empty) + .night-sheet {
+    page-break-before: auto;
+  }
   .night-sheet {
     &.compact {
       page-break-before: auto;
