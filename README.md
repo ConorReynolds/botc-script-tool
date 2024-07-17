@@ -56,11 +56,11 @@ the examples above.
 
 You can change the name and author of the script on the top left.
 
-Importing directly from [bloodstar](bloodstar.xyz) is supported. Characters are
-added in the order they appear on the script and are not SAO sorted. The tool
-should mostly handle the night order you create in bloodstar, but if you want
-more control, you can add it explicitly in the metadata for the script. (The
-[official
+Importing directly from [bloodstar](https://www.bloodstar.xyz/) is supported.
+Characters are added in the order they appear on the script and are not SAO
+sorted. The tool should mostly handle the night order you create in bloodstar,
+but if you want more control, you can add it explicitly in the metadata for the
+script. (The [official
 app](https://github.com/ThePandemoniumInstitute/botc-release/blob/7f0d23cf5b144f3175f505e1db74317fac417442/script-schema.json#L393) supports the same format, also explained in [this Reddit
 comment](https://www.reddit.com/r/BloodOnTheClocktower/comments/1c6h0d5/comment/l02cbsd/).)
 
