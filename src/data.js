@@ -1865,22 +1865,6 @@ export const charmap = [
       "If you publicly claim to be the Goblin when nominated & are executed that day, your team wins.",
   },
   {
-    "id": "mephit",
-    "name": "Mephit",
-    "edition": "",
-    "team": "minion",
-    "firstNightReminder": "Show the Mephit their secret word.",
-    "otherNightReminder":
-      "Wake the 1st good player that said the Mephit’s secret word and show them the ‘You are’ card and the thumbs down evil signal.",
-    "reminders": [
-      "Turns evil",
-      "No ability",
-    ],
-    "setup": false,
-    "ability":
-      "You start knowing a secret word. The 1st good player to say this word becomes evil that night.",
-  },
-  {
     "id": "mezepheles",
     "name": "Mezepheles",
     "edition": "",
