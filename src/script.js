@@ -17,7 +17,7 @@ export class Script {
 
   jinxList;
 
-  // // Used for bloodstar imported scripts
+  // Used for bloodstar imported scripts
   alamanac;
   firstNightOrder;
   otherNightOrder;
@@ -316,13 +316,14 @@ export class Script {
     str += `<div class="first-night-container">`;
     str += `<h3><span>FIRST NIGHT</span></h3>`;
     str += `<div class="first-night">`;
+
     let firstNightOrder;
     if (this.firstNightOrder) {
       firstNightOrder = this.firstNightOrder;
     } else {
       firstNightOrder = Script.nightorder.firstNight;
     }
-    console.log(firstNightOrder);
+
     for (const [position, name] of firstNightOrder.entries()) {
       if (this.charSet.has(Character.nameToID(name))) {
         const char = new Character(Character.nameToID(name));
@@ -387,13 +388,14 @@ export class Script {
     str += `<div class="other-night-container">`;
     str += `<h3><span>OTHER NIGHTS</span></h3>`;
     str += `<div class="other-night">`;
+
     let otherNightOrder;
     if (this.otherNightOrder) {
       otherNightOrder = this.otherNightOrder;
     } else {
       otherNightOrder = Script.nightorder.otherNight;
     }
-    console.log(otherNightOrder);
+
     for (const [position, name] of otherNightOrder.entries()) {
       if (this.charSet.has(Character.nameToID(name))) {
         const char = new Character(Character.nameToID(name));

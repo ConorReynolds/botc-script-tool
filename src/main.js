@@ -67,9 +67,9 @@ function preloadImages(srcs) {
 }
 
 const thumbnails = [];
-for (const charObj of Character.flat) {
+for (const charObj of Character.flat.filter((c) => c["team"] !== "traveler")) {
   thumbnails.push(
-    `src/assets/unofficial-icons/TinyIcon_${charObj.id}.webp`,
+    `src/assets/custom-icons/TinyIcon_${charObj.id}.webp`,
   );
 }
 
@@ -219,18 +219,29 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       }
       document.querySelector("#current-matches").innerHTML = html;
 
-      // Register click event for matches to add the character
+      function addToScript(i) {
+        script.add(new Character(res[i][0].id));
+        script.sort();
+        renderScript();
+
+        document.querySelector("#current-matches").innerHTML = "";
+        localStorage.setItem("script", script.toJSON());
+        characterInputEl.value = "";
+      }
+
+      // Register click/Enter keypress event for matches to add the character
       document.querySelectorAll("#current-matches .match").forEach(
         function (element, i) {
+          element.tabIndex = 0;
           element.addEventListener("click", function (event) {
             event.preventDefault();
-            script.add(new Character(res[i][0]));
-            script.sort();
-            renderScript();
+            addToScript(i);
+          });
 
-            document.querySelector("#current-matches").innerHTML = "";
-            localStorage.setItem("script", script.toJSON());
-            characterInputEl.value = "";
+          element.addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+              addToScript(i);
+            }
           });
         },
       );

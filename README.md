@@ -3,9 +3,9 @@
 Try it out [here](https://creynolds.ie/botc-script-tool).
 
 This is an unofficial script tool for
-[Blood on the Clocktower](https://bloodontheclocktower.com/) emphasising editing
-speed and producing reasonably high quality printed scripts. It currently works
-well on desktop and decent on mobile.
+[Blood on the Clocktower](https://bloodontheclocktower.com/), emphasising
+editing speed and producing reasonably high quality printed scripts. It
+currently works well on desktop and decent on mobile.
 
 (This is very much a work in progress.)
 
@@ -36,10 +36,14 @@ Here’s some script PDFs I generated with this tool.
 
 - [Sects and Violets](https://drive.google.com/uc?export=download&id=17iYBXGlN3pION7jXl1b79aCKt7Z9bQJQ)<br/>
   ([compact night sheet version](https://drive.google.com/uc?export=download&id=1Cabp0K8AVOFqFlCO5Z9qZ_uxuyx8qySQ))
-- [No Roles Barred](https://drive.google.com/uc?export=download&id=16wBqcn7G5cwZTGrT9dVp8FhECCQF6xff) by Andrew Pichot<br/>
-([compact night sheet version](https://drive.google.com/uc?export=download&id=19wnYRgeQ2k5pZDcqowYrKCGo9xqIETkz)) ([JSON](https://botc-scripts.azurewebsites.net/script/258/1.0.1))
-- [Boozling! v7](https://drive.google.com/uc?export=download&id=1EUW_h3nx4NKRl9BpUtUX0CM_8jnv2lHQ) by Lau<br/>
-  ([compact night sheet version](https://drive.google.com/uc?export=download&id=1iZfDeaWGnkHqlpGdnjSmJbKKvrHeZMj3)) ([JSON](https://botc-scripts.azurewebsites.net/script/173/8.0.0))
+- [No Roles Barred](https://drive.google.com/uc?export=download&id=16wBqcn7G5cwZTGrT9dVp8FhECCQF6xff)
+  by Andrew Pichot<br/>
+  ([compact night sheet version](https://drive.google.com/uc?export=download&id=19wnYRgeQ2k5pZDcqowYrKCGo9xqIETkz))
+  ([JSON](https://botc-scripts.azurewebsites.net/script/258/1.0.1))
+- [Boozling! v7](https://drive.google.com/uc?export=download&id=1EUW_h3nx4NKRl9BpUtUX0CM_8jnv2lHQ)
+  by Lau<br/>
+  ([compact night sheet version](https://drive.google.com/uc?export=download&id=1iZfDeaWGnkHqlpGdnjSmJbKKvrHeZMj3))
+  ([JSON](https://botc-scripts.azurewebsites.net/script/173/8.0.0))
 
 ## Basic Usage
 
@@ -51,8 +55,8 @@ The UI is largely self-explanatory. The buttons on the top right allow you to
 - clear the script
 - print the script (Ctrl+P or Cmd+P works also)
 
-The checkbox toggles the compact night sheet – you can see the difference in
-the examples above.
+The checkbox toggles the compact night sheet – you can see the difference in the
+examples above.
 
 You can change the name and author of the script on the top left.
 
@@ -60,9 +64,10 @@ Importing directly from [bloodstar](https://www.bloodstar.xyz/) is supported.
 Characters are added in the order they appear on the script and are not SAO
 sorted. The tool should mostly handle the night order you create in bloodstar,
 but if you want more control, you can add it explicitly in the metadata for the
-script. (The [official
-app](https://github.com/ThePandemoniumInstitute/botc-release/blob/7f0d23cf5b144f3175f505e1db74317fac417442/script-schema.json#L393) supports the same format, also explained in [this Reddit
-comment](https://www.reddit.com/r/BloodOnTheClocktower/comments/1c6h0d5/comment/l02cbsd/).)
+script. (The
+[official app](https://github.com/ThePandemoniumInstitute/botc-release/blob/7f0d23cf5b144f3175f505e1db74317fac417442/script-schema.json#L393)
+supports the same format, also explained in
+[this Reddit comment](https://www.reddit.com/r/BloodOnTheClocktower/comments/1c6h0d5/comment/l02cbsd/).)
 
 ```js
 {
@@ -91,14 +96,13 @@ comment](https://www.reddit.com/r/BloodOnTheClocktower/comments/1c6h0d5/comment/
 }
 ```
 
-Note `char1`, `char2`, … are character IDs, not their names. This format gives
-you maximum flexibility. Bloodstar by default does not seem to support
-characters that act or have reminders before dusk, before/between minion and
-demon info steps (like the Lunatic), or after dawn (like the Leviathan). It’s
-possible to tweak the numbers in the exported JSON but that requires knowledge
-of where these standard steps ‘usually’ go and what numbers they are assigned.
-This is much simpler, but requires that you create the night order in the JSON
-yourself.
+Note `char1`, `char2`, … are character IDs, not names. This format gives you
+maximum flexibility. Bloodstar by default does not seem to support characters
+that act or have reminders before dusk, before/between minion and demon info
+steps (like the Lunatic), or after dawn (like the Leviathan). It’s possible to
+tweak the numbers in the exported JSON but that requires knowledge of where
+these standard steps ‘usually’ go and what numbers they are assigned. This is
+much simpler, but requires that you create the night order in the JSON yourself.
 
 ### Adding Characters
 
@@ -151,9 +155,9 @@ directly into the editor.
 ## Building the Tool
 
 There’s no building required. Launch any server in the project root and you can
-try it out. There’s a very basic [Makefile](Makefile) which runs `python3 -m
-http.server` and watches the [Sass](https://sass-lang.com/) files for changes.
-(This requires Sass to be installed.)
+try it out. There’s a very basic [Makefile](Makefile) which runs
+`python3 -m http.server` and watches the [Sass](https://sass-lang.com/) files
+for changes. (This requires Sass to be installed.)
 
 Note that the generated CSS files are not part of the repository, so you will
 have to compile the Sass files before launching the server.
@@ -163,10 +167,11 @@ working.
 
 ## Acknowledgements
 
-All of the character icons and much of the raw data are taken directly from
-[clocktower.live](https://github.com/nicholas-eden/townsquare). (I modified the
-Harpy icon since it was a flat, bright red.) The other icons are from
-[Font Awesome](https://fontawesome.com/). The fonts are all in the
+The character icons are a modified version of the unofficial icon SVGs Navean
+and Tom O created and uploaded to the unofficial Discord server. Most of the
+character data are taken directly from
+[clocktower.live](https://github.com/nicholas-eden/townsquare). The other icons
+are from [Font Awesome](https://fontawesome.com/). The fonts are all in the
 [IBM Plex family](https://www.ibm.com/plex/). The character text and jinxes are
 taken from the excellent
 [Blood on the Clocktower wiki](https://wiki.bloodontheclocktower.com).

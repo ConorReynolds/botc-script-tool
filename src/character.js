@@ -85,7 +85,7 @@ export class Character {
     if (this.index("image")) {
       return this.index("image");
     } else {
-      return `src/assets/unofficial-icons/Icon_${this.id}.webp`;
+      return `src/assets/custom-icons/Icon_${this.id}.webp`;
     }
   }
 
@@ -94,7 +94,7 @@ export class Character {
       // no tiny icons for customs
       return this.index("image");
     } else {
-      return `src/assets/unofficial-icons/TinyIcon_${this.id}.webp`;
+      return `src/assets/custom-icons/TinyIcon_${this.id}.webp`;
     }
   }
 
