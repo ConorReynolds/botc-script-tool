@@ -233,7 +233,7 @@ input {
   outline: none;
 }
 
-[type="checkbox"]:focus {
+[type="checkbox"]:focus-visible {
   outline: auto;
 }
 
