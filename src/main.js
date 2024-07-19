@@ -93,6 +93,8 @@ function renderScript() {
       renderScript();
     }, { once: true });
   });
+
+  globalThis.dispatchEvent(new Event("scriptrendered"));
 }
 
 function initStorage() {
@@ -307,4 +309,96 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   globalThis.addEventListener("unload", function (_event) {
     localStorage.setItem("script", script.toJSON());
   });
+
+  const sidebar = document.querySelector("#sidebar");
+  const sidebarToggleButton = document.querySelector("#open-sidebar-button");
+
+  sidebarToggleButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    sidebar.classList.toggle("expanded");
+  });
+
+  const allchars = document.querySelector("#all-characters");
+  function renderSidebarChars(predicate) {
+    allchars.innerHTML = "";
+    predicate = predicate ?? ((c) => c);
+
+    for (
+      const obj of Character.flat
+        .concat(Character.customFlat)
+        .filter((o) => o.team !== "traveler")
+        .filter(predicate)
+        .toSorted((o1, o2) => o1.name > o2.name)
+      // Possibly sort by type also? Unclear which is better since you can just
+      // filter the list.
+      // .toSorted((o1, o2) =>
+      //   Character.typeRank(o1.team) > Character.typeRank(o2.team)
+      // )
+    ) {
+      const character = new Character(obj.id);
+      const cls = script.contains(character) ? "selected" : "";
+      let html = `<div class="item ${cls}" data-team="${character.team}">`;
+      html += `<img class="icon" src="${character.icon}"/>`;
+      html += `<div>${character.name}</div>`;
+      html += `</div>`;
+
+      const elem = document.createElement("div");
+      elem.innerHTML = html;
+
+      elem.firstChild.addEventListener("click", (event) => {
+        event.preventDefault();
+        if (script.contains(character)) {
+          script.remove(character.id);
+        } else {
+          script.add(character);
+          script.sort();
+        }
+        renderScript();
+      });
+
+      allchars.appendChild(elem.firstChild);
+    }
+  }
+
+  renderSidebarChars();
+
+  const townsfolkForm = document.querySelector("#townsfolk-form");
+  const outsiderForm = document.querySelector("#outsider-form");
+  const minionForm = document.querySelector("#minion-form");
+  const demonForm = document.querySelector("#demon-form");
+
+  function updateSidebar() {
+    const townsfolk = document.querySelector("#townsfolk-checkbox");
+    const outsider = document.querySelector("#outsider-checkbox");
+    const minion = document.querySelector("#minion-checkbox");
+    const demon = document.querySelector("#demon-checkbox");
+
+    function predicate(character) {
+      if (character.team === "townsfolk" && !townsfolk.checked) {
+        return false;
+      }
+      if (character.team === "outsider" && !outsider.checked) {
+        return false;
+      }
+      if (character.team === "minion" && !minion.checked) {
+        return false;
+      }
+      if (character.team === "demon" && !demon.checked) {
+        return false;
+      }
+      return true;
+    }
+
+    renderSidebarChars(predicate);
+  }
+
+  globalThis.addEventListener("scriptrendered", (_) => {
+    updateSidebar();
+  });
+
+  [townsfolkForm, outsiderForm, minionForm, demonForm].forEach((x) =>
+    x.addEventListener("change", (_) => {
+      updateSidebar();
+    })
+  );
 });

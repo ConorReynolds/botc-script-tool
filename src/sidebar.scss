@@ -1,0 +1,114 @@
+#sidebar {
+  @media print {
+    display: none;
+  }
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  width: min(18rem, 100% - 2rem);
+  height: 100%;
+  right: calc(-18rem - 1px);
+  // transform: translateY(-50%);
+  background: rgba($color: #f8f8f8, $alpha: 0.9);
+  border-left: 0.5px solid black;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 1rem;
+
+  transition: all 0.2s;
+
+  &.expanded {
+    transform: translateX(-18rem);
+    // animation-timing-function: 1s ease-in-out;
+    // transition-duration: 0.2s;
+
+    #open-sidebar-button > div {
+      transition-property: transform;
+      transform: rotate(0deg);
+    }
+  }
+
+  #filters {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1rem;
+    
+    font-size: 1.1rem;
+  }
+
+  #open-sidebar-button {
+    display: block;
+    position: relative;
+    z-index: 1000;
+    top: calc(50% - 1rem);
+    // width: 1rem;
+
+    border-radius: 2px 0px 0px 2px;
+    box-shadow: none;
+    border: 0.5px solid black;
+    border-right: none;
+    // height: 3rem;
+    width: 2rem;
+    right: calc((min(18rem, 100%) + 2rem) / 2 + 1px);
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+
+    div {
+      position: relative;
+      width: 100%;
+      transform: rotate(180deg);
+      margin: auto;
+    }
+  }
+
+  #all-characters {
+    pointer-events: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: start;
+
+    margin: auto;
+    width: 100%;
+    // max-width: max-content;
+    // padding: 0 1rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+    // height: 80%;
+
+    .item {
+      cursor: pointer;
+      font-family: IBMPlexSans, Arial, Helvetica, sans-serif;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      column-gap: 0.5rem;
+      width: 100%;
+      height: 3rem;
+      font-weight: 500;
+      padding: 0.15rem 0;
+      padding-left: 1rem;
+      border-radius: 2px;
+
+      .icon {
+        width: 2rem;
+        height: 2rem;
+        object-fit: contain;
+      }
+
+      &.selected {
+        &[data-team=good] {
+          background-color: rgba($color: #1c51a1, $alpha: 0.1);
+        }
+        &[data-team=evil] {
+          background-color: rgba($color: #940000, $alpha: 0.1);
+        }
+      }
+    }
+  }
+}

@@ -147,7 +147,6 @@ export class Character {
       );
     }
 
-    // console.log(results);
     if (results.length === 0) {
       return {
         key: key,
@@ -209,9 +208,9 @@ export class Character {
 
   get team() {
     if (this.type === "townsfolk" || this.type === "outsider") {
-      return "Good";
+      return "good";
     } else {
-      return "Evil";
+      return "evil";
     }
   }
 

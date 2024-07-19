@@ -48,7 +48,7 @@
           <div class="checkboxes-container row">
             <form id="compact-night-sheet-form">
               <input id="compact-night-sheet-checkbox" type="checkbox"/>
-              Compact night sheet
+              <label for="compact-night-sheet-checkbox">Compact night sheet</label>
             </form>
           </div>
         </div>
@@ -56,6 +56,32 @@
 
 
       <div id="script"></div>
+
+      <div id="sidebar" class="noprint">
+        <button id="open-sidebar-button" type="button">
+          <div>❯</div>
+        </button>
+
+        <div id="filters">
+            <form id="townsfolk-form">
+              <input id="townsfolk-checkbox" type="checkbox" checked/>
+              <label for="townsfolk-checkbox">Townsfolk</label>
+            </form>
+            <form id="outsider-form">
+              <input id="outsider-checkbox" type="checkbox" checked/>
+              <label for="outsider-checkbox">Outsider</label>
+            </form>
+            <form id="minion-form">
+              <input id="minion-checkbox" type="checkbox" checked/>
+              <label for="minion-checkbox">Minion</label>
+            </form>
+            <form id="demon-form">
+              <input id="demon-checkbox" type="checkbox" checked/>
+              <label for="demon-checkbox">Demon</label>
+            </form>
+        </div>
+        <div id="all-characters"></div>
+      </div>
     </div>
 
     <div id="footer">

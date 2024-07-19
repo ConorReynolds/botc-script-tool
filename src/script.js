@@ -445,6 +445,10 @@ export class Script {
     return str;
   }
 
+  contains(character) {
+    return this.charSet.has(character.id);
+  }
+
   toJSON() {
     const obj = [
       {
