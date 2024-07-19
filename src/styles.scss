@@ -233,6 +233,10 @@ input {
   outline: none;
 }
 
+[type="checkbox"]:focus {
+  outline: auto;
+}
+
 #import-form, #export-form, #clear-form, #print-form {
   margin-left: 3px;
 }
