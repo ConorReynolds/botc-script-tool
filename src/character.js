@@ -122,23 +122,43 @@ export class Character {
   }
 
   static fuzzyMatch(str) {
-    const results = fuzzysort.go(
-      str,
-      Character.customFlat.filter((obj) => obj["team"] !== "traveler")
-        .concat(Character.flat.filter((obj) => obj["team"] !== "traveler")),
-      { key: "name" },
-    );
+    const re = /has:(?<hasQuery>.*)/;
+    const command = str.match(re);
+    const hasQuery = command?.groups.hasQuery;
+    const characters = Character.customFlat.filter((obj) =>
+      obj["team"] !== "traveler"
+    )
+      .concat(Character.flat.filter((obj) => obj["team"] !== "traveler"));
+
+    let results, key;
+    if (hasQuery) {
+      key = "ability";
+      results = fuzzysort.go(
+        hasQuery,
+        characters,
+        { key: key, threshold: 0.4 },
+      );
+    } else {
+      key = "name";
+      results = fuzzysort.go(
+        str,
+        characters,
+        { key: key, limit: 8 },
+      );
+    }
+
+    // console.log(results);
     if (results.length === 0) {
       return {
+        key: key,
         result: [],
         match: null,
       };
     }
     // This isn’t a very convenient way to present the results.
     return {
-      result: results.slice(0, 8).map((
-        r,
-      ) => [r.obj, r.highlight("<b>", "</b>")]),
+      key: key,
+      result: results.map((r) => [r.obj, r.highlight("<b>", "</b>")]),
       match: new Character(results[0].obj.id),
     };
   }

@@ -152,6 +152,14 @@ wake’, etc., which can be useful in the script building process.
 Further in the future, it would be cool to integrate some script-building tips
 directly into the editor.
 
+## Incomplete Features
+
+There is basic additional search functionality: if you begin a query in the
+character search with the key ‘has:’, it will search through ability text rather
+than character names. I’ll probably add more keys as they occur to me, but this
+feature is reasonably useful as-is. Try things like has:learn align, has:mad,
+has:you start knowing, has:drunk, has:poison, etc.
+
 ## Building the Tool
 
 There’s no building required. Launch any server in the project root and you can

@@ -215,7 +215,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
         const char = new Character(res[i][0].id);
         html +=
           `<div class="match"><img class="thumbnail" src="${char.tinyIcon}"/>` +
-          res[i][1] + `</div>`;
+          (result.key === "name" ? res[i][1] : char.name) + `</div>`;
       }
       document.querySelector("#current-matches").innerHTML = html;
 
