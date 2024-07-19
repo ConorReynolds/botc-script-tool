@@ -25,21 +25,13 @@
           </form>
         </div>
         <div class="input-container noprint">
-          <div class="row">
-            <form id="compact-night-sheet-form">
-              <input id="compact-night-sheet-checkbox" type="checkbox"/>
-              Compact night sheet
+          <div class="character-form-container row">
+            <form id="character-form">
+              <input id="character-input" placeholder="Add a character..." autocorrect="off" autocomplete="off" />
             </form>
+            <div id="current-matches" class="column noprint"></div>
           </div>
-          <div class="row">
-            <div class="character-form-container">
-              <form id="character-form">
-                <input id="character-input" placeholder="Add a character..." autocorrect="off" autocomplete="off" />
-              </form>
-              <div id="current-matches" class="column noprint"></div>
-            </div>
-          </div>
-          <div class="row">
+          <div class="main-buttons-container row">
             <form id="import-form">
               <button type="submit" title="Import JSON"><i class="fa-solid fa-upload"></i></button>
             </form>
@@ -51,6 +43,12 @@
             </form>
             <form id="print-form">
               <button type="submit" title="Print"><i class="fa-solid fa-print"></i></button>
+            </form>
+          </div>
+          <div class="checkboxes-container row">
+            <form id="compact-night-sheet-form">
+              <input id="compact-night-sheet-checkbox" type="checkbox"/>
+              Compact night sheet
             </form>
           </div>
         </div>

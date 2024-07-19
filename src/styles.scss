@@ -50,10 +50,18 @@
   align-items: end;
   filter: drop-shadow(0 0 1rem #f6f6f6);
 
-  // @media (max-width: 800px) {
-    flex-direction: column-reverse;
-    top: 1rem;
-  // }
+  flex-direction: column;
+  top: 1rem;
+
+  .main-buttons-container {
+    order: 1;
+  }
+  .character-form-container {
+    order: 2;
+  }
+  .checkboxes-container {
+    order: 3;
+  }
 }
 
 #character-input {
@@ -118,6 +126,7 @@
 
 .character-form-container {
   position: sticky;
+  z-index: 1;
   #current-matches {
     font-size: 1rem;
     // line-height: 1.8;
@@ -220,8 +229,7 @@ button:active {
   background-color: #e8e8e8;
 }
 
-input,
-button {
+input {
   outline: none;
 }
 
@@ -600,6 +608,7 @@ img.imported-icon {
   padding-left: 0.5rem;
   padding-right: 0.2rem;
   padding-bottom: 0.2rem;
+  z-index: 0;
   input {
     margin-right: 0.25rem;
   }
