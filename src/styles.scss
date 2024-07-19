@@ -679,13 +679,24 @@ h1 {
 
 @media print {
   #footer {
-    position: absolute;
-    bottom: 1rem;
-    left: 50%;
-    transform: translateX(-50%);
     text-align: left;
     margin: auto;
     width: 68rem;
+
+    .print-footer {
+      .copyright {
+        position: fixed;
+        left: calc(50% - 34rem);
+        bottom: 1rem;
+        padding-left: 0.25rem;
+      }
+      .page-one {
+        position: absolute;
+        bottom: 1rem;
+        right: calc(50% - 34rem);
+        padding-right: 0.25rem;
+      }
+    }
   }
 }
 
