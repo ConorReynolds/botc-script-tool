@@ -50,9 +50,6 @@ export class Script {
   }
 
   loadFromJSON(obj) {
-    // This function needs to be generalised to accomodate completely custom
-    // characters. Just replacing icons is fine but really all parts of the
-    // character object should be overwritable.
     if (!Array.isArray(obj)) {
       console.error(obj);
       throw Error("Invalid JSON – can’t parse script.");
