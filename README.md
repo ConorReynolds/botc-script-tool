@@ -34,16 +34,16 @@ no reason why this shouldn’t be self-contained.
 
 Here’s some script PDFs I generated with this tool.
 
-- [Sects and Violets](https://drive.google.com/uc?export=download&id=17iYBXGlN3pION7jXl1b79aCKt7Z9bQJQ)<br/>
-  ([compact night sheet version](https://drive.google.com/uc?export=download&id=1Cabp0K8AVOFqFlCO5Z9qZ_uxuyx8qySQ))
+- [Sects and Violets](https://drive.google.com/uc?export=download&id=17iYBXGlN3pION7jXl1b79aCKt7Z9bQJQ)
+  ([compact night sheet version](https://drive.google.com/uc?export=download&id=1Cabp0K8AVOFqFlCO5Z9qZ_uxuyx8qySQ))<br/>
+  by The Pandemonium Institute
 - [No Roles Barred](https://drive.google.com/uc?export=download&id=16wBqcn7G5cwZTGrT9dVp8FhECCQF6xff)
-  by Andrew Pichot<br/>
-  ([compact night sheet version](https://drive.google.com/uc?export=download&id=19wnYRgeQ2k5pZDcqowYrKCGo9xqIETkz))
+  ([compact night sheet version](https://drive.google.com/uc?export=download&id=19wnYRgeQ2k5pZDcqowYrKCGo9xqIETkz))<br/>
+  by Andrew Pichot
   ([JSON](https://botc-scripts.azurewebsites.net/script/258/1.0.1))
 - [Boozling! v7](https://drive.google.com/uc?export=download&id=1EUW_h3nx4NKRl9BpUtUX0CM_8jnv2lHQ)
-  by Lau<br/>
-  ([compact night sheet version](https://drive.google.com/uc?export=download&id=1iZfDeaWGnkHqlpGdnjSmJbKKvrHeZMj3))
-  ([JSON](https://botc-scripts.azurewebsites.net/script/173/8.0.0))
+  ([compact night sheet version](https://drive.google.com/uc?export=download&id=1iZfDeaWGnkHqlpGdnjSmJbKKvrHeZMj3))<br/>by
+  Lau ([JSON](https://botc-scripts.azurewebsites.net/script/173/8.0.0))
 
 ## Basic Usage
 
