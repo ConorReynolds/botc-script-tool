@@ -323,9 +323,11 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   const filterInputElem = document.querySelector("#filter-input");
 
   function renderSidebarChars(predicate) {
-    allchars.innerHTML = "";
+    // const lastFocus = document.activeElement;
+    // const lastCharID = lastFocus.getAttribute("data-id");
     predicate = predicate ?? ((c) => c);
 
+    allchars.innerHTML = "";
     const charlist = Character.flat
       .concat(Character.customFlat)
       .filter((o) => o.team !== "traveler")
@@ -340,11 +342,10 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     );
 
     for (const result of filteredChars) {
-      // console.log(obj);
       const character = new Character(result.obj.id);
       const selected = script.contains(character) ? "selected" : "";
       let html =
-        `<div class="item ${selected}" data-id="${character.id}" data-team="${character.team}">`;
+        `<div class="item ${selected}" data-id="${character.id}" data-team="${character.team}" tabindex=0>`;
       html += `<img class="icon" src="${character.icon}"/>`;
       html += `<div>${result.highlight("<b>", "</b>")}</div>`;
       html += `</div>`;
@@ -363,6 +364,22 @@ globalThis.addEventListener("DOMContentLoaded", () => {
         renderScript();
       });
 
+      elem.firstChild.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === "Space") {
+          event.preventDefault();
+          if (script.contains(character)) {
+            script.remove(character.id);
+          } else {
+            script.add(character);
+            script.sort();
+          }
+          renderScript();
+        }
+      });
+
+      // if (lastCharID) {
+      //   elem.firstChild.focus({ focusVisible: true });
+      // }
       allchars.appendChild(elem.firstChild);
     }
   }
