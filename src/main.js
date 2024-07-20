@@ -319,27 +319,34 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   });
 
   const allchars = document.querySelector("#all-characters");
+  const filterInputForm = document.querySelector("#filter-input-form");
+  const filterInputElem = document.querySelector("#filter-input");
+
   function renderSidebarChars(predicate) {
     allchars.innerHTML = "";
     predicate = predicate ?? ((c) => c);
 
-    for (
-      const obj of Character.flat
-        .concat(Character.customFlat)
-        .filter((o) => o.team !== "traveler")
-        .filter(predicate)
-        .toSorted((o1, o2) => o1.name > o2.name)
-      // Possibly sort by type also? Unclear which is better since you can just
-      // filter the list.
-      // .toSorted((o1, o2) =>
-      //   Character.typeRank(o1.team) > Character.typeRank(o2.team)
-      // )
-    ) {
-      const character = new Character(obj.id);
-      const cls = script.contains(character) ? "selected" : "";
-      let html = `<div class="item ${cls}" data-team="${character.team}">`;
+    const charlist = Character.flat
+      .concat(Character.customFlat)
+      .filter((o) => o.team !== "traveler")
+      .filter(predicate)
+      .toSorted((o1, o2) => o1.name > o2.name);
+
+    const strFilter = filterInputElem.value;
+    const filteredChars = fuzzysort.go(
+      strFilter,
+      charlist,
+      { key: "name", all: true },
+    );
+
+    for (const result of filteredChars) {
+      // console.log(obj);
+      const character = new Character(result.obj.id);
+      const selected = script.contains(character) ? "selected" : "";
+      let html =
+        `<div class="item ${selected}" data-id="${character.id}" data-team="${character.team}">`;
       html += `<img class="icon" src="${character.icon}"/>`;
-      html += `<div>${character.name}</div>`;
+      html += `<div>${result.highlight("<b>", "</b>")}</div>`;
       html += `</div>`;
 
       const elem = document.createElement("div");
@@ -401,4 +408,25 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       updateSidebar();
     })
   );
+
+  filterInputForm.addEventListener("input", function (event) {
+    event.preventDefault();
+    updateSidebar();
+  });
+
+  filterInputForm.addEventListener("submit", function (event) {
+    event.preventDefault();
+    if (allchars.firstChild) {
+      const charid = allchars.firstChild.getAttribute("data-id");
+      const character = new Character(charid);
+
+      if (script.contains(character)) {
+        script.remove(character.id);
+      } else {
+        script.add(character);
+        script.sort();
+      }
+      renderScript();
+    }
+  });
 });

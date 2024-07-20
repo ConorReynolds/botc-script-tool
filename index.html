@@ -27,7 +27,7 @@
         <div class="input-container noprint">
           <div class="character-form-container row">
             <form id="character-form">
-              <input id="character-input" placeholder="Add a character..." autocorrect="off" autocomplete="off" />
+              <input id="character-input" placeholder="Add a character…" autocorrect="off" autocomplete="off" />
             </form>
             <div id="current-matches" class="column noprint"></div>
           </div>
@@ -63,6 +63,7 @@
         </button>
 
         <div id="filters">
+          <div class="checkboxes-container">
             <form id="townsfolk-form">
               <input id="townsfolk-checkbox" type="checkbox" checked/>
               <label for="townsfolk-checkbox">Townsfolk</label>
@@ -79,6 +80,12 @@
               <input id="demon-checkbox" type="checkbox" checked/>
               <label for="demon-checkbox">Demon</label>
             </form>
+          </div>
+          <div class="filter-input-container">
+            <form id="filter-input-form">
+              <input id="filter-input" placeholder="Filter characters…" autocorrect="off" autocomplete="off" />
+            </form>
+          </div>
         </div>
         <div id="all-characters"></div>
       </div>

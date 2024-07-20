@@ -62,7 +62,7 @@ You can change the name and author of the script on the top left.
 
 The sidebar, which you can open using the button in the middle-right of the
 viewport, lets you view all of the characters (including customs if you’ve
-imported any) in one list and filter them by their type.
+imported any) in one list and filter them by their name and type.
 
 Importing directly from [bloodstar](https://www.bloodstar.xyz/) is supported.
 Characters are added in the order they appear on the script and are not SAO
