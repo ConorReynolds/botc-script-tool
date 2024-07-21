@@ -29,6 +29,8 @@ export class Script {
     this.outsiders = [];
     this.minions = [];
     this.demons = [];
+    this.travelers = [];
+    this.fabled = [];
     this.name = "";
     this.author = "";
     this.charSet = new Set();
@@ -40,6 +42,8 @@ export class Script {
     this.outsiders = [];
     this.minions = [];
     this.demons = [];
+    this.travelers = [];
+    this.fabled = [];
     this.name = "";
     this.author = "";
     this.charSet = new Set();
@@ -135,6 +139,14 @@ export class Script {
       const idx = this.demons.findIndex((c) => c.id === char.id);
       this.demons.splice(idx, 1);
     }
+    if (char.type === "traveler") {
+      const idx = this.travelers.findIndex((c) => c.id === char.id);
+      this.travelers.splice(idx, 1);
+    }
+    if (char.type === "fabled") {
+      const idx = this.fabled.findIndex((c) => c.id === char.id);
+      this.fabled.splice(idx, 1);
+    }
 
     let idx;
     while (
@@ -174,6 +186,20 @@ export class Script {
           break;
         }
         this.demons.push(newChar);
+        this.charSet.add(newChar.id);
+        break;
+      case "traveler":
+        if (this.travelers.some((c0) => newChar.id === c0.id)) {
+          break;
+        }
+        this.travelers.push(newChar);
+        this.charSet.add(newChar.id);
+        break;
+      case "fabled":
+        if (this.fabled.some((c0) => newChar.id === c0.id)) {
+          break;
+        }
+        this.fabled.push(newChar);
         this.charSet.add(newChar.id);
         break;
     }
@@ -216,6 +242,21 @@ export class Script {
     this.outsiders.sort(Character.compare);
     this.minions.sort(Character.compare);
     this.demons.sort(Character.compare);
+
+    function compareOn(f) {
+      return function (x, y) {
+        if (f(x) < f(y)) {
+          return -1;
+        } else if (f(x) > f(y)) {
+          return 1;
+        } else {
+          return 0;
+        }
+      };
+    }
+
+    this.travelers.sort(compareOn((o) => o.name));
+    this.fabled.sort(compareOn((o) => o.name));
 
     this.jinxList.sort((o1, o2) =>
       Character.compare(new Character(o1.char1), new Character(o2.char1)) ||
@@ -307,6 +348,50 @@ export class Script {
     }
     str += `</div>`;
     str += `</div>`;
+
+    str += `<div class="travelers-and-fabled-container">`;
+    str +=
+      `<h3 class="travelers-and-fabled-heading"><span>TRAVELERS & FABLED</span></h3>`;
+    str += `<div class="travelers-and-fabled" nitems="${
+      this.travelers.length + this.fabled.length
+    }">`;
+    for (const c of this.travelers) {
+      str += `<div id="${c.id}" class="item">`;
+      str +=
+        `<img id="${c.id}-icon-script" title="Remove the ${c.name}" class="icon ${
+          iconCls(c)
+        }" src="${c.icon}"/>`;
+      str += `<div class="name-and-summary">`;
+      str += `<h4 class="character-name">`;
+      str += `<a title="Read more about the ${c.name}" href="${wikilink(c)}" ${
+        wikilink(c) === "#" ? "" : 'target="_blank"'
+      }>${c.name}</a>`;
+      str += `</h4>`;
+      str += `<div class="character-summary">${c.summary}</div>`;
+      str += `</div>`;
+      str += `</div>`;
+    }
+    // str += `</div>`; // end travelers
+
+    // str += `<div class="fabled" nitems="${this.fabled.length}">`;
+    for (const c of this.fabled) {
+      str += `<div id="${c.id}" class="item">`;
+      str +=
+        `<img id="${c.id}-icon-script" title="Remove the ${c.name}" class="icon ${
+          iconCls(c)
+        }" src="${c.icon}"/>`;
+      str += `<div class="name-and-summary">`;
+      str += `<h4 class="character-name">`;
+      str += `<a title="Read more about the ${c.name}" href="${wikilink(c)}" ${
+        wikilink(c) === "#" ? "" : 'target="_blank"'
+      }>${c.name}</a>`;
+      str += `</h4>`;
+      str += `<div class="character-summary">${c.summary}</div>`;
+      str += `</div>`;
+      str += `</div>`;
+    }
+    str += `</div>`; // end travelers-and-fabled
+    str += `</div>`; // end travelers-and-fabled-container
 
     str += `<div class="night-sheet">`;
 
@@ -445,6 +530,18 @@ export class Script {
     return str;
   }
 
+  renderFabledSmall() {
+    const iconCls = (c) => c.index("image") ? "imported-icon" : "";
+    let str = `<div class="tiny-fabled">`;
+    for (const c of this.fabled) {
+      str += `<div class="item">`;
+      str += `<img class="icon ${iconCls(c)}" src="${c.icon}" />`;
+      str += `</div>`;
+    }
+    str += `</div>`;
+    return str;
+  }
+
   contains(character) {
     return this.charSet.has(character.id);
   }
@@ -460,6 +557,8 @@ export class Script {
       ...this.outsiders.map((c) => c.toJSON()),
       ...this.minions.map((c) => c.toJSON()),
       ...this.demons.map((c) => c.toJSON()),
+      ...this.travelers.map((c) => c.toJSON()),
+      ...this.fabled.map((c) => c.toJSON()),
     ];
     if (this.almanac) {
       obj[0]["almanac"] = this.almanac;

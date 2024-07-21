@@ -1,21 +1,27 @@
-import { charmap, jinxes, sao } from "./data.js";
+import { chars, fabled, jinxes, sao } from "./data.js";
 
 export class Character {
   id;
 
-  isCustom;
+  isCustom = false;
+  isFabled = false;
 
   // Stores any custom characters that are uploaded.
   static custom = {};
   static customFlat = [];
 
-  static flat = charmap;
+  static flat = chars;
+  static fabledFlat = fabled;
   // temporary dataset before I merge everything
   static sao = sao;
   static data = {};
+  static fabled = {};
   static {
     this.flat.forEach((obj) => {
-      this.data[obj["id"]] = obj;
+      this.data[obj.id] = obj;
+    });
+    this.fabledFlat.forEach((obj) => {
+      this.fabled[obj.id] = obj;
     });
   }
 
@@ -26,13 +32,13 @@ export class Character {
     if (typeof obj === "string") {
       // Probably an identifier for a character
       const id = obj;
-      if (Character.custom[id] && Character.custom[id]["team"] !== "traveler") {
+      if (Character.custom[id]) {
         this.isCustom = true;
         this.id = id;
-      } else if (
-        Character.data[id] && Character.data[id]["team"] !== "traveler"
-      ) {
-        this.isCustom = false;
+      } else if (Character.data[id]) {
+        this.id = id;
+      } else if (Character.fabled[id]) {
+        this.isFabled = true;
         this.id = id;
       } else {
         throw new Error(`can’t find character with id ‘${id}’`);
@@ -47,7 +53,8 @@ export class Character {
 
   index(i) {
     return (Character.custom[this.id] && Character.custom[this.id][i]) ||
-      (Character.data[this.id] && Character.data[this.id][i]);
+      (Character.data[this.id] && Character.data[this.id][i]) ||
+      (Character.fabled[this.id] && Character.fabled[this.id][i]);
   }
 
   get name() {
@@ -125,10 +132,9 @@ export class Character {
     const re = /has:(?<hasQuery>.*)/;
     const command = str.match(re);
     const hasQuery = command?.groups.hasQuery;
-    const characters = Character.customFlat.filter((obj) =>
-      obj["team"] !== "traveler"
-    )
-      .concat(Character.flat.filter((obj) => obj["team"] !== "traveler"));
+    const characters = Character.customFlat
+      .concat(Character.flat)
+      .concat(Character.fabledFlat);
 
     let results, key;
     if (hasQuery) {
@@ -209,8 +215,10 @@ export class Character {
   get team() {
     if (this.type === "townsfolk" || this.type === "outsider") {
       return "good";
-    } else {
+    } else if (this.type === "minion" || this.type === "demon") {
       return "evil";
+    } else {
+      return this.type;
     }
   }
 

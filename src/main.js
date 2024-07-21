@@ -82,11 +82,15 @@ let script;
 function renderScript() {
   h1.innerHTML = `${script.name}<span>by ${script.author}</span>`;
   document.querySelector("#script").innerHTML = script.render();
+  document.querySelector("#fabled-icon-container").innerHTML = script
+    .renderFabledSmall();
   if (localStorage.getItem("compact-night-sheet") === "true") {
     document.querySelector(".night-sheet").classList.add("compact");
   }
   // Add listeners to all icons
-  document.querySelectorAll(".script img.icon").forEach(function (element) {
+  document.querySelectorAll(
+    ".script img.icon, .travelers-and-fabled-container img.icon",
+  ).forEach(function (element) {
     element.addEventListener("click", function (event) {
       event.preventDefault();
       script.remove(element.parentElement.id);
@@ -289,12 +293,10 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   );
 
   globalThis.addEventListener("beforeprint", function (_event) {
-    console.log("before print");
     document.title = script.name;
   });
 
   globalThis.addEventListener("afterprint", function (_event) {
-    console.log("after print");
     document.title = appName;
   });
 
@@ -347,7 +349,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     allchars.innerHTML = "";
     const charlist = Character.flat
       .concat(Character.customFlat)
-      .filter((o) => o.team !== "traveler")
+      .concat(Character.fabledFlat)
       .filter(predicate)
       .toSorted(compareOn((o) => o.name))
       .toSorted(compareOn((o) => Character.typeRank(o.team)));
@@ -408,26 +410,46 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   const outsiderForm = document.querySelector("#outsider-form");
   const minionForm = document.querySelector("#minion-form");
   const demonForm = document.querySelector("#demon-form");
+  const travelerForm = document.querySelector("#traveler-form");
+  const fabledForm = document.querySelector("#fabled-form");
+
+  const townsfolkCheckbox = document.querySelector("#townsfolk-checkbox");
+  const outsiderCheckbox = document.querySelector("#outsider-checkbox");
+  const minionCheckbox = document.querySelector("#minion-checkbox");
+  const demonCheckbox = document.querySelector("#demon-checkbox");
+  const travelerCheckbox = document.querySelector("#traveler-checkbox");
+  const fabledCheckbox = document.querySelector("#fabled-checkbox");
+
+  const allFilterCheckboxes = [
+    townsfolkCheckbox,
+    outsiderCheckbox,
+    minionCheckbox,
+    demonCheckbox,
+    travelerCheckbox,
+    fabledCheckbox,
+  ];
 
   function updateSidebar() {
-    const townsfolk = document.querySelector("#townsfolk-checkbox");
-    const outsider = document.querySelector("#outsider-checkbox");
-    const minion = document.querySelector("#minion-checkbox");
-    const demon = document.querySelector("#demon-checkbox");
-
     function predicate(character) {
-      if (character.team === "townsfolk" && !townsfolk.checked) {
+      if (character.team === "townsfolk" && !townsfolkCheckbox.checked) {
         return false;
       }
-      if (character.team === "outsider" && !outsider.checked) {
+      if (character.team === "outsider" && !outsiderCheckbox.checked) {
         return false;
       }
-      if (character.team === "minion" && !minion.checked) {
+      if (character.team === "minion" && !minionCheckbox.checked) {
         return false;
       }
-      if (character.team === "demon" && !demon.checked) {
+      if (character.team === "demon" && !demonCheckbox.checked) {
         return false;
       }
+      if (character.team === "traveler" && !travelerCheckbox.checked) {
+        return false;
+      }
+      if (character.team === "fabled" && !fabledCheckbox.checked) {
+        return false;
+      }
+
       return true;
     }
 
@@ -438,11 +460,12 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     updateSidebar();
   });
 
-  [townsfolkForm, outsiderForm, minionForm, demonForm].forEach((x) =>
-    x.addEventListener("change", (_) => {
-      updateSidebar();
-    })
-  );
+  [townsfolkForm, outsiderForm, minionForm, demonForm, travelerForm, fabledForm]
+    .forEach((x) => {
+      x.addEventListener("change", (_) => {
+        updateSidebar();
+      });
+    });
 
   filterInputForm.addEventListener("input", function (event) {
     event.preventDefault();

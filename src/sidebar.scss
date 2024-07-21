@@ -116,6 +116,12 @@
         &[data-team=evil] {
           background-color: rgba($color: #940000, $alpha: 0.1);
         }
+        &[data-team=traveler] {
+          background: linear-gradient(90deg, rgba(#1c51a1,0.1) 0%, rgba(#1c51a1,0.1) 40%, rgba(#940000,0.1) 60%, rgba(#940000,0.1) 100%);
+        }
+        &[data-team=fabled] {
+          background-color: rgba($color: #e0a601, $alpha: 0.2);
+        }
       }
     }
   }
