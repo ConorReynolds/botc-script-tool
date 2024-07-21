@@ -224,6 +224,10 @@ export class Character {
         return 3;
       case "demon":
         return 4;
+      case "traveler":
+        return 5;
+      case "fabled":
+        return 6;
       default:
         throw Error(`not a valid character type: ${t}`);
     }

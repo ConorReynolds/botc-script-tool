@@ -5,7 +5,6 @@
 @import "fonts.scss";
 @import "normalize.scss";
 @import "mixins.scss";
-@import "sidebar.scss";
 
 :root {
   font-family: IBMPlexSansCondensed, Inter, Avenir, Helvetica, Arial, sans-serif;
@@ -16,17 +15,15 @@
   color: #0f0f0f;
   background-color: #f6f6f6;
 
-  font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --width: min(55rem, 100% - 2rem);
 }
 
-.character-icon {
-  height: 6em;
-  padding: 0em;
-}
+@import "sidebar.scss";
 
 .row {
   display: flex;
@@ -45,7 +42,7 @@
 
   position: fixed;
   font-size: 0.9rem;
-  width: min(55rem, 95%);
+  width: var(--width);
   display: flex;
   justify-content: right;
   align-items: end;
@@ -75,7 +72,7 @@
   align-items: end;
   padding-top: 2rem;
   margin-bottom: 1rem;
-  width: min(55rem, 95%);
+  width: var(--width);
   max-height: 3rem;
   margin: auto;
   #metadata {
@@ -318,7 +315,7 @@ img.imported-icon {
     }
   }
 
-  width: min(55rem, 95%);
+  width: var(--width);
 
   margin: auto;
   text-align: left;
@@ -652,7 +649,7 @@ h1 {
     // line-height: 1.55;
     // max-width: 32rem;
     margin: auto;
-    max-width: min(55rem, 95%);
+    max-width: var(--width);
     margin-top: .5rem;
     margin-bottom: 1.5rem;
     padding-left: 1rem;

@@ -157,6 +157,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     function (event) {
       event.preventDefault();
       script.name = scriptNameInput.value;
+      h1.innerHTML = `${script.name}<span>by ${script.author}</span>`;
       localStorage.setItem("script", script.toJSON());
     },
   );
@@ -166,6 +167,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     function (event) {
       event.preventDefault();
       script.author = scriptAuthorInput.value;
+      h1.innerHTML = `${script.name}<span>by ${script.author}</span>`;
       localStorage.setItem("script", script.toJSON());
     },
   );
@@ -282,11 +284,19 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     "submit",
     function (event) {
       event.preventDefault();
-      document.title = script.name;
-      h1.innerHTML = `${script.name}<span>by ${script.author}</span>`;
       globalThis.print();
     },
   );
+
+  globalThis.addEventListener("beforeprint", function (_event) {
+    console.log("before print");
+    document.title = script.name;
+  });
+
+  globalThis.addEventListener("afterprint", function (_event) {
+    console.log("after print");
+    document.title = appName;
+  });
 
   document.querySelector("#compact-night-sheet-form").addEventListener(
     "change",
@@ -301,10 +311,6 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       }
     },
   );
-
-  globalThis.addEventListener("afterprint", function (_event) {
-    document.title = appName;
-  });
 
   globalThis.addEventListener("unload", function (_event) {
     localStorage.setItem("script", script.toJSON());
@@ -326,13 +332,25 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     // const lastFocus = document.activeElement;
     // const lastCharID = lastFocus.getAttribute("data-id");
     predicate = predicate ?? ((c) => c);
+    function compareOn(f) {
+      return function (x, y) {
+        if (f(x) < f(y)) {
+          return -1;
+        } else if (f(x) > f(y)) {
+          return 1;
+        } else {
+          return 0;
+        }
+      };
+    }
 
     allchars.innerHTML = "";
     const charlist = Character.flat
       .concat(Character.customFlat)
       .filter((o) => o.team !== "traveler")
       .filter(predicate)
-      .toSorted((o1, o2) => o1.name > o2.name);
+      .toSorted(compareOn((o) => o.name))
+      .toSorted(compareOn((o) => Character.typeRank(o.team)));
 
     const strFilter = filterInputElem.value;
     const filteredChars = fuzzysort.go(
