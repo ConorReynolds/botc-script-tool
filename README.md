@@ -44,6 +44,9 @@ Here’s some script PDFs I generated with this tool.
 - [Boozling! v7](https://drive.google.com/uc?export=download&id=1EUW_h3nx4NKRl9BpUtUX0CM_8jnv2lHQ)
   ([compact night sheet version](https://drive.google.com/uc?export=download&id=1iZfDeaWGnkHqlpGdnjSmJbKKvrHeZMj3))<br/>by
   Lau ([JSON](https://botc-scripts.azurewebsites.net/script/173/8.0.0))
+- [Kaboom](https://drive.google.com/uc?export=download&id=10TVDKnsBuMxtwhaMqHfDqs050jmM6Glp)
+  ([compact night sheet version](https://drive.google.com/uc?export=download&id=1udx-kj-aZfXY1hZB9tTSyPujyK8g3nff))<br/>
+  by Scuba Steve ([JSON](https://botcscripts.com/script/1205/1.0.0))
 
 ## Basic Usage
 
@@ -147,18 +150,14 @@ want something that fits on a single printed page.
 
 ## Missing Features
 
-The tool does not yet support travelers or fabled. These features are
-high-priority.
-
-Further in the future, it would be cool to integrate some script-building tips
-directly into the editor. Currently the tool does not display any script
-analytics whatsoever – not even the numbers of character types.
+It would be cool to integrate some script-building tips directly into the
+editor. Currently the tool does not display any script analytics whatsoever –
+not even the numbers of character types.
 
 ## Incomplete Features
 
 The special search queries are limited to ‘has:’ prefixes and the filter
-functionality in the sidebar is still relatively basic. Extending these would be
-cool.
+functionality in the sidebar is still relatively basic.
 
 ## Building the Tool
 
