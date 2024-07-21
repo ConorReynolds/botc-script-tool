@@ -173,6 +173,16 @@ have to compile the Sass files before launching the server.
 Disclaimer: I haven’t tried anything on Windows, but it should be simple to get
 working.
 
+## Troubleshooting and Known Issues
+
+This Works On My Machine™ (latest Firefox on macOS), but beyond that it has not
+been tested much. Most of the current problems seem to revolve around competing
+interpretations of `window.print()` in different browsers and operating systems.
+
+- Microsoft Print to PDF blanks the file name. If you want the file name to be
+  the name of the script by default then you’ll need to use the regular Print to
+  PDF. You can change this in the ‘Destination’ field of the print options.
+
 ## Acknowledgements
 
 The character icons are a modified version of the unofficial icon SVGs Navean
