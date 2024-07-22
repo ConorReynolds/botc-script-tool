@@ -1293,7 +1293,7 @@ export const chars = [
     "ability": "Each day, after the 1st execution, you may nominate again.",
   },
   {
-    "id": "bonecollector",
+    "id": "bone_collector",
     "name": "Bone Collector",
     "edition": "snv",
     "team": "traveler",
@@ -3949,7 +3949,7 @@ export const fabled = [
       "For the first 2 minutes of each day, veteran players may not talk.",
   },
   {
-    "id": "hellslibrarian",
+    "id": "hells_librarian",
     "firstNightReminder": "",
     "otherNightReminder": "",
     "reminders": ["Something Bad"],
@@ -4028,7 +4028,7 @@ export const fabled = [
     "ability": "There might be 1 extra or 1 fewer Outsider in play.",
   },
   {
-    "id": "spiritofivory",
+    "id": "spirit_of_ivory",
     "firstNightReminder": "",
     "otherNightReminder": "",
     "reminders": ["No extra evil"],
@@ -4049,7 +4049,7 @@ export const fabled = [
   //   "ability": "Use the Djinn's special rule. All players know what it is.",
   // },
   {
-    "id": "stormcatcher",
+    "id": "storm_catcher",
     "firstNight": 1,
     "firstNightReminder":
       'Mark a good player as "Safe". Wake each evil player and show them the marked player.',
