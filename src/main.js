@@ -355,10 +355,18 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       .toSorted(compareOn((o) => Character.typeRank(o.team)));
 
     const strFilter = filterInputElem.value;
+    const re = /has:(?<hasQuery>.*)/;
+    const command = strFilter.match(re);
+    const hasQuery = command?.groups.hasQuery;
+
     const filteredChars = fuzzysort.go(
-      strFilter,
+      hasQuery ? hasQuery : strFilter,
       charlist,
-      { key: "name", all: true },
+      {
+        key: hasQuery ? "ability" : "name",
+        all: true,
+        threshold: hasQuery ? 0.3 : 0,
+      },
     );
 
     for (const result of filteredChars) {
@@ -368,7 +376,9 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       let html =
         `<div class="item ${selected}" data-id="${character.id}" data-team="${character.team}" title="${character.summary}" tabindex=0>`;
       html += `<img class="icon ${imported}" src="${character.tinyIcon}"/>`;
-      html += `<div>${result.highlight("<b>", "</b>")}</div>`;
+      html += `<div>${
+        hasQuery ? character.name : result.highlight("<b>", "</b>")
+      }</div>`;
       html += `</div>`;
 
       const elem = document.createElement("div");
