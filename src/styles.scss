@@ -584,11 +584,16 @@ img.imported-icon {
       .first-night, .other-night {
         display: grid;
         justify-content: center;
-        row-gap: 0.5rem;
         .item {
           width: fit-content;
           justify-content: left;
           margin: 0;
+          grid-template-columns: 2rem 1fr;
+          row-gap: 0.5rem;
+          img {
+            width: 2.5rem;
+            height: 2.5rem;
+          }
         }
       }
       @media (max-width: 520px) {

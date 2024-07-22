@@ -364,9 +364,10 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     for (const result of filteredChars) {
       const character = new Character(result.obj.id);
       const selected = script.contains(character) ? "selected" : "";
+      const imported = character.isCustom ? "imported-icon" : "";
       let html =
-        `<div class="item ${selected}" data-id="${character.id}" data-team="${character.team}" tabindex=0>`;
-      html += `<img class="icon" src="${character.icon}"/>`;
+        `<div class="item ${selected} " data-id="${character.id}" data-team="${character.team}" tabindex=0>`;
+      html += `<img class="icon ${imported}" src="${character.tinyIcon}"/>`;
       html += `<div>${result.highlight("<b>", "</b>")}</div>`;
       html += `</div>`;
 
