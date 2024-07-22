@@ -1676,7 +1676,7 @@ export const chars = [
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Minions start knowing 3 `not-in-play characters.",
+    "ability": "Minions start knowing 3 not-in-play characters.",
   },
   {
     "id": "acrobat",
