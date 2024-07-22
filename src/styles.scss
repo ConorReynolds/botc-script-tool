@@ -481,7 +481,7 @@ img.imported-icon {
 }
 
 .travelers-and-fabled-container {
-  &:has(> .travelers:empty):has(> .fabled:empty) {
+  &:has(> .travelers-and-fabled:empty) {
     display: none;
   }
 }
