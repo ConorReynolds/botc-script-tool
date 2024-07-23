@@ -48,7 +48,7 @@ Here’s some script PDFs I generated with this tool.
   ([compact night sheet version](https://drive.google.com/uc?export=download&id=1udx-kj-aZfXY1hZB9tTSyPujyK8g3nff))<br/>
   by Scuba Steve ([JSON](https://botcscripts.com/script/1205/1.0.0))
 
-## Basic Usage
+## Usage Overview
 
 The UI is largely self-explanatory. The buttons on the top right allow you to
 (in order):
@@ -120,19 +120,45 @@ much simpler, but requires that you create the night order in the JSON yourself.
 
 Either import the script using the import JSON button on the top right, or start
 typing characters into the text box. Pressing Enter will immediately add the
-currently underlined character. Alternatively, you can use the sidebar.
+currently underlined character.
+
+https://github.com/user-attachments/assets/781e5bcb-550d-4b96-a761-3719d932ff25
+
+Alternatively, you can use the sidebar.
+
+https://github.com/user-attachments/assets/ced438ee-14a0-4d26-88df-33344f745106
 
 If you want to search through characters’ ability text rather than their names,
 prefix the query with ‘has:’. Try things like has:learn align, has:mad, has:you
 start knowing, has:drunk, has:poison, etc.
 
+https://github.com/user-attachments/assets/8d83254b-9126-4e0c-9ef5-d202cdad98f2
+
 ### Removing Characters
 
 Just click the character’s icon on the script – same as in the official tool.
 
-### Exporting the Script
+https://github.com/user-attachments/assets/7ecb7884-cd8e-45d1-800c-7e7474476b67
 
-You can download the script JSON using the button on the top right.
+### Undo
+
+Undo with Ctrl+Z on Windows/Linux and Cmd+Z on Mac. You can undo up to ten actions.
+
+https://github.com/user-attachments/assets/2aea1072-1a45-4b69-abd6-53bd8b93933b
+
+### Exporting the Script JSON
+
+You can export the script JSON using the button on the top right.
+
+https://github.com/user-attachments/assets/c9ec35d1-9f37-417a-a7bd-6a6971f25422
+
+### Importing Scripts
+
+You can import scripts using the button on the top right. Both standard and homebrew scripts are supported.
+
+https://github.com/user-attachments/assets/a4d428f8-ccc8-4903-87f6-d275a2c39f3a
+
+### Exporting PDFs
 
 Exporting PDFs is designed to be done using the built-in print dialog’s ‘Print
 to PDF’ functionality. This currently works well on Chrome and Firefox – my
@@ -152,6 +178,8 @@ double-sided printed page). The first is the character sheet, same as before,
 and the second has the jinxes and the night order without the reminder text.
 This option is nice if you don’t care about the night order reminder text and
 want something that fits on a single printed page.
+
+https://github.com/user-attachments/assets/501a7a7c-de29-4c4f-9c54-fe5b37565d73
 
 ## Missing Features
 
