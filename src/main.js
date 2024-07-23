@@ -200,7 +200,11 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   }
 
   globalThis.addEventListener("keydown", function (event) {
-    if (event.ctrlKey && event.key === "z") {
+    // Returns true for iPhones also but that doesn’t matter
+    const onMac = navigator.userAgent.includes("Mac");
+    if (onMac && event.metaKey && event.key === "z") {
+      undo();
+    } else if (event.ctrlKey && event.key === "z") {
       undo();
     }
   });
