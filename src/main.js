@@ -220,6 +220,10 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     script = decompressScript(urlParams.get("script"));
     scriptNameInput.value = script.name;
     scriptAuthorInput.value = script.author;
+
+    // Normally don’t have to sort when loading from local storage since it is
+    // always stored sorted, but URL param scripts are not sorted.
+    script.sort();
   } else if (localStorage.getItem("script")) {
     script.loadFromJSON(JSON.parse(localStorage.getItem("script")));
     scriptNameInput.value = script.name;
