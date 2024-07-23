@@ -569,6 +569,6 @@ export class Script {
     if (this.otherNightOrder) {
       obj[0]["otherNight"] = this.otherNightOrder;
     }
-    return JSON.stringify(obj);
+    return JSON.stringify(obj, null, 2);
   }
 }
