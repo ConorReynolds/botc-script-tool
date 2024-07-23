@@ -290,7 +290,7 @@ export const chars = [
     "otherNightReminder": "",
     "reminders": [],
     "setup": true,
-    "ability": "There are extra Outsiders in play. [+2 Outsiders]",
+    "ability": "There are extra Outsiders in play. [+2 Outsiders]",
   },
   {
     "id": "imp",
@@ -682,7 +682,7 @@ export const chars = [
     ],
     "setup": true,
     "ability":
-      "You start knowing which Outsiders are in play. If 1 died today, choose a player tonight: they die. [−1 or +1 Outsider]",
+      "You start knowing which Outsiders are in play. If 1 died today, choose a player tonight: they die. [−1 or +1 Outsider]",
   },
   {
     "id": "devils_advocate",
@@ -1174,7 +1174,7 @@ export const chars = [
     ],
     "setup": true,
     "ability":
-      "Each night*, choose a player: they die. The 1st Outsider this kills becomes an evil Fang Gu & you die instead. [+1 Outsider]",
+      "Each night*, choose a player: they die. The 1st Outsider this kills becomes an evil Fang Gu & you die instead. [+1 Outsider]",
   },
   {
     "id": "vigormortis",
@@ -1191,7 +1191,7 @@ export const chars = [
     ],
     "setup": true,
     "ability":
-      "Each night*, choose a player: they die. Minions you kill keep their ability & poison 1 Townsfolk neighbour. [−1 Outsider]",
+      "Each night*, choose a player: they die. Minions you kill keep their ability & poison 1 Townsfolk neighbour. [−1 Outsider]",
   },
   {
     "id": "ojo",
@@ -1233,7 +1233,7 @@ export const chars = [
     ],
     "setup": false,
     "ability":
-      "Each night*, choose a player: they die. Your 2 Townsfolk neighbours are poisoned.",
+      "Each night*, choose a player: they die. Your 2 Townsfolk neighbours are poisoned.",
   },
   {
     "id": "vortox",
@@ -1347,7 +1347,7 @@ export const chars = [
     ],
     "setup": true,
     "ability":
-      "You start knowing 1 evil player. If the player you know dies, you learn another evil player tonight. [1 Townsfolk is evil]",
+      "You start knowing 1 evil player. If the player you know dies, you learn another evil player tonight. [1 Townsfolk is evil]",
   },
   {
     "id": "pixie",
@@ -1422,7 +1422,7 @@ export const chars = [
     ],
     "setup": true,
     "ability":
-      "Each night, you learn a player of a different character type than last night. [+0 or +1 Outsider]",
+      "Each night, you learn a player of a different character type than last night. [+0 or +1 Outsider]",
   },
   {
     "id": "cult_leader",
@@ -1973,7 +1973,7 @@ export const chars = [
     ],
     "setup": true,
     "ability":
-      "Each night, Minions choose who babysits Lil’ Monsta & ‘is the Demon’. Each night*, a player might die. [+1 Minion]",
+      "Each night, Minions choose who babysits Lil’ Monsta & ‘is the Demon’. Each night*, a player might die. [+1 Minion]",
   },
   {
     "id": "lleech",
@@ -2377,7 +2377,7 @@ export const sao = {
   },
   "baron": {
     "Name": "Baron",
-    "Summary": "There are extra Outsiders in play. [+2 Outsiders]",
+    "Summary": "There are extra Outsiders in play. [+2 Outsiders]",
     "Type": "Minion",
     "Script": "Trouble Brewing",
     "first night": false,
@@ -2708,7 +2708,7 @@ export const sao = {
   "fang_gu": {
     "Name": "Fang Gu",
     "Summary":
-      "Each night*, choose a player: they die. The 1st Outsider this kills becomes an evil Fang Gu & you die instead. [+1 Outsider]",
+      "Each night*, choose a player: they die. The 1st Outsider this kills becomes an evil Fang Gu & you die instead. [+1 Outsider]",
     "Type": "Demon",
     "Script": "Sects & Violets",
     "first night": false,
@@ -2722,7 +2722,7 @@ export const sao = {
   "vigormortis": {
     "Name": "Vigormortis",
     "Summary":
-      "Each night*, choose a player: they die. Minions you kill keep their ability & poison 1 Townsfolk neighbor. [-1 Outsider]",
+      "Each night*, choose a player: they die. Minions you kill keep their ability & poison 1 Townsfolk neighbor. [-1 Outsider]",
     "Type": "Demon",
     "Script": "Sects & Violets",
     "first night": false,
@@ -2736,7 +2736,7 @@ export const sao = {
   "no_dashii": {
     "Name": "No Dashii",
     "Summary":
-      "Each night*, choose a player: they die. Your 2 Townsfolk neighbors are poisoned.",
+      "Each night*, choose a player: they die. Your 2 Townsfolk neighbors are poisoned.",
     "Type": "Demon",
     "Script": "Sects & Violets",
     "first night": false,
@@ -2998,7 +2998,7 @@ export const sao = {
   "godfather": {
     "Name": "Godfather",
     "Summary":
-      "You start knowing which Outsiders are in play. If 1 died today, choose a player tonight: they die. [-1 or +1 Outsider]",
+      "You start knowing which Outsiders are in play. If 1 died today, choose a player tonight: they die. [-1 or +1 Outsider]",
     "Type": "Minion",
     "Script": "Bad Moon Rising",
     "first night": false,
@@ -3151,7 +3151,7 @@ export const sao = {
   "balloonist": {
     "Name": "Balloonist",
     "Summary":
-      "Each night, you learn a player of a different character type than last night. [+0 or +1 Outsider]",
+      "Each night, you learn a player of a different character type than last night. [+0 or +1 Outsider]",
     "Type": "Townsfolk",
     "Script": "Experimental",
     "first night": false,
@@ -3165,7 +3165,7 @@ export const sao = {
   "bounty_hunter": {
     "Name": "Bounty Hunter",
     "Summary":
-      "You start knowing 1 evil player. If the player you know dies, you learn another evil player tonight. [1 Townsfolk is evil]",
+      "You start knowing 1 evil player. If the player you know dies, you learn another evil player tonight. [1 Townsfolk is evil]",
     "Type": "Townsfolk",
     "Script": "Experimental",
     "first night": true,
@@ -3789,7 +3789,7 @@ export const sao = {
   "lil_monsta": {
     "Name": "Lil’ Monsta",
     "Summary":
-      "Each night, Minions choose who babysits Lil’ Monsta & ‘is the Demon’. Each night*, a player might die. [+1 Minion]",
+      "Each night, Minions choose who babysits Lil’ Monsta & ‘is the Demon’. Each night*, a player might die. [+1 Minion]",
     "Type": "Demon",
     "Script": "Experimental",
     "first night": false,
@@ -4093,7 +4093,7 @@ export const jinxes = {
       "If the Recluse registers as evil to the Ogre, the Ogre learns that they are evil.",
   },
   "Baron": {
-    "Heretic": "The Baron might only add 1 Outsider, not 2.",
+    "Heretic": "The Baron might only add 1 Outsider, not 2.",
     "Plague Doctor":
       "If the Storyteller gains the Baron ability, up to two players become not-in-play Outsiders.",
   },
@@ -4122,7 +4122,7 @@ export const jinxes = {
   },
   "Marionette": {
     "Balloonist":
-      "If the Marionette thinks that they are the Balloonist, +1 Outsider was added.",
+      "If the Marionette thinks that they are the Balloonist, +1 Outsider was added.",
     "Damsel": "The Marionette does not learn that a Damsel is in play.",
     "Huntsman":
       "If the Marionette thinks that they are the Huntsman, the Damsel was added.",
