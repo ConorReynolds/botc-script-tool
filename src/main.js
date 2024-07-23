@@ -395,12 +395,16 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     "submit",
     function (event) {
       event.preventDefault();
-      script.clear();
-      Character.clearCustoms();
-      scriptNameInput.value = "";
-      scriptAuthorInput.value = "";
-      globalThis.history.replaceState(null, "", globalThis.location.pathname);
-      renderScript();
+      if (isMetaOrCtrlPressed) {
+        globalThis.history.replaceState(null, "", globalThis.location.pathname);
+      } else {
+        script.clear();
+        Character.clearCustoms();
+        scriptNameInput.value = "";
+        scriptAuthorInput.value = "";
+        globalThis.history.replaceState(null, "", globalThis.location.pathname);
+        renderScript();
+      }
     },
   );
 
