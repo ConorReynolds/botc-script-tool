@@ -393,6 +393,10 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       };
     }
 
+    if (renderSidebarChars.wasExpanded === undefined) {
+      renderSidebarChars.wasExpanded = new Set();
+    }
+
     allchars.innerHTML = "";
     const charlist = Character.flat
       .concat(Character.customFlat)
@@ -420,11 +424,20 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       const character = new Character(result.obj.id);
       const selected = script.contains(character) ? "selected" : "";
       const imported = character.isCustom ? "imported-icon" : "";
+      const wasExpanded = renderSidebarChars.wasExpanded.has(character.id);
       let html =
-        `<div class="item ${selected}" data-id="${character.id}" data-team="${character.team}" title="${character.summary}" tabindex=0>`;
+        `<div class="item ${selected}" data-id="${character.id}" data-team="${character.team}" tabindex=0>`;
+      // html += `<div class=>`
       html += `<img class="icon ${imported}" src="${character.tinyIcon}"/>`;
-      html += `<div>${
+      html += `<div class="character-name">${
         hasQuery ? character.name : result.highlight("<b>", "</b>")
+      }</div>`;
+      html += `<div class="button">`;
+      html += `<button type="button" class="${
+        wasExpanded ? "expanded" : ""
+      }" title="Toggle character ability">❯</button></div>`;
+      html += `<div class="ability-text ${wasExpanded ? "" : "nodisplay"}">${
+        hasQuery ? result.highlight("<b>", "</b>") : character.summary
       }</div>`;
       html += `</div>`;
 
@@ -452,6 +465,23 @@ globalThis.addEventListener("DOMContentLoaded", () => {
             script.sort();
           }
           renderScript();
+        }
+      });
+
+      elem.querySelector("button").addEventListener("click", function (event) {
+        event.stopPropagation();
+        event.target.classList.toggle("expanded");
+        const node = event.target.parentNode.nextSibling;
+        node.classList.toggle("nodisplay");
+
+        if (!node.classList.contains("nodisplay")) {
+          renderSidebarChars.wasExpanded.add(
+            node.parentNode.getAttribute("data-id"),
+          );
+        } else {
+          renderSidebarChars.wasExpanded.delete(
+            node.parentNode.getAttribute("data-id"),
+          );
         }
       });
 
