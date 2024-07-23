@@ -368,7 +368,6 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   });
 
   globalThis.addEventListener("keyup", function (event) {
-    console.log(event);
     if (event.key === "Meta" && onMac) {
       isMetaOrCtrlPressed = false;
     } else if (!onMac && event.key === "Control") {
