@@ -67,6 +67,9 @@ The sidebar, which you can open using the button in the middle-right of the
 viewport, lets you view all of the characters (including customs if you’ve
 imported any) in one list and filter them by their name and type.
 
+You can undo up to ten previous changes with Ctrl+Z. (There is no redo feature
+yet.)
+
 Importing directly from [bloodstar](https://www.bloodstar.xyz/) is supported.
 Characters are added in the order they appear on the script and are not SAO
 sorted. The tool should mostly handle the night order you create in bloodstar,
@@ -80,7 +83,9 @@ supports the same format, also explained in
 {
     "id": "_meta",
     "author": "Author Name",
+    // ...
     // other fields 
+    // ...
     "firstNight": [
         "dusk",
         "char1",
