@@ -116,6 +116,43 @@ function undo() {
   }
 }
 
+function compressScript() {
+  // Only works for non-custom scripts
+  const name = script.name;
+  const author = script.author;
+  const chars = Array.from(script.charSet);
+  const allChars = Character.flat.concat(Character.fabledFlat).map((o) => o.id);
+
+  chars.sort();
+  allChars.sort();
+
+  const charsMap = {};
+  for (const [i, c] of allChars.entries()) {
+    charsMap[c] = i;
+  }
+
+  const indices = chars.map((c) => charsMap[c]);
+  return JSON.stringify([name, author, ...indices]);
+}
+
+function decompressScript(str) {
+  const array = JSON.parse(str);
+
+  const allChars = Character.flat.concat(Character.fabledFlat).map((o) => o.id);
+  allChars.sort();
+
+  const localScript = new Script();
+  localScript.name = array[0];
+  localScript.author = array[1];
+
+  for (let i = 2; i < array.length; i++) {
+    const char = new Character(allChars[array[i]]);
+    localScript.add(char);
+  }
+
+  return localScript;
+}
+
 function renderScript(store) {
   const shouldStore = store ?? true;
 
@@ -178,7 +215,12 @@ globalThis.addEventListener("DOMContentLoaded", () => {
 
   script = new Script();
 
-  if (localStorage.getItem("script")) {
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get("script")) {
+    script = decompressScript(urlParams.get("script"));
+    scriptNameInput.value = script.name;
+    scriptAuthorInput.value = script.author;
+  } else if (localStorage.getItem("script")) {
     script.loadFromJSON(JSON.parse(localStorage.getItem("script")));
     scriptNameInput.value = script.name;
     scriptAuthorInput.value = script.author;
@@ -201,7 +243,6 @@ globalThis.addEventListener("DOMContentLoaded", () => {
 
   globalThis.addEventListener("keydown", function (event) {
     // Returns true for iPhones also but that doesn’t matter
-    const onMac = navigator.userAgent.includes("Mac");
     if (onMac && event.metaKey && event.key === "z") {
       undo();
     } else if (event.ctrlKey && event.key === "z") {
@@ -315,11 +356,38 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     },
   );
 
+  let isMetaOrCtrlPressed = false;
+  const onMac = navigator.userAgent.includes("Mac");
+
+  globalThis.addEventListener("keydown", function (event) {
+    if (event.key === "Meta" && onMac) {
+      isMetaOrCtrlPressed = true;
+    } else if (!onMac && event.key === "Control") {
+      isMetaOrCtrlPressed = true;
+    }
+  });
+
+  globalThis.addEventListener("keyup", function (event) {
+    console.log(event);
+    if (event.key === "Meta" && onMac) {
+      isMetaOrCtrlPressed = false;
+    } else if (!onMac && event.key === "Control") {
+      isMetaOrCtrlPressed = false;
+    }
+  });
+
   document.querySelector("#export-form").addEventListener(
     "submit",
     function (event) {
       event.preventDefault();
-      writeDialogJSON(script.name, script.toJSON());
+      if (isMetaOrCtrlPressed) {
+        const url = new URL(globalThis.location.href);
+        const encodedScript = compressScript();
+        url.searchParams.append("script", encodedScript);
+        globalThis.history.replaceState(null, "", url);
+      } else {
+        writeDialogJSON(script.name, script.toJSON());
+      }
     },
   );
 
@@ -331,6 +399,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       Character.clearCustoms();
       scriptNameInput.value = "";
       scriptAuthorInput.value = "";
+      globalThis.history.replaceState(null, "", globalThis.location.pathname);
       renderScript();
     },
   );

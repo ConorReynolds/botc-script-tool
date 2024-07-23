@@ -272,7 +272,7 @@ export class Character {
     if (type1 < type2) {
       return -1;
     }
-    if (type2 < type1) {
+    if (type1 > type2) {
       return 1;
     }
 
@@ -315,13 +315,19 @@ export class Character {
     if (c1CompareString < c2CompareString) {
       return -1;
     }
-    if (c2CompareString < c1CompareString) {
+    if (c1CompareString > c2CompareString) {
       return 1;
     }
     if (c1.summaryLength < c2.summaryLength) {
       return -1;
     }
-    if (c2.summaryLength < c1.summaryLength) {
+    if (c1.summaryLength > c2.summaryLength) {
+      return 1;
+    }
+    if (c1.name < c2.name) {
+      return -1;
+    }
+    if (c1.name > c2.name) {
       return 1;
     }
 
