@@ -10,7 +10,7 @@ function reverse<T>(xs: seq<T>): (ys: seq<T>)
   else [xs[|xs| - 1]] + reverse(xs[0 .. |xs| - 1])
 }
 
-class Timeline<St(0)> {
+class Timeline<St> {
   var past: seq<St>
   var future: seq<St>
   var size: nat

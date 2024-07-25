@@ -1,3 +1,4 @@
+import { AppState } from "./state.js";
 import { Character } from "./character.js";
 import { Script } from "./script.js";
 import { Timeline } from "./timeline.js";
@@ -22,7 +23,7 @@ function readFileDialog() {
     reader.onload = function (readerEvent) {
       const content = readerEvent.target.result;
       if (typeof content === "string") {
-        script.loadFromJSON(JSON.parse(content));
+        appState.currentScript.loadFromJSON(JSON.parse(content));
         renderScript();
       }
     };
@@ -76,23 +77,23 @@ preloadImages(thumbnails).then((_) => {
   console.log(`preloaded ${thumbnails.length} thumbnails`);
 });
 
-let script;
+let appState;
 
 function undo() {
-  script.loadPrevious();
+  appState.currentScript.loadPrevious();
   renderScript();
 }
 
 function redo() {
-  script.loadNext();
+  appState.currentScript.loadNext();
   renderScript();
 }
 
 function compressScript() {
   // Only works for non-custom scripts
-  const name = script.name;
-  const author = script.author;
-  const chars = Array.from(script.charSet);
+  const name = appState.currentScript.name;
+  const author = appState.currentScript.author;
+  const chars = Array.from(appState.currentScript.charSet);
   const allChars = Character.flat.concat(Character.fabledFlat).map((o) => o.id);
 
   chars.sort();
@@ -128,12 +129,14 @@ function decompressScript(str) {
 function renderScript(store) {
   const shouldStore = store ?? true;
 
-  scriptNameInput.value = script.name;
-  scriptAuthorInput.value = script.author;
+  scriptNameInput.value = appState.currentScript.name;
+  scriptAuthorInput.value = appState.currentScript.author;
 
-  h1.innerHTML = `${script.name}<span>by ${script.author}</span>`;
-  document.querySelector("#script").innerHTML = script.render();
-  document.querySelector("#fabled-icon-container").innerHTML = script
+  h1.innerHTML =
+    `${appState.currentScript.name}<span>by ${appState.currentScript.author}</span>`;
+  document.querySelector("#script").innerHTML = appState.currentScript.render();
+  document.querySelector("#fabled-icon-container").innerHTML = appState
+    .currentScript
     .renderFabledSmall();
   if (localStorage.getItem("compact-night-sheet") === "true") {
     document.querySelector(".night-sheet").classList.add("compact");
@@ -144,13 +147,16 @@ function renderScript(store) {
   ).forEach(function (element) {
     element.addEventListener("click", function (event) {
       event.preventDefault();
-      script.remove(element.parentElement.id);
+      appState.currentScript.remove(element.parentElement.id);
       renderScript();
     }, { once: true });
   });
 
   if (shouldStore) {
-    localStorage.setItem("script-history", script.timeline.serialize());
+    localStorage.setItem(
+      "script-history",
+      appState.currentScript.timeline.serialize(),
+    );
   }
 
   globalThis.dispatchEvent(new Event("scriptrendered"));
@@ -194,22 +200,31 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   scriptNameInput = document.querySelector("#script-name-input");
   scriptAuthorInput = document.querySelector("#script-author-input");
 
-  script = new Script();
-
-  const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.get("script")) {
-    script = decompressScript(urlParams.get("script"));
-
-    // Normally don’t have to sort when loading from local storage since it is
-    // always stored sorted, but URL param scripts are not sorted.
-    script.sort();
-  } else if (localStorage.getItem("script")) {
-    script.loadFromJSON(JSON.parse(localStorage.getItem("script")));
+  if (localStorage.getItem("script")) {
+    const script = new Script();
+    script.loadFromJSON(
+      JSON.parse(localStorage.getItem("script")),
+    );
+    appState = new AppState([script]);
     if (localStorage.getItem("script-history")) {
-      script.timeline = Timeline.deserialize(
+      appState.currentScript.timeline = Timeline.deserialize(
         localStorage.getItem("script-history"),
       );
     }
+  }
+
+  if (!appState) {
+    appState = new AppState([new Script()]);
+  }
+
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get("script")) {
+    const script = decompressScript(urlParams.get("script"));
+    appState.addScriptAndFocus(script);
+
+    // Normally don’t have to sort when loading from local storage since it is
+    // always stored sorted, but URL param scripts are not sorted.
+    appState.currentScript.sort();
   }
 
   renderScript();
@@ -245,13 +260,31 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  globalThis.addEventListener("keydown", function (event) {
+    console.log(event.key);
+    if (event.metaKey && event.shiftKey && event.key === "ArrowDown") {
+      const _success = appState.nextScript();
+      console.log(`next script: ${appState.currentScript.name}`);
+      renderScript();
+    }
+  });
+
+  globalThis.addEventListener("keydown", function (event) {
+    if (event.metaKey && event.shiftKey && event.key === "ArrowUp") {
+      const _success = appState.prevScript();
+      console.log(`prev script: ${appState.currentScript.name}`);
+      renderScript();
+    }
+  });
+
   document.getElementById("script-name-form").addEventListener(
     "input",
     function (event) {
       event.preventDefault();
-      script.name = scriptNameInput.value;
-      h1.innerHTML = `${script.name}<span>by ${script.author}</span>`;
-      localStorage.setItem("script", script.toJSON());
+      appState.currentScript.name = scriptNameInput.value;
+      h1.innerHTML =
+        `${appState.currentScript.name}<span>by ${appState.currentScript.author}</span>`;
+      localStorage.setItem("script", appState.currentScript.toJSON());
     },
   );
 
@@ -259,9 +292,10 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     "input",
     function (event) {
       event.preventDefault();
-      script.author = scriptAuthorInput.value;
-      h1.innerHTML = `${script.name}<span>by ${script.author}</span>`;
-      localStorage.setItem("script", script.toJSON());
+      appState.currentScript.author = scriptAuthorInput.value;
+      h1.innerHTML =
+        `${appState.currentScript.name}<span>by ${appState.currentScript.author}</span>`;
+      localStorage.setItem("script", appState.currentScript.toJSON());
     },
   );
 
@@ -288,8 +322,8 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       const match = result.match;
 
       try {
-        script.add(match);
-        script.sort();
+        appState.currentScript.add(match);
+        appState.currentScript.sort();
         renderScript();
 
         document.querySelector("#current-matches").innerHTML = "";
@@ -316,8 +350,8 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       document.querySelector("#current-matches").innerHTML = html;
 
       function addToScript(i) {
-        script.add(new Character(res[i][0].id));
-        script.sort();
+        appState.currentScript.add(new Character(res[i][0].id));
+        appState.currentScript.sort();
         renderScript();
 
         document.querySelector("#current-matches").innerHTML = "";
@@ -380,7 +414,10 @@ globalThis.addEventListener("DOMContentLoaded", () => {
         url.searchParams.append("script", encodedScript);
         globalThis.history.replaceState(null, "", url);
       } else {
-        writeDialogJSON(script.name, script.toJSON());
+        writeDialogJSON(
+          appState.currentScript.name,
+          appState.currentScript.toJSON(),
+        );
       }
     },
   );
@@ -392,7 +429,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       if (isMetaOrCtrlPressed) {
         globalThis.history.replaceState(null, "", globalThis.location.pathname);
       } else {
-        script.clear();
+        appState.currentScript.clear();
         Character.clearCustoms();
         globalThis.history.replaceState(null, "", globalThis.location.pathname);
         renderScript();
@@ -409,7 +446,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   );
 
   globalThis.addEventListener("beforeprint", function (_event) {
-    document.title = script.name;
+    document.title = appState.currentScript.name;
   });
 
   globalThis.addEventListener("afterprint", function (_event) {
@@ -431,7 +468,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   );
 
   globalThis.addEventListener("unload", function (_event) {
-    localStorage.setItem("script", script.toJSON());
+    localStorage.setItem("script", appState.currentScript.toJSON());
   });
 
   const sidebar = document.querySelector("#sidebar");
@@ -491,7 +528,9 @@ globalThis.addEventListener("DOMContentLoaded", () => {
 
     for (const result of filteredChars) {
       const character = new Character(result.obj.id);
-      const selected = script.contains(character) ? "selected" : "";
+      const selected = appState.currentScript.contains(character)
+        ? "selected"
+        : "";
       const imported = character.isCustom ? "imported-icon" : "";
       const wasExpanded = renderSidebarChars.wasExpanded.has(character.id);
       let html =
@@ -515,11 +554,11 @@ globalThis.addEventListener("DOMContentLoaded", () => {
 
       elem.firstChild.addEventListener("click", (event) => {
         event.preventDefault();
-        if (script.contains(character)) {
-          script.remove(character.id);
+        if (appState.currentScript.contains(character)) {
+          appState.currentScript.remove(character.id);
         } else {
-          script.add(character);
-          script.sort();
+          appState.currentScript.add(character);
+          appState.currentScript.sort();
         }
         renderScript();
       });
@@ -527,11 +566,11 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       elem.firstChild.addEventListener("keydown", (event) => {
         if (event.key === "Enter" || event.key === "Space") {
           event.preventDefault();
-          if (script.contains(character)) {
-            script.remove(character.id);
+          if (appState.currentScript.contains(character)) {
+            appState.currentScript.remove(character.id);
           } else {
-            script.add(character);
-            script.sort();
+            appState.currentScript.add(character);
+            appState.currentScript.sort();
           }
           renderScript();
         }
@@ -635,11 +674,11 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       const charid = allchars.firstChild.getAttribute("data-id");
       const character = new Character(charid);
 
-      if (script.contains(character)) {
-        script.remove(character.id);
+      if (appState.currentScript.contains(character)) {
+        appState.currentScript.remove(character.id);
       } else {
-        script.add(character);
-        script.sort();
+        appState.currentScript.add(character);
+        appState.currentScript.sort();
       }
       renderScript();
     }

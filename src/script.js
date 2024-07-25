@@ -266,20 +266,16 @@ export class Script {
 
   loadPrevious() {
     this.timeline.back();
-    if (this.timeline.now()) {
-      this.isRecording = false;
-      this.loadFromJSON(JSON.parse(this.timeline.now()));
-      this.isRecording = true;
-    }
+    this.isRecording = false;
+    this.loadFromJSON(JSON.parse(this.timeline.now()));
+    this.isRecording = true;
   }
 
   loadNext() {
     this.timeline.forward();
-    if (this.timeline.now()) {
-      this.isRecording = false;
-      this.loadFromJSON(JSON.parse(this.timeline.now()));
-      this.isRecording = true;
-    }
+    this.isRecording = false;
+    this.loadFromJSON(JSON.parse(this.timeline.now()));
+    this.isRecording = true;
   }
 
   sort() {
