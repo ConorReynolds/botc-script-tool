@@ -1,5 +1,6 @@
 import { Character } from "./character.js";
 import { Script } from "./script.js";
+import { Timeline } from "./timeline.js";
 
 let h1;
 let characterInputEl;
@@ -7,7 +8,7 @@ let scriptNameInput;
 let scriptAuthorInput;
 
 const appName = "Unofficial BotC Script Tool";
-const appVersion = "0.0.1";
+const appVersion = "0.1.0";
 
 function readFileDialog() {
   const input = document.createElement("input");
@@ -23,8 +24,6 @@ function readFileDialog() {
       if (typeof content === "string") {
         script.loadFromJSON(JSON.parse(content));
         renderScript();
-        scriptNameInput.value = script.name;
-        scriptAuthorInput.value = script.author;
       }
     };
   });
@@ -79,41 +78,14 @@ preloadImages(thumbnails).then((_) => {
 
 let script;
 
-function storeScript() {
-  // Shift old storage down to a max of 10 total scripts
-  for (let i = 9; i > 0; i--) {
-    const script_i = localStorage.getItem(`script-${i}`);
-    if (script_i) {
-      localStorage.setItem(`script-${i + 1}`, script_i);
-    }
-  }
-
-  const lastScript = localStorage.getItem("script");
-  localStorage.setItem("script-2", lastScript);
-
-  const scriptJSON = script.toJSON();
-  localStorage.setItem("script-1", scriptJSON);
-  localStorage.setItem("script", scriptJSON);
+function undo() {
+  script.loadPrevious();
+  renderScript();
 }
 
-function undo() {
-  const lastScript = localStorage.getItem("script-2");
-  if (lastScript === "null") {
-    return; // Can’t undo
-  }
-
-  script.loadFromJSON(JSON.parse(lastScript));
-  scriptNameInput.value = script.name;
-  scriptAuthorInput.value = script.author;
-  renderScript(false);
-
-  localStorage.setItem("script", lastScript);
-
-  // Shift storage up
-  for (let i = 2; i <= 11; i++) {
-    const script_i = localStorage.getItem(`script-${i}`);
-    localStorage.setItem(`script-${i - 1}`, script_i);
-  }
+function redo() {
+  script.loadNext();
+  renderScript();
 }
 
 function compressScript() {
@@ -156,6 +128,9 @@ function decompressScript(str) {
 function renderScript(store) {
   const shouldStore = store ?? true;
 
+  scriptNameInput.value = script.name;
+  scriptAuthorInput.value = script.author;
+
   h1.innerHTML = `${script.name}<span>by ${script.author}</span>`;
   document.querySelector("#script").innerHTML = script.render();
   document.querySelector("#fabled-icon-container").innerHTML = script
@@ -175,7 +150,7 @@ function renderScript(store) {
   });
 
   if (shouldStore) {
-    storeScript();
+    localStorage.setItem("script-history", script.timeline.serialize());
   }
 
   globalThis.dispatchEvent(new Event("scriptrendered"));
@@ -191,11 +166,11 @@ function initStorage() {
 
 // Minor/Major version changes involve the first two version numbers.
 // They generally add features and we should show the changelog.
-function _atLeastMinorVersionChange() {
+function atLeastMinorVersionChange() {
   const oldAppVersion = localStorage.getItem("app-version")
     .split(".")
-    .map(parseInt);
-  const currentVersion = appVersion.split(".").map(parseInt);
+    .map((n) => parseInt(n));
+  const currentVersion = appVersion.split(".").map((c) => parseInt(c));
 
   const majorChange = currentVersion[0] > oldAppVersion[0];
   const minorChange = currentVersion[1] > oldAppVersion[1];
@@ -206,6 +181,12 @@ function _atLeastMinorVersionChange() {
 globalThis.addEventListener("DOMContentLoaded", () => {
   if (localStorage.length === 0) {
     initStorage();
+  }
+  if (atLeastMinorVersionChange()) {
+    initStorage();
+    // Ideally we could warn beforehand
+    console.log(`New version: ${appVersion}`);
+    console.log("Clearing local storage");
   }
 
   h1 = document.querySelector("h1");
@@ -218,16 +199,17 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
   if (urlParams.get("script")) {
     script = decompressScript(urlParams.get("script"));
-    scriptNameInput.value = script.name;
-    scriptAuthorInput.value = script.author;
 
     // Normally don’t have to sort when loading from local storage since it is
     // always stored sorted, but URL param scripts are not sorted.
     script.sort();
   } else if (localStorage.getItem("script")) {
     script.loadFromJSON(JSON.parse(localStorage.getItem("script")));
-    scriptNameInput.value = script.name;
-    scriptAuthorInput.value = script.author;
+    if (localStorage.getItem("script-history")) {
+      script.timeline = Timeline.deserialize(
+        localStorage.getItem("script-history"),
+      );
+    }
   }
 
   renderScript();
@@ -246,11 +228,20 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   }
 
   globalThis.addEventListener("keydown", function (event) {
+    if (event.shiftKey) {
+      return;
+    }
     // Returns true for iPhones also but that doesn’t matter
     if (onMac && event.metaKey && event.key === "z") {
       undo();
     } else if (event.ctrlKey && event.key === "z") {
       undo();
+    }
+  });
+
+  globalThis.addEventListener("keydown", function (event) {
+    if (event.metaKey && event.shiftKey && event.key === "z") {
+      redo();
     }
   });
 
@@ -403,8 +394,6 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       } else {
         script.clear();
         Character.clearCustoms();
-        scriptNameInput.value = "";
-        scriptAuthorInput.value = "";
         globalThis.history.replaceState(null, "", globalThis.location.pathname);
         renderScript();
       }

@@ -1,5 +1,6 @@
 import { Character } from "./character.js";
 import { nightorder } from "./nightorder.js";
+import { Timeline } from "./timeline.js";
 
 // Need a full list of characters that can be added.
 export class Script {
@@ -22,6 +23,10 @@ export class Script {
   firstNightOrder;
   otherNightOrder;
 
+  // undo/redo history for script
+  timeline;
+  isRecording;
+
   static nightorder = nightorder;
 
   constructor() {
@@ -35,6 +40,8 @@ export class Script {
     this.author = "";
     this.charSet = new Set();
     this.jinxList = [];
+    this.timeline = new Timeline(this.toJSON());
+    this.isRecording = true;
   }
 
   clear() {
@@ -60,6 +67,9 @@ export class Script {
     }
 
     this.clear();
+
+    const wasRecording = this.isRecording;
+    this.isRecording = false;
 
     for (const item of obj) {
       if (typeof item === "object" && item["id"] === "_meta") {
@@ -104,6 +114,11 @@ export class Script {
     }
 
     this.sort();
+
+    this.isRecording = wasRecording;
+    if (this.isRecording) {
+      this.timeline.addInstant(this.toJSON());
+    }
   }
 
   static asType(n) {
@@ -155,6 +170,10 @@ export class Script {
       )) !== -1
     ) {
       this.jinxList.splice(idx, 1);
+    }
+
+    if (this.isRecording) {
+      this.timeline.addInstant(this.toJSON());
     }
   }
 
@@ -234,6 +253,32 @@ export class Script {
           jinx: newChar.jinx(char),
         });
       }
+    }
+    if (this.isRecording) {
+      this.timeline.addInstant(this.toJSON());
+    }
+  }
+
+  loadTimeline(str) {
+    const obj = JSON.parse(str);
+    this.timeline = obj;
+  }
+
+  loadPrevious() {
+    this.timeline.back();
+    if (this.timeline.now()) {
+      this.isRecording = false;
+      this.loadFromJSON(JSON.parse(this.timeline.now()));
+      this.isRecording = true;
+    }
+  }
+
+  loadNext() {
+    this.timeline.forward();
+    if (this.timeline.now()) {
+      this.isRecording = false;
+      this.loadFromJSON(JSON.parse(this.timeline.now()));
+      this.isRecording = true;
     }
   }
 
