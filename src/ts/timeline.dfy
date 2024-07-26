@@ -21,7 +21,7 @@ class Timeline<St> {
   {
     |this.past| >= 1 &&
     1 <= this.size <= this.capacity &&
-    this.size == |past| + |future|
+    this.size == |this.past| + |this.future|
   }
 
   constructor(init: St)
