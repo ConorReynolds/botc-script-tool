@@ -459,12 +459,16 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     function (event) {
       event.preventDefault();
       if (isMetaOrCtrlPressed) {
-        const url = new URL(globalThis.location.href);
         const encodedScript = compressScript();
         globalThis.history.replaceState(
           null,
           "",
-          url + `?script=${encodedScript}`,
+          // Doing it this way specifically ensures that tildes are not encoded
+          // but characters requiring encoding in the script name/author fields
+          // *are* encoded.
+          new URL(
+            globalThis.location.href.split("?")[0] + `?script=${encodedScript}`,
+          ),
         );
       } else {
         writeDialogJSON(
