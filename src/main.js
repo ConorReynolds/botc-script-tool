@@ -173,6 +173,11 @@ function initStorage() {
 // Minor/Major version changes involve the first two version numbers.
 // They generally add features and we should show the changelog.
 function atLeastMinorVersionChange() {
+  if (!localStorage.getItem("app-version")) {
+    initStorage();
+    return;
+  }
+
   const oldAppVersion = localStorage.getItem("app-version")
     .split(".")
     .map((n) => parseInt(n));
