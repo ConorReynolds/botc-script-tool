@@ -94,35 +94,49 @@ function compressScript() {
   const name = appState.currentScript.name;
   const author = appState.currentScript.author;
   const chars = Array.from(appState.currentScript.charSet);
-  const allChars = Character.flat.concat(Character.fabledFlat).map((o) => o.id);
 
   chars.sort();
-  allChars.sort();
 
   const charsMap = {};
-  for (const [i, c] of allChars.entries()) {
-    charsMap[c] = i;
+  for (const [i, c] of Character.flat.map((o) => o.id).entries()) {
+    charsMap[c] = `${i}`;
+  }
+  for (const [i, c] of Character.fabledFlat.map((o) => o.id).entries()) {
+    charsMap[c] = `${i}f`;
   }
 
   const indices = chars.map((c) => charsMap[c]);
-  return JSON.stringify([name, author, ...indices]);
+  let str = JSON.stringify([name, author, ...indices]);
+  str = str.replaceAll('"', "");
+  str = str.replaceAll(",", "~");
+  str = str.replaceAll(/\[|\]/g, "");
+  return str;
 }
 
 function decompressScript(str) {
-  const array = JSON.parse(str);
+  const array = str.split("~");
 
-  const allChars = Character.flat.concat(Character.fabledFlat).map((o) => o.id);
-  allChars.sort();
+  const chars = Character.flat.map((o) => o.id);
+  const fabled = Character.fabledFlat.map((o) => o.id);
 
   const localScript = new Script();
+  localScript.isRecording = false;
   localScript.name = array[0];
   localScript.author = array[1];
 
   for (let i = 2; i < array.length; i++) {
-    const char = new Character(allChars[array[i]]);
-    localScript.add(char);
+    const key = array[i];
+    const idx = parseInt(key);
+    if (key.includes("f")) {
+      const char = new Character(fabled[idx]);
+      localScript.add(char);
+    } else {
+      const char = new Character(chars[idx]);
+      localScript.add(char);
+    }
   }
 
+  localScript.isRecording = true;
   return localScript;
 }
 
@@ -447,8 +461,11 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       if (isMetaOrCtrlPressed) {
         const url = new URL(globalThis.location.href);
         const encodedScript = compressScript();
-        url.searchParams.append("script", encodedScript);
-        globalThis.history.replaceState(null, "", url);
+        globalThis.history.replaceState(
+          null,
+          "",
+          url.origin + `?script=${encodedScript}`,
+        );
       } else {
         writeDialogJSON(
           appState.currentScript.name,
