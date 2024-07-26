@@ -247,28 +247,55 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  scriptNameInput.addEventListener("focus", function (_) {
+    appState.currentScript.isRecording = false;
+  });
+
+  scriptNameInput.addEventListener("blur", function (_) {
+    appState.currentScript.isRecording = true;
+    if (scriptNameInput.value !== appState.currentScript.name) {
+      appState.currentScript.name = scriptNameInput.value;
+    }
+  });
+
+  scriptAuthorInput.addEventListener("focus", function (_) {
+    appState.currentScript.isRecording = false;
+  });
+
+  scriptAuthorInput.addEventListener("blur", function (_) {
+    appState.currentScript.isRecording = true;
+    if (scriptAuthorInput.value !== appState.currentScript.author) {
+      appState.currentScript.author = scriptAuthorInput.value;
+    }
+  });
+
   globalThis.addEventListener("keydown", function (event) {
     if (event.shiftKey) {
       return;
     }
     // Returns true for iPhones also but that doesn’t matter
-    if (onMac && event.metaKey && event.key === "z") {
-      undo();
-    } else if (!onMac && event.ctrlKey && event.key === "z") {
+    if (
+      (onMac && event.metaKey && event.key === "z") ||
+      (!onMac && event.ctrlKey && event.key === "z")
+    ) {
       undo();
     }
   });
 
   globalThis.addEventListener("keydown", function (event) {
-    if (onMac && event.metaKey && event.shiftKey && event.key === "z") {
-      redo();
-    } else if (!onMac && event.ctrlKey && event.shiftKey && event.key === "z") {
+    if (
+      (onMac && event.metaKey && event.shiftKey && event.key === "z") ||
+      (!onMac && event.ctrlKey && event.shiftKey && event.key === "z")
+    ) {
       redo();
     }
   });
 
   globalThis.addEventListener("keydown", function (event) {
-    if (event.metaKey && event.shiftKey && event.key === "ArrowDown") {
+    if (
+      (onMac && event.metaKey && event.shiftKey && event.key === "ArrowDown") ||
+      (!onMac && event.ctrlKey && event.shiftKey && event.key === "ArrowDown")
+    ) {
       const _success = appState.nextScript();
       console.log(`next script: ${appState.currentScript.name}`);
       renderScript();
@@ -276,7 +303,10 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   });
 
   globalThis.addEventListener("keydown", function (event) {
-    if (event.metaKey && event.shiftKey && event.key === "ArrowUp") {
+    if (
+      (onMac && event.metaKey && event.shiftKey && event.key === "ArrowUp") ||
+      (!onMac && event.ctrlKey && event.shiftKey && event.key === "ArrowUp")
+    ) {
       const _success = appState.prevScript();
       console.log(`prev script: ${appState.currentScript.name}`);
       renderScript();

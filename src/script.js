@@ -4,8 +4,8 @@ import { Timeline } from "./timeline.js";
 
 // Need a full list of characters that can be added.
 export class Script {
-  author;
-  name;
+  _author;
+  _name;
   townsfolk;
   outsiders;
   minions;
@@ -36,8 +36,8 @@ export class Script {
     this.demons = [];
     this.travelers = [];
     this.fabled = [];
-    this.name = "";
-    this.author = "";
+    this._name = "";
+    this._author = "";
     this.charSet = new Set();
     this.jinxList = [];
     this.timeline = new Timeline(this.toJSON());
@@ -51,8 +51,8 @@ export class Script {
     this.demons = [];
     this.travelers = [];
     this.fabled = [];
-    this.name = "";
-    this.author = "";
+    this._name = "";
+    this._author = "";
     this.charSet = new Set();
     this.jinxList = [];
     this.alamanac = undefined;
@@ -73,8 +73,8 @@ export class Script {
 
     for (const item of obj) {
       if (typeof item === "object" && item["id"] === "_meta") {
-        this.name = item["name"] ? item["name"] : "";
-        this.author = item["author"] ? item["author"] : "";
+        this._name = item["name"] ? item["name"] : "";
+        this._author = item["author"] ? item["author"] : "";
         this.almanac = item["almanac"];
         this.firstNightOrder = item["firstNight"];
         this.otherNightOrder = item["otherNight"];
@@ -254,6 +254,28 @@ export class Script {
         });
       }
     }
+    if (this.isRecording) {
+      this.timeline.addInstant(this.toJSON());
+    }
+  }
+
+  get name() {
+    return this._name;
+  }
+
+  set name(newName) {
+    this._name = newName;
+    if (this.isRecording) {
+      this.timeline.addInstant(this.toJSON());
+    }
+  }
+
+  get author() {
+    return this._author;
+  }
+
+  set author(newAuthor) {
+    this._author = newAuthor;
     if (this.isRecording) {
       this.timeline.addInstant(this.toJSON());
     }
@@ -591,8 +613,8 @@ export class Script {
     const obj = [
       {
         "id": "_meta",
-        "author": this.author,
-        "name": this.name,
+        "author": this._author,
+        "name": this._name,
       },
       ...this.townsfolk.map((c) => c.toJSON()),
       ...this.outsiders.map((c) => c.toJSON()),

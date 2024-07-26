@@ -14,7 +14,7 @@
     "paths": {},
 
     "sourceMap": true,
-    "sourceRoot": "src",
+    "sourceRoot": "ts",
 
     "alwaysStrict": true,
     "allowUnreachableCode": false,
