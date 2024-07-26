@@ -254,13 +254,15 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     // Returns true for iPhones also but that doesn’t matter
     if (onMac && event.metaKey && event.key === "z") {
       undo();
-    } else if (event.ctrlKey && event.key === "z") {
+    } else if (!onMac && event.ctrlKey && event.key === "z") {
       undo();
     }
   });
 
   globalThis.addEventListener("keydown", function (event) {
-    if (event.metaKey && event.shiftKey && event.key === "z") {
+    if (onMac && event.metaKey && event.shiftKey && event.key === "z") {
+      redo();
+    } else if (!onMac && event.ctrlKey && event.shiftKey && event.key === "z") {
       redo();
     }
   });
