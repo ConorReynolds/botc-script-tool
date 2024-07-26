@@ -464,7 +464,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
         globalThis.history.replaceState(
           null,
           "",
-          url.origin + `?script=${encodedScript}`,
+          url + `?script=${encodedScript}`,
         );
       } else {
         writeDialogJSON(
