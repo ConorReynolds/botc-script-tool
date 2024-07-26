@@ -392,7 +392,7 @@ export class Script {
 
     str += `<div class="travelers-and-fabled-container">`;
     str +=
-      `<h3 class="travelers-and-fabled-heading"><span>TRAVELERS & FABLED</span></h3>`;
+      `<h3 class="travelers-and-fabled-heading"><span>TRAVELLERS & FABLED</span></h3>`;
     str += `<div class="travelers-and-fabled" nitems="${
       this.travelers.length + this.fabled.length
     }">`;

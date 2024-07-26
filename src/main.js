@@ -268,7 +268,6 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   });
 
   globalThis.addEventListener("keydown", function (event) {
-    console.log(event.key);
     if (event.metaKey && event.shiftKey && event.key === "ArrowDown") {
       const _success = appState.nextScript();
       console.log(`next script: ${appState.currentScript.name}`);
