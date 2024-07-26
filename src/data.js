@@ -2110,6 +2110,18 @@ export const chars = [
     "ability":
       "Once per day, you may choose to kill an alive neighbour, if your other alive neighbour agrees.",
   },
+  {
+    "id": "zealot",
+    "name": "Zealot",
+    "edition": "",
+    "team": "outsider",
+    "firstNightReminder": "",
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "ability":
+      "If there are 5 or more players alive, you must vote for every nomination.",
+  },
 ];
 
 export const sao = {
@@ -3912,6 +3924,20 @@ export const sao = {
     "on trigger": false,
     "passive": false,
   },
+  "zealot": {
+    "Name": "Zealot",
+    "Summary":
+      "If there are 5 or more players alive, you must vote for every nomination.",
+    "Type": "Outsider",
+    "Script": "Experimental",
+    "first night": false,
+    "each night": false,
+    "each night*": false,
+    "day": false,
+    "once per game": false,
+    "on trigger": false,
+    "passive": true,
+  },
 };
 
 export const fabled = [
@@ -4067,6 +4093,10 @@ export const jinxes = {
   "Cannibal": {
     "Juggler":
       "If the Juggler guesses on their first day and dies by execution, tonight the living Cannibal learns how many guesses the Juggler got correct.",
+    "Butler":
+      "If the Cannibal gains the Butler ability, the Cannibal learns this.",
+    "Zealot":
+      "If the Cannibal gains the Zealot ability, the Cannibal learns this.",
   },
   "Chambermaid": {
     "Mathematician":
@@ -4079,10 +4109,6 @@ export const jinxes = {
   "Philosopher": {
     "Bounty Hunter":
       "If the Philosopher gains the Bounty Hunter ability, a Townsfolk might turn evil.",
-  },
-  "Butler": {
-    "Cannibal":
-      "If the Cannibal gains the Butler ability, the Cannibal learns this.",
   },
   "Lunatic": {
     "Mathematician":
@@ -4219,6 +4245,7 @@ export const jinxes = {
     "Politician": "The Politician might register as evil to the Vizier.",
     "Preacher":
       "If the Vizier loses their ability, they learn this. If the Vizier is executed while they have their ability, their team wins.",
+    "Zealot": "The Zealot might register as evil to the Vizier.",
   },
   "Widow": {
     "Alchemist": "The Alchemist can not have the Widow ability.",
@@ -4262,6 +4289,7 @@ export const jinxes = {
       "If Legion died by execution today, Legion keeps their ability, but the Minstrel might learn they are Legion.",
     "Preacher":
       "If the Preacher chooses Legion, Legion keeps their ability, but the Preacher might learn they are Legion.",
+    "Zealot": "The Zealot might register as evil to Legion’s ability.",
   },
   "Leviathan": {
     "Banshee":
@@ -4354,6 +4382,7 @@ export const jinxes = {
     "Town Crier": "Riot registers as a Minion to the Town Crier.",
     "Undertaker":
       "Players that die by nomination register as being executed to the Undertaker.",
+    "Zealot": "If you are nominated, you must nominate again, even if dead.",
   },
   "Vortox": {
     "Banshee":
