@@ -104,6 +104,10 @@
     // height: 3rem;
     width: 2rem;
     left: calc((min(18rem, 100%) + 2rem) / 2 + 1px);
+    @media (max-width: 650px) {
+      width: 1.25rem;
+      left: calc((min(18rem, 100%) + 1.25rem) / 2 + 1px);
+    }
     padding-left: 0.3rem;
     padding-right: 0.3rem;
 
