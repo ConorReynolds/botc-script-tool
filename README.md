@@ -63,12 +63,16 @@ examples above.
 
 You can change the name and author of the script on the top left.
 
-The sidebar, which you can open using the button in the middle-right of the
-viewport, lets you view all of the characters (including customs if you’ve
-imported any) in one list and filter them by their name and type.
+The sidebar on the right, which you can open using the button in the
+middle-right of the viewport, lets you view all of the characters (including
+customs if you’ve imported any) in one list and filter them by their name and
+type.
 
-You can undo up to ten previous changes with Ctrl+Z. (There is no redo feature
-yet.)
+The sidebar on the left (similar button) opens the recent files tab, where the
+most recent 15 files that you were working on will appear.
+
+You can undo/redo up to ten previous changes in the currently focused script
+with Ctrl+Z / Ctrl+Shift+Z on Windows/Linux, or Cmd+Z / Cmd+Shift+Z on Mac.
 
 Importing directly from [bloodstar](https://www.bloodstar.xyz/) is supported.
 Characters are added in the order they appear on the script and are not SAO
@@ -142,7 +146,8 @@ https://github.com/user-attachments/assets/7ecb7884-cd8e-45d1-800c-7e7474476b67
 
 ### Undo
 
-Undo with Ctrl+Z on Windows/Linux and Cmd+Z on Mac. You can undo up to ten actions.
+Undo with Ctrl+Z on Windows/Linux and Cmd+Z on Mac. You can undo up to ten
+actions.
 
 https://github.com/user-attachments/assets/2aea1072-1a45-4b69-abd6-53bd8b93933b
 
@@ -154,7 +159,8 @@ https://github.com/user-attachments/assets/c9ec35d1-9f37-417a-a7bd-6a6971f25422
 
 ### Importing Scripts
 
-You can import scripts using the button on the top right. Both standard and homebrew scripts are supported.
+You can import scripts using the button on the top right. Both standard and
+homebrew scripts are supported.
 
 https://github.com/user-attachments/assets/a4d428f8-ccc8-4903-87f6-d275a2c39f3a
 
