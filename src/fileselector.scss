@@ -1,0 +1,116 @@
+#file-selector {
+  .nodisplay {
+    display: none;
+  }
+  @media print {
+    display: none;
+  }
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  width: min(18rem, 100% - 2rem);
+  height: 100%;
+  left: calc(-18rem - 1px);
+  // transform: translateY(-50%);
+  background: rgba($color: #f8f8f8, $alpha: 0.9);
+  border-right: 0.5px solid black;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  row-gap: 1rem;
+
+  transition: all 0.2s;
+
+  h2 {
+    padding: 0;
+    margin: 0;
+    margin-top: -2rem;
+  }
+  
+  #script-list {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 85%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin-top: 1rem;
+
+    .nscripts {
+      margin-bottom: 1rem;
+      margin-left: 1rem;
+
+      &[data-n="15"] {
+        color: red;
+      }
+    }
+
+    .file-selector-container {
+      display: flex;
+      flex-direction: column-reverse;
+
+      .item {
+        display: flex;
+        flex-direction: row;
+        cursor: pointer;
+        .script-name {
+          display: inline-block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+          &.selected {
+            font-weight: bold;
+          }
+        }
+
+        button {
+          all: unset;
+          cursor: pointer;
+          padding: 0.15rem;
+          margin-right: 1rem;
+          color: #999;
+        }
+      }
+    }
+  }
+
+  &.expanded {
+    transform: translateX(18rem);
+
+    #open-file-selector-button > div {
+      transition-property: transform;
+      transform: rotate(180deg);
+    }
+  }
+
+  #open-file-selector-button {
+    display: block;
+    position: relative;
+    z-index: 1000;
+    top: calc(50% - 1rem);
+    // width: 1rem;
+
+    border-radius: 0px 2px 2px 0px;
+    box-shadow: none;
+    border: 0.5px solid black;
+    border-left: none;
+    // height: 3rem;
+    width: 2rem;
+    left: calc((min(18rem, 100%) + 2rem) / 2 + 1px);
+    padding-left: 0.3rem;
+    padding-right: 0.3rem;
+
+    div {
+      position: relative;
+      width: 100%;
+      transform: rotate(0deg);
+      margin: auto;
+    }
+  }
+}

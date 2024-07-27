@@ -34,7 +34,7 @@ export class Timeline {
         this.size = 1;
     }
     forget() {
-        this.past = [this.past[0]];
+        this.past = [this.past[this.past.length - 1]];
         this.future = [];
         this.size = 1;
     }

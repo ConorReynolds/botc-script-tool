@@ -60,6 +60,13 @@ export class Script {
     this.otherNightOrder = undefined;
   }
 
+  isEmpty() {
+    const nchars = this.charSet.size;
+    const noName = this._name === "";
+    const noAuthor = this._author === "";
+    return noName && noAuthor && nchars === 0;
+  }
+
   loadFromJSON(obj) {
     if (!Array.isArray(obj)) {
       console.error(obj);
@@ -609,7 +616,8 @@ export class Script {
     return this.charSet.has(character.id);
   }
 
-  toJSON() {
+  toJSON(prettyPrint) {
+    prettyPrint = prettyPrint ?? false;
     const obj = [
       {
         "id": "_meta",
@@ -632,6 +640,10 @@ export class Script {
     if (this.otherNightOrder) {
       obj[0]["otherNight"] = this.otherNightOrder;
     }
-    return JSON.stringify(obj, null, 2);
+    if (prettyPrint) {
+      return JSON.stringify(obj, null, 2);
+    } else {
+      return JSON.stringify(obj);
+    }
   }
 }

@@ -108,8 +108,8 @@ export class Character {
   // Only gets the jinx if the jinx is on self – always check both sides.
   jinx(other) {
     // Object is indexed by display name. Should change it to ID eventually.
-    const thisName = this.name.replace("’", "'");
-    const otherName = other.name.replace("’", "'");
+    const thisName = this.name;
+    const otherName = other.name;
 
     if (jinxes[thisName]) {
       return jinxes[thisName][otherName];

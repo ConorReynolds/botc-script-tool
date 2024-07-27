@@ -23,7 +23,10 @@ function readFileDialog() {
     reader.onload = function (readerEvent) {
       const content = readerEvent.target.result;
       if (typeof content === "string") {
-        appState.currentScript.loadFromJSON(JSON.parse(content));
+        const localScript = new Script();
+        localScript.loadFromJSON(JSON.parse(content));
+        localScript.timeline.forget();
+        appState.addScriptAndFocus(localScript);
         renderScript();
       }
     };
@@ -136,7 +139,8 @@ function decompressScript(str) {
     }
   }
 
-  localScript.isRecording = true;
+  localScript.timeline.addInstant(localScript.toJSON());
+  localScript.timeline.forget();
   return localScript;
 }
 
@@ -219,21 +223,11 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   scriptNameInput = document.querySelector("#script-name-input");
   scriptAuthorInput = document.querySelector("#script-author-input");
 
-  if (localStorage.getItem("script")) {
-    const script = new Script();
-    script.loadFromJSON(
-      JSON.parse(localStorage.getItem("script")),
-    );
-    appState = new AppState([script]);
-    if (localStorage.getItem("script-history")) {
-      appState.currentScript.timeline = Timeline.deserialize(
-        localStorage.getItem("script-history"),
-      );
-    }
-  }
-
-  if (!appState) {
+  if (localStorage.getItem("app-state")) {
+    appState = AppState.deserialize(localStorage.getItem("app-state"));
+  } else {
     appState = new AppState([new Script()]);
+    localStorage.setItem("app-state", appState.serialize());
   }
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -244,6 +238,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     // Normally don’t have to sort when loading from local storage since it is
     // always stored sorted, but URL param scripts are not sorted.
     appState.currentScript.sort();
+    globalThis.history.replaceState(null, "", globalThis.location.pathname);
   }
 
   renderScript();
@@ -261,69 +256,88 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  const fileSelectElem = document.querySelector("#file-selector");
+  const scriptListElem = document.querySelector("#script-list");
+  const openFileSelectButton = document.querySelector(
+    "#open-file-selector-button",
+  );
+
+  openFileSelectButton.addEventListener("click", (event) => {
+    event.preventDefault();
+    fileSelectElem.classList.toggle("expanded");
+  });
+
+  function renderFileSelector() {
+    scriptListElem.innerHTML = appState.renderFileSelector();
+
+    scriptListElem.querySelectorAll(".item").forEach(
+      function (item, idx, elems) {
+        item.addEventListener(
+          "click",
+          function (event) {
+            appState.focusScript(idx);
+            renderScript();
+          },
+        );
+
+        item.querySelector("button").addEventListener(
+          "click",
+          function (event) {
+            event.stopPropagation();
+            if (elems.length === 1) {
+              console.log("one thing");
+              if (!appState.currentScript.isEmpty()) {
+                appState.setCurrentScript(new Script());
+                renderScript();
+              }
+              return;
+            }
+
+            appState.removeScript(idx);
+            renderScript();
+          },
+        );
+      },
+    );
+  }
+
+  renderFileSelector();
+
+  document.querySelector("#new-script-button").addEventListener(
+    "click",
+    function (event) {
+      console.log("new script button clicked");
+      appState.addScriptAndFocus(new Script(), null, true);
+      renderScript();
+    },
+  );
+
+  let onFocusScriptName;
+  let onFocusScriptAuthor;
+
   scriptNameInput.addEventListener("focus", function (_) {
+    onFocusScriptName = scriptNameInput.value;
     appState.currentScript.isRecording = false;
   });
 
   scriptNameInput.addEventListener("blur", function (_) {
     appState.currentScript.isRecording = true;
-    if (scriptNameInput.value !== appState.currentScript.name) {
+    if (scriptNameInput.value !== onFocusScriptName) {
       appState.currentScript.name = scriptNameInput.value;
+      renderFileSelector();
     }
   });
 
   scriptAuthorInput.addEventListener("focus", function (_) {
+    onFocusScriptAuthor = scriptAuthorInput.value;
     appState.currentScript.isRecording = false;
   });
 
   scriptAuthorInput.addEventListener("blur", function (_) {
     appState.currentScript.isRecording = true;
-    if (scriptAuthorInput.value !== appState.currentScript.author) {
+    if (scriptAuthorInput.value !== onFocusScriptAuthor) {
       appState.currentScript.author = scriptAuthorInput.value;
-    }
-  });
-
-  globalThis.addEventListener("keydown", function (event) {
-    if (event.shiftKey) {
-      return;
-    }
-    // Returns true for iPhones also but that doesn’t matter
-    if (
-      (onMac && event.metaKey && event.key === "z") ||
-      (!onMac && event.ctrlKey && event.key === "z")
-    ) {
-      undo();
-    }
-  });
-
-  globalThis.addEventListener("keydown", function (event) {
-    if (
-      (onMac && event.metaKey && event.shiftKey && event.key === "z") ||
-      (!onMac && event.ctrlKey && event.shiftKey && event.key === "z")
-    ) {
-      redo();
-    }
-  });
-
-  globalThis.addEventListener("keydown", function (event) {
-    if (
-      (onMac && event.metaKey && event.shiftKey && event.key === "ArrowDown") ||
-      (!onMac && event.ctrlKey && event.shiftKey && event.key === "ArrowDown")
-    ) {
-      const _success = appState.nextScript();
-      console.log(`next script: ${appState.currentScript.name}`);
-      renderScript();
-    }
-  });
-
-  globalThis.addEventListener("keydown", function (event) {
-    if (
-      (onMac && event.metaKey && event.shiftKey && event.key === "ArrowUp") ||
-      (!onMac && event.ctrlKey && event.shiftKey && event.key === "ArrowUp")
-    ) {
-      const _success = appState.prevScript();
-      console.log(`prev script: ${appState.currentScript.name}`);
-      renderScript();
+      renderFileSelector();
     }
   });
 
@@ -439,19 +453,37 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   const onMac = navigator.userAgent.includes("Mac");
 
   globalThis.addEventListener("keydown", function (event) {
-    if (event.key === "Meta" && onMac) {
-      isMetaOrCtrlPressed = true;
-    } else if (!onMac && event.key === "Control") {
-      isMetaOrCtrlPressed = true;
+    const metaCtrl = (onMac && event.metaKey) || (!onMac && event.ctrlKey);
+    const shift = event.shiftKey;
+    const undoRedoKeyPressed = event.key === "z";
+    const nextScriptKey = event.key === "ArrowUp";
+    const prevScriptKey = event.key === "ArrowDown";
+
+    isMetaOrCtrlPressed = metaCtrl;
+
+    // Returns true for iPhones also but that doesn’t matter
+    if (metaCtrl && !shift && undoRedoKeyPressed) {
+      undo();
+    }
+    if (metaCtrl && shift && undoRedoKeyPressed) {
+      redo();
+    }
+
+    if (metaCtrl && shift && nextScriptKey) {
+      const _success = appState.nextScript();
+      console.log(`next script: ${appState.currentScript.name}`);
+      renderScript();
+    }
+    if (metaCtrl && shift && prevScriptKey) {
+      const _success = appState.prevScript();
+      console.log(`prev script: ${appState.currentScript.name}`);
+      renderScript();
     }
   });
 
   globalThis.addEventListener("keyup", function (event) {
-    if (event.key === "Meta" && onMac) {
-      isMetaOrCtrlPressed = false;
-    } else if (!onMac && event.key === "Control") {
-      isMetaOrCtrlPressed = false;
-    }
+    const metaCtrl = (onMac && event.metaKey) || (!onMac && event.ctrlKey);
+    isMetaOrCtrlPressed = metaCtrl;
   });
 
   document.querySelector("#export-form").addEventListener(
@@ -711,6 +743,8 @@ globalThis.addEventListener("DOMContentLoaded", () => {
 
   globalThis.addEventListener("scriptrendered", (_) => {
     updateSidebar();
+    renderFileSelector();
+    localStorage.setItem("app-state", appState.serialize());
   });
 
   [townsfolkForm, outsiderForm, minionForm, demonForm, travelerForm, fabledForm]
