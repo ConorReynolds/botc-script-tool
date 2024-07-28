@@ -32,6 +32,45 @@
   margin-bottom: 0.5rem;
 }
 
+
+#undo-redo-buttons {
+  @media print {
+    display: none;
+  }
+
+  display: flex;
+  flex-direction: row;
+  column-gap: 0.25rem;
+  justify-content: flex-end;
+  position: fixed;
+  width: var(--width);
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  // Initial idea was to disable on non-touchscreen devices, but I think it’s
+  // fine on any device.
+  // @media (any-hover: hover) and (any-pointer: fine) {
+  //   // display: none;
+  // }
+  
+  pointer-events: none;
+  * {
+    pointer-events: auto;
+  }
+
+  #undo-button {
+    &[data-canundo=false] {
+      color: #999;
+    }
+  }
+
+  #redo-button {
+    &[data-canredo=false] {
+      color: #999;
+    }
+  }
+}
+
 .input-container {
   // Not sure if this is a great way to do this, but it successfully prevents
   // the (large) input container from blocking pointer events to the script

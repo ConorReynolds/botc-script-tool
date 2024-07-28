@@ -1,7 +1,6 @@
 import { AppState } from "./state.js";
 import { Character } from "./character.js";
 import { Script } from "./script.js";
-import { Timeline } from "./timeline.js";
 
 let h1;
 let characterInputEl;
@@ -82,6 +81,9 @@ preloadImages(thumbnails).then((_) => {
 
 let appState;
 
+let undoButtonElem;
+let redoButtonElem;
+
 function undo() {
   appState.currentScript.loadPrevious();
   renderScript();
@@ -147,20 +149,24 @@ function decompressScript(str) {
 function renderScript(store) {
   const shouldStore = store ?? true;
 
+  const scriptElem = document.querySelector("#script");
+
   scriptNameInput.value = appState.currentScript.name;
   scriptAuthorInput.value = appState.currentScript.author;
 
   h1.innerHTML =
     `${appState.currentScript.name}<span>by ${appState.currentScript.author}</span>`;
-  document.querySelector("#script").innerHTML = appState.currentScript.render();
+  scriptElem.innerHTML = appState.currentScript.render();
+
   document.querySelector("#fabled-icon-container").innerHTML = appState
     .currentScript
     .renderFabledSmall();
   if (localStorage.getItem("compact-night-sheet") === "true") {
     document.querySelector(".night-sheet").classList.add("compact");
   }
+
   // Add listeners to all icons
-  document.querySelectorAll(
+  scriptElem.querySelectorAll(
     ".script img.icon, .travelers-and-fabled-container img.icon",
   ).forEach(function (element) {
     element.addEventListener("click", function (event) {
@@ -177,7 +183,9 @@ function renderScript(store) {
     );
   }
 
-  globalThis.dispatchEvent(new Event("scriptrendered"));
+  setTimeout(function () {
+    globalThis.dispatchEvent(new Event("scriptrendered"));
+  }, 0);
 }
 
 function initStorage() {
@@ -285,7 +293,6 @@ globalThis.addEventListener("DOMContentLoaded", () => {
           function (event) {
             event.stopPropagation();
             if (elems.length === 1) {
-              console.log("one thing");
               if (!appState.currentScript.isEmpty()) {
                 appState.setCurrentScript(new Script());
                 renderScript();
@@ -479,6 +486,17 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       console.log(`prev script: ${appState.currentScript.name}`);
       renderScript();
     }
+  });
+
+  undoButtonElem = document.querySelector("#undo-button");
+  redoButtonElem = document.querySelector("#redo-button");
+
+  undoButtonElem.addEventListener("click", function (event) {
+    undo();
+  });
+
+  redoButtonElem.addEventListener("click", function (event) {
+    redo();
   });
 
   globalThis.addEventListener("keyup", function (event) {
@@ -745,6 +763,14 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     updateSidebar();
     renderFileSelector();
     localStorage.setItem("app-state", appState.serialize());
+    undoButtonElem.setAttribute(
+      "data-canundo",
+      appState.currentScript.timeline.past.length === 1 ? "false" : "true",
+    );
+    redoButtonElem.setAttribute(
+      "data-canredo",
+      appState.currentScript.timeline.future.length === 0 ? "false" : "true",
+    );
   });
 
   [townsfolkForm, outsiderForm, minionForm, demonForm, travelerForm, fabledForm]
