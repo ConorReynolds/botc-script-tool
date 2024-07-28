@@ -394,6 +394,7 @@ img.imported-icon {
         margin: 0;
         padding: 0;
         font-weight: bold;
+        // font-size: 1.1em;
         a {
           color: inherit;
           font-weight: bold;
@@ -650,6 +651,12 @@ img.imported-icon {
     .first-night-container, .other-night-container {
       page-break-inside: avoid;
     }
+
+    .other-night-container {
+      // prevents the other night sheet from being crammed onto the third page
+      padding-bottom: 3rem;
+    }
+
     page-break-before: always;
     line-height: 1.4;
     display: flex;
@@ -658,17 +665,8 @@ img.imported-icon {
     column-gap: 2rem;
     padding-bottom: 3rem;
 
-    // h3 {
-    //   page-break-before: always;
-    // }
-
     .first-night, .other-night {
-      // page-break-inside: avoid;
-      // width: min(45rem, 80%);
-      // margin: auto;
-      display: flex;
-      flex-direction: column;
-      row-gap: 1rem;
+      row-gap: 0.1rem;
 
       .item {
         display: grid;
@@ -900,6 +898,28 @@ h1 {
       padding-top: 3rem;
       &::after {
         top: calc(1rem + 3rem);
+      }
+    }
+  }
+
+  #script {
+    .townsfolk, .outsider, .minion, .demon {
+      margin-top: 0.5rem;
+      row-gap: 1.5rem;
+    }
+    .script, .travelers-and-fabled-container {
+      .item {
+        .name-and-summary {
+          margin-top: -0.4rem;
+        }
+
+        .character-name {
+          font-size: 1.2rem;
+        }
+        .character-summary {
+          font-size: 1.01rem;
+          margin-top: -0.3rem;
+        }
       }
     }
   }

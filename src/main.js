@@ -146,9 +146,7 @@ function decompressScript(str) {
   return localScript;
 }
 
-function renderScript(store) {
-  const shouldStore = store ?? true;
-
+function renderScript() {
   const scriptElem = document.querySelector("#script");
 
   scriptNameInput.value = appState.currentScript.name;
@@ -161,6 +159,7 @@ function renderScript(store) {
   document.querySelector("#fabled-icon-container").innerHTML = appState
     .currentScript
     .renderFabledSmall();
+
   if (localStorage.getItem("compact-night-sheet") === "true") {
     document.querySelector(".night-sheet").classList.add("compact");
   }
@@ -175,13 +174,6 @@ function renderScript(store) {
       renderScript();
     }, { once: true });
   });
-
-  if (shouldStore) {
-    localStorage.setItem(
-      "script-history",
-      appState.currentScript.timeline.serialize(),
-    );
-  }
 
   setTimeout(function () {
     globalThis.dispatchEvent(new Event("scriptrendered"));
@@ -200,8 +192,7 @@ function initStorage() {
 // They generally add features and we should show the changelog.
 function atLeastMinorVersionChange() {
   if (!localStorage.getItem("app-version")) {
-    initStorage();
-    return;
+    return true;
   }
 
   const oldAppVersion = localStorage.getItem("app-version")
