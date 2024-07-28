@@ -1,3 +1,4 @@
+import { getTextWidth } from "./utils.js";
 import { chars, fabled, jinxes, sao } from "./data.js";
 
 export class Character {
@@ -117,7 +118,7 @@ export class Character {
   }
 
   get summaryLength() {
-    return this.summary.length;
+    return getTextWidth(this.summary);
   }
 
   static nameToID(name) {
