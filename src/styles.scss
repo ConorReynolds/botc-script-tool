@@ -609,6 +609,11 @@ img.imported-icon {
     page-break-before: auto;
   }
   .night-sheet {
+    .first-night, .other-night {
+      display: grid;
+      row-gap: 0.9rem;
+    }
+
     &.compact {
       page-break-before: auto;
       page-break-inside: auto;
@@ -625,6 +630,7 @@ img.imported-icon {
       .first-night, .other-night {
         display: grid;
         justify-content: center;
+        row-gap: 0.1rem;
         .item {
           width: fit-content;
           justify-content: left;
@@ -666,8 +672,6 @@ img.imported-icon {
     padding-bottom: 3rem;
 
     .first-night, .other-night {
-      row-gap: 0.1rem;
-
       .item {
         display: grid;
         grid-template-columns: 3rem 1fr;
@@ -676,6 +680,8 @@ img.imported-icon {
 
         .night-order-text {
           font-weight: bold;
+          text-align: right;
+          width: 3rem;
         }
 
         img {
