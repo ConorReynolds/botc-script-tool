@@ -58,12 +58,14 @@
       .item {
         display: flex;
         flex-direction: row;
+        align-items: center;
         cursor: pointer;
         .script-name {
           display: inline-block;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+          padding-bottom: 0.1rem;
 
           &.selected {
             font-weight: bold;
