@@ -77,7 +77,7 @@ export class AppState {
             this.scripts.splice(idx, 1);
             this.timelines.splice(idx, 1);
             if (this.currentScriptIdx >= idx) {
-                this.currentScriptIdx--;
+                this.currentScriptIdx = Math.max(this.currentScriptIdx - 1, 0);
             }
             return true;
         }
