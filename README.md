@@ -7,7 +7,17 @@ This is an unofficial script tool for
 editing speed and producing reasonably high quality printed scripts. It
 currently works well on desktop and decent on mobile.
 
-(This is very much a work in progress.)
+This is still a work in progress.
+
+## Feature Overview
+
+- Quick-add textbox with fuzzy search, supporting search for both character
+  names and ability text
+- Import and export JSON (supports bloodstar.xyz homebrew scripts)
+- Undo and redo up to 10 recent changes
+- Caches up to 15 recent scripts, accessible in the left sidebar
+- Generate script links to quickly share scripts with others
+- PDF export via built-in ‘Print to PDF’
 
 ## Why another script tool?
 
@@ -24,11 +34,20 @@ but:
 - Creating scripts is a little slower than I’d like. The ability to search
   characters by name is great, but the top listed character is not added to the
   script when the enter key is pressed. A small thing, but it’s really annoying.
+- It’s light on features. Import and export are restricted to JSON files or
+  PDFs/images, which can be cumbersome and inconvenient to share. It’s not
+  possible to filter characters based on ability text, nor to work on multiple
+  scripts at once.
+- It doesn’t support homebrew characters, as far as I can tell.
 - It doesn’t work on mobile.
 
 I also didn’t want to use the official editor to generate the JSON and then feed
 that to an external tool to create the PDF because, well, it’s a pain. There’s
 no reason why this shouldn’t be self-contained.
+
+For the record, if you’re not a fan of the printed output, you can of course use
+this tool just to create the script and export the script JSON for printing
+using the official tool. I won’t be upset.
 
 ## Examples
 
@@ -58,27 +77,32 @@ The UI is largely self-explanatory. The buttons on the top right allow you to
 - clear the script
 - print the script (Ctrl+P or Cmd+P works also)
 
-The checkbox toggles the compact night sheet – you can see the difference in the
-examples above.
+You can add characters using the quick-add textbox underneath the buttons.
+
+The checkbox underneath the quick-add textbox toggles the compact night sheet –
+you can see the difference in the examples above.
 
 You can change the name and author of the script on the top left.
 
-The sidebar on the right, which you can open using the button in the
-middle-right of the viewport, lets you view all of the characters (including
-customs if you’ve imported any) in one list and filter them by their name and
-type.
+The sidebar on the right, which you can open using the button at the
+middle-right edge of the viewport, lets you view all of the characters
+(including customs if you’ve imported any) in one list and filter them by their
+name and type.
 
-The sidebar on the left (similar button) opens the recent files tab, where the
-most recent 15 files that you were working on will appear.
+The sidebar on the left (similar button) opens the recent scripts tab, where the
+most recent 15 scripts that you were working on will appear.
 
 You can undo/redo up to ten previous changes in the currently focused script
 with Ctrl+Z / Ctrl+Shift+Z on Windows/Linux, or Cmd+Z / Cmd+Shift+Z on Mac.
 
-Importing directly from [bloodstar](https://www.bloodstar.xyz/) is supported.
-Characters are added in the order they appear on the script and are not SAO
-sorted. The tool should mostly handle the night order you create in bloodstar,
-but if you want more control, you can add it explicitly in the metadata for the
-script. (The
+Ctrl/Cmd clicking on the export JSON button creates a script link that you can
+then copy and share.
+
+Importing directly from [bloodstar.xyz](https://www.bloodstar.xyz/) is
+supported. Characters are added in the order they appear on the script and are
+not SAO sorted. The tool should mostly handle the night order you create in
+bloodstar, but if you want more control, you can add it explicitly in the
+metadata for the script. (The
 [official app](https://github.com/ThePandemoniumInstitute/botc-release/blob/7f0d23cf5b144f3175f505e1db74317fac417442/script-schema.json#L393)
 supports the same format, also explained in
 [this Reddit comment](https://www.reddit.com/r/BloodOnTheClocktower/comments/1c6h0d5/comment/l02cbsd/).)
@@ -141,13 +165,15 @@ https://github.com/user-attachments/assets/8d83254b-9126-4e0c-9ef5-d202cdad98f2
 ### Removing Characters
 
 Just click the character’s icon on the script – same as in the official tool.
+The sidebar toggles characters so you can remove them there too.
 
 https://github.com/user-attachments/assets/7ecb7884-cd8e-45d1-800c-7e7474476b67
 
-### Undo
+### Undo/Redo
 
-Undo with Ctrl+Z on Windows/Linux and Cmd+Z on Mac. You can undo up to ten
-actions.
+Undo with Ctrl+Z on Windows/Linux and Cmd+Z on Mac. Redo with Ctrl+Shift+Z on
+Windows/Linux and Cmd+Shift+Z on Mac. Alternatively, use the buttons on the
+bottom right of the viewport. You can undo/redo up to ten actions.
 
 https://github.com/user-attachments/assets/2aea1072-1a45-4b69-abd6-53bd8b93933b
 
@@ -157,12 +183,31 @@ You can export the script JSON using the button on the top right.
 
 https://github.com/user-attachments/assets/c9ec35d1-9f37-417a-a7bd-6a6971f25422
 
+### Exporting Script Links
+
+JSON files can be cumbersome to pass around, so the tool has a lightweight way
+to create _script links_. Currently the only way to generate a script link is by
+holding Ctrl/Cmd and clicking on the Export JSON button. This will replace the
+URL in your browser’s address bar with the script link, which you can then copy
+and send to others.
+
 ### Importing Scripts
 
-You can import scripts using the button on the top right. Both standard and
-homebrew scripts are supported.
+You can import scripts using the Import JSON button on the top right or by
+visiting a script link. Both standard and homebrew scripts are supported.
 
 https://github.com/user-attachments/assets/a4d428f8-ccc8-4903-87f6-d275a2c39f3a
+
+### Working with Multiple Scripts
+
+The Recent Scripts sidebar is on the left-hand side of the viewport. When you
+import a script – whether that’s via JSON upload or a script link – it’s added
+to this list. You can also add a new script manually using the button at the top
+of the sidebar.
+
+The maximum number of scripts stored in memory is 15. If you try to add more,
+the bottom script will be popped off. This is not a technical limitation and may
+be expanded if 15 is too few. (But 15 seems like plenty.)
 
 ### Exporting PDFs
 
@@ -220,6 +265,10 @@ interpretations of `window.print()` in different browsers and operating systems.
 - Microsoft Print to PDF blanks the file name. If you want the file name to be
   the name of the script by default then you’ll need to use the regular Print to
   PDF. You can change this in the ‘Destination’ field of the print options.
+- Printing with the keyboard shortcut Cmd+P on Firefox (macOS) gives ‘Unofficial
+  BotC Script Tool’ as the title. Not sure why this happens. The print button
+  works fine, so if this is annoying you then just use the button.
+- Printing is ugly on mobile devices so I can’t recommend it just yet.
 
 ## Acknowledgements
 
