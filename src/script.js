@@ -335,7 +335,16 @@ export class Script {
   }
 
   render() {
-    const iconCls = (c) => c.index("image") ? "imported-icon" : "";
+    const iconCls = (c) => {
+      let str = "";
+      if (c.index("image")) {
+        str += "imported-icon ";
+      }
+      if (this.almanac !== undefined) {
+        str += "bloodstar";
+      }
+      return str.trim();
+    };
     const wikilink = (c) => {
       if (!c.isCustom) {
         return c.wikilink;
@@ -601,7 +610,16 @@ export class Script {
   }
 
   renderFabledSmall() {
-    const iconCls = (c) => c.index("image") ? "imported-icon" : "";
+    const iconCls = (c) => {
+      let str = "";
+      if (c.index("image")) {
+        str += "imported-icon ";
+      }
+      if (this.almanac !== undefined) {
+        str += "bloodstar";
+      }
+      return str.trim();
+    };
     let str = `<div class="tiny-fabled">`;
     for (const c of this.fabled) {
       str += `<div class="item">`;

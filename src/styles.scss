@@ -303,6 +303,12 @@ input {
 img.imported-icon {
   object-fit: cover;
   scale: 1.6;
+
+  &.bloodstar {
+    // bloodstar images add a bunch of whitespace underneath the image that we need to offset
+    position: relative;
+    top: 0.5em;
+  }
 }
 
 #script {
