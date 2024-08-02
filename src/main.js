@@ -465,16 +465,19 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       redo();
     }
 
-    if (metaCtrl && shift && nextScriptKey) {
-      const _success = appState.nextScript();
-      console.log(`next script: ${appState.currentScript.name}`);
-      renderScript();
-    }
-    if (metaCtrl && shift && prevScriptKey) {
-      const _success = appState.prevScript();
-      console.log(`prev script: ${appState.currentScript.name}`);
-      renderScript();
-    }
+    // I think binding these keys to these actions is probably ill-advised. The
+    // UI is completely sufficient.
+
+    // if (metaCtrl && shift && nextScriptKey) {
+    //   const _success = appState.nextScript();
+    //   console.log(`next script: ${appState.currentScript.name}`);
+    //   renderScript();
+    // }
+    // if (metaCtrl && shift && prevScriptKey) {
+    //   const _success = appState.prevScript();
+    //   console.log(`prev script: ${appState.currentScript.name}`);
+    //   renderScript();
+    // }
   });
 
   undoButtonElem = document.querySelector("#undo-button");
