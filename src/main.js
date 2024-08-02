@@ -346,7 +346,6 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       appState.currentScript.name = scriptNameInput.value;
       h1.innerHTML =
         `${appState.currentScript.name}<span>by ${appState.currentScript.author}</span>`;
-      localStorage.setItem("script", appState.currentScript.toJSON());
     },
   );
 
@@ -357,7 +356,6 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       appState.currentScript.author = scriptAuthorInput.value;
       h1.innerHTML =
         `${appState.currentScript.name}<span>by ${appState.currentScript.author}</span>`;
-      localStorage.setItem("script", appState.currentScript.toJSON());
     },
   );
 
@@ -566,7 +564,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   );
 
   globalThis.addEventListener("unload", function (_event) {
-    localStorage.setItem("script", appState.currentScript.toJSON());
+    localStorage.setItem("app-state", appState.serialize());
   });
 
   const sidebar = document.querySelector("#sidebar");
