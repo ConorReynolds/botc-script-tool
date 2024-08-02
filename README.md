@@ -189,7 +189,10 @@ JSON files can be cumbersome to pass around, so the tool has a lightweight way
 to create _script links_. Currently the only way to generate a script link is by
 holding Ctrl/Cmd and clicking on the Export JSON button. This will replace the
 URL in your browser’s address bar with the script link, which you can then copy
-and send to others.
+and send to others. Ctrl/Cmd clicking on the Clear Script button will clear the
+URL parameters only and not the script itself.
+
+https://github.com/user-attachments/assets/f617d650-6104-4648-b8cc-8ec79e0b7fd9
 
 ### Importing Scripts
 
@@ -204,6 +207,8 @@ The Recent Scripts sidebar is on the left-hand side of the viewport. When you
 import a script – whether that’s via JSON upload or a script link – it’s added
 to this list. You can also add a new script manually using the button at the top
 of the sidebar.
+
+https://github.com/user-attachments/assets/9993225b-1854-464b-b011-d718392278ab
 
 The maximum number of scripts stored in memory is 15. If you try to add more,
 the bottom script will be popped off. This is not a technical limitation and may
