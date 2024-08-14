@@ -21,6 +21,7 @@
   -webkit-text-size-adjust: 100%;
 
   --width: min(55rem, 100% - 2rem);
+  --print-width: 75rem;
 }
 
 @import "sidebar.scss";
@@ -409,6 +410,11 @@ img.imported-icon {
       .character-summary {
         vertical-align: middle;
         line-height: 1.4;
+
+        @media print {
+          line-height: 1.2;
+          font-size: 1.15rem;
+        }
       }
     }
   }
@@ -479,7 +485,7 @@ img.imported-icon {
         grid-template-columns: repeat(2, 1fr);
         grid-auto-flow: column;
         column-gap: 2rem;
-        row-gap: 1rem; 
+        row-gap: 1rem;
       }
 
       @media (max-width: 650px) {
@@ -752,7 +758,7 @@ img.imported-icon {
 
 h1 {
   // float: left;
-  width: 68rem;
+  width: var(--print-width);
   margin: auto;
   text-align: left;
   font-size: 2rem;
@@ -812,20 +818,20 @@ h1 {
   #footer {
     text-align: left;
     margin: auto;
-    width: 68rem;
+    width: var(--print-width);
     color: #666;
 
     .print-footer {
       .copyright {
         position: fixed;
-        left: calc(50% - 34rem);
+        left: calc(50% - var(--print-width) / 2);
         bottom: 1rem;
         padding-left: 0.25rem;
       }
       .page-one {
         position: absolute;
         bottom: 1rem;
-        right: calc(50% - 34rem);
+        right: calc(50% - var(--print-width) / 2);
         padding-right: 0.25rem;
       }
     }
@@ -838,7 +844,7 @@ h1 {
   }
 
   :root {
-    font-size: 10px;
+    font-size: 9.5px;
     background-color: white;
     // width: 55rem;
   }
@@ -847,7 +853,7 @@ h1 {
     position: relative;
     margin: auto;
     margin-top: 2rem;
-    width: 68rem;
+    width: var(--print-width);
     #fabled-icon-container {
       position: absolute;
       top: 0;
@@ -862,6 +868,7 @@ h1 {
           .icon {
             width: 2rem;
             height: 2rem;
+            object-fit: contain;
           }
         }
       }
@@ -869,8 +876,8 @@ h1 {
   }
 
   #script, .jinxes {
-    width: 68rem;
-    max-width: 68rem;
+    width: var(--print-width);
+    max-width: var(--print-width);
     padding: 1rem;
     // width: 70rem;
     margin: auto;
@@ -888,6 +895,7 @@ h1 {
     }
     .townsfolk, .outsider, .minion, .demon, .travelers, .fabled {
       column-gap: 3rem;
+      row-gap: 0.5rem;
     }
   }
 
@@ -915,9 +923,10 @@ h1 {
   }
 
   #script {
+    // font-family: IBMPlexSans;
     .townsfolk, .outsider, .minion, .demon {
       margin-top: 0.5rem;
-      row-gap: 1.5rem;
+      row-gap: 2rem;
     }
     .script, .travelers-and-fabled-container {
       .item {
@@ -929,8 +938,9 @@ h1 {
           font-size: 1.2rem;
         }
         .character-summary {
-          font-size: 1.01rem;
+          font-size: 1.1rem;
           margin-top: -0.3rem;
+          line-height: 1.25;
         }
       }
     }
