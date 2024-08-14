@@ -218,11 +218,11 @@ be expanded if 15 is too few. (But 15 seems like plenty.)
 
 Exporting PDFs is designed to be done using the built-in print dialog’s ‘Print
 to PDF’ functionality. This currently works well on Chrome and Firefox – my
-settings are usually A4, 105% ish scaling, remove headers and footers (but not
-backgrounds). Play around with whatever looks best to you, but the defaults
-should be OK. Android mobile output is generally acceptable once the output is
-correctly scaled. Safari and browsers on iOS are currently not great but support
-will probably improve soon.
+settings are usually A4, remove headers and footers (but not backgrounds). Play
+around with whatever looks best to you, but the defaults should be OK. Android
+mobile output is generally acceptable once the output is correctly scaled.
+Safari and browsers on iOS are currently not great but support will probably
+improve soon.
 
 If you print with the full night sheet, you’ll get four (PDF) pages (two
 double-sided printed pages). The first two are the character sheet and the
