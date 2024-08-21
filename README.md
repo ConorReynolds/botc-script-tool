@@ -7,8 +7,6 @@ This is an unofficial script tool for
 editing speed and producing reasonably high quality printed scripts. It
 currently works well on desktop and decent on mobile.
 
-This is still a work in progress.
-
 ## Feature Overview
 
 - Quick-add textbox with fuzzy search, supporting search for both character
