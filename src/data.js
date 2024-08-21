@@ -2076,13 +2076,13 @@ export const chars = [
     "team": "demon",
     "firstNightReminder":
       "The Kazali points to a player and a Minion on the character sheet. They do this for as many Minions as should be in play. Change those players’ tokens to the chosen Minion tokens in the Grim. Wake those players, show them the ‘You are’ card, the Minions they have become, and a thumbs down.",
-    "otherNightReminder": "The Kazali points to a player. That player dies",
+    "otherNightReminder": "The Kazali points to a player. That player dies.",
     "reminders": [
       "Dead",
     ],
     "setup": true,
     "ability":
-      "Each night*, choose a player: they die. [You choose which players are Minions. -? to +? Outsiders]",
+      'Each night*, choose a player: they die. [You choose which players are Minions. <span style="whitespace:nowrap">-?</span> to <span style="whitespace:nowrap">+?</span> Outsiders]',
   },
   {
     "id": "yaggababble",

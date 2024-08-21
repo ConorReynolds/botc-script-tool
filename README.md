@@ -11,7 +11,8 @@ currently works well on desktop and decent on mobile.
 
 - Quick-add textbox with fuzzy search, supporting search for both character
   names and ability text
-- Import and export JSON (supports bloodstar.xyz homebrew scripts)
+- Import and export JSON (supports [bloodstar.xyz](https://www.bloodstar.xyz/)
+  homebrew scripts)
 - Undo and redo up to 10 recent changes
 - Caches up to 15 recent scripts, accessible in the left sidebar
 - Generate script links to quickly share scripts with others
@@ -36,7 +37,7 @@ but:
   PDFs/images, which can be cumbersome and inconvenient to share. It’s not
   possible to filter characters based on ability text, nor to work on multiple
   scripts at once.
-- It doesn’t support homebrew characters, as far as I can tell.
+- It doesn’t support homebrew characters.
 - It doesn’t work on mobile.
 
 I also didn’t want to use the official editor to generate the JSON and then feed
@@ -91,7 +92,8 @@ The sidebar on the left (similar button) opens the recent scripts tab, where the
 most recent 15 scripts that you were working on will appear.
 
 You can undo/redo up to ten previous changes in the currently focused script
-with Ctrl+Z / Ctrl+Shift+Z on Windows/Linux, or Cmd+Z / Cmd+Shift+Z on Mac.
+using the buttons on the bottom left or via the keyboard shortcuts Ctrl+Z /
+Ctrl+Shift+Z on Windows/Linux, or Cmd+Z / Cmd+Shift+Z on Mac.
 
 Ctrl/Cmd clicking on the export JSON button creates a script link that you can
 then copy and share.
@@ -139,8 +141,9 @@ maximum flexibility. Bloodstar by default does not seem to support characters
 that act or have reminders before dusk, before/between minion and demon info
 steps (like the Lunatic), or after dawn (like the Leviathan). It’s possible to
 tweak the numbers in the exported JSON but that requires knowledge of where
-these standard steps ‘usually’ go and what numbers they are assigned. This is
-much simpler, but requires that you create the night order in the JSON yourself.
+these standard steps ‘usually’ go and what numbers they are assigned. The method
+above is much simpler, but requires that you explicitly write the night order in
+the JSON yourself.
 
 ### Adding Characters
 
@@ -278,7 +281,9 @@ interpretations of `window.print()` in different browsers and operating systems.
 The character icons are a modified version of the unofficial icon SVGs Navean
 and Tom O created and uploaded to the unofficial Discord server. Most of the
 character data are taken directly from
-[clocktower.live](https://github.com/nicholas-eden/townsquare). The other icons
+[clocktower.live](https://github.com/nicholas-eden/townsquare). Night reminders
+and other auxiliary text is written by
+[Ben Finney](http://bignose.whitetree.org/projects/botc/diy/). The other icons
 are from [Font Awesome](https://fontawesome.com/). The fonts are all in the
 [IBM Plex family](https://www.ibm.com/plex/). The character text and jinxes are
 taken from the excellent
