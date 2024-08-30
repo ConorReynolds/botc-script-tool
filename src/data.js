@@ -2122,6 +2122,21 @@ export const chars = [
     "ability":
       "If there are 5 or more players alive, you must vote for every nomination.",
   },
+  {
+    "id": "lord_of_typhon",
+    "name": "Lord of Typhon",
+    "edition": "",
+    "team": "demon",
+    "firstNight": 0.1,
+    "firstNightReminder":
+      "Wake the players on either side of the Demon. Show them the 'You Are' card, the token of the Minion they now are, and a thumbs down to indicate they are evil.",
+    "otherNight": 31.1,
+    "otherNightReminder":
+      "The Lord of Typhon points to a player. That player dies.",
+    "reminders": ["Dead"],
+    "ability":
+      "Each night*, choose a player: they die. [Evil characters are in a line. You are in the middle. +1 Minion. -? To +? Outsiders]",
+  },
 ];
 
 export const sao = {
@@ -3933,6 +3948,20 @@ export const sao = {
     "first night": false,
     "each night": false,
     "each night*": false,
+    "day": false,
+    "once per game": false,
+    "on trigger": false,
+    "passive": true,
+  },
+  "lord_of_typhon": {
+    "Name": "Lord of Typhon",
+    "Summary":
+      "Each night*, choose a player: they die. [Evil characters are in a line. You are in the middle. +1 Minion. -? To +? Outsiders]",
+    "Type": "Demon",
+    "Script": "Experimental",
+    "first night": false,
+    "each night": false,
+    "each night*": true,
     "day": false,
     "once per game": false,
     "on trigger": false,
