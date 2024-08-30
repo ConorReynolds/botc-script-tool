@@ -1580,7 +1580,7 @@ export const chars = [
     "reminders": [],
     "setup": true,
     "ability":
-      "If the Demon kills the King, you learn which player is the Demon. [+ the King]",
+      "If the Demon kills the King, you learn which player is the Demon. [+the King]",
   },
   {
     "id": "poppy_grower",
@@ -1973,7 +1973,7 @@ export const chars = [
     ],
     "setup": true,
     "ability":
-      "Each night, Minions choose who babysits Lil’ Monsta & ‘is the Demon’. Each night*, a player might die. [+1 Minion]",
+      "Each night, Minions choose who babysits Lil’ Monsta & “is the Demon”. Each night*, a player might die. [+1 Minion]",
   },
   {
     "id": "lleech",
@@ -2082,7 +2082,7 @@ export const chars = [
     ],
     "setup": true,
     "ability":
-      'Each night*, choose a player: they die. [You choose which players are Minions. <span style="whitespace:nowrap">-?</span> to <span style="whitespace:nowrap">+?</span> Outsiders]',
+      'Each night*, choose a player: they die. [You choose which players are which Minions. <span style="whitespace:nowrap">-?</span> to <span style="whitespace:nowrap">+?</span> Outsiders]',
   },
   {
     "id": "yaggababble",
@@ -3801,7 +3801,7 @@ export const sao = {
   "lil_monsta": {
     "Name": "Lil’ Monsta",
     "Summary":
-      "Each night, Minions choose who babysits Lil’ Monsta & ‘is the Demon’. Each night*, a player might die. [+1 Minion]",
+      "Each night, Minions choose who babysits Lil’ Monsta & “is the Demon”. Each night*, a player might die. [+1 Minion]",
     "Type": "Demon",
     "Script": "Experimental",
     "first night": false,
