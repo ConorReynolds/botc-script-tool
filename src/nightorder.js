@@ -1,9 +1,9 @@
 export const nightorder = {
   "firstNight": [
     "DUSK",
+    "Lord of Typhon",
     "Philosopher",
     "Kazali",
-    "Lord of Typhon",
     "Alchemist",
     "Poppy Grower",
     "Yaggababble",
@@ -102,8 +102,8 @@ export const nightorder = {
     "Fang Gu",
     "No Dashii",
     "Vortox",
-    "Vigormortis",
     "Lord of Typhon",
+    "Vigormortis",
     "Ojo",
     "Al-Hadikhia",
     "Lleech",
