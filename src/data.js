@@ -4177,7 +4177,7 @@ export const jinxes = {
   },
   "Marionette": {
     "Balloonist":
-      "If the Marionette thinks that they are the Balloonist, +1 Outsider was added.",
+      "If the Marionette thinks that they are the Balloonist, +1 Outsider might have been added.",
     "Damsel": "The Marionette does not learn that a Damsel is in play.",
     "Huntsman":
       "If the Marionette thinks that they are the Huntsman, the Damsel was added.",
