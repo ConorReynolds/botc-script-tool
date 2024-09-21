@@ -566,10 +566,6 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     },
   );
 
-  globalThis.addEventListener("unload", function (_event) {
-    localStorage.setItem("app-state", appState.serialize());
-  });
-
   const sidebar = document.querySelector("#sidebar");
   const sidebarToggleButton = document.querySelector("#open-sidebar-button");
 
