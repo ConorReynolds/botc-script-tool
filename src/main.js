@@ -326,6 +326,17 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  scriptNameInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter" && scriptNameInput.value !== onFocusScriptName) {
+      appState.currentScript.isRecording = true;
+      appState.currentScript.name = scriptNameInput.value;
+      renderFileSelector();
+      appState.currentScript.isRecording = false;
+      onFocusScriptName = scriptNameInput.value;
+      scriptNameInput.blur();
+    }
+  });
+
   scriptAuthorInput.addEventListener("focus", function (_) {
     onFocusScriptAuthor = scriptAuthorInput.value;
     appState.currentScript.isRecording = false;
@@ -336,6 +347,19 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     if (scriptAuthorInput.value !== onFocusScriptAuthor) {
       appState.currentScript.author = scriptAuthorInput.value;
       renderFileSelector();
+    }
+  });
+
+  scriptAuthorInput.addEventListener("keydown", function (event) {
+    if (
+      event.key === "Enter" && scriptAuthorInput.value !== onFocusScriptAuthor
+    ) {
+      appState.currentScript.isRecording = true;
+      appState.currentScript.author = scriptAuthorInput.value;
+      renderFileSelector();
+      appState.currentScript.isRecording = false;
+      onFocusScriptAuthor = scriptNameInput.value;
+      scriptAuthorInput.blur();
     }
   });
 
