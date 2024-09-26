@@ -33,12 +33,13 @@ export class Character {
     if (typeof obj === "string") {
       // Probably an identifier for a character
       const id = obj;
+      const altId = id.replaceAll("_", "").replaceAll("-", "");
       if (Character.custom[id]) {
         this.isCustom = true;
         this.id = id;
-      } else if (Character.data[id]) {
+      } else if (Character.data[id] || Character.data[altId]) {
         this.id = id;
-      } else if (Character.fabled[id]) {
+      } else if (Character.fabled[id] || Character.fabled[altId]) {
         this.isFabled = true;
         this.id = id;
       } else {
@@ -124,7 +125,8 @@ export class Character {
   static nameToID(name) {
     let id = name;
     id = id.replaceAll("’", "");
-    id = id.replaceAll(" ", "_");
+    id = id.replaceAll(" ", "");
+    id = id.replaceAll("-", "");
     id = id.toLowerCase();
     return id;
   }

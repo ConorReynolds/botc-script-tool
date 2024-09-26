@@ -73,7 +73,7 @@ export const chars = [
       "Each night, you learn how many of your 2 alive neighbours are evil.",
   },
   {
-    "id": "fortune_teller",
+    "id": "fortuneteller",
     "name": "Fortune Teller",
     "edition": "tb",
     "team": "townsfolk",
@@ -267,7 +267,7 @@ export const chars = [
       "Each night, you see the Grimoire. You might register as good & as a Townsfolk or Outsider, even if dead.",
   },
   {
-    "id": "scarlet_woman",
+    "id": "scarletwoman",
     "name": "Scarlet Woman",
     "edition": "tb",
     "team": "minion",
@@ -572,7 +572,7 @@ export const chars = [
       "When a Minion dies by execution, all other players (except Travellers) are drunk until dusk tomorrow.",
   },
   {
-    "id": "tea_lady",
+    "id": "tealady",
     "name": "Tea Lady",
     "edition": "bmr",
     "team": "townsfolk",
@@ -685,7 +685,7 @@ export const chars = [
       "You start knowing which Outsiders are in play. If 1 died today, choose a player tonight: they die. [−1 or +1 Outsider]",
   },
   {
-    "id": "devils_advocate",
+    "id": "devilsadvocate",
     "name": "Devil’s Advocate",
     "edition": "bmr",
     "team": "minion",
@@ -889,7 +889,7 @@ export const chars = [
       "Each night, choose a player (not yourself or Travellers): you learn 1 good and 1 evil character, 1 of which is correct.",
   },
   {
-    "id": "snake_charmer",
+    "id": "snakecharmer",
     "name": "Snake Charmer",
     "edition": "snv",
     "team": "townsfolk",
@@ -936,7 +936,7 @@ export const chars = [
     "ability": "Each night*, you learn if a Demon voted today.",
   },
   {
-    "id": "town_crier",
+    "id": "towncrier",
     "name": "Town Crier",
     "edition": "snv",
     "team": "townsfolk",
@@ -1101,7 +1101,7 @@ export const chars = [
       "When you learn that you died, publicly choose 1 alive player: if they are evil, your team loses.",
   },
   {
-    "id": "evil_twin",
+    "id": "eviltwin",
     "name": "Evil Twin",
     "edition": "snv",
     "team": "minion",
@@ -1148,7 +1148,7 @@ export const chars = [
       "Each night, choose a player & a good character: they are “mad” they are this character tomorrow, or might be executed.",
   },
   {
-    "id": "pit-hag",
+    "id": "pithag",
     "name": "Pit-Hag",
     "edition": "snv",
     "team": "minion",
@@ -1161,7 +1161,7 @@ export const chars = [
       "Each night*, choose a player & a character they become (if not-in-play). If a Demon is made, deaths tonight are arbitrary.",
   },
   {
-    "id": "fang_gu",
+    "id": "fanggu",
     "name": "Fang Gu",
     "edition": "snv",
     "team": "demon",
@@ -1221,7 +1221,7 @@ export const chars = [
       "All players know who you are. You can not die during the day. If good voted, you may choose to execute immediately.",
   },
   {
-    "id": "no_dashii",
+    "id": "nodashii",
     "name": "No Dashii",
     "edition": "snv",
     "team": "demon",
@@ -1293,7 +1293,7 @@ export const chars = [
     "ability": "Each day, after the 1st execution, you may nominate again.",
   },
   {
-    "id": "bone_collector",
+    "id": "bonecollector",
     "name": "Bone Collector",
     "edition": "snv",
     "team": "traveler",
@@ -1334,7 +1334,7 @@ export const chars = [
     "ability": "You start knowing 3 players, 1 and only 1 of which is evil.",
   },
   {
-    "id": "bounty_hunter",
+    "id": "bountyhunter",
     "name": "Bounty Hunter",
     "edition": "",
     "team": "townsfolk",
@@ -1425,7 +1425,7 @@ export const chars = [
       "Each night, you learn a player of a different character type than last night. [+0 or +1 Outsider]",
   },
   {
-    "id": "cult_leader",
+    "id": "cultleader",
     "name": "Cult Leader",
     "edition": "",
     "team": "townsfolk",
@@ -1583,7 +1583,7 @@ export const chars = [
       "If the Demon kills the King, you learn which player is the Demon. [+the King]",
   },
   {
-    "id": "poppy_grower",
+    "id": "poppygrower",
     "name": "Poppy Grower",
     "edition": "",
     "team": "townsfolk",
@@ -1626,7 +1626,7 @@ export const chars = [
       "You have the ability of the recently killed executee. If they are evil, you are poisoned until a good player dies by execution.",
   },
   {
-    "id": "high_priestess",
+    "id": "highpriestess",
     "name": "High Priestess",
     "edition": "",
     "team": "townsfolk",
@@ -1638,7 +1638,7 @@ export const chars = [
       "Each night, learn which player the Storyteller believes you should talk to most.",
   },
   {
-    "id": "village_idiot",
+    "id": "villageidiot",
     "name": "Village Idiot",
     "edition": "",
     "team": "townsfolk",
@@ -1694,7 +1694,7 @@ export const chars = [
       "Each night*, if either good living neighbour is drunk or poisoned, you die.",
   },
   {
-    "id": "plague_doctor",
+    "id": "plaguedoctor",
     "name": "Plague Doctor",
     "edition": "",
     "team": "outsider",
@@ -1909,7 +1909,7 @@ export const chars = [
       "If you are executed, all but 3 players die. 1 minute later, the player with the most players pointing at them dies.",
   },
   {
-    "id": "organ_grinder",
+    "id": "organgrinder",
     "name": "Organ Grinder",
     "edition": "",
     "team": "minion",
@@ -1958,7 +1958,7 @@ export const chars = [
       "You get 3 bluffs. On the 3rd night, choose a player: they become an evil Demon of your choice. [No Demon]",
   },
   {
-    "id": "lil_monsta",
+    "id": "lilmonsta",
     "name": "Lil’ Monsta",
     "edition": "",
     "team": "demon",
@@ -1992,7 +1992,7 @@ export const chars = [
       "Each night*, choose a player: they die. You start by choosing an alive player: they are poisoned - you die if & only if they die.",
   },
   {
-    "id": "al-hadikhia",
+    "id": "alhadikhia",
     "name": "Al-Hadikhia",
     "edition": "",
     "team": "demon",
@@ -2123,7 +2123,7 @@ export const chars = [
       "If there are 5 or more players alive, you must vote for every nomination.",
   },
   {
-    "id": "lord_of_typhon",
+    "id": "lordoftyphon",
     "name": "Lord of Typhon",
     "edition": "",
     "team": "demon",
@@ -2208,7 +2208,7 @@ export const sao = {
     "on trigger": false,
     "passive": false,
   },
-  "fortune_teller": {
+  "fortuneteller": {
     "Name": "Fortune Teller",
     "Summary":
       "Each night, choose 2 players: you learn if either is a Demon. There is a good player that registers as a Demon to you.",
@@ -2415,7 +2415,7 @@ export const sao = {
     "on trigger": false,
     "passive": true,
   },
-  "scarlet_woman": {
+  "scarletwoman": {
     "Name": "Scarlet Woman",
     "Summary":
       "If there are 5 or more players alive & the Demon dies, you become the Demon. (Travellers don’t count.)",
@@ -2471,7 +2471,7 @@ export const sao = {
     "on trigger": false,
     "passive": false,
   },
-  "snake_charmer": {
+  "snakecharmer": {
     "Name": "Snake Charmer",
     "Summary":
       "Each night, choose an alive player: a chosen Demon swaps characters & alignments with you & is then poisoned.",
@@ -2512,7 +2512,7 @@ export const sao = {
     "on trigger": false,
     "passive": false,
   },
-  "town_crier": {
+  "towncrier": {
     "Name": "Town Crier",
     "Summary": "Each night*, you learn if a Minion nominated today.",
     "Type": "Townsfolk",
@@ -2676,7 +2676,7 @@ export const sao = {
     "on trigger": true,
     "passive": false,
   },
-  "evil_twin": {
+  "eviltwin": {
     "Name": "Evil Twin",
     "Summary":
       "You & an opposing player know each other. If the good player is executed, evil wins. Good can’t win if you both live.",
@@ -2718,7 +2718,7 @@ export const sao = {
     "on trigger": false,
     "passive": false,
   },
-  "pit-hag": {
+  "pithag": {
     "Name": "Pit-Hag",
     "Summary":
       "Each night*, choose a player & a character they become (if not in play). If a Demon is made, deaths tonight are arbitrary.",
@@ -2732,7 +2732,7 @@ export const sao = {
     "on trigger": false,
     "passive": false,
   },
-  "fang_gu": {
+  "fanggu": {
     "Name": "Fang Gu",
     "Summary":
       "Each night*, choose a player: they die. The 1st Outsider this kills becomes an evil Fang Gu & you die instead. [+1 Outsider]",
@@ -2760,7 +2760,7 @@ export const sao = {
     "on trigger": false,
     "passive": false,
   },
-  "no_dashii": {
+  "nodashii": {
     "Name": "No Dashii",
     "Summary":
       "Each night*, choose a player: they die. Your 2 Townsfolk neighbors are poisoned.",
@@ -2928,7 +2928,7 @@ export const sao = {
     "on trigger": true,
     "passive": false,
   },
-  "tea_lady": {
+  "tealady": {
     "Name": "Tea Lady",
     "Summary": "If both your alive neighbors are good, they can’t die.",
     "Type": "Townsfolk",
@@ -3036,7 +3036,7 @@ export const sao = {
     "on trigger": true,
     "passive": false,
   },
-  "devils_advocate": {
+  "devilsadvocate": {
     "Name": "Devil’s Advocate",
     "Summary":
       "Each night, choose a living player (different to last night): if executed tomorrow, they don’t die.",
@@ -3189,7 +3189,7 @@ export const sao = {
     "on trigger": false,
     "passive": false,
   },
-  "bounty_hunter": {
+  "bountyhunter": {
     "Name": "Bounty Hunter",
     "Summary":
       "You start knowing 1 evil player. If the player you know dies, you learn another evil player tonight. [1 Townsfolk is evil]",
@@ -3231,7 +3231,7 @@ export const sao = {
     "on trigger": true,
     "passive": false,
   },
-  "cult_leader": {
+  "cultleader": {
     "Name": "Cult Leader",
     "Summary":
       "Each night, you become the alignment of an alive neighbour. If all good players choose to join your cult, your team wins.",
@@ -3300,7 +3300,7 @@ export const sao = {
     "on trigger": false,
     "passive": false,
   },
-  "high_priestess": {
+  "highpriestess": {
     "Name": "High Priestess",
     "Summary":
       "Each night, learn which player the Storyteller believes you should talk to most.",
@@ -3424,7 +3424,7 @@ export const sao = {
     "on trigger": false,
     "passive": false,
   },
-  "poppy_grower": {
+  "poppygrower": {
     "Name": "Poppy Grower",
     "Summary":
       "Minions & Demons do not know each other. If you die, they learn who each other are that night.",
@@ -3479,7 +3479,7 @@ export const sao = {
     "on trigger": false,
     "passive": false,
   },
-  "village_idiot": {
+  "villageidiot": {
     "Name": "Village Idiot",
     "Summary":
       "Each night, choose a player: you learn their alignment. [+0 to +2 Village Idiots. 1 of the extras is drunk]",
@@ -3563,7 +3563,7 @@ export const sao = {
     "on trigger": false,
     "passive": true,
   },
-  "plague_doctor": {
+  "plaguedoctor": {
     "Name": "Plague Doctor",
     "Summary": "If you die, the Storyteller gains a Minion ability.",
     "Type": "Outsider",
@@ -3701,7 +3701,7 @@ export const sao = {
     "on trigger": true,
     "passive": false,
   },
-  "organ_grinder": {
+  "organgrinder": {
     "Name": "Organ Grinder",
     "Summary":
       "All players keep their eyes closed when voting & the vote tally is secret. Votes for you only count if you vote.",
@@ -3757,7 +3757,7 @@ export const sao = {
     "on trigger": false,
     "passive": false,
   },
-  "al-hadikhia": {
+  "alhadikhia": {
     "Name": "Al-Hadikhia",
     "Summary":
       "Each night*, choose 3 players (all players learn who): each silently chooses to live or die, but if all live, all die.",
@@ -3813,7 +3813,7 @@ export const sao = {
     "on trigger": true,
     "passive": true,
   },
-  "lil_monsta": {
+  "lilmonsta": {
     "Name": "Lil’ Monsta",
     "Summary":
       "Each night, Minions choose who babysits Lil’ Monsta & “is the Demon”. Each night*, a player might die. [+1 Minion]",
@@ -3953,7 +3953,7 @@ export const sao = {
     "on trigger": false,
     "passive": true,
   },
-  "lord_of_typhon": {
+  "lordoftyphon": {
     "Name": "Lord of Typhon",
     "Summary":
       "Each night*, choose a player: they die. [Evil characters are in a line. You are in the middle. +1 Minion. -? To +? Outsiders]",
@@ -4004,7 +4004,7 @@ export const fabled = [
       "For the first 2 minutes of each day, veteran players may not talk.",
   },
   {
-    "id": "hells_librarian",
+    "id": "hellslibrarian",
     "firstNightReminder": "",
     "otherNightReminder": "",
     "reminders": ["Something Bad"],
@@ -4083,7 +4083,7 @@ export const fabled = [
     "ability": "There might be 1 extra or 1 fewer Outsider in play.",
   },
   {
-    "id": "spirit_of_ivory",
+    "id": "spiritofivory",
     "firstNightReminder": "",
     "otherNightReminder": "",
     "reminders": ["No extra evil"],
@@ -4104,7 +4104,7 @@ export const fabled = [
   //   "ability": "Use the Djinn's special rule. All players know what it is.",
   // },
   {
-    "id": "storm_catcher",
+    "id": "stormcatcher",
     "firstNight": 1,
     "firstNightReminder":
       'Mark a good player as "Safe". Wake each evil player and show them the marked player.',
