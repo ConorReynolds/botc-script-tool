@@ -32,14 +32,16 @@ export class Character {
   constructor(obj) {
     if (typeof obj === "string") {
       // Probably an identifier for a character
-      const id = obj;
-      const altId = id.replaceAll("_", "").replaceAll("-", "");
+      // Identifiers might have underscores or hyphens in them – remove them.
+      // I think some old versions of tools may have produced scripts with them
+      // left in, but who knows. The official tool does not have them.
+      const id = obj.replaceAll("_", "").replaceAll("-", "");
       if (Character.custom[id]) {
         this.isCustom = true;
         this.id = id;
-      } else if (Character.data[id] || Character.data[altId]) {
+      } else if (Character.data[id]) {
         this.id = id;
-      } else if (Character.fabled[id] || Character.fabled[altId]) {
+      } else if (Character.fabled[id]) {
         this.isFabled = true;
         this.id = id;
       } else {
