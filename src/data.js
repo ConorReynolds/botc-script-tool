@@ -2137,6 +2137,17 @@ export const chars = [
     "ability":
       "Each night*, choose a player: they die. [Evil characters are in a line. You are in the middle. +1 Minion. -? To +? Outsiders]",
   },
+  {
+    "id": "boffin",
+    "name": "Boffin",
+    "edition": "",
+    "team": "minion",
+    "firstNight": 0.3,
+    "firstNightReminder":
+      "Wake the Boffin and how them the token of the ability the Demon has. Put the Boffin back to sleep. Wake the Demon, show the Boffin token, then show the token of the good ability the Demon has.",
+    "ability":
+      "The Demon (even if drunk or poisoned) has a not-in-play good character’s ability. You both know which.",
+  },
 ];
 
 export const sao = {
@@ -3962,6 +3973,20 @@ export const sao = {
     "first night": false,
     "each night": false,
     "each night*": true,
+    "day": false,
+    "once per game": false,
+    "on trigger": false,
+    "passive": true,
+  },
+  "boffin": {
+    "Name": "Boffin",
+    "Summary":
+      "The Demon (even if drunk or poisoned) has a not-in-play good character’s ability. You both know which.",
+    "Type": "Minion",
+    "Script": "Experimental",
+    "first night": false,
+    "each night": false,
+    "each night*": false,
     "day": false,
     "once per game": false,
     "on trigger": false,

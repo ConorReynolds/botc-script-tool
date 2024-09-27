@@ -2,6 +2,7 @@ export const nightorder = {
   "firstNight": [
     "DUSK",
     "Lord of Typhon",
+    "Boffin",
     "Philosopher",
     "Kazali",
     "Alchemist",
