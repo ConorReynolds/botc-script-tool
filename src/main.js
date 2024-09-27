@@ -304,7 +304,6 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   document.querySelector("#new-script-button").addEventListener(
     "click",
     function (event) {
-      console.log("new script button clicked");
       appState.addScriptAndFocus(new Script(), null, true);
       renderScript();
     },
