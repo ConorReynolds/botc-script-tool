@@ -3039,7 +3039,7 @@ export const sao = {
       "You start knowing which Outsiders are in play. If 1 died today, choose a player tonight: they die. [-1 or +1 Outsider]",
     "Type": "Minion",
     "Script": "Bad Moon Rising",
-    "first night": false,
+    "first night": true,
     "each night": false,
     "each night*": false,
     "day": false,
@@ -4176,6 +4176,21 @@ export const jinxes = {
     "Heretic": "The Baron might only add 1 Outsider, not 2.",
     "Plague Doctor":
       "If the Storyteller gains the Baron ability, up to two players become not-in-play Outsiders.",
+  },
+  "Boffin": {
+    "Alchemist":
+      "If the Alchemist has the Boffin ability, the Alchemist does not learn what ability the Demon has.",
+    "Cult Leader":
+      "If the Demon has the Cult Leader ability, they can’t turn good due to this ability.",
+    "Drunk":
+      "If the Demon would have the Drunk ability, the Boffin chooses a Townsfolk player to have this ability instead.",
+    "Goon":
+      "If the Demon has the Goon ability, they can’t turn good due to this ability.",
+    "Heretic": "The Demon cannot have the Heretic ability.",
+    "Ogre": "The Demon cannot have the Ogre ability.",
+    "Politician": "The Demon cannot have the Politician ability.",
+    "Village Idiot":
+      "If there is a spare token, the Boffin can give the Demon the Village Idiot ability.",
   },
   "Boomdandy": {
     "Plague Doctor":
