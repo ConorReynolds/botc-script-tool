@@ -127,6 +127,7 @@ export class Character {
   static nameToID(name) {
     let id = name;
     id = id.replaceAll("’", "");
+    id = id.replaceAll("'", "");
     id = id.replaceAll(" ", "");
     id = id.replaceAll("-", "");
     id = id.toLowerCase();
