@@ -21,7 +21,7 @@
   -webkit-text-size-adjust: 100%;
 
   --width: min(55rem, 100% - 2rem);
-  --print-width: 75rem;
+  --print-width: 78rem;
 }
 
 @import "sidebar.scss";
@@ -390,12 +390,14 @@ img.imported-icon {
       cursor: pointer;
     }
     .name-and-summary {
-      // display: table-cell;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
       font-weight: 500;
       margin: 0;
       padding: 0;
       margin-right: auto;
-      align-self: center;
       // height: 4em;
       .character-name {
         margin: 0;
@@ -412,8 +414,8 @@ img.imported-icon {
         line-height: 1.4;
 
         @media print {
-          line-height: 1.2;
-          font-size: 1.14rem;
+          line-height: 1.4;
+          font-size: 1.19rem;
         }
       }
     }
@@ -625,6 +627,9 @@ img.imported-icon {
     page-break-before: auto;
   }
   .night-sheet {
+    @media print {
+      font-size: 1.19rem;
+    }
     .first-night, .other-night {
       display: grid;
       row-gap: 0.9rem;
@@ -711,6 +716,10 @@ img.imported-icon {
     .night-sheet-char-name {
       font-family: IBMPlexSans;
       font-weight: bold;
+
+      @media print {
+        font-size: 1.2rem;
+      }
     }
 
     h3 {
@@ -930,7 +939,7 @@ h1 {
     // font-family: IBMPlexSans;
     .townsfolk, .outsider, .minion, .demon {
       margin-top: 0.5rem;
-      row-gap: 2rem;
+      row-gap: 1.5rem;
     }
     .script, .travelers-and-fabled-container {
       .item {
@@ -951,7 +960,11 @@ h1 {
   }
 
   .jinxes {
-    font-size: 1rem;
+    font-size: 1.19rem;
+  }
+
+  .night-sheet.compact .jinxes {
+    font-size: 1.2rem;
   }
 
   .container {
