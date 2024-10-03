@@ -294,8 +294,8 @@ export class Character {
     let c1MatchLength = 0;
     let c2MatchLength = 0;
 
-    let c1MatchIdx = -1;
-    let c2MatchIdx = -1;
+    let c1MatchIdx = prefixes.length;
+    let c2MatchIdx = prefixes.length;
 
     // Figure out which prefix matches first. Always take the longest match.
     for (const [idx, prefix] of prefixes.entries()) {
