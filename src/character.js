@@ -1,5 +1,4 @@
-import { getTextWidth } from "./utils.js";
-import { chars, fabled, jinxes, sao } from "./data.js";
+import { chars, fabled, jinxes } from "./data.js";
 
 export class Character {
   id;
@@ -14,7 +13,6 @@ export class Character {
   static flat = chars;
   static fabledFlat = fabled;
   // temporary dataset before I merge everything
-  static sao = sao;
   static data = {};
   static fabled = {};
   static {
@@ -121,7 +119,7 @@ export class Character {
   }
 
   get summaryLength() {
-    return getTextWidth(this.summary);
+    return this.summary.length;
   }
 
   static nameToID(name) {
@@ -190,34 +188,6 @@ export class Character {
     }
   }
 
-  get firstNight() {
-    return Character.sao[this.id]["first night"];
-  }
-
-  get eachNight() {
-    return Character.sao[this.id]["each night"];
-  }
-
-  get eachNightStar() {
-    return Character.sao[this.id]["each night*"];
-  }
-
-  get day() {
-    return Character.sao[this.id]["day"];
-  }
-
-  get oncePerGame() {
-    return Character.sao[this.id]["once per game"];
-  }
-
-  get actsOnTrigger() {
-    return Character.sao[this.id]["on trigger"];
-  }
-
-  get isPassive() {
-    return Character.sao[this.id]["passive"];
-  }
-
   get team() {
     if (this.type === "townsfolk" || this.type === "outsider") {
       return "good";
@@ -282,52 +252,86 @@ export class Character {
       return 1;
     }
 
-    // Standard Amy Order
-    // - first night
-    // - every night
-    // - every night*
-    // - day
-    // - once per game
-    // - on trigger or passive
-    // - length of ability text
-    // The official scripts do not always follow this order precisely. For
-    // example, in TB, the order is: Washerwoman, Librarian, Investigator,
-    // because the abilities can detect (in order) Townsfolk, Outsiders, and
-    // Minions.
+    // Steven Approved Order (NEW)
+    const prefixes = [
+      "You start knowing",
+      "Each night",
+      "Each night*",
+      "Each day",
+      "Once per day",
+      "Once per game, at night",
+      "Once per game, at night*",
+      "Once per game, during the day",
+      "Once per game",
+      "On your 1st night",
+      "On your 1st day",
+      "You think",
+      "You are",
+      "You have",
+      "You do not know",
+      "You might",
+      "You",
+      "When you die",
+      "When you learn that you died",
+      "When",
+      "If you die",
+      "If you died",
+      "If you are “mad”",
+      "If you",
+      "If the Demon dies",
+      "If the Demon kills",
+      "If the Demon",
+      "If both",
+      "If there are 5 or more players alive",
+      "If",
+      "All players",
+      "All",
+      "The 1st time",
+      "The",
+      "Minions",
+    ];
 
-    // Create a binary string out of the conditions and compare the strings
-    // lexicographically.
-    const c1CompareString = [
-      c1.firstNight,
-      c1.eachNight,
-      c1.eachNightStar,
-      c1.day,
-      c1.oncePerGame,
-      c1.actsOnTrigger || c1.isPassive,
-    ]
-      .map((b) => (b ? 0 : 1))
-      .join("");
-    const c2CompareString = [
-      c2.firstNight,
-      c2.eachNight,
-      c2.eachNightStar,
-      c2.day,
-      c2.oncePerGame,
-      c2.actsOnTrigger || c2.isPassive,
-    ]
-      .map((b) => (b ? 0 : 1))
-      .join("");
+    let c1MatchLength = 0;
+    let c2MatchLength = 0;
 
-    if (c1CompareString < c2CompareString) {
+    let c1MatchIdx = -1;
+    let c2MatchIdx = -1;
+
+    // Figure out which prefix matches first. Always take the longest match.
+    for (const [idx, prefix] of prefixes.entries()) {
+      if (c1.summary.startsWith(prefix)) {
+        if (c1MatchLength < prefix.length) {
+          c1MatchIdx = idx;
+          c1MatchLength = prefix.length;
+        }
+      }
+
+      if (c2.summary.startsWith(prefix)) {
+        if (c2MatchLength < prefix.length) {
+          c2MatchIdx = idx;
+          c2MatchLength = prefix.length;
+        }
+      }
+    }
+
+    if (c1MatchIdx < c2MatchIdx) {
       return -1;
     }
-    if (c1CompareString > c2CompareString) {
+
+    if (c2MatchIdx < c1MatchIdx) {
       return 1;
     }
+
     if (c1.summaryLength < c2.summaryLength) {
       return -1;
     }
     if (c1.summaryLength > c2.summaryLength) {
+      return 1;
+    }
+    if (c1.name.length < c2.name.length) {
+      return -1;
+    }
+    if (c1.name.length > c2.name.length) {
       return 1;
     }
     if (c1.name < c2.name) {
