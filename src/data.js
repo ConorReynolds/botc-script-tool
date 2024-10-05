@@ -1989,7 +1989,7 @@ export const chars = [
     ],
     "setup": false,
     "ability":
-      "Each night*, choose a player: they die. You start by choosing an alive player: they are poisoned – you die if & only if they die.",
+      "Each night*, choose a player: they die. You start by choosing a player: they are poisoned. You die if & only if they are dead.",
   },
   {
     "id": "alhadikhia",
