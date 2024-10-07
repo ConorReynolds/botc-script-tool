@@ -33,6 +33,9 @@
   margin-bottom: 0.5rem;
 }
 
+label {
+  user-select: none;
+}
 
 #undo-redo-buttons {
   @media print {
