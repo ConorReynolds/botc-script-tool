@@ -106,6 +106,10 @@ label {
   }
 }
 
+#character-input {
+    width: 9.3rem;
+}
+
 .header-container {
   position: relative;
   display: flex;
@@ -165,31 +169,6 @@ label {
 .character-form-container {
   position: sticky;
   z-index: 1;
-  
-  .input-and-help {
-    display: flex;
-    flex-direction: row;
-
-    input {
-      padding: 0.6em 0.9em;
-    }
-
-    button {
-      width: 2.65rem;
-      height: 2.4rem;
-      margin-left: 3px;
-    }
-  }
-
-  #character-form {
-    height: 2.4rem;
-  }
-
-  #character-input {
-    width: 6.35rem;
-    height: 1.18rem;
-  }
-
   #current-matches {
     font-size: 1rem;
     // line-height: 1.8;
