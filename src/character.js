@@ -255,6 +255,8 @@ export class Character {
     // Steven Approved Order (NEW)
     const prefixes = [
       "You start knowing",
+      "At night",
+      "Each dusk*",
       "Each night",
       "Each night*",
       "Each day",
@@ -265,15 +267,18 @@ export class Character {
       "Once per game",
       "On your 1st night",
       "On your 1st day",
+
       "You think",
       "You are",
       "You have",
       "You do not know",
       "You might",
       "You",
+
       "When you die",
       "When you learn that you died",
       "When",
+
       "If you die",
       "If you died",
       "If you are “mad”",
@@ -284,10 +289,16 @@ export class Character {
       "If both",
       "If there are 5 or more players alive",
       "If",
+
       "All players",
       "All",
+
       "The 1st time",
       "The",
+
+      "Good",
+      "Evil",
+      "Players",
       "Minions",
     ];
 
