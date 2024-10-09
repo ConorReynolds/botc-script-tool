@@ -12,7 +12,7 @@ export class Character {
 
   static flat = chars;
   static fabledFlat = fabled;
-  // temporary dataset before I merge everything
+
   static data = {};
   static fabled = {};
   static {
