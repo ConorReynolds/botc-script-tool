@@ -2135,7 +2135,7 @@ export const chars = [
       "The Lord of Typhon points to a player. That player dies.",
     "reminders": ["Dead"],
     "ability":
-      "Each night*, choose a player: they die. [Evil characters are in a line. You are in the middle. +1 Minion. -? To +? Outsiders]",
+      'Each night*, choose a player: they die. [Evil characters are in a line. You are in the middle. +1 Minion. <span style="whitespace:nowrap">-?</span> to <span style="whitespace:nowrap">+?</span> Outsiders]',
   },
   {
     "id": "boffin",

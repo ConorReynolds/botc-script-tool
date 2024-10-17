@@ -119,7 +119,10 @@ export class Character {
   }
 
   get summaryLength() {
-    return this.summary.length;
+    const node = document.createElement("div");
+    node.innerHTML = this.summary;
+
+    return node.innerText.length;
   }
 
   static nameToID(name) {
