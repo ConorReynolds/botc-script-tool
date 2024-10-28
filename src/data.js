@@ -1682,7 +1682,7 @@ export const chars = [
     "id": "acrobat",
     "name": "Acrobat",
     "edition": "",
-    "team": "outsider",
+    "team": "townsfolk",
     "firstNightReminder": "",
     "otherNightReminder":
       "If a good living neighbour is drunk or poisoned, the Acrobat player dies.",
@@ -1691,7 +1691,7 @@ export const chars = [
     ],
     "setup": false,
     "ability":
-      "Each night*, if either good living neighbour is drunk or poisoned, you die.",
+      "Each night*, choose a player: if they are or become drunk or poisoned tonight, you die.",
   },
   {
     "id": "plaguedoctor",
@@ -1920,7 +1920,7 @@ export const chars = [
     ],
     "setup": false,
     "ability":
-      "All players keep their eyes closed when voting & the vote tally is secret. Votes for you only count if you vote.",
+      "All players keep their eyes closed when voting and the vote tally is secret. Each night, choose if you are drunk or not.",
   },
   {
     "id": "harpy",
@@ -2389,10 +2389,6 @@ export const jinxes = {
   "Organ Grinder": {
     "Butler":
       "If the Organ Grinder is causing eyes closed voting, the Butler may raise their hand to vote but their vote is only counted if their master voted too.",
-    "Minstrel":
-      "If the Minstrel makes everyone drunk, the Organ Grinder keeps their ability but the Minstrel keeps their eyes open when voting.",
-    "Preacher":
-      "If the Preacher removes the Organ Grinder ability, the Organ Grinder keeps their ability but the Preacher keeps their eyes open when voting.",
   },
   "Pit-Hag": {
     "Cult Leader":
@@ -2440,6 +2436,8 @@ export const jinxes = {
       "The Summoner cannot create an in-play Demon. If the Summoner creates a not-in-play Demon, deaths tonight are arbitrary.",
     "Legion":
       "If the Summoner creates Legion, most players (including all evil players) become evil Legion.",
+    "Lord of Typhon":
+      "If the Summoner creates a Lord of Typhon, the Lord of Typhon must neighbor a Minion. The other neighbor becomes a not-in-play evil Minion.",
     "Marionette":
       "The Marionette neighbors the Summoner. The Summoner knows who the Marionette is.",
     "Pit-Hag":
@@ -2497,13 +2495,13 @@ export const jinxes = {
     "Choirboy":
       "The Kazali can not choose the King to become a Minion if a Choirboy is in play.",
     "Goon":
-      "If the Kazali chooses the Goon to become a Minion, remaining Minion choices are decided by the Storyteller.",
+      "The Kazali can choose that the Goon player is one of their evil Minions.",
     "Huntsman":
       "If the Kazali chooses the Damsel to become a Minion, and a Huntsman is in play, a good player becomes the Damsel.",
     "Marionette":
       "If the Kazali chooses to create a Marionette, they must choose one of their neighbors.",
     "Soldier":
-      "If the Kazali turns the Soldier into a Minion, the Soldier chooses which not-in-play Minion to become.",
+      "The Kazali can choose that the Soldier player is one of their evil Minions.",
   },
   "Legion": {
     "Engineer":
