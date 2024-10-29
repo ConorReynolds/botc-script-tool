@@ -52,7 +52,7 @@ export const chars = [
     "edition": "tb",
     "team": "townsfolk",
     "firstNightReminder":
-      "Show the finger signal (0, 1, 2, …) for the number of pairs of neighbouring evil players.",
+      "Show the finger signal (0, 1, 2, …) for the number of pairs of neighboring evil players.",
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
@@ -64,13 +64,13 @@ export const chars = [
     "edition": "tb",
     "team": "townsfolk",
     "firstNightReminder":
-      "Show the finger signal (0, 1, 2) for the number of evil alive neighbours of the Empath.",
+      "Show the finger signal (0, 1, 2) for the number of evil alive neighbors of the Empath.",
     "otherNightReminder":
-      "Show the finger signal (0, 1, 2) for the number of evil neighbours.",
+      "Show the finger signal (0, 1, 2) for the number of evil neighbors.",
     "reminders": [],
     "setup": false,
     "ability":
-      "Each night, you learn how many of your 2 alive neighbours are evil.",
+      "Each night, you learn how many of your 2 alive neighbors are evil.",
   },
   {
     "id": "fortuneteller",
@@ -78,7 +78,7 @@ export const chars = [
     "edition": "tb",
     "team": "townsfolk",
     "firstNightReminder":
-      "The Fortune Teller points to two players. Give the head signal (nod yes, shake no) for whether one of those players is the Demon. ",
+      "The Fortune Teller points to two players. Give the head signal (nod ‘yes’, shake ‘no’) for whether one of those players is the Demon.",
     "otherNightReminder":
       "The Fortune Teller points to two players. Show the head signal (nod ‘yes’, shake ‘no’) for whether one of those players is the Demon.",
     "reminders": [
@@ -279,7 +279,7 @@ export const chars = [
     ],
     "setup": false,
     "ability":
-      "If there are 5 or more players alive & the Demon dies, you become the Demon. (Travellers don’t count)",
+      "If there are 5 or more players alive & the Demon dies, you become the Demon. (Travellers don’t count.)",
   },
   {
     "id": "baron",
@@ -582,7 +582,7 @@ export const chars = [
       "Can not die",
     ],
     "setup": false,
-    "ability": "If both your alive neighbours are good, they can’t die.",
+    "ability": "If both your alive neighbors are good, they can’t die.",
   },
   {
     "id": "pacifist",
@@ -1183,7 +1183,7 @@ export const chars = [
     "team": "demon",
     "firstNightReminder": "",
     "otherNightReminder":
-      "The Vigormortis points to a player. That player dies. If a Minion, they keep their ability and one of their Townsfolk neighbours is poisoned.",
+      "The Vigormortis points to a player. That player dies. If a Minion, they keep their ability and one of their Townsfolk neighbors is poisoned.",
     "reminders": [
       "Dead",
       "Has ability",
@@ -1191,7 +1191,7 @@ export const chars = [
     ],
     "setup": true,
     "ability":
-      "Each night*, choose a player: they die. Minions you kill keep their ability & poison 1 Townsfolk neighbour. [−1 Outsider]",
+      "Each night*, choose a player: they die. Minions you kill keep their ability & poison 1 Townsfolk neighbor. [−1 Outsider]",
   },
   {
     "id": "ojo",
@@ -1218,7 +1218,7 @@ export const chars = [
     "reminders": [],
     "setup": false,
     "ability":
-      "All players know who you are. You can not die during the day. If good voted, you may choose to execute immediately.",
+      "All players know you are the Vizier. You can not die during the day. If good voted, you may choose to execute immediately.",
   },
   {
     "id": "nodashii",
@@ -1233,7 +1233,7 @@ export const chars = [
     ],
     "setup": false,
     "ability":
-      "Each night*, choose a player: they die. Your 2 Townsfolk neighbours are poisoned.",
+      "Each night*, choose a player: they die. Your 2 Townsfolk neighbors are poisoned.",
   },
   {
     "id": "vortox",
@@ -1406,7 +1406,7 @@ export const chars = [
     "reminders": [],
     "setup": false,
     "ability":
-      "Each night, if the dead equal or outnumber the living, you learn 1 alive character. The Demon knows who you are.",
+      "Each night, if the dead equal or outnumber the living, you learn 1 alive character. The Demon knows you are the King.",
   },
   {
     "id": "balloonist",
@@ -1436,7 +1436,7 @@ export const chars = [
     "reminders": [],
     "setup": false,
     "ability":
-      "Each night, you become the alignment of an alive neighbour. If all good players choose to join your cult, your team wins.",
+      "Each night, you become the alignment of an alive neighbor. If all good players choose to join your cult, your team wins.",
   },
   {
     "id": "lycanthrope",
@@ -1445,13 +1445,14 @@ export const chars = [
     "team": "townsfolk",
     "firstNightReminder": "",
     "otherNightReminder":
-      "The Lycanthrope points to a living player: if good, they die and no one else can die tonight.",
+      "The Lycanthrope points to a living player: if good, they die and the Demon doesn’t kill tonight.",
     "reminders": [
       "Dead",
+      "Red herring",
     ],
     "setup": false,
     "ability":
-      "Each night*, choose a living player: if good, they die, but they are the only player that can die tonight.",
+      "Each night*, choose an alive player. If good, they die & the Demon doesn’t kill tonight. One good player registers as evil.",
   },
   {
     "id": "amnesiac",
@@ -1483,7 +1484,7 @@ export const chars = [
     ],
     "setup": false,
     "ability":
-      "Once per game, at night, choose a player: they learn who you are.",
+      "Once per game, at night, choose a player: they learn you are the Nightwatchman.",
   },
   {
     "id": "engineer",
@@ -1555,7 +1556,7 @@ export const chars = [
       "If a Farmer died tonight, choose another good player and make them the Farmer. Wake this player, show them the ‘You are’ card and the Farmer character token.",
     "reminders": [],
     "setup": false,
-    "ability": "If you die at night, an alive good player becomes a Farmer.",
+    "ability": "When you die at night, an alive good player becomes a Farmer.",
   },
   {
     "id": "magician",
@@ -1676,7 +1677,7 @@ export const chars = [
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
-    "ability": "Minions start knowing 3 not-in-play characters.",
+    "ability": "Each Minion gets 3 bluffs.",
   },
   {
     "id": "acrobat",
@@ -1685,7 +1686,7 @@ export const chars = [
     "team": "townsfolk",
     "firstNightReminder": "",
     "otherNightReminder":
-      "If a good living neighbour is drunk or poisoned, the Acrobat player dies.",
+      "If a good living neighbor is drunk or poisoned, the Acrobat player dies.",
     "reminders": [
       "Dead",
     ],
@@ -1705,7 +1706,7 @@ export const chars = [
       "Storyteller Ability",
     ],
     "setup": false,
-    "ability": "If you die, the Storyteller gains a Minion ability.",
+    "ability": "When you die, the Storyteller gains a Minion ability.",
   },
   {
     "id": "ogre",
@@ -1761,7 +1762,7 @@ export const chars = [
     ],
     "setup": false,
     "ability":
-      "All Minions know you are in play. If a Minion publicly guesses you (once), your team loses.",
+      "All Minions know a Damsel is in play. If a Minion publicly guesses you (once), your team loses.",
   },
   {
     "id": "golem",
@@ -1894,7 +1895,7 @@ export const chars = [
     ],
     "setup": true,
     "ability":
-      "You think you are a good character but you are not. The Demon knows who you are. [You neighbour the Demon]",
+      "You think you are a good character but you are not. The Demon knows who you are. [You neighbor the Demon]",
   },
   {
     "id": "boomdandy",
@@ -2020,7 +2021,7 @@ export const chars = [
     "reminders": [],
     "setup": false,
     "ability":
-      "Once per day, if you publicly guess which players are Minion(s) and which are Demon(s), good wins.",
+      "Each day, if you publicly guess which players are Minion(s) and which are Demon(s), good wins.",
   },
   {
     "id": "legion",
@@ -2108,7 +2109,7 @@ export const chars = [
     "reminders": [],
     "setup": false,
     "ability":
-      "Once per day, you may choose to kill an alive neighbour, if your other alive neighbour agrees.",
+      "Once per day, you may choose to kill an alive neighbor, if your other alive neighbor agrees.",
   },
   {
     "id": "zealot",
@@ -2296,6 +2297,18 @@ export const fabled = [
     "team": "fabled",
     "ability":
       "Name a good character. If in play, they can only die by execution, but evil players learn which player it is.",
+  },
+  {
+    "id": "bootlegger",
+    "firstNight": 1.2,
+    "firstNightReminder":
+      "Inform the group of all homebrew characters or rules for this game.",
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "name": "Bootlegger",
+    "team": "fabled",
+    "ability": "This script has homebrew characters or rules.",
   },
 ];
 
