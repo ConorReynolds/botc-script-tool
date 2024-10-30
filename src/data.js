@@ -2553,8 +2553,6 @@ export const jinxes = {
       "If a Demon chooses Lil’ Monsta, they also choose a Minion to become and babysit Lil’ Monsta tonight.",
     "Magician":
       "Each night, the Magician chooses a Minion: if that Minion & Lil’ Monsta are alive, that Minion babysits Lil’ Monsta.",
-    "Organ Grinder":
-      "Votes for the Organ Grinder count if the Organ Grinder is babysitting Lil’ Monsta.",
     "Poppy Grower":
       "If the Poppy Grower is in play, Minions don’t wake together. They are woken one by one, until one of them chooses to take the Lil’ Monsta token.",
     "Scarlet Woman":
