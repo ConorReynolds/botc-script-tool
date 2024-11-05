@@ -2149,6 +2149,15 @@ export const chars = [
     "ability":
       "The Demon (even if drunk or poisoned) has a not-in-play good character’s ability. You both know which.",
   },
+  {
+    "id": "gnome",
+    "name": "Gnome",
+    "edition": "",
+    "team": "traveler",
+    "reminders": ["Amigo"],
+    "ability":
+      "All players start knowing a player of your alignment. You may choose to kill anyone who nominates them.",
+  },
 ];
 
 export const fabled = [
