@@ -2329,6 +2329,8 @@ export const jinxes = {
       "If the Cannibal gains the Butler ability, the Cannibal learns this.",
     "Zealot":
       "If the Cannibal gains the Zealot ability, the Cannibal learns this.",
+    "Poppy Grower":
+      "If the Cannibal eats the Poppy Grower, then dies or loses the Poppy Grower ability, the Demon and Minions learn each other that night.",
   },
   "Chambermaid": {
     "Mathematician":
@@ -2575,6 +2577,10 @@ export const jinxes = {
     "Mastermind":
       "If the Mastermind is alive and the Lleech’s host dies by execution, the Lleech lives but loses their ability.",
     "Slayer": "If the Slayer slays the Lleech’s host, the host dies.",
+  },
+  "Psychopath": {
+    "Golem":
+      "If the Psychopath is mad as the Golem, the Psychopath has the Golem ability instead.",
   },
   "Riot": {
     "Banshee":
