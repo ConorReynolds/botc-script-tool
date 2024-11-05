@@ -159,7 +159,7 @@ export class AppState {
 
     html += `</div>`; // end file-selector-container
     html +=
-      `<div class="nscripts" data-n="${this.scripts.length}">COUNT = ${this.scripts.length}</div>`;
+      `<div class="nscripts" data-n="${this.scripts.length}">COUNT = ${this.scripts.length} / ${this.capacity}</div>`;
 
     return html;
   }
