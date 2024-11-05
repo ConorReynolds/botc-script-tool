@@ -1322,7 +1322,7 @@ export const chars = [
   {
     "id": "noble",
     "name": "Noble",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "townsfolk",
     "firstNightReminder":
       "Point to 3 players including one evil player, in no particular order.",
@@ -1352,7 +1352,7 @@ export const chars = [
   {
     "id": "pixie",
     "name": "Pixie",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "townsfolk",
     "firstNightReminder": "Show the Pixie 1 in-play Townsfolk character token.",
     "otherNightReminder": "",
@@ -1367,7 +1367,7 @@ export const chars = [
   {
     "id": "general",
     "name": "General",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "townsfolk",
     "firstNightReminder":
       "Show the General thumbs up for good winning, thumbs down for evil winning or thumb to the side for neither.",
@@ -1397,7 +1397,7 @@ export const chars = [
   {
     "id": "king",
     "name": "King",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "townsfolk",
     "firstNightReminder":
       "Wake the Demon, show them the ‘This character selected you’ card, show the King token and point to the King player.",
@@ -1441,7 +1441,7 @@ export const chars = [
   {
     "id": "lycanthrope",
     "name": "Lycanthrope",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "townsfolk",
     "firstNightReminder": "",
     "otherNightReminder":
@@ -1457,7 +1457,7 @@ export const chars = [
   {
     "id": "amnesiac",
     "name": "Amnesiac",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "townsfolk",
     "firstNightReminder":
       "Decide the Amnesiac’s entire ability. If the Amnesiac’s ability causes them to wake tonight: Wake the Amnesiac and run their ability.",
@@ -1489,7 +1489,7 @@ export const chars = [
   {
     "id": "engineer",
     "name": "Engineer",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "townsfolk",
     "firstNightReminder":
       "The Engineer shows a ‘no’ head signal, or points to a Demon or points to the relevant number of Minions. If the Engineer chose characters, replace the Demon or Minions with the choices, then wake the relevant players and show them the You are card and the relevant character tokens.",
@@ -1519,7 +1519,7 @@ export const chars = [
   {
     "id": "huntsman",
     "name": "Huntsman",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "townsfolk",
     "firstNightReminder":
       "The Huntsman shakes their head ‘no’ or points to a player. If they point to the Damsel, wake that player, show the ‘You are’ card and a not-in-play character token.",
@@ -1535,7 +1535,7 @@ export const chars = [
   {
     "id": "alchemist",
     "name": "Alchemist",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "townsfolk",
     "firstNightReminder": "Show the Alchemist a not-in-play Minion token.",
     "otherNightReminder": "",
@@ -1549,7 +1549,7 @@ export const chars = [
   {
     "id": "farmer",
     "name": "Farmer",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "townsfolk",
     "firstNightReminder": "",
     "otherNightReminder":
@@ -1561,7 +1561,7 @@ export const chars = [
   {
     "id": "magician",
     "name": "Magician",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "townsfolk",
     "firstNightReminder": "",
     "otherNightReminder": "",
@@ -1573,7 +1573,7 @@ export const chars = [
   {
     "id": "choirboy",
     "name": "Choirboy",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "townsfolk",
     "firstNightReminder": "",
     "otherNightReminder":
@@ -1586,7 +1586,7 @@ export const chars = [
   {
     "id": "poppygrower",
     "name": "Poppy Grower",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "townsfolk",
     "firstNightReminder": "Do not inform the Demon/Minions who each other are.",
     "otherNightReminder":
@@ -1601,7 +1601,7 @@ export const chars = [
   {
     "id": "atheist",
     "name": "Atheist",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "townsfolk",
     "firstNightReminder": "",
     "otherNightReminder": "",
@@ -1613,7 +1613,7 @@ export const chars = [
   {
     "id": "cannibal",
     "name": "Cannibal",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "townsfolk",
     "firstNightReminder": "",
     "otherNightReminder":
@@ -1670,7 +1670,7 @@ export const chars = [
   {
     "id": "snitch",
     "name": "Snitch",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "outsider",
     "firstNightReminder":
       "After Minion info wake each Minion and show them three not-in-play character tokens. These may be the same or different to each other and the ones shown to the Demon.",
@@ -1724,7 +1724,7 @@ export const chars = [
   {
     "id": "puzzlemaster",
     "name": "Puzzlemaster",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "outsider",
     "firstNightReminder": "",
     "otherNightReminder": "",
@@ -1739,7 +1739,7 @@ export const chars = [
   {
     "id": "heretic",
     "name": "Heretic",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "outsider",
     "firstNightReminder": "",
     "otherNightReminder": "",
@@ -1751,7 +1751,7 @@ export const chars = [
   {
     "id": "damsel",
     "name": "Damsel",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "outsider",
     "firstNightReminder":
       "Wake all the Minions, show them the ‘This character selected you’ card and the Damsel token.",
@@ -1767,7 +1767,7 @@ export const chars = [
   {
     "id": "golem",
     "name": "Golem",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "outsider",
     "firstNightReminder": "",
     "otherNightReminder": "",
@@ -1826,7 +1826,7 @@ export const chars = [
   {
     "id": "fearmonger",
     "name": "Fearmonger",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "minion",
     "firstNightReminder":
       "The Fearmonger points to a player. Place the Fear token next to that player and announce that a new player has been selected with the Fearmonger ability.",
@@ -1842,7 +1842,7 @@ export const chars = [
   {
     "id": "psychopath",
     "name": "Psychopath",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "minion",
     "firstNightReminder": "",
     "otherNightReminder": "",
@@ -1868,7 +1868,7 @@ export const chars = [
   {
     "id": "mezepheles",
     "name": "Mezepheles",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "minion",
     "firstNightReminder": "Show the Mezepheles their secret word.",
     "otherNightReminder":
@@ -1884,7 +1884,7 @@ export const chars = [
   {
     "id": "marionette",
     "name": "Marionette",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "minion",
     "firstNightReminder":
       "Select one of the good players next to the Demon and place the Is the Marionette reminder token. Wake the Demon and show them the Marionette.",
@@ -1900,7 +1900,7 @@ export const chars = [
   {
     "id": "boomdandy",
     "name": "Boomdandy",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "minion",
     "firstNightReminder": "",
     "otherNightReminder": "",
@@ -1979,7 +1979,7 @@ export const chars = [
   {
     "id": "lleech",
     "name": "Lleech",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "demon",
     "firstNightReminder":
       "The Lleech points to a player. Place the Poisoned reminder token.",
@@ -1995,7 +1995,7 @@ export const chars = [
   {
     "id": "alhadikhia",
     "name": "Al-Hadikhia",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "demon",
     "firstNightReminder": "",
     "otherNightReminder":
@@ -2026,7 +2026,7 @@ export const chars = [
   {
     "id": "legion",
     "name": "Legion",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "demon",
     "firstNightReminder": "",
     "otherNightReminder": "Choose a player, that player dies.",
@@ -2041,7 +2041,7 @@ export const chars = [
   {
     "id": "leviathan",
     "name": "Leviathan",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "demon",
     "firstNightReminder":
       "Place the Leviathan ‘Day 1’ marker. Announce ‘The Leviathan is in play; this is Day 1.’",
@@ -2061,7 +2061,7 @@ export const chars = [
   {
     "id": "riot",
     "name": "Riot",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "demon",
     "firstNightReminder": "",
     "otherNightReminder": "",
@@ -2102,7 +2102,7 @@ export const chars = [
   {
     "id": "gangster",
     "name": "Gangster",
-    "edition": "",
+    "edition": "kickstarter",
     "team": "traveler",
     "firstNightReminder": "",
     "otherNightReminder": "",
@@ -2296,6 +2296,7 @@ export const fabled = [
   // },
   {
     "id": "stormcatcher",
+    "edition": "kickstarter",
     "firstNight": 1,
     "firstNightReminder":
       'Mark a good player as "Safe". Wake each evil player and show them the marked player.',

@@ -726,6 +726,9 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   const demonForm = document.querySelector("#demon-form");
   const travelerForm = document.querySelector("#traveler-form");
   const fabledForm = document.querySelector("#fabled-form");
+  const base3Form = document.querySelector("#base-three-form");
+  const kickstarterForm = document.querySelector("#kickstarter-form");
+  const experimentalForm = document.querySelector("#experimental-form");
 
   const townsfolkCheckbox = document.querySelector("#townsfolk-checkbox");
   const outsiderCheckbox = document.querySelector("#outsider-checkbox");
@@ -733,18 +736,27 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   const demonCheckbox = document.querySelector("#demon-checkbox");
   const travelerCheckbox = document.querySelector("#traveler-checkbox");
   const fabledCheckbox = document.querySelector("#fabled-checkbox");
+  const base3Checkbox = document.querySelector("#base-three-checkbox");
+  const kickstarterCheckbox = document.querySelector("#kickstarter-checkbox");
+  const experimentalCheckbox = document.querySelector("#experimental-checkbox");
 
-  const allFilterCheckboxes = [
-    townsfolkCheckbox,
-    outsiderCheckbox,
-    minionCheckbox,
-    demonCheckbox,
-    travelerCheckbox,
-    fabledCheckbox,
+  const allFilterForms = [
+    townsfolkForm,
+    outsiderForm,
+    minionForm,
+    demonForm,
+    travelerForm,
+    fabledForm,
+    base3Form,
+    kickstarterForm,
+    experimentalForm,
   ];
 
   function updateSidebar() {
     function predicate(character) {
+      const isBase3 = (x) => x === "tb" || x === "snv" || x === "bmr";
+      const isKickstarter = (x) => x === "kickstarter";
+      const isExperimental = (x) => x === "";
       if (character.team === "townsfolk" && !townsfolkCheckbox.checked) {
         return false;
       }
@@ -761,6 +773,15 @@ globalThis.addEventListener("DOMContentLoaded", () => {
         return false;
       }
       if (character.team === "fabled" && !fabledCheckbox.checked) {
+        return false;
+      }
+      if (isBase3(character.edition) && !base3Checkbox.checked) {
+        return false;
+      }
+      if (isKickstarter(character.edition) && !kickstarterCheckbox.checked) {
+        return false;
+      }
+      if (isExperimental(character.edition) && !experimentalCheckbox.checked) {
         return false;
       }
 
@@ -784,12 +805,11 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     );
   });
 
-  [townsfolkForm, outsiderForm, minionForm, demonForm, travelerForm, fabledForm]
-    .forEach((x) => {
-      x.addEventListener("change", (_) => {
-        updateSidebar();
-      });
+  allFilterForms.forEach((x) => {
+    x.addEventListener("change", (_) => {
+      updateSidebar();
     });
+  });
 
   filterInputForm.addEventListener("input", function (event) {
     event.preventDefault();
