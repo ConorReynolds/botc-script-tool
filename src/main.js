@@ -644,6 +644,12 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       },
     );
 
+    if (strFilter) {
+      allchars.classList.add("filtered");
+    } else {
+      allchars.classList.remove("filtered");
+    }
+
     for (const result of filteredChars) {
       const character = new Character(result.obj.id);
       const selected = appState.currentScript.contains(character)
@@ -652,7 +658,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       const imported = character.isCustom ? "imported-icon" : "";
       const wasExpanded = renderSidebarChars.wasExpanded.has(character.id);
       let html =
-        `<div class="item ${selected}" data-id="${character.id}" data-team="${character.team}" tabindex=0>`;
+        `<div class="item ${selected}" data-id="${character.id}" data-team="${character.team}" data-type="${character.type}" tabindex=0>`;
       // html += `<div class=>`
       html += `<img class="icon ${imported}" src="${character.tinyIcon}"/>`;
       html += `<div class="character-name">${
@@ -714,6 +720,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       // if (lastCharID) {
       //   elem.firstChild.focus({ focusVisible: true });
       // }
+
       allchars.appendChild(elem.firstChild);
     }
   }

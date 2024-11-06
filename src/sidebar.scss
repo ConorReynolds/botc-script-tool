@@ -97,6 +97,18 @@
     overflow-x: hidden;
     // height: 80%;
 
+    &:not(.filtered) {
+      .item[data-type=townsfolk] + .item[data-type=outsider],
+      .item[data-type=outsider] + .item[data-type=minion],
+      .item[data-type=minion] + .item[data-type=demon],
+      .item[data-type=demon] + .item[data-type=traveler],
+      .item[data-type=traveler] + .item[data-type=fabled]
+      {
+        border-top: 2px solid rgba($color: #bbb, $alpha: 1);
+        border-radius: initial;
+      }
+    }
+
     .item {
       cursor: pointer;
       font-family: IBMPlexSans, Arial, Helvetica, sans-serif;
