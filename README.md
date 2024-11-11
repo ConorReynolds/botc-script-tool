@@ -92,7 +92,7 @@ The sidebar on the left (similar button) opens the recent scripts tab, where the
 most recent 15 scripts that you were working on will appear.
 
 You can undo/redo up to ten previous changes in the currently focused script
-using the buttons on the bottom left or via the keyboard shortcuts Ctrl+Z /
+using the buttons on the bottom right or via the keyboard shortcuts Ctrl+Z /
 Ctrl+Shift+Z on Windows/Linux, or Cmd+Z / Cmd+Shift+Z on Mac.
 
 Ctrl/Cmd clicking on the export JSON button creates a script link that you can
