@@ -1448,7 +1448,7 @@ export const chars = [
       "The Lycanthrope points to a living player: if good, they die and the Demon doesn’t kill tonight.",
     "reminders": [
       "Dead",
-      "Red herring",
+      "Faux Paw",
     ],
     "setup": false,
     "ability":
@@ -1620,7 +1620,7 @@ export const chars = [
       "The Cannibal wakes in the night at the time the role they gained would wake. This is a reminder to ensure it is not forgotten.",
     "reminders": [
       "Poisoned",
-      "Died today",
+      "Lunch",
     ],
     "setup": false,
     "ability":
@@ -2068,7 +2068,7 @@ export const chars = [
     "reminders": [],
     "setup": true,
     "ability":
-      "Nominees die, but may nominate again immediately (on day 3, they must). After day 3, evil wins. [All Minions are Riot]",
+      "On day 3, Minions become Riot & nominees die but nominate an alive player immediately. This must happen.",
   },
   {
     "id": "kazali",
@@ -2336,10 +2336,6 @@ export const jinxes = {
   "Chambermaid": {
     "Mathematician":
       "The Chambermaid learns if the Mathematician wakes tonight or not, even though the Chambermaid wakes first.",
-  },
-  "Lycanthrope": {
-    "Gambler":
-      "If the Lycanthrope is alive and the Gambler kills themself at night, no other players can die tonight.",
   },
   "Philosopher": {
     "Bounty Hunter":
