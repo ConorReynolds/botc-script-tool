@@ -1544,7 +1544,8 @@ export const chars = [
       "Is the Alchemist",
     ],
     "setup": false,
-    "ability": "You have a not-in-play Minion ability.",
+    "ability":
+      "You have a Minion ability. When using this, the Storyteller may prompt you to choose differently.",
   },
   {
     "id": "farmer",
@@ -1906,8 +1907,11 @@ export const chars = [
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
+    // This ability is now long enough that this is the least obtrusive fix I
+    // can think of. In the future I might annotate longer abilities so that I
+    // can apply this style across the board, but it’s probably unnecessary.
     "ability":
-      "If you are executed, all but 3 players die. 1 minute later, the player with the most players pointing at them dies.",
+      '<span style="letter-spacing:-0.1px">If you are executed, all but 3 players die. After a 10 to 1 countdown, the player with the most players pointing at them, dies.</span>',
   },
   {
     "id": "organgrinder",
@@ -1999,7 +2003,7 @@ export const chars = [
     "team": "demon",
     "firstNightReminder": "",
     "otherNightReminder":
-      "The Al-Hadikhia chooses 3 players. Announce the first player, wake them to nod yes to live or shake head no to die, kill or resurrect accordingly, then put to sleep and announce the next player. If all 3 are alive after this, all 3 die.",
+      "The Al-Hadikhia may choose 3 players. Announce the first player, wake them to nod yes to live or shake head no to die, kill or resurrect accordingly, then put to sleep and announce the next player. If all 3 are alive after this, all 3 die.",
     "reminders": [
       "1",
       "2",
@@ -2009,7 +2013,7 @@ export const chars = [
     ],
     "setup": false,
     "ability":
-      "Each night*, choose 3 players (all players learn who): each silently chooses to live or die, but if all live, all die.",
+      "Each night*, you may choose 3 players (all players learn who): each silently chooses to live or die, but if all live, all die.",
   },
   {
     "id": "alsaahir",
@@ -2501,8 +2505,6 @@ export const jinxes = {
       "If the Poppy Grower is in play, the Widow does not see the Grimoire until the Poppy Grower dies.",
   },
   "Al-Hadikhia": {
-    "Mastermind":
-      "If the Al-Hadikhia dies by execution, and the Mastermind is alive, the Al-Hadikhia chooses 3 good players tonight: if all 3 choose to live, evil wins. Otherwise, good wins.",
     "Scarlet Woman":
       "If there are two living Al-Hadikhias, the Scarlet Woman Al-Hadikhia becomes the Scarlet Woman again.",
   },
