@@ -2162,6 +2162,22 @@ export const chars = [
     "ability":
       "All players start knowing a player of your alignment. You may choose to kill anyone who nominates them.",
   },
+  {
+    "id": "xaan",
+    "name": "Xaan",
+    "edition": "",
+    "team": "minion",
+    "firstNightReminder": "",
+    "otherNightReminder": "",
+    "reminders": [
+      "Night 1",
+      "Night 2",
+      "Night 3",
+    ],
+    "setup": true,
+    "ability":
+      "On night X, all Townsfolk are poisoned until dusk. [X Outsiders]",
+  },
 ];
 
 export const fabled = [
