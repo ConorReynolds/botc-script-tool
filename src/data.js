@@ -1213,7 +1213,7 @@ export const chars = [
     "name": "Vizier",
     "edition": "",
     "team": "minion",
-    "firstNightReminder": "",
+    "firstNightReminder": "Announce the Vizier player.",
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
@@ -1618,7 +1618,7 @@ export const chars = [
     "team": "townsfolk",
     "firstNightReminder": "",
     "otherNightReminder":
-      "The Cannibal wakes in the night at the time the role they gained would wake. This is a reminder to ensure it is not forgotten.",
+      "Mark the recently killed executee with the ‘Lunch’ token. If they are good, the Cannibal will wake tonight when the executee would have woken. If they are evil, mark the Cannibal as ‘Poisoned’. The Storyteller may pretend that the Cannibal has any ability.",
     "reminders": [
       "Poisoned",
       "Lunch",
@@ -1918,8 +1918,10 @@ export const chars = [
     "name": "Organ Grinder",
     "edition": "",
     "team": "minion",
-    "firstNightReminder": "",
-    "otherNightReminder": "",
+    "firstNightReminder":
+      "Wake the Organ Grinder. If they give the ‘yes’ head signal, mark them Drunk. If they give the ‘no’ head signal, remove the Drunk reminder.",
+    "otherNightReminder":
+      "Wake the Organ Grinder. If they give the ‘yes’ head signal, mark them Drunk. If they give the ‘no’ head signal, remove the Drunk reminder.",
     "reminders": [
       "About to die",
     ],
@@ -2068,8 +2070,13 @@ export const chars = [
     "edition": "kickstarter",
     "team": "demon",
     "firstNightReminder": "",
-    "otherNightReminder": "",
-    "reminders": [],
+    "otherNightReminder":
+      "If it is the third night, wake each Minion. Show them the ‘You are’ card and the Riot character token.",
+    "reminders": [
+      "Night 1",
+      "Night 2",
+      "Night 3",
+    ],
     "setup": true,
     "ability":
       "On day 3, Minions become Riot & nominees die but nominate an alive player immediately. This must happen.",
@@ -2167,12 +2174,15 @@ export const chars = [
     "name": "Xaan",
     "edition": "",
     "team": "minion",
-    "firstNightReminder": "",
-    "otherNightReminder": "",
+    "firstNightReminder":
+      "Add the Xaan’s ‘Night 1’ reminder to the Grimoire. If X is 1, add the ‘X’ reminder.",
+    "otherNightReminder":
+      "Change the Xaan's night reminder to the relevant night. If tonight is night X, add the ‘X’ reminder.",
     "reminders": [
       "Night 1",
       "Night 2",
       "Night 3",
+      "X",
     ],
     "setup": true,
     "ability":

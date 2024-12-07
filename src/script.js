@@ -485,9 +485,9 @@ export class Script {
       firstNightOrder = Script.nightorder.firstNight;
     }
 
-    for (const [position, name] of firstNightOrder.entries()) {
-      if (this.charSet.has(Character.nameToID(name))) {
-        const char = new Character(Character.nameToID(name));
+    for (const [position, id] of firstNightOrder.entries()) {
+      if (this.charSet.has(id)) {
+        const char = new Character(id);
         if (char.firstNightReminder) {
           str += `<div class="item">`;
           str += `<img class="${iconCls(char)}" src="${char.icon}"/>`;
@@ -499,26 +499,26 @@ export class Script {
           str += `</div>`;
         }
       }
-      if (name === "MINION" || name === "minioninfo") {
+      if (id === "MINION" || id === "minioninfo" || id === "minion") {
         str += `<div class="item">`;
         str += `<div class="night-order-text">MINION</div>`;
         str += `<div>Minion info</div>`;
         str += `</div>`;
       }
-      if (name === "DEMON" || name === "demoninfo") {
+      if (id === "DEMON" || id === "demoninfo" || id === "demon") {
         str += `<div class="item">`;
         str += `<div class="night-order-text">DEMON</div>`;
         str += `<div>Demon info</div>`;
         str += `</div>`;
       }
-      if (name === "DUSK" || name === "dusk") {
+      if (id === "DUSK" || id === "dusk") {
         str += `<div class="item">`;
         str += `<div class="night-order-text">DUSK</div>`;
         str +=
           `<div>Check that all eyes are closed. Some travellers act.</div>`;
         str += `</div>`;
       }
-      if (name === "DAWN" || name === "dawn") {
+      if (id === "DAWN" || id === "dawn") {
         str += `<div class="item">`;
         str += `<div class="night-order-text">DAWN</div>`;
         str +=
@@ -557,9 +557,9 @@ export class Script {
       otherNightOrder = Script.nightorder.otherNight;
     }
 
-    for (const [position, name] of otherNightOrder.entries()) {
-      if (this.charSet.has(Character.nameToID(name))) {
-        const char = new Character(Character.nameToID(name));
+    for (const [position, id] of otherNightOrder.entries()) {
+      if (this.charSet.has(id)) {
+        const char = new Character(id);
         if (char.otherNightReminder) {
           str += `<div class="item">`;
           str += `<img class="${iconCls(char)}" src="${char.icon}"/>`;
@@ -571,14 +571,14 @@ export class Script {
           str += `</div>`;
         }
       }
-      if (name === "DUSK") {
+      if (id === "DUSK" || id === "dusk") {
         str += `<div class="item">`;
         str += `<div class="night-order-text">DUSK</div>`;
         str +=
           `<div>Check that all eyes are closed. Some travellers act.</div>`;
         str += `</div>`;
       }
-      if (name === "DAWN") {
+      if (id === "DAWN" || id === "dawn") {
         str += `<div class="item">`;
         str += `<div class="night-order-text">DAWN</div>`;
         str +=
