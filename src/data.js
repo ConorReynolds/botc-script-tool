@@ -2499,7 +2499,6 @@ export const jinxes = {
       "If the Preacher chose the Summoner on or before the 3rd night, the Summoner chooses which Demon, but the Storyteller chooses which player.",
     "Pukka":
       "The Summoner may choose a player to become the Pukka on the 2nd night.",
-    "Riot": "If the Summoner creates Riot, all Minions also become Riot.",
     "Zombuul":
       "If the Summoner turns a dead player into the Zombuul, the Storyteller treats that player as a Zombuul that has died once.",
   },
@@ -2565,24 +2564,30 @@ export const jinxes = {
   },
   "Leviathan": {
     "Banshee":
-      "If Leviathan is in play, and the Banshee dies by execution, all players learn that the Banshee has died, and the Banshee gains their ability.",
+      "Each night*, the Leviathan chooses an alive good player (different to previous nights): a chosen Banshee dies & gains their ability.",
+    "Exorcist":
+      "Evil does not win when more than 1 good player has been executed, if the Exorcist is alive and has ever successfully chosen the Leviathan.",
     "Farmer":
-      "If Leviathan is in play & a Farmer dies by execution, a good player becomes a Farmer that night.",
+      "Each night*, the Leviathan chooses an alive good player (different to previous nights): a chosen Farmer uses their ability but does not die.",
+    "Grandmother":
+      "If Leviathan is in play and the Grandchild dies by execution, evil wins.",
     "Hatter":
       "If the Hatter dies on or after day 5, the Demon cannot choose Leviathan.",
     "Innkeeper":
-      "If Leviathan nominates and executes a player the Innkeeper chose, that player does not die.",
+      "If the Leviathan is in play, the Innkeeper-protected-players are safe from all evil abilities.",
+    "King":
+      "If the Leviathan is in play, and at least 1 player is dead, the King learns an alive character each night.",
     "Mayor":
       "If Leviathan is in play & no execution occurs on day 5, good wins.",
     "Monk":
-      "If Leviathan nominates and executes the player the Monk chose, that player does not die.",
+      "If the Leviathan is in play, the Monk-protected-player is safe from all evil abilities.",
     "Pit-Hag": "After day 5, the Pit-Hag cannot choose Leviathan.",
     "Ravenkeeper":
-      "If Leviathan is in play & the Ravenkeeper dies by execution, they wake that night to use their ability. They are drunk if their nominator was good.",
+      "Each night*, the Leviathan chooses an alive player (different to previous nights): a chosen Ravenkeeper uses their ability but does not die.",
     "Sage":
-      "If Leviathan is in play & the Sage dies by execution, they wake that night to use their ability. They are drunk if their nominator was good.",
+      "Each night*, the Leviathan chooses an alive good player (different to previous nights): a chosen Sage uses their ability but does not die.",
     "Soldier":
-      "If Leviathan nominates and executes the Soldier, the Soldier does not die.",
+      "If the Leviathan is in play, the Soldier is safe from all evil abilities.",
   },
   "Lil’ Monsta": {
     "Hatter":
@@ -2609,54 +2614,28 @@ export const jinxes = {
   },
   "Riot": {
     "Banshee":
-      "If Riot nominates and kills the Banshee, all players learn that the Banshee has died, and the Banshee may nominate two players immediately.",
-    "Butler": "The Butler can not nominate their master.",
-    "Cannibal":
-      "Players that die by nomination register as being executed to the Cannibal.",
-    "Clockmaker": "Riot registers as a Minion to the Clockmaker.",
-    "Damsel": "Riot registers as a Minion to the Damsel.",
-    "Devil’s Advocate":
-      "Players that die by nomination register as being executed to the Devil’s Advocate.",
-    "Engineer":
-      "Riot and the Engineer can not both be in play at the start of the game. If the Engineer creates Riot, the evil players become Riot.",
-    "Exorcist": "Only 1 jinxed character can be in play.",
+      "Each night*, Riot chooses an alive good player (different to previous nights): a chosen Banshee dies & gains their ability.",
+    "Exorcist":
+      "If the Exorcist chooses Riot on the 3rd night, Minions do not become Riot.",
     "Farmer":
-      "If a Riot player nominates and kills a Farmer, the Farmer uses their ability tonight.",
-    "Flowergirl": "Only 1 jinxed character can be in play.",
-    "Golem": "If the Golem nominates Riot, the Riot player does not die.",
+      "Each night*, Riot chooses an alive good player (different to previous nights): a chosen Farmer uses their ability but does not die.",
     "Grandmother":
-      "If a Riot player nominates and kills the Grandchild, the Grandmother dies too.",
-    "Hatter":
-      "If the Hatter dies, Riot is in play and a Riot chooses a different Demon, a normal evil team is created from the Riot players. If the Hatter dies and the Demon chooses Riot, Minions become Riot too.",
+      "If Riot is in play and the Grandchild dies during the day, the Grandmother dies too.",
     "Innkeeper":
-      "If a Riot player nominates an Innkeeper-protected-player, the Innkeeper-protected-player does not die.",
-    "Investigator": "Riot registers as a Minion to the Investigator.",
+      "If Riot is in play, the Innkeeper-protected player is safe from all evil abilities.",
     "King":
-      "If a Riot player nominates and kills the King and the Choirboy is alive, the Choirboy uses their ability tonight.",
+      "If Riot is in play, and at least 1 player is dead, the King learns an alive character each night.",
     "Mayor":
-      "If the 3rd day begins with just three players alive, the players may choose (as a group) not to nominate at all. If so (and a Mayor is alive) then the Mayor’s team wins.",
-    "Minstrel": "Only 1 jinxed character can be in play.",
+      "The Mayor may choose to stop nominations. If they do so when only 1 Riot is alive, good wins. Otherwise, evil wins.",
     "Monk":
-      "If a Riot player nominates and kills the Monk-protected-player, the Monk-protected-player does not die.",
-    "Pacifist":
-      "Players that die by nomination register as being executed to the Pacifist.",
-    "Pit-Hag":
-      "If the Pit-Hag creates Riot, all evil players become Riot. If the Pit-Hag creates Riot after day 3, the game continues for one more day.",
-    "Preacher": "Riot registers as a Minion to the Preacher.",
+      "If Riot is in play, the Monk-protected player is safe from all evil abilities.",
     "Ravenkeeper":
-      "If a Riot player nominates and kills the Ravenkeeper, the Ravenkeeper uses their ability tonight.",
+      "Each night*, Riot chooses an alive good player (different to previous nights): a chosen Ravenkeeper uses their ability but does not die.",
     "Sage":
-      "If a Riot player nominates and kills a Sage, the Sage uses their ability tonight.",
-    "Saint":
-      "If a good player nominates and kills the Saint, the Saint’s team loses.",
-    "Snitch":
-      "If the Snitch is in play, each Riot player gets an extra 3 bluffs.",
+      "Each night*, Riot chooses an alive good player (different to previous nights): a chosen Sage uses their ability but does not die.",
     "Soldier":
-      "If a Riot player nominates the Soldier, the Soldier does not die.",
+      "If Riot is in play, the Soldier is safe from all evil abilities.",
     "Town Crier": "Riot registers as a Minion to the Town Crier.",
-    "Undertaker":
-      "Players that die by nomination register as being executed to the Undertaker.",
-    "Zealot": "If you are nominated, you must nominate again, even if dead.",
   },
   "Vortox": {
     "Banshee":
