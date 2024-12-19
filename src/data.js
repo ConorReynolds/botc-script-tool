@@ -2062,7 +2062,7 @@ export const chars = [
     ],
     "setup": false,
     "ability":
-      "If more than 1 good player is executed, you win. All players know you are in play. After day 5, evil wins.",
+      "If more than 1 good player is executed, evil wins. All players know you are in play. After day 5, evil wins.",
   },
   {
     "id": "riot",
