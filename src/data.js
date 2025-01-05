@@ -2189,6 +2189,19 @@ export const chars = [
     "ability":
       "On night X, all Townsfolk are poisoned until dusk. [X Outsiders]",
   },
+  {
+    "id": "wizard",
+    "name": "Wizard",
+    "edition": "",
+    "team": "minion",
+    "firstNight": 28.1,
+    "firstNightReminder": "Run the Wizard ability if applicable.",
+    "otherNight": 14.1,
+    "otherNightReminder": "Run the Wizard ability if applicable.",
+    "reminders": ["?"],
+    "ability":
+      "Once per game, choose to make a wish. If granted, it might have a price & leave a clue as to its nature.",
+  },
 ];
 
 export const fabled = [
