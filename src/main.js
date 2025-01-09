@@ -736,6 +736,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   const base3Form = document.querySelector("#base-three-form");
   const kickstarterForm = document.querySelector("#kickstarter-form");
   const experimentalForm = document.querySelector("#experimental-form");
+  const homebrewForm = document.querySelector("#homebrew-form");
 
   const townsfolkCheckbox = document.querySelector("#townsfolk-checkbox");
   const outsiderCheckbox = document.querySelector("#outsider-checkbox");
@@ -746,6 +747,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   const base3Checkbox = document.querySelector("#base-three-checkbox");
   const kickstarterCheckbox = document.querySelector("#kickstarter-checkbox");
   const experimentalCheckbox = document.querySelector("#experimental-checkbox");
+  const homebrewCheckbox = document.querySelector("#homebrew-checkbox");
 
   const allFilterForms = [
     townsfolkForm,
@@ -757,6 +759,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     base3Form,
     kickstarterForm,
     experimentalForm,
+    homebrewForm,
   ];
 
   function updateSidebar() {
@@ -764,6 +767,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       const isBase3 = (x) => x === "tb" || x === "snv" || x === "bmr";
       const isKickstarter = (x) => x === "kickstarter";
       const isExperimental = (x) => x === "";
+      const isHomebrew = (x) => x === "homebrew";
       if (character.team === "townsfolk" && !townsfolkCheckbox.checked) {
         return false;
       }
@@ -789,6 +793,9 @@ globalThis.addEventListener("DOMContentLoaded", () => {
         return false;
       }
       if (isExperimental(character.edition) && !experimentalCheckbox.checked) {
+        return false;
+      }
+      if (isHomebrew(character.edition) && !homebrewCheckbox.checked) {
         return false;
       }
 

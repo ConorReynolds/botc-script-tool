@@ -2202,6 +2202,16 @@ export const chars = [
     "ability":
       "Once per game, choose to make a wish. If granted, it might have a price & leave a clue as to its nature.",
   },
+  {
+    "id": "demonatheist",
+    "name": "Demon Atheist",
+    "edition": "homebrew",
+    "team": "demon",
+    "reminders": [],
+    "ability":
+      "The Storyteller has this ability, can break the game rules & if executed, good wins. [No evil characters]",
+    "author": "patters",
+  },
 ];
 
 export const fabled = [
