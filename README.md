@@ -17,6 +17,8 @@ currently works well on desktop and decent on mobile.
 - Caches up to 15 recent scripts, accessible in the left sidebar
 - Generate script links to quickly share scripts with others
 - PDF export via built-in ‘Print to PDF’
+- View/Edit modes – mainly useful if you want to use the tool as a substitute
+  for printed scripts
 
 ## Why another script tool?
 
@@ -94,6 +96,9 @@ most recent 15 scripts that you were working on will appear.
 You can undo/redo up to ten previous changes in the currently focused script
 using the buttons on the bottom right or via the keyboard shortcuts Ctrl+Z /
 Ctrl+Shift+Z on Windows/Linux, or Cmd+Z / Cmd+Shift+Z on Mac.
+
+You can lock or unlock editing and certain UI elements by using the lock/unlock
+button on the bottom right, next to the undo/redo buttons.
 
 Ctrl/Cmd clicking on the export JSON button creates a script link that you can
 then copy and share.
@@ -177,6 +182,20 @@ Windows/Linux and Cmd+Shift+Z on Mac. Alternatively, use the buttons on the
 bottom right of the viewport. You can undo/redo up to ten actions.
 
 https://github.com/user-attachments/assets/2aea1072-1a45-4b69-abd6-53bd8b93933b
+
+### Toggling Edit and View Modes
+
+There’s an unlock/lock icon on the bottom right of the viewport. Clicking it
+will toggle between edit and view mode.
+
+A while ago I wanted to run a Teensyville script I made for some friends, but I
+had forgotten the printed scripts. I linked them to the script on this tool,
+and for the most part it worked well – it’s certainly much more readable than a
+screenshot of the script. But some players eventually came up to me and asked
+why some characters seemed to have disappeared; they were accidentally clicking
+on the character’s icon and removing them. Annoying. A simple solution is to
+add a view mode. It disables interaction and removes some irrelevant UI
+elements for cleaner viewing.
 
 ### Exporting the Script JSON
 
