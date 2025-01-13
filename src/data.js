@@ -2669,4 +2669,8 @@ export const jinxes = {
     "Exorcist":
       "If the Exorcist chooses the Yaggababble, the Yaggababble ability does not kill tonight.",
   },
+  "Demon Atheist": {
+    "Pit-Hag": "The Pit-Hag’s ability cannot create a Demon Atheist.",
+    "Engineer": "The Engineer’s ability cannot create a Demon Atheist.",
+  },
 };
