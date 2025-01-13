@@ -547,13 +547,13 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   lockButtonElem.addEventListener("click", function (event) {
     const lockIcon = '<i class="fa-solid fa-lock"></i>';
     const unlockIcon = '<i class="fa-solid fa-lock-open"></i>';
-    const locked = lockButtonElem.innerHTML === unlockIcon;
+    const locked = lockButtonElem.innerHTML === lockIcon;
     let width;
     if (locked) {
-      lockButtonElem.innerHTML = lockIcon;
+      lockButtonElem.innerHTML = unlockIcon;
       width = metadataWidth;
     } else {
-      lockButtonElem.innerHTML = unlockIcon;
+      lockButtonElem.innerHTML = lockIcon;
       width = "100%";
     }
     toggleLock(width);
