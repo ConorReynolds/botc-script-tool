@@ -96,7 +96,7 @@ function redo() {
 }
 
 // Essentially toggles between view and edit mode.
-function toggleLock() {
+function toggleLock(width) {
   const sidebar = document.querySelector("#sidebar");
   const fileSelector = document.querySelector("#file-selector");
   const inputContainer = document.querySelector(".input-container");
@@ -116,6 +116,9 @@ function toggleLock() {
   document.querySelectorAll("form").forEach(function (elem) {
     elem.classList.toggle("uninteractable");
   });
+
+  const metadata = document.querySelector("#metadata");
+  metadata.style.width = width;
 }
 
 function compressScript() {
@@ -539,16 +542,21 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     redo();
   });
 
+  const metadataWidth = document.querySelector("#metadata").style.width;
+
   lockButtonElem.addEventListener("click", function (event) {
-    toggleLock();
     const lockIcon = '<i class="fa-solid fa-lock"></i>';
     const unlockIcon = '<i class="fa-solid fa-lock-open"></i>';
     const locked = lockButtonElem.innerHTML === unlockIcon;
+    let width;
     if (locked) {
       lockButtonElem.innerHTML = lockIcon;
+      width = metadataWidth;
     } else {
       lockButtonElem.innerHTML = unlockIcon;
+      width = "100%";
     }
+    toggleLock(width);
   });
 
   globalThis.addEventListener("keyup", function (event) {
