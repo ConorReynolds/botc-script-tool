@@ -33,6 +33,14 @@
   margin-bottom: 0.5rem;
 }
 
+.hidden {
+  display: none !important;
+}
+
+.uninteractable {
+  pointer-events: none;
+}
+
 label {
   user-select: none;
 }

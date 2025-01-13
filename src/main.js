@@ -83,6 +83,7 @@ let appState;
 
 let undoButtonElem;
 let redoButtonElem;
+let lockButtonElem;
 
 function undo() {
   appState.currentScript.loadPrevious();
@@ -92,6 +93,29 @@ function undo() {
 function redo() {
   appState.currentScript.loadNext();
   renderScript();
+}
+
+// Essentially toggles between view and edit mode.
+function toggleLock() {
+  const sidebar = document.querySelector("#sidebar");
+  const fileSelector = document.querySelector("#file-selector");
+  const inputContainer = document.querySelector(".input-container");
+  const undoButton = document.querySelector("#undo-button");
+  const redoButton = document.querySelector("#redo-button");
+
+  sidebar.classList.toggle("hidden");
+  fileSelector.classList.toggle("hidden");
+  inputContainer.classList.toggle("hidden");
+  undoButton.classList.toggle("hidden");
+  redoButton.classList.toggle("hidden");
+
+  document.querySelectorAll("img.icon").forEach(function (elem) {
+    elem.classList.toggle("uninteractable");
+  });
+
+  document.querySelectorAll("form").forEach(function (elem) {
+    elem.classList.toggle("uninteractable");
+  });
 }
 
 function compressScript() {
@@ -505,6 +529,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
 
   undoButtonElem = document.querySelector("#undo-button");
   redoButtonElem = document.querySelector("#redo-button");
+  lockButtonElem = document.querySelector("#lock-button");
 
   undoButtonElem.addEventListener("click", function (event) {
     undo();
@@ -512,6 +537,18 @@ globalThis.addEventListener("DOMContentLoaded", () => {
 
   redoButtonElem.addEventListener("click", function (event) {
     redo();
+  });
+
+  lockButtonElem.addEventListener("click", function (event) {
+    toggleLock();
+    const lockIcon = '<i class="fa-solid fa-lock"></i>';
+    const unlockIcon = '<i class="fa-solid fa-lock-open"></i>';
+    const locked = lockButtonElem.innerHTML === unlockIcon;
+    if (locked) {
+      lockButtonElem.innerHTML = lockIcon;
+    } else {
+      lockButtonElem.innerHTML = unlockIcon;
+    }
   });
 
   globalThis.addEventListener("keyup", function (event) {
