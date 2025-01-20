@@ -22,6 +22,7 @@
 
   --width: min(55rem, 100% - 2rem);
   --print-width: 78rem;
+  --bg-color: #f6f6f6;
 }
 
 @import "sidebar.scss";
@@ -111,6 +112,27 @@ label {
   }
   .checkboxes-container {
     order: 3;
+  }
+  .tutorial-link {
+    order: 4;
+    margin-top: -0.7rem;
+    background: var(--bg-color);
+    padding-left: 0.3rem;
+    padding-bottom: -0.1rem;
+    border-radius: 8px;
+
+    a {
+      color: #666;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+
+      &:hover {
+        text-decoration-style: solid;
+        color: #333;
+        transition-property: color;
+        transition-delay: 0.05s;
+      }
+    }
   }
 }
 
@@ -773,7 +795,7 @@ img.imported-icon {
   padding-top: 0.5rem;
   padding-left: 0.5rem;
   padding-right: 0.2rem;
-  padding-bottom: 0.2rem;
+  // padding-bottom: 0.2rem;
   z-index: 0;
   input {
     margin-right: 0.25rem;
