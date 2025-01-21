@@ -293,7 +293,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     fileSelectElem.classList.toggle("expanded");
 
     // If on mobile, close the other sidebar.
-    if (globalThis.matchMedia("(max-width: 600px)").matches) {
+    if (globalThis.matchMedia("(max-width: 615px)").matches) {
       document.querySelector("#sidebar").classList.remove("expanded");
     }
   });
@@ -647,7 +647,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     sidebar.classList.toggle("expanded");
 
     // If on mobile, close the other sidebar.
-    if (globalThis.matchMedia("(max-width: 600px)").matches) {
+    if (globalThis.matchMedia("(max-width: 615px)").matches) {
       document.querySelector("#file-selector").classList.remove("expanded");
     }
   });
