@@ -291,6 +291,11 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   openFileSelectButton.addEventListener("click", (event) => {
     event.preventDefault();
     fileSelectElem.classList.toggle("expanded");
+
+    // If on mobile, close the other sidebar.
+    if (globalThis.matchMedia("(max-width: 600px)").matches) {
+      document.querySelector("#sidebar").classList.remove("expanded");
+    }
   });
 
   function renderFileSelector() {
@@ -640,8 +645,12 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   sidebarToggleButton.addEventListener("click", (event) => {
     event.preventDefault();
     sidebar.classList.toggle("expanded");
-  });
 
+    // If on mobile, close the other sidebar.
+    if (globalThis.matchMedia("(max-width: 600px)").matches) {
+      document.querySelector("#file-selector").classList.remove("expanded");
+    }
+  });
   const allchars = document.querySelector("#all-characters");
   const filterInputForm = document.querySelector("#filter-input-form");
   const filterInputElem = document.querySelector("#filter-input");
