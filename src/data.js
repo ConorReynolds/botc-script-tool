@@ -377,7 +377,7 @@ export const chars = [
     "edition": "bmr",
     "team": "townsfolk",
     "firstNightReminder":
-      "Point to the marked player & show their character token.",
+      "Point to a good player & show their character token.",
     "otherNightReminder":
       "If the grandchild was killed by the Demon tonight, the Grandmother dies too.",
     "reminders": [
@@ -393,7 +393,7 @@ export const chars = [
     "name": "Steward",
     "edition": "",
     "team": "townsfolk",
-    "firstNightReminder": "Point to the marked player.",
+    "firstNightReminder": "Point to a good player.",
     "otherNightReminder": "",
     "reminders": [
       "Known",
@@ -406,7 +406,7 @@ export const chars = [
     "name": "Knight",
     "edition": "",
     "team": "townsfolk",
-    "firstNightReminder": "Point to the 2 marked players.",
+    "firstNightReminder": "Point to 2 players who are not the Demon.",
     "otherNightReminder": "",
     "reminders": [
       "Known",
@@ -1907,9 +1907,9 @@ export const chars = [
     "edition": "",
     "team": "minion",
     "firstNightReminder":
-      "The Organ grinder nods to be drunk or shakes to be sober.",
+      "The Organ Grinder nods to be drunk or shakes to be sober.",
     "otherNightReminder":
-      "The Organ grinder nods to be drunk or shakes to be sober.",
+      "The Organ Grinder nods to be drunk or shakes to be sober.",
     "reminders": [
       "About to die",
     ],
