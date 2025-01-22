@@ -58,6 +58,10 @@ export class Script {
     this.alamanac = undefined;
     this.firstNightOrder = undefined;
     this.otherNightOrder = undefined;
+
+    if (this.isRecording) {
+      this.timeline.addInstant(this.toJSON());
+    }
   }
 
   isEmpty() {
