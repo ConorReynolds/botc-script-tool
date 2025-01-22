@@ -668,6 +668,12 @@ img.imported-icon {
       row-gap: 0.9rem;
     }
 
+    ul, ol {
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-left: 1.5rem;
+    }
+
     &.compact {
       page-break-before: auto;
       page-break-inside: auto;
@@ -728,20 +734,20 @@ img.imported-icon {
     .first-night, .other-night {
       .item {
         display: grid;
-        grid-template-columns: 3rem 1fr;
+        grid-template-columns: 4.5rem 1fr;
         align-items: center;
         gap: 1.5rem;
 
         .night-order-text {
           font-weight: bold;
           text-align: right;
-          width: 3rem;
         }
 
         img {
           width: 3rem;
           height: 3rem;
           object-fit: contain;
+          justify-self: center;
         }
       }
     }

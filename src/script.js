@@ -506,13 +506,15 @@ export class Script {
       if (id === "MINION" || id === "minioninfo" || id === "minion") {
         str += `<div class="item">`;
         str += `<div class="night-order-text">MINION</div>`;
-        str += `<div>Minion info</div>`;
+        str +=
+          `<div>If there are 7 or more players, wake the Minions. Show the ‘This is the Demon’ token & point to the Demon.</div>`;
         str += `</div>`;
       }
       if (id === "DEMON" || id === "demoninfo" || id === "demon") {
         str += `<div class="item">`;
         str += `<div class="night-order-text">DEMON</div>`;
-        str += `<div>Demon info</div>`;
+        str +=
+          `<div>If there are 7 or more players, wake the Demon. Show the ‘These are your Minions’ token & point to all Minions. Show the ‘These characters are not in play’ token & show three not-in-play good character tokens.</div>`;
         str += `</div>`;
       }
       if (id === "DUSK" || id === "dusk") {
