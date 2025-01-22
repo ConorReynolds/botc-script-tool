@@ -652,9 +652,9 @@ export const chars = [
     "edition": "bmr",
     "team": "outsider",
     "firstNightReminder":
-      "If 7 or more players:<ul><li>Show the ‘These are your Minions’ token & point to any players.</li><li>Show the ‘These characters are not in play’ token & three good character tokens.</li><li>Put the Lunatic to sleep & wake the Demon. If they saw the Lunatic token, show the ‘You are’ token and the Demon token.</li><li>Show the ‘This player is’ token & the Lunatic token, then point to the Lunatic.</li></ul>Later in the night, if applicable, simulate the Demon acting.</ul>",
+      "If 7 or more players:<ul><li>Show the ‘These are your Minions’ token & point to any players.</li><li>Show the ‘These characters are not in play’ token & three good character tokens.</li><li>Put the Lunatic to sleep & wake the Demon. If they saw the Lunatic token, show the ‘You are’ token and the Demon token.</li><li>Show the ‘This player is’ token & the Lunatic token, then point to the Lunatic.</li></ul>Later in the night, if applicable, simulate the Demon acting. Put the Lunatic to sleep & wake the Demon. Show the Lunatic token, then point to whoever the Lunatic chose.",
     "otherNightReminder":
-      "Simulate the Demon acting. Put the Lunatic to sleep & wake the Demon. Show the Lunatic token, point to them, then point to whoever the Lunatic chose.",
+      "Simulate the Demon acting. Put the Lunatic to sleep & wake the Demon. Show the Lunatic token, then point to whoever the Lunatic chose.",
     "reminders": [
       "Attack 1",
       "Attack 2",
