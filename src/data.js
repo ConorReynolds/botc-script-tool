@@ -988,9 +988,9 @@ export const chars = [
     "edition": "snv",
     "team": "townsfolk",
     "firstNightReminder":
-      "The Philosopher may choose a good character.<ul><li>If in play, swap their character tokens and place the ‘Is the Philosopher’ reminder.</li><li>If not in play, mark a player who is the chosen character ‘Drunk’.</li></ul>",
+      "The Philosopher may choose a good character.<ul><li>If not in play, swap their character token with the chosen character and place the ‘Is the Philosopher’ reminder.</li><li>If in play, mark a player who is the chosen character ‘Drunk’.</li></ul>",
     "otherNightReminder":
-      "The Philosopher may choose a good character.<ul><li>If in play, swap their character tokens and place the ‘Is the Philosopher’ reminder.</li><li>If not in play, mark a player who is the chosen character ‘Drunk’.</li></ul>",
+      "The Philosopher may choose a good character.<ul><li>If not in play, swap their character token with the chosen character and place the ‘Is the Philosopher’ reminder.</li><li>If in play, mark a player who is the chosen character ‘Drunk’.</li></ul>",
     "reminders": [
       "Drunk",
       "Is the Philosopher",
@@ -2072,7 +2072,8 @@ export const chars = [
     "name": "Kazali",
     "edition": "",
     "team": "demon",
-    "firstNightReminder": "The Kazali chooses their Minions.",
+    "firstNightReminder":
+      "The Kazali chooses their Minions. Wake the new Minions individually, show the ‘You are’ token, their new character token, and give a thumbs-down.",
     "otherNightReminder": "The Kazali chooses a player. That player dies.",
     "reminders": [
       "Dead",
