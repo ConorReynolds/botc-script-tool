@@ -2127,7 +2127,7 @@ export const chars = [
     "team": "demon",
     "firstNight": 0.1,
     "firstNightReminder":
-      "Replace the character tokens of the Lord of Typhon’s neighbors with Minion tokens. Wake them individually, show the ‘You are’ & relevant Minion tokens.",
+      "Replace the character tokens of the Lord of Typhon’s neighbors with Minion tokens. Wake them individually, show the ‘You are’ token, their new character token, and give a thumbs-down.",
     "otherNight": 31.1,
     "otherNightReminder":
       "The Lord of Typhon chooses a player. That player dies.",
