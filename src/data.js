@@ -5,7 +5,7 @@ export const chars = [
     "edition": "tb",
     "team": "townsfolk",
     "firstNightReminder":
-      "Show the character token of a Townsfolk in play. Point to two players, one of which is that character.",
+      "Show the character token of an in-play Townsfolk. Point to two players, one of which is that character.",
     "otherNightReminder": "",
     "reminders": [
       "Townsfolk",
@@ -21,7 +21,7 @@ export const chars = [
     "edition": "tb",
     "team": "townsfolk",
     "firstNightReminder":
-      "Show the character token of an Outsider in play. Point to two players, one of which is that character.",
+      "Show the character token of an in-play Outsider. Point to two players, one of which is that character. If there are no Outsiders, show a zero.",
     "otherNightReminder": "",
     "reminders": [
       "Outsider",
@@ -37,7 +37,7 @@ export const chars = [
     "edition": "tb",
     "team": "townsfolk",
     "firstNightReminder":
-      "Show the character token of a Minion in play. Point to two players, one of which is that character.",
+      "Show the character token of an in-play Minion. Point to two players, one of which is that character.",
     "otherNightReminder": "",
     "reminders": [
       "Minion",
@@ -544,7 +544,7 @@ export const chars = [
     "team": "townsfolk",
     "firstNightReminder": "",
     "otherNightReminder":
-      "If the Professor has not used their ability, they may choose a player. If that player is a Townsfolk, mark them ‘Alive’.",
+      "The Professor may choose a dead player. If that player is a Townsfolk, mark them ‘Alive’.",
     "reminders": [
       "Alive",
       "No ability",
@@ -889,9 +889,9 @@ export const chars = [
     "edition": "snv",
     "team": "townsfolk",
     "firstNightReminder":
-      "The Snake Charmer chooses a player. If they chose the Demon: <ul><li>Show the ‘You are’ & Demon tokens and inform them of their new alignment. Put them to sleep.</li><li>Swap the Demon and Snake Charmer character tokens.</li><li>Wake the old Demon, show the ‘You are’ & Snake Charmer tokens and inform them of their new alignment.</li></ul>",
+      "The Snake Charmer chooses a player. If they chose the Demon: <ul><li>Show the ‘You are’ & Demon tokens and inform them of their new alignment. Put them to sleep.</li><li>Swap the Demon and Snake Charmer character tokens. The new Snake Charmer is poisoned.</li><li>Wake the old Demon, show the ‘You are’ & Snake Charmer tokens and inform them of their new alignment.</li></ul>",
     "otherNightReminder":
-      "The Snake Charmer chooses a player. If they chose the Demon: <ul><li>Show the ‘You are’ & Demon tokens and inform them of their new alignment. Put them to sleep.</li><li>Swap the Demon and Snake Charmer character tokens.</li><li>Wake the old Demon, show the ‘You are’ & Snake Charmer tokens and inform them of their new alignment.</li></ul>",
+      "The Snake Charmer chooses a player. If they chose the Demon: <ul><li>Show the ‘You are’ & Demon tokens and inform them of their new alignment. Put them to sleep.</li><li>Swap the Demon and Snake Charmer character tokens. The new Snake Charmer is poisoned.</li><li>Wake the old Demon, show the ‘You are’ & Snake Charmer tokens and inform them of their new alignment.</li></ul>",
     "reminders": [
       "Poisoned",
     ],
@@ -1316,7 +1316,7 @@ export const chars = [
     "name": "Noble",
     "edition": "kickstarter",
     "team": "townsfolk",
-    "firstNightReminder": "Point to 3 players.",
+    "firstNightReminder": "Point to 3 players, exactly 1 of which is evil.",
     "otherNightReminder": "",
     "reminders": [
       "Seen",
@@ -1375,9 +1375,9 @@ export const chars = [
     "edition": "",
     "team": "townsfolk",
     "firstNightReminder":
-      "The Preacher chooses a player. If a Minion is chosen, put the Preacher to sleep. Wake the chosen Minion and show the ‘This character selected you’ & the Preacher token.",
+      "The Preacher chooses a player. If a Minion is chosen, put the Preacher to sleep, wake the chosen Minion and show the ‘This character selected you’ & the Preacher token.",
     "otherNightReminder":
-      "The Preacher chooses a player. If a Minion is chosen, put the Preacher to sleep. Wake the chosen Minion and show the ‘This character selected you’ & the Preacher token.",
+      "The Preacher chooses a player. If a Minion is chosen, put the Preacher to sleep, wake the chosen Minion and show the ‘This character selected you’ & the Preacher token.",
     "reminders": [
       "At a sermon",
     ],
@@ -1633,7 +1633,7 @@ export const chars = [
     "edition": "",
     "team": "townsfolk",
     "firstNightReminder":
-      "The Village Idiot chooses a player. Give a thumbs-up or thumbs-down.",
+      "If there is more than one Village Idiot, choose one to be drunk. The Village Idiot chooses a player. Give a thumbs-up or thumbs-down.",
     "otherNightReminder":
       "The Village Idiot chooses a player. Give a thumbs-up or thumbs-down.",
     "reminders": [
