@@ -5,7 +5,7 @@ export const chars = [
     "edition": "tb",
     "team": "townsfolk",
     "firstNightReminder":
-      "Show the character token of an in-play Townsfolk. Point to two players, one of which is that character.",
+      "Show the character token of an in-play Townsfolk. Point to 2 players, one of which is that character.",
     "otherNightReminder": "",
     "reminders": [
       "Townsfolk",
@@ -21,7 +21,7 @@ export const chars = [
     "edition": "tb",
     "team": "townsfolk",
     "firstNightReminder":
-      "Show the character token of an in-play Outsider. Point to two players, one of which is that character. If there are no Outsiders, show a zero.",
+      "Show the character token of an in-play Outsider. Point to 2 players, one of which is that character. If there are no Outsiders, show a zero.",
     "otherNightReminder": "",
     "reminders": [
       "Outsider",
@@ -37,7 +37,7 @@ export const chars = [
     "edition": "tb",
     "team": "townsfolk",
     "firstNightReminder":
-      "Show the character token of an in-play Minion. Point to two players, one of which is that character.",
+      "Show the character token of an in-play Minion. Point to 2 players, one of which is that character.",
     "otherNightReminder": "",
     "reminders": [
       "Minion",
@@ -76,9 +76,9 @@ export const chars = [
     "edition": "tb",
     "team": "townsfolk",
     "firstNightReminder":
-      "The Fortune Teller chooses two players. Nod if either is the Demon (or the Red Herring).",
+      "The Fortune Teller chooses 2 players. Nod if either is the Demon (or the Red Herring).",
     "otherNightReminder":
-      "The Fortune Teller chooses two players. Nod if either is the Demon (or the Red Herring).",
+      "The Fortune Teller chooses 2 players. Nod if either is the Demon (or the Red Herring).",
     "reminders": [
       "Red Herring",
     ],
@@ -449,9 +449,9 @@ export const chars = [
     "edition": "bmr",
     "team": "townsfolk",
     "firstNightReminder":
-      "The Chambermaid chooses two living players. Show how many woke tonight for their ability.",
+      "The Chambermaid chooses 2 alive players. Show how many woke tonight for their ability.",
     "otherNightReminder":
-      "The Chambermaid chooses two living players. Show how many woke tonight for their ability.",
+      "The Chambermaid chooses 2 alive players. Show how many woke tonight for their ability.",
     "reminders": [],
     "setup": false,
     "ability":
@@ -479,7 +479,7 @@ export const chars = [
     "team": "townsfolk",
     "firstNightReminder": "",
     "otherNightReminder":
-      "The Innkeeper chooses two players. Mark both ‘Protected’ and one ‘Drunk’.",
+      "The Innkeeper chooses 2 players. Mark both ‘Protected’ and one ‘Drunk’.",
     "reminders": [
       "Protected",
       "Drunk",
@@ -652,7 +652,7 @@ export const chars = [
     "edition": "bmr",
     "team": "outsider",
     "firstNightReminder":
-      "If 7 or more players:<ul><li>Show the ‘These are your Minions’ token & point to any players.</li><li>Show the ‘These characters are not in play’ token & three good character tokens.</li><li>Put the Lunatic to sleep & wake the Demon. If they saw the Lunatic token, show the ‘You are’ token and the Demon token.</li><li>Show the ‘This player is’ token & the Lunatic token, then point to the Lunatic.</li></ul>Later in the night, if applicable, simulate the Demon acting. Put the Lunatic to sleep & wake the Demon. Show the Lunatic token, then point to whoever the Lunatic chose.",
+      "If there are 7 or more players:<ul><li>Show the ‘These are your Minions’ token & point to any players.</li><li>Show the ‘These characters are not in play’ token & 3 good character tokens.</li><li>Put the Lunatic to sleep & wake the Demon. If they saw the Lunatic token, show the ‘You are’ token and the Demon token.</li><li>Show the ‘This player is’ token & the Lunatic token, then point to the Lunatic.</li></ul>Later in the night, if applicable, simulate the Demon acting. Put the Lunatic to sleep & wake the Demon. Show the Lunatic token, then point to whoever the Lunatic chose.",
     "otherNightReminder":
       "Simulate the Demon acting. Put the Lunatic to sleep & wake the Demon. Show the Lunatic token, then point to whoever the Lunatic chose.",
     "reminders": [
@@ -763,7 +763,7 @@ export const chars = [
     "team": "demon",
     "firstNightReminder": "",
     "otherNightReminder":
-      "A player that the Shabaloth chose last night might be resurrected. The Shabaloth chooses two players. Those players die.",
+      "A player that the Shabaloth chose last night might be resurrected. The Shabaloth chooses 2 players. Those players die.",
     "reminders": [
       "Dead",
       "Alive",
@@ -779,7 +779,7 @@ export const chars = [
     "team": "demon",
     "firstNightReminder": "",
     "otherNightReminder":
-      "The Po may choose a player. If they chose no-one last night, they must choose three players. Chosen players die.",
+      "The Po may choose a player. If they chose no-one last night, they must choose 3 players. Chosen players die.",
     "reminders": [
       "Dead",
       "3 attacks",
@@ -889,9 +889,9 @@ export const chars = [
     "edition": "snv",
     "team": "townsfolk",
     "firstNightReminder":
-      "The Snake Charmer chooses a player. If they chose the Demon: <ul><li>Show the ‘You are’ & Demon tokens and inform them of their new alignment. Put them to sleep.</li><li>Swap the Demon and Snake Charmer character tokens. The new Snake Charmer is poisoned.</li><li>Wake the old Demon, show the ‘You are’ & Snake Charmer tokens and inform them of their new alignment.</li></ul>",
+      "The Snake Charmer chooses an alive player. If they chose the Demon: <ul><li>Show the ‘You are’ & Demon tokens and inform them of their new alignment. Put them to sleep.</li><li>Swap the Demon and Snake Charmer character tokens. The new Snake Charmer is poisoned.</li><li>Wake the old Demon, show the ‘You are’ & Snake Charmer tokens and inform them of their new alignment.</li></ul>",
     "otherNightReminder":
-      "The Snake Charmer chooses a player. If they chose the Demon: <ul><li>Show the ‘You are’ & Demon tokens and inform them of their new alignment. Put them to sleep.</li><li>Swap the Demon and Snake Charmer character tokens. The new Snake Charmer is poisoned.</li><li>Wake the old Demon, show the ‘You are’ & Snake Charmer tokens and inform them of their new alignment.</li></ul>",
+      "The Snake Charmer chooses an alive player. If they chose the Demon: <ul><li>Show the ‘You are’ & Demon tokens and inform them of their new alignment. Put them to sleep.</li><li>Swap the Demon and Snake Charmer character tokens. The new Snake Charmer is poisoned.</li><li>Wake the old Demon, show the ‘You are’ & Snake Charmer tokens and inform them of their new alignment.</li></ul>",
     "reminders": [
       "Poisoned",
     ],
@@ -972,9 +972,9 @@ export const chars = [
     "edition": "snv",
     "team": "townsfolk",
     "firstNightReminder":
-      "The Seamstress may choose two players. Indicate whether they are the same alignment.",
+      "The Seamstress may choose 2 players. Indicate whether they are the same alignment.",
     "otherNightReminder":
-      "The Seamstress may choose two players. Indicate whether they are the same alignment.",
+      "The Seamstress may choose 2 players. Indicate whether they are the same alignment.",
     "reminders": [
       "No ability",
     ],
@@ -1072,7 +1072,7 @@ export const chars = [
     "team": "outsider",
     "firstNightReminder": "",
     "otherNightReminder":
-      "If the Barber died today or tonight, show the Demon the ‘This character selected you’ & Barber tokens. If they chose players, swap their character tokens. Wake each player one at a time. Show the ‘You are’ token & their new character token.",
+      "If the Barber died today or tonight, show the Demon the ‘This character selected you’ & Barber tokens. If they chose players, swap their character tokens. Wake each player individually. Show the ‘You are’ token & their new character token.",
     "reminders": [
       "Haircuts tonight",
     ],
@@ -1115,7 +1115,7 @@ export const chars = [
     "firstNightReminder":
       "The Witch chooses a player. If that player nominates tomorrow they die immediately.",
     "otherNightReminder":
-      "If there are 4 or more players alive: The Witch chooses a player. If that player nominates tomorrow they die immediately.",
+      "If more than 3 players live, the Witch chooses a player. If that player nominates tomorrow they die immediately.",
     "reminders": [
       "Cursed",
     ],
@@ -1434,7 +1434,7 @@ export const chars = [
     "team": "townsfolk",
     "firstNightReminder": "Choose a good player. Mark them ‘Faux Paw’.",
     "otherNightReminder":
-      "The Lycanthrope chooses a living player. If good, they die & the Demon doesn’t kill tonight.",
+      "The Lycanthrope chooses an alive player. If good, they die & the Demon doesn’t kill tonight (they still wake).",
     "reminders": [
       "Dead",
       "Faux Paw",
@@ -1633,7 +1633,7 @@ export const chars = [
     "edition": "",
     "team": "townsfolk",
     "firstNightReminder":
-      "If there is more than one Village Idiot, choose one to be drunk. The Village Idiot chooses a player. Give a thumbs-up or thumbs-down.",
+      "If there is more than 1 Village Idiot, choose 1 to be drunk. The Village Idiot chooses a player. Give a thumbs-up or thumbs-down.",
     "otherNightReminder":
       "The Village Idiot chooses a player. Give a thumbs-up or thumbs-down.",
     "reminders": [
@@ -1663,7 +1663,7 @@ export const chars = [
     "edition": "kickstarter",
     "team": "outsider",
     "firstNightReminder":
-      "After Minion info, wake each Minion individually, show the ‘These characters are not in play’ token & three not-in-play good character tokens.",
+      "After Minion info, wake each Minion individually, show the ‘These characters are not in play’ token & 3 not-in-play good character tokens.",
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
@@ -1923,9 +1923,9 @@ export const chars = [
     "edition": "",
     "team": "minion",
     "firstNightReminder":
-      "The Harpy chooses two players. Wake the 1st chosen player, show the ‘This character selected you’ & Harpy tokens, then point at the 2nd chosen player.",
+      "The Harpy chooses 2 players. Wake the 1st chosen player, show the ‘This character selected you’ & Harpy tokens, then point at the 2nd chosen player.",
     "otherNightReminder":
-      "The Harpy chooses two players. Wake the 1st chosen player, show the ‘This character selected you’ & Harpy tokens, then point at the 2nd chosen player.",
+      "The Harpy chooses 2 players. Wake the 1st chosen player, show the ‘This character selected you’ & Harpy tokens, then point at the 2nd chosen player.",
     "reminders": [
       "Mad",
       "2nd",
@@ -2515,8 +2515,6 @@ export const jinxes = {
   "Vizier": {
     "Alsaahir":
       "If the Vizier is in play, the Alsaahir must also guess which Demon(s) are in play.",
-    "Alchemist":
-      "If the Alchemist has the Vizier ability, they may only choose to execute immediately if three or more players voted, regardless of those players’ alignment.",
     "Courtier":
       "If the Vizier loses their ability, they learn this. If the Vizier is executed while they have their ability, their team wins.",
     "Fearmonger":
