@@ -514,7 +514,7 @@ export class Script {
         str += `<div class="item">`;
         str += `<div class="night-order-text">DEMON</div>`;
         str +=
-          `<div>If there are 7 or more players, wake the Demon. Show the ‘These are your Minions’ token & point to all Minions. Show the ‘These characters are not in play’ token & show three not-in-play good character tokens.</div>`;
+          `<div>If there are 7 or more players, wake the Demon. Show the ‘These are your Minions’ token & point to all Minions. Show the ‘These characters are not in play’ token & show 3 not-in-play good character tokens.</div>`;
         str += `</div>`;
       }
       if (id === "DUSK" || id === "dusk") {

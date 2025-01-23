@@ -186,9 +186,9 @@ export const chars = [
     "edition": "tb",
     "team": "outsider",
     "firstNightReminder":
-      "The Butler chooses a player (not themself). Mark that player ‘Master’.",
+      "The Butler chooses a player (not themself). Mark them ‘Master’.",
     "otherNightReminder":
-      "The Butler chooses a player (not themself). Mark that player ‘Master’.",
+      "The Butler chooses a player (not themself). Mark them ‘Master’.",
     "reminders": [
       "Master",
     ],
@@ -1375,9 +1375,9 @@ export const chars = [
     "edition": "",
     "team": "townsfolk",
     "firstNightReminder":
-      "The Preacher chooses a player. If a Minion is chosen, put the Preacher to sleep, wake the chosen Minion and show the ‘This character selected you’ & the Preacher token.",
+      "The Preacher chooses a player. If a Minion is chosen, put the Preacher to sleep, wake the chosen Minion and show the ‘This character selected you’ & Preacher tokens.",
     "otherNightReminder":
-      "The Preacher chooses a player. If a Minion is chosen, put the Preacher to sleep, wake the chosen Minion and show the ‘This character selected you’ & the Preacher token.",
+      "The Preacher chooses a player. If a Minion is chosen, put the Preacher to sleep, wake the chosen Minion and show the ‘This character selected you’ & Preacher tokens.",
     "reminders": [
       "At a sermon",
     ],
