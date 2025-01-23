@@ -75,7 +75,7 @@ The UI is largely self-explanatory. The buttons on the top right allow you to
 
 - import/upload script JSONs
 - export/download the current script JSON
-- clear the script
+- create a script link (more on this [later](#exporting-script-links))
 - print the script (Ctrl+P or Cmd+P works also)
 
 You can add characters using the quick-add textbox underneath the buttons, or
@@ -102,9 +102,6 @@ Ctrl+Shift+Z on Windows/Linux, or Cmd+Z / Cmd+Shift+Z on Mac.
 
 You can lock or unlock editing and hide certain UI elements by using the
 lock/unlock button on the bottom right, next to the undo/redo buttons.
-
-Holding Ctrl/Cmd and clicking on the export JSON button creates a script link in
-the browser’s address bar that you can then copy and share.
 
 Importing directly from [bloodstar.xyz](https://www.bloodstar.xyz/) is
 supported. Characters are added in the order they appear on the script and are
@@ -153,6 +150,11 @@ these standard steps ‘usually’ go and what numbers they are assigned. The me
 above is much simpler, but requires that you explicitly write the night order in
 the JSON yourself.
 
+> [!NOTE]
+> The videos below are a little out of date. A few UI elements have been added
+> and some have been moved around. They still give a good idea of how everything
+> works. I will update the videos at some point.
+
 ### Adding Characters
 
 Either import the script using the import JSON button on the top right, or start
@@ -178,6 +180,10 @@ The sidebar toggles characters so you can remove them there too.
 
 https://github.com/user-attachments/assets/7ecb7884-cd8e-45d1-800c-7e7474476b67
 
+You can clear the whole script, including the name and author, by pressing the
+clear script button on the bottom right of the viewport. (It’s the one with the
+bin icon.)
+
 ### Undo/Redo
 
 Undo with Ctrl+Z on Windows/Linux and Cmd+Z on Mac. Redo with Ctrl+Shift+Z on
@@ -185,20 +191,6 @@ Windows/Linux and Cmd+Shift+Z on Mac. Alternatively, use the buttons on the
 bottom right of the viewport. You can undo/redo up to ten actions.
 
 https://github.com/user-attachments/assets/2aea1072-1a45-4b69-abd6-53bd8b93933b
-
-### Toggling Edit and View Modes
-
-There’s an unlock/lock icon on the bottom right of the viewport. Clicking it
-will toggle between edit and view mode.
-
-A while ago I wanted to run a Teensyville script I made for some friends, but I
-had forgotten the printed scripts. I linked them to the script on this tool, and
-for the most part it worked well – it’s certainly much more readable than a
-screenshot of the script. But some players eventually came up to me and asked
-why some characters seemed to have disappeared; they were accidentally clicking
-on the character’s icon and removing them. Annoying. A simple solution is to add
-a view mode. It disables interaction and removes some irrelevant UI elements for
-cleaner viewing.
 
 ### Exporting the Script JSON
 
@@ -208,12 +200,14 @@ https://github.com/user-attachments/assets/c9ec35d1-9f37-417a-a7bd-6a6971f25422
 
 ### Exporting Script Links
 
+> [!WARNING]
+> The video is out of date. You can just press the script link button to toggle
+> the script link in your browser’s address bar.
+
 JSON files can be cumbersome to pass around, so the tool has a lightweight way
-to create _script links_. Currently the only way to generate a script link is by
-holding Ctrl/Cmd and clicking on the Export JSON button. This will replace the
-URL in your browser’s address bar with the script link, which you can then copy
-and send to others. Ctrl/Cmd clicking on the Clear Script button will clear the
-URL parameters only and not the script itself.
+to create _script links_. Pressing the script link button will replace the URL
+in your browser’s address bar with the script link, which you can then copy and
+send to others.
 
 https://github.com/user-attachments/assets/f617d650-6104-4648-b8cc-8ec79e0b7fd9
 
@@ -263,6 +257,20 @@ This option is nice if you don’t care about the night order reminder text and
 want something that fits on a single printed page.
 
 https://github.com/user-attachments/assets/501a7a7c-de29-4c4f-9c54-fe5b37565d73
+
+### Toggling Edit and View Modes
+
+There’s an unlock/lock icon on the bottom right of the viewport. Clicking it
+will toggle between edit and view mode.
+
+A while ago I wanted to run a Teensyville script I made for some friends, but I
+had forgotten the printed scripts. I linked them to the script on this tool, and
+for the most part it worked well – it’s certainly much more readable than a
+screenshot of the script. But some players eventually came up to me and asked
+why some characters seemed to have disappeared; they were accidentally clicking
+on the character’s icon and removing them. Annoying. A simple solution is to add
+a view mode. It disables interaction and removes some irrelevant UI elements for
+cleaner viewing.
 
 ## Missing Features
 
