@@ -1072,7 +1072,7 @@ export const chars = [
     "team": "outsider",
     "firstNightReminder": "",
     "otherNightReminder":
-      "If the Barber died today or tonight, show the Demon the ‘This character selected you’ & Barber tokens. If they chose players, swap their character tokens. Wake each player individually. Show the ‘You are’ token & their new character token.",
+      "If the Barber died today or tonight, show the Demon the ‘This character selected you’ & Barber tokens. If they chose players, swap their character tokens. Wake each player in turn. Show the ‘You are’ token & their new character token.",
     "reminders": [
       "Haircuts tonight",
     ],
@@ -1480,9 +1480,9 @@ export const chars = [
     "edition": "kickstarter",
     "team": "townsfolk",
     "firstNightReminder":
-      "The Engineer may choose a Demon or some Minions. Replace the Demon or Minions with their choices. Put the Engineer to sleep, then wake the relevant players individually. Show the ‘You are’ & relevant character tokens.",
+      "The Engineer may choose a Demon or some Minions. Replace the Demon or Minions with their choices. Put the Engineer to sleep, then wake the relevant players in turn. Show the ‘You are’ & relevant character tokens.",
     "otherNightReminder":
-      "The Engineer may choose a Demon or some Minions. Replace the Demon or Minions with their choices. Put the Engineer to sleep, then wake the relevant players individually. Show the ‘You are’ & relevant character tokens.",
+      "The Engineer may choose a Demon or some Minions. Replace the Demon or Minions with their choices. Put the Engineer to sleep, then wake the relevant players in turn. Show the ‘You are’ & relevant character tokens.",
     "reminders": [
       "No ability",
     ],
@@ -1664,7 +1664,7 @@ export const chars = [
     "edition": "kickstarter",
     "team": "outsider",
     "firstNightReminder":
-      "After Minion info, wake each Minion individually, show the ‘These characters are not in play’ token & 3 not-in-play good character tokens.",
+      "After Minion info, wake each Minion in turn, show the ‘These characters are not in play’ token & 3 not-in-play good character tokens.",
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
@@ -2074,7 +2074,7 @@ export const chars = [
     "edition": "",
     "team": "demon",
     "firstNightReminder":
-      "The Kazali chooses their Minions. Wake the new Minions individually, show the ‘You are’ token, their new character token, and give a thumbs-down.",
+      "The Kazali chooses their Minions. Wake the new Minions in turn, show the ‘You are’ token, their new character token, and give a thumbs-down.",
     "otherNightReminder": "The Kazali chooses a player. That player dies.",
     "reminders": [
       "Dead",
@@ -2128,7 +2128,7 @@ export const chars = [
     "team": "demon",
     "firstNight": 0.1,
     "firstNightReminder":
-      "Replace the character tokens of the Lord of Typhon’s neighbors with Minion tokens. Wake them individually, show the ‘You are’ token, their new character token, and give a thumbs-down.",
+      "Replace the character tokens of the Lord of Typhon’s neighbors with Minion tokens. Wake them in turn, show the ‘You are’ token, their new character token, and give a thumbs-down.",
     "otherNight": 31.1,
     "otherNightReminder":
       "The Lord of Typhon chooses a player. That player dies.",
@@ -2143,7 +2143,7 @@ export const chars = [
     "team": "minion",
     "firstNight": 0.3,
     "firstNightReminder":
-      "Wake the Demon & Boffin either together or individually. Show the not-in-play good character token.",
+      "Wake the Demon & Boffin either together or in turn. Show the not-in-play good character token.",
     "reminders": [],
     "ability":
       "The Demon (even if drunk or poisoned) has a not-in-play good character’s ability. You both know which.",
@@ -2270,10 +2270,11 @@ export const fabled = [
   },
   {
     "id": "toymaker",
-    "firstNightReminder": "",
+    "firstNightReminder":
+      "Do the Minion and Demon info steps, even if there are fewer than 7 players.",
     "otherNight": 1,
     "otherNightReminder":
-      "If a Demon attack could end the game, and the Demon is marked ‘Final night: No Attack’, then the Demon does not act tonight.",
+      "If a Demon attack could end the game, and the Demon is marked ‘Final Night: No Attack’, then the Demon does not act tonight.",
     "reminders": ["Final Night: No Attack"],
     "setup": false,
     "name": "Toymaker",
@@ -2296,7 +2297,7 @@ export const fabled = [
     "firstNightReminder": "",
     "otherNight": 1,
     "otherNightReminder":
-      "Wake each player marked ‘Visitor’ or ‘False Info’ individually. Show the Duchess token. Give true information to those marked ‘Visitor’ and false info to the player marked ‘False Info’.",
+      "Wake each player marked ‘Visitor’ or ‘False Info’ in turn. Show the Duchess token. Give true information to those marked ‘Visitor’ and false info to the player marked ‘False Info’.",
     "reminders": ["Visitor", "False Info"],
     "setup": false,
     "name": "Duchess",
@@ -2340,7 +2341,7 @@ export const fabled = [
     "edition": "kickstarter",
     "firstNight": 1,
     "firstNightReminder":
-      "Mark a good player ‘Safe’. Wake all evil players and point to the marked player.",
+      "Announce the storm-caught good character.<ul><li>If in play, mark a player who is that character ‘Safe’. Wake evils in turn, show the storm-caught character token, then point to the marked player.</li><li>If not in play, wake evils in turn and show the ‘These characters are not in play’ & storm-caught character tokens.</li></ul>",
     "otherNightReminder": "",
     "reminders": ["Safe"],
     "setup": false,
@@ -2360,6 +2361,16 @@ export const fabled = [
     "name": "Bootlegger",
     "team": "fabled",
     "ability": "This script has homebrew characters or rules.",
+  },
+  {
+    "id": "ferryman",
+    "firstNightReminder": "",
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "name": "Ferryman",
+    "team": "fabled",
+    "ability": "On the final day, all dead players regain their vote token.",
   },
 ];
 

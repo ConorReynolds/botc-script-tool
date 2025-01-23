@@ -1,6 +1,9 @@
 export const nightorder = {
   "firstNight": [
+    "bootlegger",
     "dusk",
+    "toymaker",
+    "stormcatcher",
     "lordoftyphon",
     "kazali",
     "apprentice",
@@ -77,6 +80,8 @@ export const nightorder = {
   ],
   "otherNight": [
     "dusk",
+    "duchess",
+    "toymaker",
     "barista",
     "bureaucrat",
     "thief",
