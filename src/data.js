@@ -2162,7 +2162,7 @@ export const chars = [
     "edition": "",
     "team": "minion",
     "firstNightReminder":
-      "Mark the Xann ‘Night 1’. If X is 1, add the ‘X’ reminder.",
+      "Mark the Xaan ‘Night 1’. If X is 1, add the ‘X’ reminder.",
     "otherNightReminder":
       "Change the Xaan’s night reminder to the relevant night. If it is night X, add the ‘X’ reminder.",
     "reminders": [
