@@ -102,12 +102,14 @@ function toggleLock(width) {
   const inputContainer = document.querySelector(".input-container");
   const undoButton = document.querySelector("#undo-button");
   const redoButton = document.querySelector("#redo-button");
+  const clearForm = document.querySelector("#clear-form");
 
   sidebar.classList.toggle("hidden");
   fileSelector.classList.toggle("hidden");
   inputContainer.classList.toggle("hidden");
   undoButton.classList.toggle("hidden");
   redoButton.classList.toggle("hidden");
+  clearForm.classList.toggle("hidden");
 
   document.querySelectorAll("img.icon").forEach(function (elem) {
     elem.classList.toggle("uninteractable");
@@ -569,11 +571,14 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     isMetaOrCtrlPressed = metaCtrl;
   });
 
-  document.querySelector("#export-form").addEventListener(
+  document.querySelector("#link-form").addEventListener(
     "submit",
     function (event) {
       event.preventDefault();
-      if (isMetaOrCtrlPressed) {
+      const url = new URL(globalThis.location.href);
+      if (url.searchParams.has("script")) {
+        globalThis.history.replaceState(null, "", globalThis.location.pathname);
+      } else {
         const encodedScript = compressScript();
         globalThis.history.replaceState(
           null,
@@ -585,12 +590,18 @@ globalThis.addEventListener("DOMContentLoaded", () => {
             globalThis.location.href.split("?")[0] + `?script=${encodedScript}`,
           ),
         );
-      } else {
-        writeDialogJSON(
-          appState.currentScript.name,
-          appState.currentScript.toJSON(),
-        );
       }
+    },
+  );
+
+  document.querySelector("#export-form").addEventListener(
+    "submit",
+    function (event) {
+      event.preventDefault();
+      writeDialogJSON(
+        appState.currentScript.name,
+        appState.currentScript.toJSON(),
+      );
     },
   );
 
@@ -598,14 +609,10 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     "submit",
     function (event) {
       event.preventDefault();
-      if (isMetaOrCtrlPressed) {
-        globalThis.history.replaceState(null, "", globalThis.location.pathname);
-      } else {
-        appState.currentScript.clear();
-        Character.clearCustoms();
-        globalThis.history.replaceState(null, "", globalThis.location.pathname);
-        renderScript();
-      }
+      appState.currentScript.clear();
+      Character.clearCustoms();
+      globalThis.history.replaceState(null, "", globalThis.location.pathname);
+      renderScript();
     },
   );
 

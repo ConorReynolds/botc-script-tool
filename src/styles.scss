@@ -106,6 +106,13 @@ label {
 
   .main-buttons-container {
     order: 1;
+    gap: 0.15rem;
+    button {
+      margin: 0;
+      padding: 0;
+      width: 2.6rem;
+      height: 2.2rem;
+    }
   }
   .character-form-container {
     order: 2;
@@ -307,10 +314,6 @@ input {
 
 [type="checkbox"]:focus-visible {
   outline: auto;
-}
-
-#import-form, #export-form, #clear-form, #print-form {
-  margin-left: 3px;
 }
 
 @media print {
