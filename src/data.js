@@ -652,7 +652,7 @@ export const chars = [
     "edition": "bmr",
     "team": "outsider",
     "firstNightReminder":
-      "If there are 7 or more players:<ul><li>Show the ‘These are your Minions’ token & point to any players.</li><li>Show the ‘These characters are not in play’ token & 3 good character tokens.</li><li>Put the Lunatic to sleep & wake the Demon. If they saw the Lunatic token, show the ‘You are’ token and the Demon token.</li><li>Show the ‘This player is’ token & the Lunatic token, then point to the Lunatic.</li></ul>Later in the night, if applicable, simulate the Demon acting. Put the Lunatic to sleep & wake the Demon. Show the Lunatic token, then point to whoever the Lunatic chose.",
+      "If there are 7 or more players:<ul><li>Show the ‘These are your Minions’ token & point to any players.</li><li>Show the ‘These characters are not in play’ token & 3 good character tokens.</li><li>Put the Lunatic to sleep & wake the Demon. If they saw the Lunatic token, show the ‘You are’ token and the Demon token.</li><li>Show the ‘This player is’ & Lunatic tokens, then point to the Lunatic.</li></ul>Later in the night, if applicable, simulate the Demon acting. Put the Lunatic to sleep & wake the Demon. Show the Lunatic token, then point to whoever the Lunatic chose.",
     "otherNightReminder":
       "Simulate the Demon acting. Put the Lunatic to sleep & wake the Demon. Show the Lunatic token, then point to whoever the Lunatic chose.",
     "reminders": [
@@ -1391,7 +1391,7 @@ export const chars = [
     "edition": "kickstarter",
     "team": "townsfolk",
     "firstNightReminder":
-      "Wake the Demon, show the ‘This character selected you’ & the King tokens, then point to the King player.",
+      "Wake the Demon, show the ‘This character selected you’ & King tokens, then point to the King player.",
     "otherNightReminder":
       "If the dead equal or outnumber the living, show the King a character token of a living player.",
     "reminders": [],
@@ -1448,8 +1448,9 @@ export const chars = [
     "name": "Amnesiac",
     "edition": "kickstarter",
     "team": "townsfolk",
-    "firstNightReminder": "Decide the Amnesiac’s ability. Run that ability.",
-    "otherNightReminder": "Run the Amnesiac’s ability.",
+    "firstNightReminder":
+      "Decide the Amnesiac’s ability. Run that ability if applicable.",
+    "otherNightReminder": "Run the Amnesiac’s ability if applicable.",
     "reminders": [
       "?",
     ],
@@ -1800,7 +1801,7 @@ export const chars = [
     "edition": "",
     "team": "minion",
     "firstNightReminder":
-      "Show the Grimoire for as long as the Widow needs. The Widow chooses a player. They are poisoned. Put the Widow to sleep. Wake a good player, show the ‘This character selected you’ & the Widow token.",
+      "Show the Grimoire for as long as the Widow needs. The Widow chooses a player. They are poisoned. Put the Widow to sleep. Wake a good player, show the ‘This character selected you’ & Widow tokens.",
     "otherNightReminder": "",
     "reminders": [
       "Poisoned",
@@ -2181,9 +2182,9 @@ export const chars = [
     "edition": "",
     "team": "minion",
     "firstNight": 28.1,
-    "firstNightReminder": "Run the Wizard ability if applicable.",
+    "firstNightReminder": "Run the Wizard’s ability if applicable.",
     "otherNight": 14.1,
-    "otherNightReminder": "Run the Wizard ability if applicable.",
+    "otherNightReminder": "Run the Wizard’s ability if applicable.",
     "reminders": ["?"],
     "ability":
       "Once per game, choose to make a wish. If granted, it might have a price & leave a clue as to its nature.",
