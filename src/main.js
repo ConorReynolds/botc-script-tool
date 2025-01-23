@@ -209,6 +209,23 @@ function renderScript() {
   }, 0);
 }
 
+function updateScriptLink() {
+  const url = new URL(globalThis.location.href);
+  if (url.searchParams.has("script")) {
+    const encodedScript = compressScript();
+    globalThis.history.replaceState(
+      null,
+      "",
+      // Doing it this way specifically ensures that tildes are not encoded
+      // but characters requiring encoding in the script name/author fields
+      // *are* encoded.
+      new URL(
+        globalThis.location.href.split("?")[0] + `?script=${encodedScript}`,
+      ),
+    );
+  }
+}
+
 function initStorage() {
   localStorage.clear();
 
@@ -258,7 +275,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("app-state", appState.serialize());
   }
 
-  const urlParams = new URLSearchParams(window.location.search);
+  const urlParams = new URLSearchParams(globalThis.location.search);
   if (urlParams.get("script")) {
     const script = decompressScript(urlParams.get("script"));
     appState.addScriptAndFocus(script);
@@ -356,6 +373,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     if (scriptNameInput.value !== onFocusScriptName) {
       appState.currentScript.name = scriptNameInput.value;
       renderFileSelector();
+      updateScriptLink();
     }
   });
 
@@ -364,6 +382,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       appState.currentScript.isRecording = true;
       appState.currentScript.name = scriptNameInput.value;
       renderFileSelector();
+      updateScriptLink();
       appState.currentScript.isRecording = false;
       onFocusScriptName = scriptNameInput.value;
       scriptNameInput.blur();
@@ -380,6 +399,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     if (scriptAuthorInput.value !== onFocusScriptAuthor) {
       appState.currentScript.author = scriptAuthorInput.value;
       renderFileSelector();
+      updateScriptLink();
     }
   });
 
@@ -390,6 +410,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       appState.currentScript.isRecording = true;
       appState.currentScript.author = scriptAuthorInput.value;
       renderFileSelector();
+      updateScriptLink();
       appState.currentScript.isRecording = false;
       onFocusScriptAuthor = scriptNameInput.value;
       scriptAuthorInput.blur();
@@ -869,6 +890,8 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   globalThis.addEventListener("scriptrendered", (_) => {
     updateSidebar();
     renderFileSelector();
+    updateScriptLink();
+
     localStorage.setItem("app-state", appState.serialize());
     undoButtonElem.setAttribute(
       "data-canundo",
