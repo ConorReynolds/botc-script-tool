@@ -207,7 +207,12 @@ https://github.com/user-attachments/assets/c9ec35d1-9f37-417a-a7bd-6a6971f25422
 JSON files can be cumbersome to pass around, so the tool has a lightweight way
 to create _script links_. Pressing the script link button will replace the URL
 in your browser’s address bar with the script link, which you can then copy and
-send to others.
+send to others. Pressing the script link button again will remove it.
+
+If a script link is already present in the address bar, updates to the script
+will be immediately reflected in the script link – you do not need to clear and
+regenerate the link after updates. This also works if you change scripts using
+the file selector or upload a script via JSON.
 
 https://github.com/user-attachments/assets/f617d650-6104-4648-b8cc-8ec79e0b7fd9
 
