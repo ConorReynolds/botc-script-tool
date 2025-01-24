@@ -1552,7 +1552,8 @@ export const chars = [
     "name": "Magician",
     "edition": "kickstarter",
     "team": "townsfolk",
-    "firstNightReminder": "",
+    "firstNightReminder":
+      "In the Minion info step, show the Demon & Magician as the Demon. In the Demon info step, show the Minions & Magician as the Minions.",
     "otherNightReminder": "",
     "reminders": [],
     "setup": false,
