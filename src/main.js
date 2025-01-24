@@ -138,6 +138,9 @@ function compressScript() {
   for (const [i, c] of Character.fabledFlat.map((o) => o.id).entries()) {
     charsMap[c] = `${i}f`;
   }
+  for (const [i, c] of Character.homebrewFlat.map((o) => o.id).entries()) {
+    charsMap[c] = `${i}h`;
+  }
 
   const indices = chars.map((c) => charsMap[c]);
   let str = JSON.stringify([name, author, ...indices]);
@@ -707,6 +710,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     const charlist = Character.flat
       .concat(Character.customFlat)
       .concat(Character.fabledFlat)
+      .concat(Character.homebrewFlat)
       .filter(predicate)
       .toSorted(compareOn((o) => o.name))
       .toSorted(compareOn((o) => Character.typeRank(o.team)));

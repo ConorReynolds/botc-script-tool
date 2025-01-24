@@ -2190,6 +2190,9 @@ export const chars = [
     "ability":
       "Once per game, choose to make a wish. If granted, it might have a price & leave a clue as to its nature.",
   },
+];
+
+export const commonHomebrew = [
   {
     "id": "demonatheist",
     "name": "Demon Atheist",
@@ -2199,6 +2202,66 @@ export const chars = [
     "ability":
       "The Storyteller has this ability, can break the game rules & if executed, good wins. [No evil characters]",
     "author": "patters",
+  },
+  {
+    "id": "eachnighthuntsman",
+    "name": "Each Night Huntsman",
+    "edition": "homebrew",
+    "team": "townsfolk",
+    "firstNightReminder":
+      "The Huntsman may choose a living player. If they choose a Minion, they are poisoned. If they choose the Damsel:<ul><li>Put the Huntsman to sleep. Wake the Damsel and show the ‘You are’ token & a not-in-play Townsfolk token. Put them to sleep.</li><li>Swap the Damsel’s character token with the not-in-play Townsfolk token.</li></ul>",
+    "otherNightReminder":
+      "The Huntsman may choose a living player. If they choose a Minion, they are poisoned. If they choose the Damsel:<ul><li>Put the Huntsman to sleep. Wake the Damsel and show the ‘You are’ token & a not-in-play Townsfolk token. Put them to sleep.</li><li>Swap the Damsel’s character token with the not-in-play Townsfolk token.</li></ul>",
+    "modifies": "huntsman",
+    "reminders": [],
+    "ability":
+      '<span style="letter-spacing:-0.4px">Each night, choose a living player: a chosen Damsel becomes a not-in-play Townsfolk. If you choose a Minion, you are poisoned. [+the Damsel]</span>',
+    "author": "patters(?)",
+  },
+  {
+    "id": "alejosnakecharmer",
+    "name": "Alejo Snake Charmer",
+    "edition": "homebrew",
+    "team": "townsfolk",
+    "modifies": "snakecharmer",
+    "firstNightReminder":
+      "The Snake Charmer chooses an alive player. If they chose the Demon: <ul><li>Show the ‘You are’ & Demon tokens and inform them of their new alignment. Put them to sleep.</li><li>Swap the Demon and Snake Charmer character tokens. The new Snake Charmer is poisoned.</li><li>Wake the old Demon, show the ‘You are’ & Snake Charmer tokens and inform them of their new alignment.</li></ul>",
+    "otherNightReminder":
+      "The Snake Charmer chooses an alive player. If they chose the Demon: <ul><li>Show the ‘You are’ & Demon tokens and inform them of their new alignment. Put them to sleep.</li><li>Swap the Demon and Snake Charmer character tokens. The new Snake Charmer is poisoned.</li><li>Wake the old Demon, show the ‘You are’ & Snake Charmer tokens and inform them of their new alignment.</li></ul>",
+    "reminders": [
+      "Poisoned",
+    ],
+    "setup": false,
+    "ability":
+      "Each night, choose an alive player: a chosen Demon swaps characters & alignments with you & is then poisoned.",
+    "author": "alejo",
+  },
+  {
+    "id": "hiddenpsycho",
+    "name": "Hidden Psycho",
+    "edition": "homebrew",
+    "team": "minion",
+    "modifies": "psychopath",
+    "firstNightReminder": "",
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": false,
+    "ability":
+      "Players you nominate might die. If you are mad as the Psychopath & are executed, you only die if you lose roshambo.",
+    "author": "Conor Reynolds",
+  },
+  {
+    "id": "activebaron",
+    "name": "Active Baron",
+    "edition": "homebrew",
+    "team": "minion",
+    "modifies": "baron",
+    "firstNightReminder": "",
+    "otherNightReminder": "",
+    "reminders": [],
+    "setup": true,
+    "ability": "There must be extra Outsiders in play. [+2 Outsiders]",
+    "author": "unknown (community meme)",
   },
 ];
 

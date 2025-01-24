@@ -1,4 +1,4 @@
-import { chars, fabled, jinxes } from "./data.js";
+import { chars, commonHomebrew, fabled, jinxes } from "./data.js";
 
 export class Character {
   id;
@@ -10,17 +10,24 @@ export class Character {
   static custom = {};
   static customFlat = [];
 
+  static homebrew = {};
+  static homebrewFlat = commonHomebrew;
+
   static flat = chars;
   static fabledFlat = fabled;
 
   static data = {};
   static fabled = {};
+  static commonHomebrew = {};
   static {
     this.flat.forEach((obj) => {
       this.data[obj.id] = obj;
     });
     this.fabledFlat.forEach((obj) => {
       this.fabled[obj.id] = obj;
+    });
+    this.homebrewFlat.forEach((obj) => {
+      this.commonHomebrew[obj.id] = obj;
     });
   }
 
@@ -42,6 +49,8 @@ export class Character {
       } else if (Character.fabled[id]) {
         this.isFabled = true;
         this.id = id;
+      } else if (Character.commonHomebrew[id]) {
+        this.id = id;
       } else {
         throw new Error(`can’t find character with id ‘${id}’`);
       }
@@ -56,11 +65,20 @@ export class Character {
   index(i) {
     return (Character.custom[this.id] && Character.custom[this.id][i]) ||
       (Character.data[this.id] && Character.data[this.id][i]) ||
-      (Character.fabled[this.id] && Character.fabled[this.id][i]);
+      (Character.fabled[this.id] && Character.fabled[this.id][i]) ||
+      (Character.commonHomebrew[this.id] &&
+        Character.commonHomebrew[this.id][i]);
   }
 
   get name() {
     return this.index("name");
+  }
+
+  get summaryText() {
+    const node = document.createElement("div");
+    node.innerHTML = this.index("ability");
+
+    return node.innerText;
   }
 
   get summary() {
@@ -91,7 +109,10 @@ export class Character {
   }
 
   get icon() {
-    if (this.index("image")) {
+    if (this.index("edition") === "homebrew" && this.index("modifies")) {
+      const char = new Character(this.index("modifies"));
+      return `src/assets/custom-icons/Icon_${char.id}.webp`;
+    } else if (this.index("image")) {
       return this.index("image");
     } else {
       return `src/assets/custom-icons/Icon_${this.id}.webp`;
@@ -99,7 +120,10 @@ export class Character {
   }
 
   get tinyIcon() {
-    if (this.index("image")) {
+    if (this.index("edition") === "homebrew" && this.index("modifies")) {
+      const char = new Character(this.index("modifies"));
+      return `src/assets/custom-icons/TinyIcon_${char.id}.webp`;
+    } else if (this.index("image")) {
       // no tiny icons for customs
       return this.index("image");
     } else {
@@ -119,20 +143,7 @@ export class Character {
   }
 
   get summaryLength() {
-    const node = document.createElement("div");
-    node.innerHTML = this.summary;
-
-    return node.innerText.length;
-  }
-
-  static nameToID(name) {
-    let id = name;
-    id = id.replaceAll("’", "");
-    id = id.replaceAll("'", "");
-    id = id.replaceAll(" ", "");
-    id = id.replaceAll("-", "");
-    id = id.toLowerCase();
-    return id;
+    return this.summaryText.length;
   }
 
   static fuzzyMatch(str) {
@@ -321,14 +332,14 @@ export class Character {
 
     // Figure out which prefix matches first. Always take the longest match.
     for (const [idx, prefix] of prefixes.entries()) {
-      if (c1.summary.startsWith(prefix)) {
+      if (c1.summaryText.startsWith(prefix)) {
         if (c1MatchLength < prefix.length) {
           c1MatchIdx = idx;
           c1MatchLength = prefix.length;
         }
       }
 
-      if (c2.summary.startsWith(prefix)) {
+      if (c2.summaryText.startsWith(prefix)) {
         if (c2MatchLength < prefix.length) {
           c2MatchIdx = idx;
           c2MatchLength = prefix.length;
