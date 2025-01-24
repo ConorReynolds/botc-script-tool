@@ -155,6 +155,7 @@ function decompressScript(str) {
 
   const chars = Character.flat.map((o) => o.id);
   const fabled = Character.fabledFlat.map((o) => o.id);
+  const homebrew = Character.homebrewFlat.map((o) => o.id);
 
   const localScript = new Script();
   localScript.isRecording = false;
@@ -166,6 +167,9 @@ function decompressScript(str) {
     const idx = parseInt(key);
     if (key.includes("f")) {
       const char = new Character(fabled[idx]);
+      localScript.add(char);
+    } else if (key.includes("h")) {
+      const char = new Character(homebrew[idx]);
       localScript.add(char);
     } else {
       const char = new Character(chars[idx]);
