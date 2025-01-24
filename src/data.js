@@ -1811,7 +1811,7 @@ export const chars = [
     ],
     "setup": false,
     "ability":
-      "On your 1st night, look at the Grimoire and choose a player: they are poisoned. 1 good player knows a Widow is in play.",
+      "On your 1st night, look at the Grimoire & choose a player: they are poisoned. 1 good player knows a Widow is in play.",
   },
   {
     "id": "fearmonger",
@@ -2128,7 +2128,7 @@ export const chars = [
     "team": "demon",
     "firstNight": 0.1,
     "firstNightReminder":
-      "Replace the character tokens of the Lord of Typhon’s neighbors with Minion tokens. Wake them in turn, show the ‘You are’ token, their new character token, and give a thumbs-down.",
+      "Replace the character tokens of the Lord of Typhon’s neighbors with Minion tokens (do this with further neighbours on either side if necessary). Wake them in turn, show the ‘You are’ token, their new character token, and give a thumbs-down.",
     "otherNight": 31.1,
     "otherNightReminder":
       "The Lord of Typhon chooses a player. That player dies.",
