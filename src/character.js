@@ -270,6 +270,14 @@ export class Character {
       "Once per game",
       "On your 1st night",
       "On your 1st day",
+      // I have to guess that this was the intended terminal for this group,
+      // otherwise the Xaan is out of order compared to the official tool. This
+      // unfortunately then puts Riot out of sort order compared to the
+      // official tool, but I think that this is correct and the official tool
+      // is wrong. My guess is that everything is pre-sorted in the official
+      // tool’s roles.json, and when Riot’s ability text was updated, they did
+      // not update its position in the roles.json.
+      "On",
 
       "You think",
       "You are",
