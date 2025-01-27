@@ -889,9 +889,9 @@ export const chars = [
     "edition": "snv",
     "team": "townsfolk",
     "firstNightReminder":
-      "The Snake Charmer chooses an alive player. If they chose the Demon: <ul><li>Show the ‘You are’ & Demon tokens and inform them of their new alignment. Put them to sleep.</li><li>Swap the Demon and Snake Charmer character tokens. The new Snake Charmer is poisoned.</li><li>Wake the old Demon, show the ‘You are’ & Snake Charmer tokens and inform them of their new alignment.</li></ul>",
+      "The Snake Charmer chooses an alive player. If they choose the Demon: <ul><li>Show the ‘You are’ & Demon tokens and inform them of their new alignment. Put them to sleep.</li><li>Swap the Demon and Snake Charmer character tokens. The new Snake Charmer is poisoned.</li><li>Wake the old Demon, show the ‘You are’ & Snake Charmer tokens and inform them of their new alignment.</li></ul>",
     "otherNightReminder":
-      "The Snake Charmer chooses an alive player. If they chose the Demon: <ul><li>Show the ‘You are’ & Demon tokens and inform them of their new alignment. Put them to sleep.</li><li>Swap the Demon and Snake Charmer character tokens. The new Snake Charmer is poisoned.</li><li>Wake the old Demon, show the ‘You are’ & Snake Charmer tokens and inform them of their new alignment.</li></ul>",
+      "The Snake Charmer chooses an alive player. If they choose the Demon: <ul><li>Show the ‘You are’ & Demon tokens and inform them of their new alignment. Put them to sleep.</li><li>Swap the Demon and Snake Charmer character tokens. The new Snake Charmer is poisoned.</li><li>Wake the old Demon, show the ‘You are’ & Snake Charmer tokens and inform them of their new alignment.</li></ul>",
     "reminders": [
       "Poisoned",
     ],
@@ -1159,7 +1159,7 @@ export const chars = [
     "team": "demon",
     "firstNightReminder": "",
     "otherNightReminder":
-      "The Fang Gu chooses a player. That player dies. If they chose an Outsider (once): <ul><li>Put the Fang Gu to sleep. Replace the Outsider with a spare Fang Gu token.</li><li>Wake the chosen player. Show the ‘You are’ & Fang Gu tokens, then give a thumbs-down.",
+      "The Fang Gu chooses a player. That player dies. If they choose an Outsider (once): <ul><li>Put the Fang Gu to sleep. Replace the Outsider with a spare Fang Gu token.</li><li>Wake the chosen player. Show the ‘You are’ & Fang Gu tokens, then give a thumbs-down.",
     "reminders": [
       "Dead",
       "Once",
@@ -2144,7 +2144,7 @@ export const chars = [
     "team": "minion",
     "firstNight": 0.3,
     "firstNightReminder":
-      "Wake the Demon & Boffin either together or in turn. Show the not-in-play good character token.",
+      "Wake the Demon & Boffin either together or in turn. Show the ‘This character selected you’ & Boffin tokens, then show the not-in-play good character token.",
     "reminders": [],
     "ability":
       "The Demon (even if drunk or poisoned) has a not-in-play good character’s ability. You both know which.",
@@ -2225,9 +2225,9 @@ export const commonHomebrew = [
     "team": "townsfolk",
     "modifies": "snakecharmer",
     "firstNightReminder":
-      "The Snake Charmer chooses an alive player. If they chose the Demon: <ul><li>Show the ‘You are’ & Demon tokens and inform them of their new alignment. Put them to sleep.</li><li>Swap the Demon and Snake Charmer character tokens. The new Snake Charmer is poisoned.</li><li>Wake the old Demon, show the ‘You are’ & Snake Charmer tokens and inform them of their new alignment.</li></ul>",
+      "The Snake Charmer chooses an alive player. If they choose the Demon: <ul><li>Show the ‘You are’ & Demon tokens and inform them of their new alignment. Put them to sleep.</li><li>Swap the Demon and Snake Charmer character tokens. The new Snake Charmer is poisoned.</li><li>Wake the old Demon, show the ‘You are’ & Snake Charmer tokens and inform them of their new alignment.</li></ul>",
     "otherNightReminder":
-      "The Snake Charmer chooses an alive player. If they chose the Demon: <ul><li>Show the ‘You are’ & Demon tokens and inform them of their new alignment. Put them to sleep.</li><li>Swap the Demon and Snake Charmer character tokens. The new Snake Charmer is poisoned.</li><li>Wake the old Demon, show the ‘You are’ & Snake Charmer tokens and inform them of their new alignment.</li></ul>",
+      "The Snake Charmer chooses an alive player. If they choose the Demon: <ul><li>Show the ‘You are’ & Demon tokens and inform them of their new alignment. Put them to sleep.</li><li>Swap the Demon and Snake Charmer character tokens. The new Snake Charmer is poisoned.</li><li>Wake the old Demon, show the ‘You are’ & Snake Charmer tokens and inform them of their new alignment.</li></ul>",
     "reminders": [
       "Poisoned",
     ],
