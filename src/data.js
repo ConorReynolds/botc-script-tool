@@ -1502,7 +1502,7 @@ export const chars = [
     ],
     "setup": false,
     "ability":
-      "Once per game, during the day, visit the Storyteller for some advice to help you win.",
+      "Once per game, during the day, visit the Storyteller for some advice to help your team win.",
   },
   {
     "id": "huntsman",
