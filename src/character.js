@@ -5,6 +5,7 @@ export class Character {
 
   isCustom = false;
   isFabled = false;
+  isHomebrew = false;
 
   // Stores any custom characters that are uploaded.
   static custom = {};
@@ -35,21 +36,27 @@ export class Character {
   // custom characters, all information needs to be provided by the user – need
   // to figure out how to support that (or if we want to bother).
   constructor(obj) {
+    function strip(id) {
+      return id.replaceAll("_", "").replaceAll("-", "");
+    }
+
     if (typeof obj === "string") {
+      const id = obj;
       // Probably an identifier for a character
       // Identifiers might have underscores or hyphens in them – remove them.
       // I think some old versions of tools may have produced scripts with them
-      // left in, but who knows. The official tool does not have them.
-      const id = obj.replaceAll("_", "").replaceAll("-", "");
+      // left in, but who knows. The official tool does not have them. Custom
+      // or homebrew characters should not be tinkered with.
       if (Character.custom[id]) {
         this.isCustom = true;
         this.id = id;
-      } else if (Character.data[id]) {
-        this.id = id;
-      } else if (Character.fabled[id]) {
+      } else if (Character.data[strip(id)]) {
+        this.id = strip(id);
+      } else if (Character.fabled[strip(id)]) {
         this.isFabled = true;
-        this.id = id;
+        this.id = strip(id);
       } else if (Character.commonHomebrew[id]) {
+        this.isHomebrew = true;
         this.id = id;
       } else {
         throw new Error(`can’t find character with id ‘${id}’`);

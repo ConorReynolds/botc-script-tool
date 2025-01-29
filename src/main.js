@@ -462,7 +462,12 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     "submit",
     function (event) {
       event.preventDefault();
+
       const input = characterInputEl.value.toLowerCase();
+      if (input === "") {
+        return;
+      }
+
       const result = Character.fuzzyMatch(input);
       const match = result.match;
 
@@ -638,7 +643,6 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     function (event) {
       event.preventDefault();
       appState.currentScript.clear();
-      Character.clearCustoms();
       globalThis.history.replaceState(null, "", globalThis.location.pathname);
       renderScript();
     },
