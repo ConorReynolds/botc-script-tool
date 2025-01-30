@@ -219,6 +219,10 @@ the file selector or upload a script via JSON.
 
 https://github.com/user-attachments/assets/f617d650-6104-4648-b8cc-8ec79e0b7fd9
 
+Script links do not work with homebrew characters. You’ll need to export the
+JSON and send that if your script has custom characters or rules that are not
+part of the script tool itself.
+
 ### Importing Scripts
 
 You can import scripts using the Import JSON button on the top right or by
