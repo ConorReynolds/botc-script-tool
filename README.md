@@ -150,6 +150,9 @@ these standard steps ‘usually’ go and what numbers they are assigned. The me
 above is much simpler, but requires that you explicitly write the night order in
 the JSON yourself.
 
+In the night reminder text, you can write `:reminder:` to insert a circle
+indicating that a reminder token is to be placed.
+
 > [!NOTE]
 > The videos below are a little out of date. A few UI elements have been added
 > and some have been moved around. They still give a good idea of how everything

@@ -365,7 +365,11 @@ img.imported-icon {
       position: relative;
       z-index: 1;
       background-color: #f6f6f6;
-      padding-right: 1em;
+      padding-right: 1rem;
+      & + span {
+        margin-left: -0.5rem;
+        color: #999;
+      }
     }
     &::after {
       content: "";

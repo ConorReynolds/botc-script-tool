@@ -371,10 +371,12 @@ export class Script {
       ]
         .entries()
     ) {
+      const ntype = chars.length;
       const plural = Script.asType(i) === "townsfolk"
         ? Script.asType(i)
         : Script.asType(i) + "s";
-      str += `<h3><span>${plural?.toUpperCase()}</span></h3>`;
+      str +=
+        `<h3><span>${plural?.toUpperCase()}</span><span class="noprint">(${ntype})</span></h3>`;
       str += `<div nitems="${chars.length}" class="${
         Script.asType(i)?.toLowerCase()
       }">`;
@@ -497,8 +499,12 @@ export class Script {
           str += `<img class="${iconCls(char)}" src="${char.icon}"/>`;
           str += `<div>`;
           str += `<div class="night-sheet-char-name">${char.name}</div>`;
-          str +=
-            `<div class="night-sheet-reminder">${char.firstNightReminder}</div>`;
+          str += `<div class="night-sheet-reminder">${
+            char.firstNightReminder.replaceAll(
+              ":reminder:",
+              '<i class="fa-regular fa-circle" style="font-size: 0.9em"></i>',
+            )
+          }</div>`;
           str += `</div>`;
           str += `</div>`;
         }
@@ -542,8 +548,12 @@ export class Script {
           str += `<img class="${iconCls(char)}" src="${char.icon}"/>`;
           str += `<div>`;
           str += `<div class="night-sheet-char-name">${char.name}</div>`;
-          str +=
-            `<div class="night-sheet-reminder">${char.firstNightReminder}</div>`;
+          str += `<div class="night-sheet-reminder">${
+            char.firstNightReminder.replaceAll(
+              ":reminder:",
+              '<i class="fa-regular fa-circle" style="font-size: 0.9em"></i>',
+            )
+          }</div>`;
           str += `</div>`;
           str += `</div>`;
         }
@@ -571,8 +581,12 @@ export class Script {
           str += `<img class="${iconCls(char)}" src="${char.icon}"/>`;
           str += `<div>`;
           str += `<div class="night-sheet-char-name">${char.name}</div>`;
-          str +=
-            `<div class="night-sheet-reminder">${char.otherNightReminder}</div>`;
+          str += `<div class="night-sheet-reminder">${
+            char.otherNightReminder.replaceAll(
+              ":reminder:",
+              '<i class="fa-regular fa-circle" style="font-size: 0.9em"></i>',
+            )
+          }</div>`;
           str += `</div>`;
           str += `</div>`;
         }
@@ -601,8 +615,12 @@ export class Script {
           str += `<img class="${iconCls(char)}" src="${char.icon}"/>`;
           str += `<div>`;
           str += `<div class="night-sheet-char-name">${char.name}</div>`;
-          str +=
-            `<div class="night-sheet-reminder">${char.otherNightReminder}</div>`;
+          str += `<div class="night-sheet-reminder">${
+            char.otherNightReminder.replaceAll(
+              ":reminder:",
+              '<i class="fa-regular fa-circle" style="font-size: 0.9em"></i>',
+            )
+          }</div>`;
           str += `</div>`;
           str += `</div>`;
         }
