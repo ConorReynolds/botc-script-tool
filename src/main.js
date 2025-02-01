@@ -111,9 +111,11 @@ function toggleLock(width) {
   redoButton.classList.toggle("hidden");
   clearForm.classList.toggle("hidden");
 
-  document.querySelectorAll("img.icon").forEach(function (elem) {
-    elem.classList.toggle("uninteractable");
-  });
+  document.querySelectorAll("img.icon, img.imported-icon").forEach(
+    function (elem) {
+      elem.classList.toggle("uninteractable");
+    },
+  );
 
   document.querySelectorAll("form").forEach(function (elem) {
     elem.classList.toggle("uninteractable");
@@ -182,6 +184,34 @@ function decompressScript(str) {
   return localScript;
 }
 
+function firstNightUpdate(script, event) {
+  if (script.firstNightOrder === undefined) {
+    return;
+  }
+  const valueOI = script.firstNightOrder[event.oldIndex];
+  const valueNI = script.firstNightOrder[event.newIndex];
+  script.firstNightOrder[event.oldIndex] = valueNI;
+  script.firstNightOrder[event.newIndex] = valueOI;
+
+  if (script.isRecording) {
+    script.timeline.addInstant(script.toJSON());
+  }
+}
+
+function otherNightUpdate(script, event) {
+  if (script.otherNightOrder === undefined) {
+    return;
+  }
+  const valueOI = script.otherNightOrder[event.oldIndex];
+  const valueNI = script.otherNightOrder[event.newIndex];
+  script.otherNightOrder[event.oldIndex] = valueNI;
+  script.otherNightOrder[event.newIndex] = valueOI;
+
+  if (script.isRecording) {
+    script.timeline.addInstant(script.toJSON());
+  }
+}
+
 function renderScript() {
   const scriptElem = document.querySelector("#script");
 
@@ -214,6 +244,29 @@ function renderScript() {
   setTimeout(function () {
     globalThis.dispatchEvent(new Event("scriptrendered"));
   }, 0);
+
+  const firstNightList = document.querySelector(".first-night");
+  const otherNightList = document.querySelector(".other-night");
+  new Sortable(firstNightList, {
+    handle: ".handle",
+    animation: 250,
+    onUpdate: function (event) {
+      firstNightUpdate(appState.currentScript, event);
+      setTimeout(function () {
+        globalThis.dispatchEvent(new Event("scriptrendered"));
+      }, 0);
+    },
+  });
+  new Sortable(otherNightList, {
+    handle: ".handle",
+    animation: 250,
+    onUpdate: function (event) {
+      otherNightUpdate(appState.currentScript, event);
+      setTimeout(function () {
+        globalThis.dispatchEvent(new Event("scriptrendered"));
+      }, 0);
+    },
+  });
 }
 
 function updateScriptLink() {

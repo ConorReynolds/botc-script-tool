@@ -27,6 +27,7 @@ export class Script {
   timeline;
   isRecording;
 
+  // official night order
   static nightorder = nightorder;
 
   constructor() {
@@ -74,7 +75,7 @@ export class Script {
   loadFromJSON(obj) {
     if (!Array.isArray(obj)) {
       console.error(obj);
-      throw Error("Invalid JSON – can’t parse script.");
+      throw Error("Invalid JSON – not a list.");
     }
 
     this.clear();
@@ -265,6 +266,25 @@ export class Script {
         });
       }
     }
+
+    if (this.firstNightOrder && this.otherNightOrder) {
+      if (
+        newChar.firstNightOrder !== -1 &&
+        !this.firstNightOrder.includes(newChar.id)
+      ) {
+        const idx = this.firstNightOrder.findIndex((s) => s === "dawn");
+        this.firstNightOrder.splice(idx === -1 ? 0 : idx, 0, newChar.id);
+      }
+
+      if (
+        newChar.otherNightOrder !== -1 &&
+        !this.otherNightOrder.includes(newChar.id)
+      ) {
+        const idx = this.otherNightOrder.findIndex((s) => s === "dawn");
+        this.otherNightOrder.splice(idx === -1 ? 0 : idx, 0, newChar.id);
+      }
+    }
+
     if (this.isRecording) {
       this.timeline.addInstant(this.toJSON());
     }
@@ -496,7 +516,7 @@ export class Script {
         const char = new Character(id);
         if (char.firstNightReminder) {
           str += `<div class="item">`;
-          str += `<img class="${iconCls(char)}" src="${char.icon}"/>`;
+          str += `<img class="${iconCls(char)} handle" src="${char.icon}"/>`;
           str += `<div>`;
           str += `<div class="night-sheet-char-name">${char.name}</div>`;
           str += `<div class="night-sheet-reminder">${
@@ -511,28 +531,28 @@ export class Script {
       }
       if (id === "MINION" || id === "minioninfo" || id === "minion") {
         str += `<div class="item">`;
-        str += `<div class="night-order-text">MINION</div>`;
+        str += `<div class="night-order-text handle">MINION</div>`;
         str +=
           `<div>If there are 7 or more players, wake the Minions. Show the ‘This is the Demon’ token & point to the Demon.</div>`;
         str += `</div>`;
       }
       if (id === "DEMON" || id === "demoninfo" || id === "demon") {
         str += `<div class="item">`;
-        str += `<div class="night-order-text">DEMON</div>`;
+        str += `<div class="night-order-text handle">DEMON</div>`;
         str +=
           `<div>If there are 7 or more players, wake the Demon. Show the ‘These are your Minions’ token & point to all Minions. Show the ‘These characters are not in play’ token & show 3 not-in-play good character tokens.</div>`;
         str += `</div>`;
       }
       if (id === "DUSK" || id === "dusk") {
         str += `<div class="item">`;
-        str += `<div class="night-order-text">DUSK</div>`;
+        str += `<div class="night-order-text handle">DUSK</div>`;
         str +=
           `<div>Check that all eyes are closed. Some travellers act.</div>`;
         str += `</div>`;
       }
       if (id === "DAWN" || id === "dawn") {
         str += `<div class="item">`;
-        str += `<div class="night-order-text">DAWN</div>`;
+        str += `<div class="night-order-text handle">DAWN</div>`;
         str +=
           `<div>Wait approximately 10 seconds. Call for eyes open, then immediately announce which players (if any) died.</div>`;
         str += `</div>`;
@@ -545,7 +565,7 @@ export class Script {
         const char = new Character(charID);
         if (char.firstNightOrder === position && !Character.data[charID]) {
           str += `<div class="item">`;
-          str += `<img class="${iconCls(char)}" src="${char.icon}"/>`;
+          str += `<img class="${iconCls(char)} handle" src="${char.icon}"/>`;
           str += `<div>`;
           str += `<div class="night-sheet-char-name">${char.name}</div>`;
           str += `<div class="night-sheet-reminder">${
@@ -578,7 +598,7 @@ export class Script {
         const char = new Character(id);
         if (char.otherNightReminder) {
           str += `<div class="item">`;
-          str += `<img class="${iconCls(char)}" src="${char.icon}"/>`;
+          str += `<img class="${iconCls(char)} handle" src="${char.icon}"/>`;
           str += `<div>`;
           str += `<div class="night-sheet-char-name">${char.name}</div>`;
           str += `<div class="night-sheet-reminder">${
@@ -593,14 +613,14 @@ export class Script {
       }
       if (id === "DUSK" || id === "dusk") {
         str += `<div class="item">`;
-        str += `<div class="night-order-text">DUSK</div>`;
+        str += `<div class="night-order-text handle">DUSK</div>`;
         str +=
           `<div>Check that all eyes are closed. Some travellers act.</div>`;
         str += `</div>`;
       }
       if (id === "DAWN" || id === "dawn") {
         str += `<div class="item">`;
-        str += `<div class="night-order-text">DAWN</div>`;
+        str += `<div class="night-order-text handle">DAWN</div>`;
         str +=
           `<div>Wait approximately 10 seconds. Call for eyes open, then immediately announce which players (if any) died.</div>`;
         str += `</div>`;
@@ -612,7 +632,7 @@ export class Script {
         const char = new Character(charID);
         if (char.otherNightOrder === position && !Character.data[charID]) {
           str += `<div class="item">`;
-          str += `<img class="${iconCls(char)}" src="${char.icon}"/>`;
+          str += `<img class="${iconCls(char)} handle" src="${char.icon}"/>`;
           str += `<div>`;
           str += `<div class="night-sheet-char-name">${char.name}</div>`;
           str += `<div class="night-sheet-reminder">${

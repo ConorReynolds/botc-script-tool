@@ -42,6 +42,18 @@
   pointer-events: none;
 }
 
+.sortable-chosen {
+  opacity: 0.5;
+}
+
+.sortable-ghost {
+  opacity: 0.7;
+}
+
+.handle {
+  cursor: move;
+}
+
 label {
   user-select: none;
 }
