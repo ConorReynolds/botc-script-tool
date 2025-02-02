@@ -307,8 +307,7 @@ There are two ‘modes’:
 ## Missing Features
 
 It would be cool to integrate some script-building tips directly into the
-editor. Currently the tool does not display any script analytics whatsoever –
-not even the numbers of character types.
+editor.
 
 ## Incomplete Features
 
