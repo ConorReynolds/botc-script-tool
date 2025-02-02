@@ -1,3 +1,16 @@
+export function compareOn(f) {
+    return function (x, y) {
+        if (f(x) < f(y)) {
+            return -1;
+        }
+        else if (f(x) > f(y)) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    };
+}
 export function getTextWidth(text, font = "IBMPlexSansCondensed") {
     const canvas = getTextWidth.canvas ||
         (getTextWidth.canvas = document.createElement("canvas"));

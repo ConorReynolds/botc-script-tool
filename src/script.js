@@ -1,6 +1,7 @@
 import { Character } from "./character.js";
 import { nightorder } from "./nightorder.js";
 import { Timeline } from "./timeline.js";
+import { compareOn } from "./utils.js";
 
 // Need a full list of characters that can be added.
 export class Script {
@@ -19,7 +20,7 @@ export class Script {
   jinxList;
 
   // Used for bloodstar imported scripts
-  alamanac;
+  almanac;
   firstNightOrder;
   otherNightOrder;
 
@@ -56,7 +57,7 @@ export class Script {
     this._author = "";
     this.charSet = new Set();
     this.jinxList = [];
-    this.alamanac = undefined;
+    this.almanac = undefined;
     this.firstNightOrder = undefined;
     this.otherNightOrder = undefined;
 
@@ -126,6 +127,34 @@ export class Script {
     }
 
     this.sort();
+
+    // If the script is a bloodstar import and has no explicit night order,
+    // create one
+    if (this.almanac && (!this.firstNightOrder && !this.otherNightOrder)) {
+      this.firstNightOrder = [];
+      this.otherNightOrder = [];
+      for (const id of this.charSet.values()) {
+        const c = new Character(id);
+        if (c.firstNightOrder && c.firstNightOrder !== -1) {
+          this.firstNightOrder.push(id);
+        }
+        if (c.otherNightOrder && c.otherNightOrder !== -1) {
+          this.otherNightOrder.push(id);
+        }
+      }
+
+      this.firstNightOrder.sort(
+        compareOn((id) => new Character(id).firstNightOrder),
+      );
+      this.otherNightOrder.sort(
+        compareOn((id) => new Character(id).otherNightOrder),
+      );
+
+      this.firstNightOrder.unshift("dusk", "minioninfo", "demoninfo");
+      this.firstNightOrder.push("dawn");
+      this.otherNightOrder.unshift("dusk");
+      this.otherNightOrder.push("dawn");
+    }
 
     this.isRecording = wasRecording;
     if (this.isRecording) {
@@ -336,18 +365,6 @@ export class Script {
     this.outsiders.sort(Character.compare);
     this.minions.sort(Character.compare);
     this.demons.sort(Character.compare);
-
-    function compareOn(f) {
-      return function (x, y) {
-        if (f(x) < f(y)) {
-          return -1;
-        } else if (f(x) > f(y)) {
-          return 1;
-        } else {
-          return 0;
-        }
-      };
-    }
 
     this.travelers.sort(compareOn((o) => o.name));
     this.fabled.sort(compareOn((o) => o.name));

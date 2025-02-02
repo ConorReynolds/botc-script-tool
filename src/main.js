@@ -1,6 +1,7 @@
 import { AppState } from "./state.js";
 import { Character } from "./character.js";
 import { Script } from "./script.js";
+import { compareOn } from "./utils.js";
 
 let h1;
 let characterInputEl;
@@ -751,17 +752,6 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     // const lastFocus = document.activeElement;
     // const lastCharID = lastFocus.getAttribute("data-id");
     predicate = predicate ?? ((c) => c);
-    function compareOn(f) {
-      return function (x, y) {
-        if (f(x) < f(y)) {
-          return -1;
-        } else if (f(x) > f(y)) {
-          return 1;
-        } else {
-          return 0;
-        }
-      };
-    }
 
     if (renderSidebarChars.wasExpanded === undefined) {
       renderSidebarChars.wasExpanded = new Set();

@@ -1,3 +1,15 @@
+export function compareOn<U, V>(f: (u: U) => V) {
+  return function (x: U, y: U) {
+    if (f(x) < f(y)) {
+      return -1;
+    } else if (f(x) > f(y)) {
+      return 1;
+    } else {
+      return 0;
+    }
+  };
+}
+
 // https://stackoverflow.com/a/21015393
 export function getTextWidth(
   text: string,
