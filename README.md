@@ -354,8 +354,9 @@ are from [Font Awesome](https://fontawesome.com/). The fonts are all in the
 taken from the excellent
 [Blood on the Clocktower wiki](https://wiki.bloodontheclocktower.com).
 
-The sole JavaScript library we depend on is
-[fuzzysort](https://github.com/farzher/fuzzysort).
+The JavaScript libraries we depend on are
+[fuzzysort](https://github.com/farzher/fuzzysort) and
+[Sortable](https://github.com/SortableJS/Sortable).
 
 [Blood on the Clocktower](https://bloodontheclocktower.com/) is a trademark of
 Steven Medway and
