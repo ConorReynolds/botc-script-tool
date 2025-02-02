@@ -111,7 +111,7 @@ function toggleLock(width) {
   redoButton.classList.toggle("hidden");
   clearForm.classList.toggle("hidden");
 
-  document.querySelectorAll("img.icon, img.imported-icon").forEach(
+  document.querySelectorAll("img.icon, .handle").forEach(
     function (elem) {
       elem.classList.toggle("uninteractable");
     },
