@@ -340,6 +340,10 @@ interpretations of `window.print()` in different browsers and operating systems.
   BotC Script Tool’ as the title. Not sure why this happens. The print button
   works fine, so if this is annoying you then just use the button.
 - Printing is ugly on mobile devices so I can’t recommend it just yet.
+- If something’s broken and you’re not sure what, you can always clear the
+  website’s cache. You can do this the usual way for your browser, or you can
+  explicitly clear `localStorage` by opening your browser’s developer tools and
+  typing `localStorage.clear()` into the console.
 
 ## Acknowledgements
 
