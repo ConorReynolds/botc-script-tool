@@ -286,6 +286,8 @@ cleaner viewing.
 The night order for any script can be edited by dragging and dropping items in
 the night order section.
 
+https://github.com/user-attachments/assets/c73093f3-e5be-42d3-b1f4-5275649cab34
+
 There are two ‘modes’:
 
 - If you import either a bloodstar script or a JSON with an explicit night order
