@@ -104,10 +104,9 @@ You can lock or unlock editing and hide certain UI elements by using the
 lock/unlock button on the bottom right, next to the undo/redo buttons.
 
 Importing directly from [bloodstar.xyz](https://www.bloodstar.xyz/) is
-supported. Characters are added in the order they appear on the script and are
-not SAO sorted. The tool should mostly handle the night order you create in
-bloodstar, but if you want more control, you can add it explicitly in the
-metadata for the script. (The
+supported. The tool will handle the night order you create in bloodstar, but if
+you want more control, you can add it explicitly in the metadata for the script.
+(The
 [official app](https://github.com/ThePandemoniumInstitute/botc-release/blob/7f0d23cf5b144f3175f505e1db74317fac417442/script-schema.json#L393)
 supports the same format, also explained in
 [this Reddit comment](https://www.reddit.com/r/BloodOnTheClocktower/comments/1c6h0d5/comment/l02cbsd/).)
@@ -141,14 +140,12 @@ supports the same format, also explained in
 }
 ```
 
-Note `char1`, `char2`, … are character IDs, not names. This format gives you
-maximum flexibility. Bloodstar by default does not seem to support characters
-that act or have reminders before dusk, before/between minion and demon info
-steps (like the Lunatic), or after dawn (like the Leviathan). It’s possible to
-tweak the numbers in the exported JSON but that requires knowledge of where
-these standard steps ‘usually’ go and what numbers they are assigned. The method
-above is much simpler, but requires that you explicitly write the night order in
-the JSON yourself.
+Fortunately, you do not have to do this yourself. Once imported, the tool gives
+a bloodstar script an explicit night order as above, which you can then edit
+yourself in the tool by dragging and dropping. (More on this
+[later](#changing-the-night-order).) This is useful for supporting characters
+that act or have reminders before dusk, before/between Minion and Demon info
+steps (like the Lunatic), or after dawn (like the Leviathan).
 
 In the night reminder text, you can write `:reminder:` to insert a circle
 indicating that a reminder token is to be placed.
@@ -283,6 +280,27 @@ why some characters seemed to have disappeared; they were accidentally clicking
 on the character’s icon and removing them. Annoying. A simple solution is to add
 a view mode. It disables interaction and removes some irrelevant UI elements for
 cleaner viewing.
+
+### Changing the Night Order
+
+The night order for any script can be edited by dragging and dropping items in
+the night order section.
+
+There are two ‘modes’:
+
+- If you import either a bloodstar script or a JSON with an explicit night order
+  (as shown earlier), then editing the night order will also edit the underlying
+  JSON. Changes are considered updates to the script and are subject to
+  undos/redos. Any new characters you add, official or otherwise, will not be
+  presumed to sit anywhere in the night order – you are on your own and must
+  take care of the night order yourself.
+- If there is no explicit night order, then changes to the night order in the
+  tool are **purely cosmetic**. The next time the script is rendered, these
+  changes will be lost. This feature is enabled mainly so that you can tweak a
+  few entries just before printing. For example, you can put the Damsel’s first
+  night reminder before Minion info to clarify that poisoning cannot interfere
+  with Minions learning the Damsel, or you can put the Snake Charmer before
+  Minion info if you prefer the Alejo Snake Charmer rule.
 
 ## Missing Features
 
