@@ -163,7 +163,7 @@ export class Character {
 
     let results, key;
     if (hasQuery) {
-      key = "ability";
+      key = (o) => new Character(o.id).summaryText;
       results = fuzzysort.go(
         hasQuery,
         characters,
