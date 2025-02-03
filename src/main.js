@@ -775,7 +775,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       hasQuery ? hasQuery : strFilter,
       charlist,
       {
-        key: hasQuery ? "ability" : "name",
+        key: hasQuery ? ((o) => new Character(o.id).summaryText) : "name",
         all: true,
         threshold: hasQuery ? 0.3 : 0,
       },
