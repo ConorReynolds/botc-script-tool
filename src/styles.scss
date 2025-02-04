@@ -42,6 +42,13 @@
   pointer-events: none;
 }
 
+.disable-animations {
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+}
+
 .sortable-chosen {
   opacity: 0.5;
 }

@@ -362,6 +362,23 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  for (const sidebar of ["file-select", "character-select"]) {
+    if (localStorage.getItem(sidebar)) {
+      const state = localStorage.getItem(sidebar);
+      const elem = document.querySelector(
+        sidebar === "file-select" ? "#file-selector" : "#sidebar",
+      );
+      if (state === "open") {
+        elem.classList.add("disable-animations");
+        elem.classList.add("expanded");
+        setTimeout(
+          () => elem.classList.remove("disable-animations"),
+          0.2,
+        );
+      }
+    }
+  }
+
   const fileSelectElem = document.querySelector("#file-selector");
   const scriptListElem = document.querySelector("#script-list");
   const openFileSelectButton = document.querySelector(
@@ -371,10 +388,15 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   openFileSelectButton.addEventListener("click", (event) => {
     event.preventDefault();
     fileSelectElem.classList.toggle("expanded");
+    localStorage.setItem(
+      "file-select",
+      fileSelectElem.classList.contains("expanded") ? "open" : "closed",
+    );
 
     // If on mobile, close the other sidebar.
     if (globalThis.matchMedia("(max-width: 615px)").matches) {
       document.querySelector("#sidebar").classList.remove("expanded");
+      localStorage.setItem("character-select", "closed");
     }
   });
 
@@ -738,10 +760,15 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   sidebarToggleButton.addEventListener("click", (event) => {
     event.preventDefault();
     sidebar.classList.toggle("expanded");
+    localStorage.setItem(
+      "character-select",
+      sidebar.classList.contains("expanded") ? "open" : "closed",
+    );
 
     // If on mobile, close the other sidebar.
     if (globalThis.matchMedia("(max-width: 615px)").matches) {
       document.querySelector("#file-selector").classList.remove("expanded");
+      localStorage.setItem("file-select", "closed");
     }
   });
   const allchars = document.querySelector("#all-characters");
