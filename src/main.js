@@ -246,6 +246,20 @@ function renderScript() {
     globalThis.dispatchEvent(new Event("scriptrendered"));
   }, 0);
 
+  // Enable drag and drop ordering of script items within their respective categories
+
+  for (const category of ["townsfolk", "outsider", "minion", "demon"]) {
+    const list = document.querySelector(`.script > .${category}`);
+    list.querySelectorAll("img.icon").forEach((elem) =>
+      elem.classList.add("handle")
+    );
+
+    new Sortable(list, {
+      handle: ".handle",
+      animation: 250,
+    });
+  }
+
   const firstNightList = document.querySelector(".first-night");
   const otherNightList = document.querySelector(".other-night");
   new Sortable(firstNightList, {
