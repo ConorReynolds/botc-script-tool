@@ -124,8 +124,6 @@ export class AppState {
             html += `</div>`;
         }
         html += `</div>`;
-        html +=
-            `<div class="nscripts" data-n="${this.scripts.length}">COUNT = ${this.scripts.length} / ${this.capacity}</div>`;
         return html;
     }
 }

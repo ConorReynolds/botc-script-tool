@@ -401,6 +401,11 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   });
 
   function renderFileSelector() {
+    const heading = document.querySelector("#recent-scripts-heading");
+    heading.innerHTML =
+      `Recent Scripts <span>(${appState.scripts.length} / ${appState.capacity})</span>`;
+    heading.setAttribute("data-n", appState.scripts.length);
+
     scriptListElem.innerHTML = appState.renderFileSelector();
 
     scriptListElem.querySelectorAll(".item").forEach(
