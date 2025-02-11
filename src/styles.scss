@@ -25,9 +25,6 @@
   --bg-color: #f6f6f6;
 }
 
-@import "sidebar.scss";
-@import "fileselector.scss";
-
 .row {
   display: flex;
   justify-content: center;
@@ -47,6 +44,7 @@
   -moz-transition: none !important;
   -o-transition: none !important;
   transition: none !important;
+  animation: none !important;
 }
 
 .sortable-chosen {
@@ -60,6 +58,9 @@
 .handle {
   cursor: move;
 }
+
+@import "sidebar.scss";
+@import "fileselector.scss";
 
 label {
   user-select: none;
@@ -983,9 +984,12 @@ h1 {
       background-color: white;
     }
     padding-top: 3rem;
-    &::after {
-      top: calc(1.1rem + 3rem);
-    }
+  }
+  #script h3.jinxes-heading::after {
+    top: calc(1.2rem + 3rem);
+  }
+  #script h3.travelers-and-fabled-heading::after {
+    top: calc(1.25rem + 3rem);
   }
   #script .night-sheet {
     h3 {
@@ -995,7 +999,7 @@ h1 {
       }
       padding-top: 3rem;
       &::after {
-        top: calc(1rem + 3rem);
+        top: calc(1cap + 3rem);
       }
     }
   }
