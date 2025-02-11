@@ -281,6 +281,19 @@ on the character’s icon and removing them. Annoying. A simple solution is to a
 a view mode. It disables interaction and removes some irrelevant UI elements for
 cleaner viewing.
 
+### Changing the Character Order
+
+Sometimes it makes more sense to defy SAO and order some characters yourself.
+For example, SAO-sorted Trouble Brewing starts with Chef, Investigator,
+Washerwoman, Librarian, but the official order starts with Washerwoman,
+Librarian, Investigator, Chef, which is more logical for that script.
+
+https://github.com/user-attachments/assets/e1a8732e-3ab7-48ad-ab64-8b0509ac5b53
+
+Note that changes to the script order are **purely cosmetic** and are reset
+whenever the script is rendered again. This feature is enabled mainly so that
+you can tweak a few characters just before printing.
+
 ### Changing the Night Order
 
 The night order for any script can be edited by dragging and dropping items in
