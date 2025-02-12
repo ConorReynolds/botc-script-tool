@@ -2219,24 +2219,6 @@ export const commonHomebrew = [
     "author": "patters(?)",
   },
   {
-    "id": "alejosnakecharmer",
-    "name": "Alejo Snake Charmer",
-    "edition": "homebrew",
-    "team": "townsfolk",
-    "modifies": "snakecharmer",
-    "firstNightReminder":
-      "The Snake Charmer chooses an alive player. If they choose the Demon: <ul><li>Show the ‘You are’ & Demon tokens and inform them of their new alignment. Put them to sleep.</li><li>Swap the Demon and Snake Charmer character tokens. The new Snake Charmer is poisoned.</li><li>Wake the old Demon, show the ‘You are’ & Snake Charmer tokens and inform them of their new alignment.</li></ul>",
-    "otherNightReminder":
-      "The Snake Charmer chooses an alive player. If they choose the Demon: <ul><li>Show the ‘You are’ & Demon tokens and inform them of their new alignment. Put them to sleep.</li><li>Swap the Demon and Snake Charmer character tokens. The new Snake Charmer is poisoned.</li><li>Wake the old Demon, show the ‘You are’ & Snake Charmer tokens and inform them of their new alignment.</li></ul>",
-    "reminders": [
-      "Poisoned",
-    ],
-    "setup": false,
-    "ability":
-      "Each night, choose an alive player: a chosen Demon swaps characters & alignments with you & is then poisoned.",
-    "author": "alejo",
-  },
-  {
     "id": "hiddenpsycho",
     "name": "Hidden Psycho",
     "edition": "homebrew",
