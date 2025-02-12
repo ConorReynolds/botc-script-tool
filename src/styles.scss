@@ -7,7 +7,7 @@
 @import "mixins.scss";
 
 :root {
-  font-family: IBMPlexSansCondensed, Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: IBMPlexSansCondensed, Inter, Avenir Next Condensed Medium, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
@@ -782,6 +782,11 @@ img.imported-icon {
     .night-sheet-char-name {
       font-family: IBMPlexSans;
       font-weight: bold;
+      
+      a {
+        color: inherit;
+        font-weight: bold;
+      }
 
       @media print {
         font-size: 1.2rem;

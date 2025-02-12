@@ -387,7 +387,7 @@ export class Script {
       return str.trim();
     };
     const wikilink = (c) => {
-      if (!c.isCustom) {
+      if (!c.isCustom && !c.isHomebrew) {
         return c.wikilink;
       } else if (c.isCustom && !this.almanac) {
         return c.wikilink;
@@ -425,9 +425,13 @@ export class Script {
           }" src="${c.icon}"/>`;
         str += `<div class="name-and-summary">`;
         str += `<h4 class="character-name">`;
-        str += `<a title="Read more about the ${c.name}" href="${
-          wikilink(c)
-        }" ${wikilink(c) === "#" ? "" : 'target="_blank"'}>${c.name}</a>`;
+        const wiki = wikilink(c);
+        if (wiki !== "#") {
+          str +=
+            `<a title="Read more about the ${c.name}" href="${wiki}" target="_blank">${c.name}</a>`;
+        } else {
+          str += c.name;
+        }
         for (const otherID of this.charSet) {
           const other = new Character(otherID);
           const jinx = c.jinx(other);
@@ -485,9 +489,13 @@ export class Script {
         }" src="${c.icon}"/>`;
       str += `<div class="name-and-summary">`;
       str += `<h4 class="character-name">`;
-      str += `<a title="Read more about the ${c.name}" href="${wikilink(c)}" ${
-        wikilink(c) === "#" ? "" : 'target="_blank"'
-      }>${c.name}</a>`;
+      const wiki = wikilink(c);
+      if (wiki !== "#") {
+        str +=
+          `<a title="Read more about the ${c.name}" href="${wiki}" target="_blank">${c.name}</a>`;
+      } else {
+        str += c.name;
+      }
       str += `</h4>`;
       str += `<div class="character-summary">${c.summary}</div>`;
       str += `</div>`;
@@ -504,9 +512,13 @@ export class Script {
         }" src="${c.icon}"/>`;
       str += `<div class="name-and-summary">`;
       str += `<h4 class="character-name">`;
-      str += `<a title="Read more about the ${c.name}" href="${wikilink(c)}" ${
-        wikilink(c) === "#" ? "" : 'target="_blank"'
-      }>${c.name}</a>`;
+      const wiki = wikilink(c);
+      if (wiki !== "#") {
+        str +=
+          `<a title="Read more about the ${c.name}" href="${wiki}" target="_blank">${c.name}</a>`;
+      } else {
+        str += char.name;
+      }
       str += `</h4>`;
       str += `<div class="character-summary">${c.summary}</div>`;
       str += `</div>`;
@@ -535,7 +547,15 @@ export class Script {
           str += `<div class="item">`;
           str += `<img class="${iconCls(char)} handle" src="${char.icon}"/>`;
           str += `<div>`;
-          str += `<div class="night-sheet-char-name">${char.name}</div>`;
+          str += `<div class="night-sheet-char-name">`;
+          const wiki = wikilink(char);
+          if (wiki !== "#") {
+            str +=
+              `<a title="Read more about the ${char.name}" href="${wiki}" target="_blank">${char.name}</a>`;
+          } else {
+            str += char.name;
+          }
+          str += `</div>`; // end night-sheet-char-name
           str += `<div class="night-sheet-reminder">${
             char.firstNightReminder.replaceAll(
               ":reminder:",
@@ -584,7 +604,15 @@ export class Script {
           str += `<div class="item">`;
           str += `<img class="${iconCls(char)} handle" src="${char.icon}"/>`;
           str += `<div>`;
-          str += `<div class="night-sheet-char-name">${char.name}</div>`;
+          str += `<div class="night-sheet-char-name">`;
+          const wiki = wikilink(char);
+          if (wiki !== "#") {
+            str +=
+              `<a title="Read more about the ${c.name}" href="${wiki}" target="_blank">${c.name}</a>`;
+          } else {
+            str += char.name;
+          }
+          str += `</div>`; // end night-sheet-char-name
           str += `<div class="night-sheet-reminder">${
             char.firstNightReminder.replaceAll(
               ":reminder:",
@@ -617,7 +645,15 @@ export class Script {
           str += `<div class="item">`;
           str += `<img class="${iconCls(char)} handle" src="${char.icon}"/>`;
           str += `<div>`;
-          str += `<div class="night-sheet-char-name">${char.name}</div>`;
+          str += `<div class="night-sheet-char-name">`;
+          const wiki = wikilink(char);
+          if (wiki !== "#") {
+            str +=
+              `<a title="Read more about the ${char.name}" href="${wiki}" target="_blank">${char.name}</a>`;
+          } else {
+            str += char.name;
+          }
+          str += `</div>`; // end night-sheet-char-name
           str += `<div class="night-sheet-reminder">${
             char.otherNightReminder.replaceAll(
               ":reminder:",
@@ -651,7 +687,15 @@ export class Script {
           str += `<div class="item">`;
           str += `<img class="${iconCls(char)} handle" src="${char.icon}"/>`;
           str += `<div>`;
-          str += `<div class="night-sheet-char-name">${char.name}</div>`;
+          str += `<div class="night-sheet-char-name">`;
+          const wiki = wikilink(char);
+          if (wiki !== "#") {
+            str +=
+              `<a title="Read more about the ${char.name}" href="${wiki}" target="_blank">${char.name}</a>`;
+          } else {
+            str += char.name;
+          }
+          str += `</div>`; // end night-sheet-char-name
           str += `<div class="night-sheet-reminder">${
             char.otherNightReminder.replaceAll(
               ":reminder:",
