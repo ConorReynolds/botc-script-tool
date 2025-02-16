@@ -163,8 +163,8 @@ function decompressScript(str) {
 
   const localScript = new Script();
   localScript.isRecording = false;
-  localScript.name = array[0].slice(1, -1);
-  localScript.author = array[1].slice(1, -1);
+  localScript.name = array[0];
+  localScript.author = array[1];
 
   for (let i = 2; i < array.length; i++) {
     const key = array[i];
