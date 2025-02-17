@@ -389,8 +389,6 @@ export class Script {
     const wikilink = (c) => {
       if (!c.isCustom && !c.isHomebrew) {
         return c.wikilink;
-      } else if (c.isCustom && !this.almanac) {
-        return c.wikilink;
       } else if (this.almanac) {
         return `${this.almanac}#${c.id}`;
       } else {
@@ -517,7 +515,7 @@ export class Script {
         str +=
           `<a title="Read more about the ${c.name}" href="${wiki}" target="_blank">${c.name}</a>`;
       } else {
-        str += char.name;
+        str += c.name;
       }
       str += `</h4>`;
       str += `<div class="character-summary">${c.summary}</div>`;
@@ -608,7 +606,7 @@ export class Script {
           const wiki = wikilink(char);
           if (wiki !== "#") {
             str +=
-              `<a title="Read more about the ${c.name}" href="${wiki}" target="_blank">${c.name}</a>`;
+              `<a title="Read more about the ${char.name}" href="${wiki}" target="_blank">${char.name}</a>`;
           } else {
             str += char.name;
           }
