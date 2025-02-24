@@ -94,3 +94,10 @@ export function columnify(container: HTMLElement) {
   container.style.width = oldWidth;
   container.style["flex-direction"] = "row";
 }
+
+export function moveElem<T>(array: T[], from: number, to: number) {
+  const item = array[from]!;
+  array.splice(from, 1);
+  array.splice(to, 0, item);
+  return array;
+}

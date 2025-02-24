@@ -73,4 +73,10 @@ export function columnify(container) {
     container.style.width = oldWidth;
     container.style["flex-direction"] = "row";
 }
+export function moveElem(array, from, to) {
+    const item = array[from];
+    array.splice(from, 1);
+    array.splice(to, 0, item);
+    return array;
+}
 //# sourceMappingURL=utils.js.map

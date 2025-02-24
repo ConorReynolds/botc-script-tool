@@ -21,6 +21,10 @@ export class AppState {
     return this.scripts[this.currentScriptIdx];
   }
 
+  get size(): number {
+    return this.scripts.length;
+  }
+
   setCurrentScript(script: Script) {
     this.scripts[this.currentScriptIdx] = script;
   }
@@ -146,13 +150,14 @@ export class AppState {
 
   renderFileSelector(): string {
     let html = `<div class="file-selector-container">`;
+    const scripts = this.scripts.toReversed();
 
-    for (const [idx, script] of this.scripts.entries()) {
+    for (const [idx, script] of scripts.entries()) {
       html += `<div class="item">`;
       html +=
         `<button type="button"><i class="fa-solid fa-xmark"></i></button>`;
       html += `<div class="script-name ${
-        this.currentScriptIdx === idx ? "selected" : ""
+        this.currentScriptIdx === this.size - idx - 1 ? "selected" : ""
       }">${script.name !== "" ? script.name : "New Script"}</div>`;
       html += `</div>`; // end item
     }

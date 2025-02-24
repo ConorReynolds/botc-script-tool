@@ -1,7 +1,7 @@
 import { AppState } from "./state.js";
 import { Character } from "./character.js";
 import { Script } from "./script.js";
-import { compareOn } from "./utils.js";
+import { compareOn, moveElem } from "./utils.js";
 
 let h1;
 let characterInputEl;
@@ -190,10 +190,8 @@ function firstNightUpdate(script, event) {
   if (script.firstNightOrder === undefined) {
     return;
   }
-  const valueOI = script.firstNightOrder[event.oldIndex];
-  const valueNI = script.firstNightOrder[event.newIndex];
-  script.firstNightOrder[event.oldIndex] = valueNI;
-  script.firstNightOrder[event.newIndex] = valueOI;
+
+  moveElem(script.firstNightOrder, event.oldIndex, event.newIndex);
 
   if (script.isRecording) {
     script.timeline.addInstant(script.toJSON());
@@ -204,10 +202,8 @@ function otherNightUpdate(script, event) {
   if (script.otherNightOrder === undefined) {
     return;
   }
-  const valueOI = script.otherNightOrder[event.oldIndex];
-  const valueNI = script.otherNightOrder[event.newIndex];
-  script.otherNightOrder[event.oldIndex] = valueNI;
-  script.otherNightOrder[event.newIndex] = valueOI;
+
+  moveElem(script.otherNightOrder, event.oldIndex, event.newIndex);
 
   if (script.isRecording) {
     script.timeline.addInstant(script.toJSON());
@@ -423,12 +419,35 @@ globalThis.addEventListener("DOMContentLoaded", () => {
 
     scriptListElem.innerHTML = appState.renderFileSelector();
 
+    new Sortable(scriptListElem.querySelector(".file-selector-container"), {
+      animation: 250,
+      handle: ".script-name",
+      onUpdate: function (event) {
+        const from = appState.size - event.oldIndex - 1;
+        const to = appState.size - event.newIndex - 1;
+        moveElem(appState.scripts, from, to);
+
+        const idx = appState.currentScriptIdx;
+        if (from === idx) {
+          appState.currentScriptIdx = to;
+        } else if (from <= idx && idx <= to) {
+          appState.currentScriptIdx = idx - 1;
+        } else if (to <= idx && idx <= from) {
+          appState.currentScriptIdx = idx + 1;
+        }
+
+        localStorage.setItem("app-state", appState.serialize());
+        renderFileSelector();
+      },
+    });
+
     scriptListElem.querySelectorAll(".item").forEach(
       function (item, idx, elems) {
         item.addEventListener(
           "click",
           function (event) {
-            appState.focusScript(idx);
+            event.stopPropagation();
+            appState.focusScript(appState.size - idx - 1);
             renderScript();
           },
         );
@@ -445,7 +464,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
               return;
             }
 
-            appState.removeScript(idx);
+            appState.removeScript(appState.size - idx - 1);
             renderScript();
           },
         );

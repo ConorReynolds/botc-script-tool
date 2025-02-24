@@ -13,6 +13,9 @@ export class AppState {
     get currentScript() {
         return this.scripts[this.currentScriptIdx];
     }
+    get size() {
+        return this.scripts.length;
+    }
     setCurrentScript(script) {
         this.scripts[this.currentScriptIdx] = script;
     }
@@ -116,11 +119,12 @@ export class AppState {
     }
     renderFileSelector() {
         let html = `<div class="file-selector-container">`;
-        for (const [idx, script] of this.scripts.entries()) {
+        const scripts = this.scripts.toReversed();
+        for (const [idx, script] of scripts.entries()) {
             html += `<div class="item">`;
             html +=
                 `<button type="button"><i class="fa-solid fa-xmark"></i></button>`;
-            html += `<div class="script-name ${this.currentScriptIdx === idx ? "selected" : ""}">${script.name !== "" ? script.name : "New Script"}</div>`;
+            html += `<div class="script-name ${this.currentScriptIdx === this.size - idx - 1 ? "selected" : ""}">${script.name !== "" ? script.name : "New Script"}</div>`;
             html += `</div>`;
         }
         html += `</div>`;
