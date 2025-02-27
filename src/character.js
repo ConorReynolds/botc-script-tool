@@ -7,6 +7,8 @@ export class Character {
   isFabled = false;
   isHomebrew = false;
 
+  customJinxes = {};
+
   // Stores any custom characters that are uploaded.
   static custom = {};
   static customFlat = [];
@@ -140,12 +142,12 @@ export class Character {
 
   // Only gets the jinx if the jinx is on self – always check both sides.
   jinx(other) {
-    // Object is indexed by display name. Should change it to ID eventually.
-    const thisName = this.name;
-    const otherName = other.name;
-
-    if (jinxes[thisName]) {
-      return jinxes[thisName][otherName];
+    // Deal with custom jinxes first – could override built-in ones
+    if (this.customJinxes[other.id]) {
+      return this.customJinxes[other.id];
+    }
+    if (jinxes[this.id]) {
+      return jinxes[this.id][other.id];
     }
   }
 
@@ -195,7 +197,7 @@ export class Character {
 
   get firstNightOrder() {
     if (this.isCustom) {
-      return this.index("firstNight") ?? -1;
+      return this.index("firstNight") ?? 0;
     } else {
       return null;
     }
@@ -203,7 +205,7 @@ export class Character {
 
   get otherNightOrder() {
     if (this.isCustom) {
-      return this.index("otherNight") ?? -1;
+      return this.index("otherNight") ?? 0;
     } else {
       return null;
     }
@@ -238,7 +240,13 @@ export class Character {
     }
   }
 
-  toJSON() {
+  toJSON(opts = {}) {
+    const customJinxes = Object.entries(this.customJinxes).map((x) => {
+      return {
+        "id": x[0],
+        "reason": x[1],
+      };
+    });
     if (this.isCustom) {
       return {
         "id": this.id,
@@ -246,10 +254,34 @@ export class Character {
         "image": this.icon,
         "team": this.type,
         "ability": this.summary,
-        "firstNight": this.firstNightOrder,
-        "otherNight": this.otherNightOrder,
-        "firstNightReminder": this.firstNightReminder,
-        "otherNightReminder": this.otherNightReminder,
+        "firstNight": this.firstNightOrder ?? 0,
+        "otherNight": this.otherNightOrder ?? 0,
+        "firstNightReminder": this.firstNightReminder || undefined,
+        "otherNightReminder": this.otherNightReminder || undefined,
+        "jinxes": customJinxes.length === 0 ? undefined : customJinxes,
+      };
+    } else if (this.isHomebrew && opts.exporting) {
+      // Eventually I want to have a link to the real icon for any
+      // modifications to official roles but for now there is just no icon.
+      return {
+        "id": this.id,
+        "name": this.name,
+        "image": this.index("modifies") ? undefined : this.icon,
+        "team": this.type,
+        "ability": this.summary,
+        "firstNight": this.firstNightOrder ?? 0,
+        "otherNight": this.otherNightOrder ?? 0,
+        "firstNightReminder": this.firstNightReminder || undefined,
+        "otherNightReminder": this.otherNightReminder || undefined,
+        "jinxes": customJinxes.length === 0 ? undefined : customJinxes,
+      };
+    } else if (customJinxes.length !== 0) {
+      // This will not work with the official app. You’ll need to flesh this
+      // out into a homebrew character with a different identifier, custom
+      // image, ability text, etc., same way you’d make any other.
+      return {
+        "id": this.id,
+        "jinxes": customJinxes,
       };
     } else {
       return { "id": this.id };

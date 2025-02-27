@@ -1,4 +1,5 @@
 import { Character } from "./character.js";
+import { jinxes } from "./data.js";
 import { nightorder } from "./nightorder.js";
 import { Timeline } from "./timeline.js";
 import { compareOn } from "./utils.js";
@@ -110,7 +111,18 @@ export class Script {
 
             Character.customFlat.push(item);
           }
+
           const char = new Character(id);
+
+          // Add custom jinxes for this character, if there are any
+          const customJinxes = item["jinxes"] ?? [];
+          for (const jinx of customJinxes) {
+            const other = jinx["id"];
+            const reason = jinx["reason"];
+
+            char.customJinxes[other] = reason;
+          }
+
           this.add(char);
         } catch (e) {
           console.error(e);
@@ -737,20 +749,19 @@ export class Script {
     return this.charSet.has(character.id);
   }
 
-  toJSON(prettyPrint) {
-    prettyPrint = prettyPrint ?? false;
+  toJSON(opts = {}) {
     const obj = [
       {
         "id": "_meta",
         "author": this._author,
         "name": this._name,
       },
-      ...this.townsfolk.map((c) => c.toJSON()),
-      ...this.outsiders.map((c) => c.toJSON()),
-      ...this.minions.map((c) => c.toJSON()),
-      ...this.demons.map((c) => c.toJSON()),
-      ...this.travelers.map((c) => c.toJSON()),
-      ...this.fabled.map((c) => c.toJSON()),
+      ...this.townsfolk.map((c) => c.toJSON({ exporting: opts.exporting })),
+      ...this.outsiders.map((c) => c.toJSON({ exporting: opts.exporting })),
+      ...this.minions.map((c) => c.toJSON({ exporting: opts.exporting })),
+      ...this.demons.map((c) => c.toJSON({ exporting: opts.exporting })),
+      ...this.travelers.map((c) => c.toJSON({ exporting: opts.exporting })),
+      ...this.fabled.map((c) => c.toJSON({ exporting: opts.exporting })),
     ];
     if (this.almanac) {
       obj[0]["almanac"] = this.almanac;
@@ -761,7 +772,7 @@ export class Script {
     if (this.otherNightOrder) {
       obj[0]["otherNight"] = this.otherNightOrder;
     }
-    if (prettyPrint) {
+    if (opts.prettyPrint) {
       return JSON.stringify(obj, null, 2);
     } else {
       return JSON.stringify(obj);

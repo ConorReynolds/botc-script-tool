@@ -748,7 +748,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       event.preventDefault();
       writeDialogJSON(
         appState.currentScript.name,
-        appState.currentScript.toJSON(),
+        appState.currentScript.toJSON({ prettyPrint: false, exporting: true }),
       );
     },
   );
