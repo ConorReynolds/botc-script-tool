@@ -263,7 +263,7 @@ export class Character {
     } else if (this.isHomebrew && opts.exporting) {
       const iconId = this.index("modifies") ?? this.id;
       const icon = this.index("image") ??
-        `https://creynolds.ie/botc-script-tool/src/custom-icons/ExportIcon_${iconId}.webp`;
+        `https://creynolds.ie/botc-script-tool/src/assets/custom-icons/ExportIcon_${iconId}.webp`;
       return {
         "id": this.id,
         "name": this.name,
