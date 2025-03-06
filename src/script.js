@@ -440,7 +440,7 @@ export class Script {
           str +=
             `<a title="Read more about the ${c.name}" href="${wiki}" target="_blank">${c.name}</a>`;
         } else {
-          str += c.name;
+          str += `<span>${c.name}</span>`;
         }
         for (const otherID of this.charSet) {
           const other = new Character(otherID);
@@ -504,7 +504,7 @@ export class Script {
         str +=
           `<a title="Read more about the ${c.name}" href="${wiki}" target="_blank">${c.name}</a>`;
       } else {
-        str += c.name;
+        str += `<span>${c.name}</span>`;
       }
       str += `</h4>`;
       str += `<div class="character-summary">${c.summary}</div>`;
@@ -527,7 +527,7 @@ export class Script {
         str +=
           `<a title="Read more about the ${c.name}" href="${wiki}" target="_blank">${c.name}</a>`;
       } else {
-        str += c.name;
+        str += `<span>${c.name}</span>`;
       }
       str += `</h4>`;
       str += `<div class="character-summary">${c.summary}</div>`;
@@ -563,7 +563,7 @@ export class Script {
             str +=
               `<a title="Read more about the ${char.name}" href="${wiki}" target="_blank">${char.name}</a>`;
           } else {
-            str += char.name;
+            str += `<span>${char.name}</span>`;
           }
           str += `</div>`; // end night-sheet-char-name
           str += `<div class="night-sheet-reminder">${
@@ -620,7 +620,7 @@ export class Script {
             str +=
               `<a title="Read more about the ${char.name}" href="${wiki}" target="_blank">${char.name}</a>`;
           } else {
-            str += char.name;
+            str += `<span>${char.name}</span>`;
           }
           str += `</div>`; // end night-sheet-char-name
           str += `<div class="night-sheet-reminder">${
@@ -661,7 +661,7 @@ export class Script {
             str +=
               `<a title="Read more about the ${char.name}" href="${wiki}" target="_blank">${char.name}</a>`;
           } else {
-            str += char.name;
+            str += `<span>${char.name}</span>`;
           }
           str += `</div>`; // end night-sheet-char-name
           str += `<div class="night-sheet-reminder">${
@@ -703,7 +703,7 @@ export class Script {
             str +=
               `<a title="Read more about the ${char.name}" href="${wiki}" target="_blank">${char.name}</a>`;
           } else {
-            str += char.name;
+            str += `<span>${char.name}</span>`;
           }
           str += `</div>`; // end night-sheet-char-name
           str += `<div class="night-sheet-reminder">${
