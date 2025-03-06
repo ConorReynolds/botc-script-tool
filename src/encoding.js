@@ -33,11 +33,11 @@ export function decompressScript(str) {
   return localScript;
 }
 
-export function compressScript(appState) {
+export function compressScript(script) {
   // Only works for non-custom scripts
-  const name = appState.currentScript.name;
-  const author = appState.currentScript.author;
-  const chars = Array.from(appState.currentScript.charSet);
+  const name = script.name;
+  const author = script.author;
+  const chars = Array.from(script.charSet);
 
   chars.sort();
 
@@ -60,4 +60,3 @@ export function compressScript(appState) {
   str = `${name}~${author}~${str}`;
   return str;
 }
-

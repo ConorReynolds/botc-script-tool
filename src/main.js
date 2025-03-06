@@ -1,7 +1,7 @@
 import { AppState } from "./state.js";
 import { Character } from "./character.js";
 import { Script } from "./script.js";
-import { decompressScript, compressScript } from "./encoding.js";
+import { compressScript, decompressScript } from "./encoding.js";
 import { compareOn, moveElem } from "./utils.js";
 
 let h1;
@@ -225,7 +225,7 @@ function renderScript() {
 function updateScriptLink() {
   const url = new URL(globalThis.location.href);
   if (url.searchParams.has("script")) {
-    const encodedScript = compressScript(appState);
+    const encodedScript = compressScript(appState.currentScript);
     globalThis.history.replaceState(
       null,
       "",
@@ -668,7 +668,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       if (url.searchParams.has("script")) {
         globalThis.history.replaceState(null, "", globalThis.location.pathname);
       } else {
-        const encodedScript = compressScript(appState);
+        const encodedScript = compressScript(appState.currentScript);
         globalThis.history.replaceState(
           null,
           "",
