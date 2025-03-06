@@ -261,12 +261,13 @@ export class Character {
         "jinxes": customJinxes.length === 0 ? undefined : customJinxes,
       };
     } else if (this.isHomebrew && opts.exporting) {
-      // Eventually I want to have a link to the real icon for any
-      // modifications to official roles but for now there is just no icon.
+      const iconId = this.index("modifies") ?? this.id;
+      const icon = this.index("image") ??
+        `https://creynolds.ie/botc-script-tool/src/custom-icons/ExportIcon_${iconId}.webp`;
       return {
         "id": this.id,
         "name": this.name,
-        "image": this.index("modifies") ? undefined : this.icon,
+        "image": icon,
         "team": this.type,
         "ability": this.summary,
         "firstNight": this.firstNightOrder ?? 0,
