@@ -25,6 +25,8 @@ export class Script {
   firstNightOrder;
   otherNightOrder;
 
+  bootlegger;
+
   // undo/redo history for script
   timeline;
   isRecording;
@@ -92,6 +94,7 @@ export class Script {
         this.almanac = item["almanac"];
         this.firstNightOrder = item["firstNight"];
         this.otherNightOrder = item["otherNight"];
+        this.bootlegger = item["bootlegger"];
       }
 
       if (typeof item === "object" && item["id"] !== "_meta") {
@@ -771,6 +774,9 @@ export class Script {
     }
     if (this.otherNightOrder) {
       obj[0]["otherNight"] = this.otherNightOrder;
+    }
+    if (this.bootlegger) {
+      obj[0]["bootlegger"] = this.bootlegger;
     }
     if (opts.prettyPrint) {
       return JSON.stringify(obj, null, 2);

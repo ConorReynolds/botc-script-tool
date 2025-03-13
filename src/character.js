@@ -110,6 +110,18 @@ export class Character {
     return this.index("otherNightReminder");
   }
 
+  get setup() {
+    return this.index("setup");
+  }
+
+  get reminders() {
+    return this.index("reminders");
+  }
+
+  get remindersGlobal() {
+    return this.index("remindersGlobal");
+  }
+
   get wikilink() {
     // the display name works, but I added some proper apostrophes which need
     // to be reverted to straight quotes first
@@ -254,10 +266,12 @@ export class Character {
         "image": this.icon,
         "team": this.type,
         "ability": this.summary,
-        "firstNight": this.firstNightOrder ?? 0,
-        "otherNight": this.otherNightOrder ?? 0,
+        // "firstNight": this.firstNightOrder ?? 0,
+        // "otherNight": this.otherNightOrder ?? 0,
         "firstNightReminder": this.firstNightReminder || undefined,
         "otherNightReminder": this.otherNightReminder || undefined,
+        "reminders": this.reminders,
+        "remindersGlobal": this.remindersGlobal,
         "jinxes": customJinxes.length === 0 ? undefined : customJinxes,
       };
     } else if (this.isHomebrew && opts.exporting) {
@@ -270,10 +284,12 @@ export class Character {
         "image": icon,
         "team": this.type,
         "ability": this.summary,
-        "firstNight": this.firstNightOrder ?? 0,
-        "otherNight": this.otherNightOrder ?? 0,
+        // "firstNight": this.firstNightOrder ?? 0,
+        // "otherNight": this.otherNightOrder ?? 0,
         "firstNightReminder": this.firstNightReminder || undefined,
         "otherNightReminder": this.otherNightReminder || undefined,
+        "reminders": this.reminders,
+        "remindersGlobal": this.remindersGlobal,
         "jinxes": customJinxes.length === 0 ? undefined : customJinxes,
       };
     } else if (customJinxes.length !== 0) {
