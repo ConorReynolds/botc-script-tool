@@ -563,7 +563,7 @@ export class Script {
     str += `<h3><span>FIRST NIGHT</span></h3>`;
     str += `<div class="first-night">`;
 
-    const firstNightOrder = this.firstNightOrder ??
+    const firstNightOrder = this.firstNightOrder ||
       Script.nightorder.firstNight;
 
     for (const [position, id] of firstNightOrder.entries()) {
