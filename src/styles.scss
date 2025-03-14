@@ -527,7 +527,7 @@ img.imported-icon {
             vertical-align: middle;
             line-height: 1.4;
             @media print {
-              line-height: 1.2;
+              // line-height: 1.2;
               font-size: 1.15rem;
             }
           }
@@ -655,7 +655,7 @@ img.imported-icon {
   }
 }
 
-#script h3.jinxes-heading, #script h3.travelers-and-fabled-heading {
+#script h3.jinxes-heading, #script h3.travelers-and-fabled-heading, #script h3.bootlegger-rules-heading {
   font-size: 1.3rem;
   color: #555;
   padding: 0;
@@ -682,6 +682,29 @@ img.imported-icon {
     width: 100%;
     left: 0%;
     z-index: 0;
+  }
+}
+
+.bootlegger-rules-container {
+  .bootlegger-rules {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    .item {
+      display: grid;
+      justify-content: center;
+      grid-template-columns: 3.5rem 1fr;
+      line-height: 1.4;
+      @media print {
+        font-size: 1.15rem;
+      }
+      img {
+        width: 2.5rem;
+        height: 2.5rem;
+        object-fit: contain;
+        align-self: center;
+      }
+    }
   }
 }
 
@@ -986,7 +1009,7 @@ h1 {
     }
   }
 
-  #script h3.jinxes-heading, #script h3.travelers-and-fabled-heading {
+  #script h3.jinxes-heading, #script h3.travelers-and-fabled-heading, #script h3.bootlegger-rules-heading {
     background-color: white;
     span {
       background-color: white;
@@ -998,6 +1021,9 @@ h1 {
   }
   #script h3.travelers-and-fabled-heading::after {
     top: calc(1.25rem + 3rem);
+  }
+  #script h3.bootlegger-rules-heading::after {
+    top: calc(1.2rem + 3rem);
   }
   #script .night-sheet {
     h3 {

@@ -540,18 +540,31 @@ export class Script {
     str += `</div>`; // end travelers-and-fabled
     str += `</div>`; // end travelers-and-fabled-container
 
+    if (this.bootlegger) {
+      str += `<div class="bootlegger-rules-container">`;
+      str +=
+        `<h3 class="bootlegger-rules-heading"><span>BOOTLEGGER RULES</span></h3>`;
+      str += `<div class="bootlegger-rules">`;
+      for (const rule of this.bootlegger) {
+        str += `<div class="item">`;
+        str +=
+          `<img class="icon" src="src/assets/custom-icons/Icon_bootlegger.webp"/>`;
+        str += `<div class="rule">${rule}</div>`;
+        str += `</div>`;
+      }
+      str += `</div>`;
+
+      str += `</div>`;
+    }
+
     str += `<div class="night-sheet">`;
 
     str += `<div class="first-night-container">`;
     str += `<h3><span>FIRST NIGHT</span></h3>`;
     str += `<div class="first-night">`;
 
-    let firstNightOrder;
-    if (this.firstNightOrder) {
-      firstNightOrder = this.firstNightOrder;
-    } else {
-      firstNightOrder = Script.nightorder.firstNight;
-    }
+    const firstNightOrder = this.firstNightOrder ??
+      Script.nightorder.firstNight;
 
     for (const [position, id] of firstNightOrder.entries()) {
       if (this.charSet.has(id)) {
