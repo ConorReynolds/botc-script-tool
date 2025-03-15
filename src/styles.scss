@@ -598,10 +598,6 @@ img.imported-icon {
   }
 }
 
-.jinxes-container:has(> .jinxes:empty) + .travelers-and-fabled-container {
-  page-break-before: always;
-}
-
 .travelers-and-fabled-container {
   &:has(> .travelers-and-fabled:empty) {
     display: none;
@@ -709,6 +705,7 @@ img.imported-icon {
 }
 
 #script {
+  page-break-after: always;
   .jinxes-container:has(> .jinxes:empty) + .night-sheet {
     page-break-before: auto;
   }
