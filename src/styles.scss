@@ -589,7 +589,7 @@ img.imported-icon {
 }
 
 .jinxes-container {
-  page-break-before: always;
+  // page-break-before: always;
   &:has(> .jinxes:empty) {
     // If display: none is used then the page-break instructions are not
     // obeyed.
@@ -705,7 +705,9 @@ img.imported-icon {
 }
 
 #script {
-  page-break-after: always;
+  .script {
+    page-break-after: always;
+  }
   .jinxes-container:has(> .jinxes:empty) + .night-sheet {
     page-break-before: auto;
   }
@@ -773,7 +775,7 @@ img.imported-icon {
       padding-bottom: 3rem;
     }
 
-    page-break-before: always;
+    // page-break-before: always;
     line-height: 1.4;
     display: flex;
     flex-direction: column;
