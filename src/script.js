@@ -751,8 +751,13 @@ export class Script {
       }
       return str.trim();
     };
+    const hasBootleggerRules = this.bootlegger && this.bootlegger.length > 0;
+    const fabled = hasBootleggerRules && !this.charSet.has("bootlegger")
+      ? this.fabled.concat(new Character("bootlegger"))
+      : this.fabled;
+
     let str = `<div class="tiny-fabled">`;
-    for (const c of this.fabled) {
+    for (const c of fabled) {
       str += `<div class="item">`;
       str += `<img class="icon ${iconCls(c)}" src="${c.icon}" />`;
       str += `</div>`;
