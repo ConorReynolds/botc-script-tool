@@ -14,7 +14,7 @@ currently works well on desktop and decent on mobile.
 - Import and export JSON (supports [bloodstar.xyz](https://www.bloodstar.xyz/)
   homebrew scripts)
 - Undo and redo up to 10 recent changes
-- Caches up to 15 recent scripts, accessible in the left sidebar
+- Caches up to 25 recent scripts, accessible in the left sidebar
 - Generate script links to quickly share scripts with others
 - PDF export via built-in ‘Print to PDF’
 - View/Edit modes – mainly useful if you want to use the tool as a substitute
@@ -94,7 +94,7 @@ middle-right edge of the viewport, lets you view all of the characters
 name and type.
 
 The sidebar on the left (similar button) opens the recent scripts tab, where the
-most recent 15 scripts that you were working on will appear.
+most recent 25 scripts that you were working on will appear.
 
 You can undo/redo up to ten previous changes in the currently focused script
 using the buttons on the bottom right or via the keyboard shortcuts Ctrl+Z /
@@ -236,9 +236,9 @@ of the sidebar.
 
 https://github.com/user-attachments/assets/9993225b-1854-464b-b011-d718392278ab
 
-The maximum number of scripts stored in memory is 15. If you try to add more,
+The maximum number of scripts stored in memory is 25. If you try to add more,
 the bottom script will be popped off. This is not a technical limitation and may
-be expanded if 15 is too few. (But 15 seems like plenty.)
+be expanded if 25 is too few. (But 25 seems like plenty.)
 
 ### Exporting PDFs
 

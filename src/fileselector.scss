@@ -30,7 +30,7 @@
     margin: 0;
     margin-top: -2rem;
     margin-bottom: 0.5rem;
-    &[data-n="15"] {
+    &[data-n="25"] {
       span {
         color: rgba($color: #df2525, $alpha: 0.9);
       }
@@ -71,6 +71,7 @@
         button {
           all: unset;
           cursor: pointer;
+          touch-action: manipulation;
           padding: 0.15rem;
           margin-right: 1rem;
           color: #999;

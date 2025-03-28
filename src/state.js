@@ -8,7 +8,7 @@ export class AppState {
         this.scripts = scripts;
         this.timelines = scripts.map((s) => s.timeline);
         this.currentScriptIdx = 0;
-        this.capacity = 15;
+        this.capacity = 25;
     }
     get currentScript() {
         return this.scripts[this.currentScriptIdx];
