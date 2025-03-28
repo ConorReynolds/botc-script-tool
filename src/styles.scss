@@ -700,6 +700,10 @@ img.imported-icon {
         object-fit: contain;
         align-self: center;
       }
+      .rule {
+        margin-top: auto;
+        margin-bottom: auto;
+      }
     }
   }
 }
@@ -712,6 +716,7 @@ img.imported-icon {
     page-break-before: auto;
   }
   .night-sheet {
+    page-break-before: always;
     @media print {
       font-size: 1.19rem;
     }
