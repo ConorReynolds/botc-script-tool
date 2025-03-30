@@ -233,6 +233,23 @@ export class Character {
     }
   }
 
+  static parseNightReminderText(text) {
+    const reminderToken = /\*(.*?)\*/g;
+    const reminderIcon = ":reminder";
+    const ul = /\n(\t[\s\S]*?)\n([^\t]|$)/g;
+    const li = /\t(.*?)\n/g;
+
+    text = text + "\n";
+    text = text.replaceAll(reminderToken, (_, match) => `<b>${match}</b>`);
+    text = text.replaceAll(ul, (_, block, c) => `<ul>${block}\n</ul>${c}`);
+    text = text.replaceAll(li, (_, line) => `<li>${line}</li>`);
+    text = text.replaceAll(
+      reminderIcon,
+      '<i class="fa-regular fa-circle" style="font-size: 0.9em"></i>',
+    );
+    return text;
+  }
+
   static typeRank(t) {
     switch (t) {
       case "townsfolk":

@@ -583,10 +583,7 @@ export class Script {
           }
           str += `</div>`; // end night-sheet-char-name
           str += `<div class="night-sheet-reminder">${
-            char.firstNightReminder.replaceAll(
-              ":reminder:",
-              '<i class="fa-regular fa-circle" style="font-size: 0.9em"></i>',
-            )
+            Character.parseNightReminderText(char.firstNightReminder)
           }</div>`;
           str += `</div>`;
           str += `</div>`;
@@ -596,14 +593,14 @@ export class Script {
         str += `<div class="item">`;
         str += `<div class="night-order-text handle">MINION</div>`;
         str +=
-          `<div>If there are 7 or more players, wake the Minions. Show the ‘This is the Demon’ token & point to the Demon.</div>`;
+          `<div>If there are 7 or more players, wake the Minions. Show the <b>THIS IS THE DEMON</b> token & point to the Demon.</div>`;
         str += `</div>`;
       }
       if (id === "DEMON" || id === "demoninfo" || id === "demon") {
         str += `<div class="item">`;
         str += `<div class="night-order-text handle">DEMON</div>`;
         str +=
-          `<div>If there are 7 or more players, wake the Demon. Show the ‘These are your Minions’ token & point to all Minions. Show the ‘These characters are not in play’ token & show 3 not-in-play good character tokens.</div>`;
+          `<div>If there are 7 or more players, wake the Demon. Show the <b>THESE ARE YOUR MINIONS</b> token & point to all Minions. Show the <b>THESE CHARACTERS ARE NOT IN PLAY</b> token & show 3 not-in-play good character tokens.</div>`;
         str += `</div>`;
       }
       if (id === "DUSK" || id === "dusk") {
@@ -640,10 +637,7 @@ export class Script {
           }
           str += `</div>`; // end night-sheet-char-name
           str += `<div class="night-sheet-reminder">${
-            char.firstNightReminder.replaceAll(
-              ":reminder:",
-              '<i class="fa-regular fa-circle" style="font-size: 0.9em"></i>',
-            )
+            Character.parseNightReminderText(char.firstNightReminder)
           }</div>`;
           str += `</div>`;
           str += `</div>`;
@@ -681,10 +675,7 @@ export class Script {
           }
           str += `</div>`; // end night-sheet-char-name
           str += `<div class="night-sheet-reminder">${
-            char.otherNightReminder.replaceAll(
-              ":reminder:",
-              '<i class="fa-regular fa-circle" style="font-size: 0.9em"></i>',
-            )
+            Character.parseNightReminderText(char.otherNightReminder)
           }</div>`;
           str += `</div>`;
           str += `</div>`;
@@ -723,10 +714,7 @@ export class Script {
           }
           str += `</div>`; // end night-sheet-char-name
           str += `<div class="night-sheet-reminder">${
-            char.otherNightReminder.replaceAll(
-              ":reminder:",
-              '<i class="fa-regular fa-circle" style="font-size: 0.9em"></i>',
-            )
+            Character.parseNightReminderText(char.otherNightReminder)
           }</div>`;
           str += `</div>`;
           str += `</div>`;
