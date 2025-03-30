@@ -235,7 +235,7 @@ export class Character {
 
   static parseNightReminderText(text) {
     const reminderToken = /\*(.*?)\*/g;
-    const reminderIcon = ":reminder";
+    const reminderIcon = ":reminder:";
     const ul = /\n(\t[\s\S]*?)\n([^\t]|$)/g;
     const li = /\t(.*?)\n/g;
 
