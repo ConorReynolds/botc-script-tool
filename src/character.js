@@ -209,7 +209,7 @@ export class Character {
 
   get firstNightOrder() {
     if (this.isCustom) {
-      return this.index("firstNight");
+      return this.index("firstNight") ?? -1;
     } else {
       return null;
     }
@@ -217,7 +217,7 @@ export class Character {
 
   get otherNightOrder() {
     if (this.isCustom) {
-      return this.index("otherNight");
+      return this.index("otherNight") ?? -1;
     } else {
       return null;
     }
