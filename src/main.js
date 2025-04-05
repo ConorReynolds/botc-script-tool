@@ -881,6 +881,8 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   const kickstarterForm = document.querySelector("#kickstarter-form");
   const experimentalForm = document.querySelector("#experimental-form");
   const homebrewForm = document.querySelector("#homebrew-form");
+  const customForm = document.querySelector("#custom-form");
+  const toggleAllForm = document.querySelector("#toggle-all-form");
 
   const townsfolkCheckbox = document.querySelector("#townsfolk-checkbox");
   const outsiderCheckbox = document.querySelector("#outsider-checkbox");
@@ -892,6 +894,8 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   const kickstarterCheckbox = document.querySelector("#kickstarter-checkbox");
   const experimentalCheckbox = document.querySelector("#experimental-checkbox");
   const homebrewCheckbox = document.querySelector("#homebrew-checkbox");
+  const customCheckbox = document.querySelector("#custom-checkbox");
+  const toggleAllCheckbox = document.querySelector("#toggle-all-checkbox");
 
   const allFilterForms = [
     townsfolkForm,
@@ -904,6 +908,23 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     kickstarterForm,
     experimentalForm,
     homebrewForm,
+    customForm,
+    toggleAllForm,
+  ];
+
+  // Doesn’t include the toggle-all checkbox
+  const allFilterCheckboxes = [
+    townsfolkCheckbox,
+    outsiderCheckbox,
+    minionCheckbox,
+    demonCheckbox,
+    travelerCheckbox,
+    fabledCheckbox,
+    base3Checkbox,
+    kickstarterCheckbox,
+    experimentalCheckbox,
+    homebrewCheckbox,
+    customCheckbox,
   ];
 
   function updateSidebar() {
@@ -912,6 +933,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       const isKickstarter = (x) => x === "kickstarter";
       const isExperimental = (x) => x === "";
       const isHomebrew = (x) => x === "homebrew";
+      const isCustom = (obj) => new Character(obj.id).isCustom;
       if (character.team === "townsfolk" && !townsfolkCheckbox.checked) {
         return false;
       }
@@ -942,6 +964,9 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       if (isHomebrew(character.edition) && !homebrewCheckbox.checked) {
         return false;
       }
+      if (isCustom(character) && !customCheckbox.checked) {
+        return false;
+      }
 
       return true;
     }
@@ -966,9 +991,31 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   });
 
   allFilterForms.forEach((x) => {
-    x.addEventListener("change", (_) => {
-      updateSidebar();
-    });
+    if (x.id !== "toggle-all-form") {
+      x.addEventListener("change", (_) => {
+        updateSidebar();
+
+        if (allFilterCheckboxes.every((c) => c.checked === true)) {
+          toggleAllCheckbox.checked = true;
+        } else {
+          toggleAllCheckbox.checked = false;
+        }
+      });
+    }
+  });
+
+  toggleAllForm.addEventListener("change", (_) => {
+    if (toggleAllCheckbox.checked) {
+      allFilterCheckboxes.forEach((c) => {
+        c.checked = true;
+        updateSidebar();
+      });
+    } else {
+      allFilterCheckboxes.forEach((c) => {
+        c.checked = false;
+        updateSidebar();
+      });
+    }
   });
 
   filterInputForm.addEventListener("input", function (event) {
