@@ -437,6 +437,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       appState.currentScript.name = scriptNameInput.value;
       renderFileSelector();
       updateScriptLink();
+      localStorage.setItem("app-state", appState.serialize());
     }
   });
 
@@ -463,6 +464,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       appState.currentScript.author = scriptAuthorInput.value;
       renderFileSelector();
       updateScriptLink();
+      localStorage.setItem("app-state", appState.serialize());
     }
   });
 
