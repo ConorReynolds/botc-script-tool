@@ -349,6 +349,41 @@ Bootlegger rules are simple to add:
 }
 ```
 
+Bloodstar scripts work as-is, but bear in mind that if you want the best output
+you should try to do the following:
+
+- Make sure that all your characters have images. Anything will do.
+- Try to make sure that your character’s ability text is within the official
+  character limit, which should ensure that in a printed script it is no more
+  than two lines of text. I don’t know if a specific numerical limit has been
+  published (somewhere around 130 characters) but since the fonts used are
+  proportional this can only be an approximation. Characters with extremely long
+  ability text will not render particularly nicely since the characters are laid
+  out using a CSS grid: a single large item will make all other items of that
+  type take up similar vertical space.
+
+You can overcome the ability text length issue by directly inserting HTML that
+decreases the letter spacing of the ability text. All ability text is
+interpreted as HTML and any valid HTML should render. For example, the tool
+bundles some common homebrew roles, such as the Each Night Huntsman. The ability
+text is this:
+
+```html
+<span style="letter-spacing: -0.4px">
+  Each night, choose a living player: a chosen Damsel becomes a not-in-play
+  Townsfolk. If you choose a Minion, you are poisoned. [+the Damsel]
+</span>
+```
+
+The ability text, ordinarily too long, fits in two lines with the condensed
+letter spacing. It does look a little ugly, but it helps it look more consistent
+with other abilities.
+
+You can also force-activate hyphenation via `hyphens: auto` if you think that
+might help. None of this is very useful for JSON exporting since no other tool I
+know of supports HTML in ability text, but it can help if you need to make some
+minor tweaks before printing the script.
+
 ## Missing Features
 
 It would be cool to integrate some script-building tips directly into the
