@@ -317,6 +317,38 @@ There are two ‘modes’:
   with Minions learning the Damsel, or you can put the Snake Charmer before
   Minion info if you prefer the Alejo Snake Charmer rule.
 
+### Working with Custom Characters and Bootlegger Rules
+
+Any custom character in an uploaded script JSON must have the following fields:
+
+```json
+{
+  "id": "your_id_here",
+  "name": "Your Name Here",
+  "team": "townsfolk | outsider | minion | demon | traveler | fabled",
+  "image": "some valid link",
+  "ability": "ability text"
+}
+```
+
+All fields are mandatory, including the image. Make sure that the identifier
+doesn’t clash with any internal identifiers or any other characters you’ve
+added.
+
+Bootlegger rules are simple to add:
+
+```json
+{
+  "id": "_meta",
+  "author": "Your Name",
+  "name": "Your Script Name",
+  "bootlegger": [
+    "Your custom rule here",
+    "Another custom rule"
+  ]
+}
+```
+
 ## Missing Features
 
 It would be cool to integrate some script-building tips directly into the
