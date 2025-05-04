@@ -317,7 +317,7 @@ There are two ‘modes’:
   with Minions learning the Damsel, or you can put the Snake Charmer before
   Minion info if you prefer the Alejo Snake Charmer rule.
 
-### Working with Custom Characters and Bootlegger Rules
+### Custom Characters, Bootlegger Rules, and Jinxes
 
 Any custom character in an uploaded script JSON must have the following fields:
 
@@ -331,11 +331,64 @@ Any custom character in an uploaded script JSON must have the following fields:
 }
 ```
 
-All fields are mandatory, including the image. Make sure that the identifier
-doesn’t clash with any internal identifiers or any other characters you’ve
-added.
+All fields are mandatory, including the image. Make sure that your character’s
+identifier doesn’t clash with any internal identifiers or any other characters
+you’ve added.
 
-Bootlegger rules are simple to add:
+You can (and probably should) include some other information if it is relevant
+for the character, like night order and reminder information, reminder tokens,
+custom jinxes, etc. This tool does not directly use all of this info, but it
+will pass it along unchanged to other tools that do. Here is an example of a
+fully-specified official character – your own characters should follow this
+template but delete the edition info.
+
+```json
+{
+  "id": "philosopher",
+  "name": "Philosopher",
+  "edition": "snv",
+  "team": "townsfolk",
+  "firstNightReminder": "The Philosopher might choose a character. If necessary, swap their character token. :reminder:",
+  "otherNightReminder": "The Philosopher might choose a character. If necessary, swap their character token. :reminder:",
+  "reminders": [
+    "Drunk"
+  ],
+  "remindersGlobal": [
+    "Is The Philosopher"
+  ],
+  "setup": false,
+  "ability": "Once per game, at night, choose a good character: gain that ability. If this character is in play, they are drunk.",
+  "special": [
+    {
+      "type": "reveal",
+      "name": "replace-character"
+    }
+  ],
+  "flavor": "If anything is real, beer is real. Drink, for tomorrow we may die.",
+  "firstNight": 9,
+  "otherNight": 7
+}
+```
+
+You can also override built-in characters and annotate your own data. As an
+example, suppose you upload a script JSON with the following character:
+
+```json
+{
+  "id": "huntsman",
+  "jinxes": [
+    {
+      "id": "villageidiot",
+      "reason": "If there is a spare token, the Damsel can become a Village Idiot due to the Huntsman’s ability."
+    }
+  ]
+}
+```
+
+This script (and only this script) will contain a new instance of the Huntsman
+with an additional jinx with the Village Idiot.
+
+Bootlegger rules are also simple to add:
 
 ```json
 {
