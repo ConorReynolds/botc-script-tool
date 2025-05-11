@@ -714,6 +714,18 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     },
   );
 
+  document.addEventListener("visibilitychange", function () {
+    if (document.hidden) {
+      setTimeout(function () {
+        globalThis.dispatchEvent(new Event("scriptrendered"));
+      }, 0);
+    }
+  });
+
+  globalThis.addEventListener("beforeunload", function (_event) {
+    localStorage.setItem("app-state", appState.serialize());
+  });
+
   globalThis.addEventListener("beforeprint", function (_event) {
     document.title = appState.currentScript.name;
   });
