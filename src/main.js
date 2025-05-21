@@ -151,7 +151,9 @@ function otherNightUpdate(script, event) {
   }
 }
 
-function renderScript() {
+const channel = new BroadcastChannel("state_updates");
+
+function renderScript(postEvent = true) {
   const scriptElem = document.querySelector("#script");
 
   scriptNameInput.value = appState.currentScript.name;
@@ -180,9 +182,11 @@ function renderScript() {
     }, { once: true });
   });
 
-  setTimeout(function () {
-    globalThis.dispatchEvent(new Event("scriptrendered"));
-  }, 0);
+  if (postEvent) {
+    setTimeout(function () {
+      globalThis.dispatchEvent(new Event("scriptrendered"));
+    }, 0);
+  }
 
   // Enable drag and drop ordering of script items within their respective categories
 
@@ -714,13 +718,13 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     },
   );
 
-  document.addEventListener("visibilitychange", function () {
-    if (document.hidden) {
-      setTimeout(function () {
-        globalThis.dispatchEvent(new Event("scriptrendered"));
-      }, 0);
-    }
-  });
+  // document.addEventListener("visibilitychange", function () {
+  //   if (document.hidden) {
+  //     setTimeout(function () {
+  //       globalThis.dispatchEvent(new Event("scriptrendered"));
+  //     }, 0);
+  //   }
+  // });
 
   globalThis.addEventListener("beforeunload", function (_event) {
     localStorage.setItem("app-state", appState.serialize());
@@ -988,7 +992,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     renderSidebarChars(predicate);
   }
 
-  globalThis.addEventListener("scriptrendered", (_) => {
+  function onScriptRenderEvent() {
     updateSidebar();
     renderFileSelector();
     updateScriptLink();
@@ -1002,7 +1006,21 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       "data-canredo",
       appState.currentScript.timeline.future.length === 0 ? "false" : "true",
     );
+  }
+
+  globalThis.addEventListener("scriptrendered", (_) => {
+    onScriptRenderEvent();
+    channel.postMessage({ name: "scriptrendered", data: appState.serialize() });
   });
+
+  channel.onmessage = function (event) {
+    if (event.data.name !== "scriptrendered") {
+      return;
+    }
+    appState = AppState.deserialize(event.data.data);
+    renderScript(false);
+    onScriptRenderEvent();
+  };
 
   allFilterForms.forEach((x) => {
     if (x.id !== "toggle-all-form") {

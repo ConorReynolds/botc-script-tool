@@ -340,9 +340,9 @@ export class Script {
 
   set name(newName) {
     this._name = newName;
-    // if (this.isRecording) {
-    //   this.timeline.addInstant(this.toJSON());
-    // }
+    if (this.isRecording) {
+      this.timeline.addInstant(this.toJSON());
+    }
   }
 
   get author() {
@@ -351,9 +351,9 @@ export class Script {
 
   set author(newAuthor) {
     this._author = newAuthor;
-    // if (this.isRecording) {
-    //   this.timeline.addInstant(this.toJSON());
-    // }
+    if (this.isRecording) {
+      this.timeline.addInstant(this.toJSON());
+    }
   }
 
   loadTimeline(str) {
