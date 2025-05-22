@@ -220,6 +220,11 @@ Script links do not work with homebrew characters. You’ll need to export the
 JSON and send that if your script has custom characters or rules that are not
 part of the script tool itself.
 
+When you click a script link, a new tab will open with the script loaded. If you
+already had the tool open in another tab, don’t worry – all script tool tabs are
+(mostly) synchronised. You can make changes in any instance and all changes will
+be reflected in all tabs.
+
 ### Importing Scripts
 
 You can import scripts using the Import JSON button on the top right or by
