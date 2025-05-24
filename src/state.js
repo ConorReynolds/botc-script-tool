@@ -38,29 +38,20 @@ export class AppState {
     addScript(script, idx, force) {
         idx = idx !== null && idx !== void 0 ? idx : this.scripts.length;
         force = force !== null && force !== void 0 ? force : false;
-        if (!force && this.scripts.length === 1 && this.scripts[0].isEmpty()) {
-            this.scripts[0] = script;
-            this.currentScriptIdx = 0;
+        this.scripts.push(script);
+        this.timelines.push(script.timeline);
+        if (this.scripts[0].isEmpty() && this.scripts.length == 2) {
+            this.scripts.shift();
+            this.timelines.shift();
+        }
+        this.currentScriptIdx = this.scripts.length - 1;
+        if (this.scripts.length < this.capacity) {
             return true;
         }
-        else if (this.scripts.length < this.capacity) {
-            this.scripts.splice(idx, 0, script);
-            this.timelines.splice(idx, 0, script.timeline);
-            if (this.currentScriptIdx < idx) {
-                this.currentScriptIdx = Math.min(this.currentScriptIdx + 1, this.capacity - 1);
-            }
-            return true;
-        }
-        else {
-            this.scripts.splice(0, 1);
-            this.timelines.splice(0, 1);
-            this.scripts.splice(idx, 0, script);
-            this.timelines.splice(idx, 0, script.timeline);
-            if (this.currentScriptIdx < idx) {
-                this.currentScriptIdx = Math.min(this.currentScriptIdx + 1, this.capacity - 1);
-            }
-            return false;
-        }
+        this.scripts.shift();
+        this.timelines.shift();
+        this.currentScriptIdx = this.scripts.length - 1;
+        return false;
     }
     addScriptAndFocus(script, idx, force) {
         idx = idx !== null && idx !== void 0 ? idx : this.scripts.length;

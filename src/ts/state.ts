@@ -54,33 +54,25 @@ export class AppState {
     idx = idx ?? this.scripts.length;
     force = force ?? false;
 
-    if (!force && this.scripts.length === 1 && this.scripts[0].isEmpty()) {
-      this.scripts[0] = script;
-      this.currentScriptIdx = 0;
-      return true;
-    } else if (this.scripts.length < this.capacity) {
-      this.scripts.splice(idx, 0, script);
-      this.timelines.splice(idx, 0, script.timeline);
-      if (this.currentScriptIdx < idx) {
-        this.currentScriptIdx = Math.min(
-          this.currentScriptIdx + 1,
-          this.capacity - 1,
-        );
-      }
-      return true;
-    } else {
-      this.scripts.splice(0, 1);
-      this.timelines.splice(0, 1);
-      this.scripts.splice(idx, 0, script);
-      this.timelines.splice(idx, 0, script.timeline);
-      if (this.currentScriptIdx < idx) {
-        this.currentScriptIdx = Math.min(
-          this.currentScriptIdx + 1,
-          this.capacity - 1,
-        );
-      }
-      return false;
+    this.scripts.push(script);
+    this.timelines.push(script.timeline);
+
+    // Special case: there _was_ only 1 empty script in the state
+    if (this.scripts[0].isEmpty() && this.scripts.length == 2) {
+      this.scripts.shift();
+      this.timelines.shift();
     }
+
+    this.currentScriptIdx = this.scripts.length - 1;
+    if (this.scripts.length < this.capacity) {
+      return true;
+    }
+  
+    // We have exceeded capacity, drop the bottom script (idx 0)
+    this.scripts.shift();
+    this.timelines.shift();
+    this.currentScriptIdx = this.scripts.length - 1;
+    return false;
   }
 
   addScriptAndFocus(script: Script, idx?: number, force?: boolean) {
