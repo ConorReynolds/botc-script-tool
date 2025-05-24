@@ -96,6 +96,7 @@ export class AppState {
       // Make sure currentScriptIdx points to the same thing as before
       if (this.currentScriptIdx >= idx) {
         this.currentScriptIdx = Math.max(this.currentScriptIdx - 1, 0);
+        this.focusScript(currentScriptIdx)
       }
 
       return true;
