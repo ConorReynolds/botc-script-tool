@@ -35,9 +35,7 @@ export class AppState {
             return false;
         }
     }
-    addScript(script, idx, force) {
-        idx = idx !== null && idx !== void 0 ? idx : this.scripts.length;
-        force = force !== null && force !== void 0 ? force : false;
+    addScript(script) {
         this.scripts.push(script);
         this.timelines.push(script.timeline);
         if (this.scripts[0].isEmpty() && this.scripts.length == 2) {
@@ -53,10 +51,8 @@ export class AppState {
         this.currentScriptIdx = this.scripts.length - 1;
         return false;
     }
-    addScriptAndFocus(script, idx, force) {
-        idx = idx !== null && idx !== void 0 ? idx : this.scripts.length;
-        force = force !== null && force !== void 0 ? force : false;
-        if (this.addScript(script, idx, force)) {
+    addScriptAndFocus(script) {
+        if (this.addScript(script)) {
             return this.focusScript(idx);
         }
         else if (0 <= idx && idx < this.scripts.length) {
@@ -72,6 +68,7 @@ export class AppState {
             this.timelines.splice(idx, 1);
             if (this.currentScriptIdx >= idx) {
                 this.currentScriptIdx = Math.max(this.currentScriptIdx - 1, 0);
+                this.focusScript(this.currentScriptIdx);
             }
             return true;
         }

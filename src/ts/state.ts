@@ -50,10 +50,7 @@ export class AppState {
     }
   }
 
-  addScript(script: Script, idx?: number, force?: boolean): boolean {
-    idx = idx ?? this.scripts.length;
-    force = force ?? false;
-
+  addScript(script: Script): boolean {
     this.scripts.push(script);
     this.timelines.push(script.timeline);
 
@@ -75,11 +72,8 @@ export class AppState {
     return false;
   }
 
-  addScriptAndFocus(script: Script, idx?: number, force?: boolean) {
-    idx = idx ?? this.scripts.length;
-    force = force ?? false;
-
-    if (this.addScript(script, idx, force)) {
+  addScriptAndFocus(script: Script) {
+    if (this.addScript(script)) {
       return this.focusScript(idx);
     } else if (0 <= idx && idx < this.scripts.length) {
       return this.focusScript(idx);
@@ -96,7 +90,7 @@ export class AppState {
       // Make sure currentScriptIdx points to the same thing as before
       if (this.currentScriptIdx >= idx) {
         this.currentScriptIdx = Math.max(this.currentScriptIdx - 1, 0);
-        this.focusScript(currentScriptIdx)
+        this.focusScript(this.currentScriptIdx);
       }
 
       return true;
