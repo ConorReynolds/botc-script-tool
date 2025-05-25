@@ -53,10 +53,7 @@ export class AppState {
     }
     addScriptAndFocus(script) {
         if (this.addScript(script)) {
-            return this.focusScript(idx);
-        }
-        else if (0 <= idx && idx < this.scripts.length) {
-            return this.focusScript(idx);
+            return this.focusScript();
         }
         else {
             return false;

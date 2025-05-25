@@ -64,7 +64,7 @@ export class AppState {
     if (this.scripts.length < this.capacity) {
       return true;
     }
-  
+
     // We have exceeded capacity, drop the bottom script (idx 0)
     this.scripts.shift();
     this.timelines.shift();
@@ -74,9 +74,7 @@ export class AppState {
 
   addScriptAndFocus(script: Script) {
     if (this.addScript(script)) {
-      return this.focusScript(idx);
-    } else if (0 <= idx && idx < this.scripts.length) {
-      return this.focusScript(idx);
+      return this.focusScript();
     } else {
       return false;
     }
