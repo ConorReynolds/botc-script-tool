@@ -2529,7 +2529,8 @@ export const jinxes = {
       "If the Plague Doctor dies, a living Minion gains the Scarlet Woman ability in addition to their own ability, and learns this.",
   },
   "spy": {
-    "alchemist": "The Alchemist can not have the Spy ability.",
+    "alchemist":
+      "If the Alchemist has the Spy ability, they do not see the Grimoire, and the real Spy cannot register falsely.",
     "damsel": "If the Spy is (or has been) in play, the Damsel is poisoned.",
     "heretic": "Only 1 jinxed character can be in play.",
     "magician":
