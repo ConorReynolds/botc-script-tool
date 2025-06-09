@@ -2588,7 +2588,8 @@ export const jinxes = {
     "zealot": "The Zealot might register as evil to the Vizier.",
   },
   "widow": {
-    "alchemist": "The Alchemist can not have the Widow ability.",
+    "alchemist":
+      "If the Alchemist has the Widow ability, they do not see the Grimoire.",
     "damsel": "If the Widow is (or has been) in play, the Damsel is poisoned.",
     "heretic": "Only 1 jinxed character can be in play.",
     "magician":
