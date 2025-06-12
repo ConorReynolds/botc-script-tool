@@ -2197,7 +2197,7 @@ export const chars = [
     "edition": "",
     "reminders": ["1", "2", "3"],
     "setup": true,
-    "ability": "You have all Outsider abilities. [−0 to -1 Outsiders]",
+    "ability": "You have all Outsider abilities. [−0 to −1 Outsiders]",
     "firstNight": 0,
     "otherNight": 0,
     "firstNightReminder":
