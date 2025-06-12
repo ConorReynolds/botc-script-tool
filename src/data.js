@@ -2190,6 +2190,21 @@ export const chars = [
     "ability":
       "Once per game, choose to make a wish. If granted, it might have a price & leave a clue as to its nature.",
   },
+  {
+    "id": "hermit",
+    "name": "Hermit",
+    "team": "outsider",
+    "edition": "",
+    "reminders": ["1", "2", "3"],
+    "setup": true,
+    "ability": "You have all Outsider abilities. [−0 to -1 Outsiders]",
+    "firstNight": 0,
+    "otherNight": 0,
+    "firstNightReminder":
+      "The Hermit has all Outsider abilities and may wake tonight.",
+    "otherNightReminder":
+      "The Hermit has all Outsider abilities and may wake tonight.",
+  },
 ];
 
 export const commonHomebrew = [
