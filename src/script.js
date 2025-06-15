@@ -606,15 +606,13 @@ export class Script {
       if (id === "DUSK" || id === "dusk") {
         str += `<div class="item">`;
         str += `<div class="night-order-text handle">DUSK</div>`;
-        str +=
-          `<div>Check that all eyes are closed. Some travellers act.</div>`;
+        str += `<div>Start the Night Phase.</div>`;
         str += `</div>`;
       }
       if (id === "DAWN" || id === "dawn") {
         str += `<div class="item">`;
         str += `<div class="night-order-text handle">DAWN</div>`;
-        str +=
-          `<div>Wait approximately 10 seconds. Call for eyes open, then immediately announce which players (if any) died.</div>`;
+        str += `<div>Wait for a few seconds. End the Night Phase.</div>`;
         str += `</div>`;
       }
       if (this.firstNightOrder) {
@@ -684,15 +682,13 @@ export class Script {
       if (id === "DUSK" || id === "dusk") {
         str += `<div class="item">`;
         str += `<div class="night-order-text handle">DUSK</div>`;
-        str +=
-          `<div>Check that all eyes are closed. Some travellers act.</div>`;
+        str += `<div>Start the Night Phase.</div>`;
         str += `</div>`;
       }
       if (id === "DAWN" || id === "dawn") {
         str += `<div class="item">`;
         str += `<div class="night-order-text handle">DAWN</div>`;
-        str +=
-          `<div>Wait approximately 10 seconds. Call for eyes open, then immediately announce which players (if any) died.</div>`;
+        str += `<div>Wait for a few seconds. End the Night Phase.</div>`;
         str += `</div>`;
       }
       if (this.otherNightOrder) {
