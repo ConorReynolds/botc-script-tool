@@ -245,7 +245,7 @@ export class Character {
     text = text.replaceAll(li, (_, line) => `<li>${line}</li>`);
     text = text.replaceAll(
       reminderIcon,
-      '<i class="fa-regular fa-circle" style="font-size: 0.9em"></i>',
+      '<i class="fa-solid fa-circle" style="font-size: 0.76em; color: #666; position: relative; top: -1px"></i>',
     );
     return text;
   }
