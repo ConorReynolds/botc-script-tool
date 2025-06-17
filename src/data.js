@@ -359,7 +359,7 @@ export const chars = [
     "reminders": [],
     "setup": false,
     "ability":
-      "You must use a vote token to vote. Dead players may choose to give you theirs. If so, you learn their alignment. You are sober & healthy.",
+      "You must use a vote token to vote. If a dead player gives you theirs, you learn their alignment. You are sober and healthy.",
   },
   {
     "id": "grandmother",
