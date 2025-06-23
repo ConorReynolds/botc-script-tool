@@ -1924,9 +1924,9 @@ export const chars = [
     "edition": "",
     "team": "minion",
     "firstNightReminder":
-      "The Harpy chooses 2 players. :reminder: :reminder: Wake the 1st target, show the *THIS CHARACTER SELECTED YOU* & Harpy tokens, then point to the 2nd target.",
+      "The Harpy chooses 2 players. :reminder: :reminder: Put the Harpy to sleep. Wake the 1st target, show the *THIS CHARACTER SELECTED YOU* & Harpy tokens, then point to the 2nd target.",
     "otherNightReminder":
-      "The Harpy chooses 2 players. :reminder: :reminder: Wake the 1st target, show the *THIS CHARACTER SELECTED YOU* & Harpy tokens, then point at the 2nd target.",
+      "The Harpy chooses 2 players. :reminder: :reminder: Put the Harpy to sleep. Wake the 1st target, show the *THIS CHARACTER SELECTED YOU* & Harpy tokens, then point at the 2nd target.",
     "reminders": [
       "Mad",
       "2nd",
@@ -2229,9 +2229,10 @@ export const chars = [
     "ability":
       "On your 1st day, if you nominated & executed a player, the Demon doesn’t kill tonight.",
     "firstNight": 0,
-    "otherNight": 0,
+    "otherNight": 34,
     "firstNightReminder": "",
-    "otherNightReminder": "",
+    "otherNightReminder":
+      "If the Princess nominated the player who was executed today, the Demon wakes as normal, but no one dies to the Demon's ability.",
   },
 ];
 
@@ -2473,6 +2474,8 @@ export const jinxes = {
       "If the Cannibal gains the Zealot ability, the Cannibal learns this.",
     "poppygrower":
       "If the Cannibal eats the Poppy Grower, then dies or loses the Poppy Grower ability, the Demon and Minions learn each other that night.",
+    "princess":
+      "If the Cannibal nominated & executed the Princess today, the Demon doesn’t kill tonight.",
   },
   "chambermaid": {
     "mathematician":
@@ -2643,6 +2646,8 @@ export const jinxes = {
   "alhadikhia": {
     "scarletwoman":
       "If there are two living Al-Hadikhias, the Scarlet Woman Al-Hadikhia becomes the Scarlet Woman again.",
+    "princess":
+      "If the Princess nominated & executed a player on their 1st day, no one dies to the Al-Hadikhia ability tonight.",
   },
   "fanggu": {
     "scarletwoman":

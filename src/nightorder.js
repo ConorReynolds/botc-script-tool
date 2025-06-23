@@ -118,6 +118,7 @@ export const nightorder = {
     "lunatic",
     "exorcist",
     "lycanthrope",
+    "princess",
     "legion",
     "imp",
     "zombuul",
