@@ -2205,6 +2205,34 @@ export const chars = [
     "otherNightReminder":
       "The Hermit has all Outsider abilities and may wake tonight.",
   },
+  {
+    "id": "deusexfiasco",
+    "name": "Deus ex Fiasco",
+    "team": "fabled",
+    "edition": "",
+    "reminders": ["Whoopsie"],
+    "setup": false,
+    "ability":
+      "At least once per game, the Storyteller will make a mistake, correct it, and publicly admit to it.",
+    "firstNight": 0,
+    "otherNight": 0,
+    "firstNightReminder": "",
+    "otherNightReminder": "",
+  },
+  {
+    "id": "princess",
+    "name": "Princess",
+    "team": "townsfolk",
+    "edition": "",
+    "reminders": ["Doesn’t Kill"],
+    "setup": false,
+    "ability":
+      "On your 1st day, if you nominated & executed a player, the Demon doesn’t kill tonight.",
+    "firstNight": 0,
+    "otherNight": 0,
+    "firstNightReminder": "",
+    "otherNightReminder": "",
+  },
 ];
 
 export const commonHomebrew = [
