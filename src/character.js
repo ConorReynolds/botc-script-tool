@@ -341,6 +341,15 @@ export class Character {
       return 1;
     }
 
+    // Hermit comes first, always
+    if (c1.id === "hermit" && c2.id !== "hermit") {
+      return -1;
+    }
+
+    if (c2.id === "hermit" && c1.id !== "hermit") {
+      return 1;
+    }
+
     // Steven Approved Order (NEW)
     const prefixes = [
       "You start knowing",
