@@ -1210,7 +1210,7 @@ export const chars = [
     "reminders": [],
     "setup": false,
     "ability":
-      "All players know you are the Vizier. You can not die during the day. If good voted, you may choose to execute immediately.",
+      "All players know you are the Vizier. You cannot die during the day. If good voted, you may choose to execute immediately.",
   },
   {
     "id": "nodashii",
@@ -1916,7 +1916,7 @@ export const chars = [
     ],
     "setup": false,
     "ability":
-      "All players keep their eyes closed when voting and the vote tally is secret. Each night, choose if you are drunk or not.",
+      "All players keep their eyes closed when voting and the vote tally is secret. Each night, choose if you are drunk until dusk.",
   },
   {
     "id": "harpy",
@@ -2465,6 +2465,12 @@ export const fabled = [
 ];
 
 export const jinxes = {
+  "bountyhunter": {
+    "kazali":
+      "An evil Townsfolk is only created if the Bounty Hunter is still in play after the Kazali acts.",
+    "philosopher":
+      "If the Philosopher gains the Bounty Hunter ability, a Townsfolk might turn evil.",
+  },
   "cannibal": {
     "juggler":
       "If the Juggler guesses on their first day and dies by execution, tonight the living Cannibal learns how many guesses the Juggler got correct.",
@@ -2477,26 +2483,47 @@ export const jinxes = {
     "princess":
       "If the Cannibal nominated & executed the Princess today, the Demon doesn’t kill tonight.",
   },
-  "chambermaid": {
-    "mathematician":
+  "mathematician": {
+    "lunatic":
+      "The Mathematician learns if the Lunatic attacks a different player(s) than the real Demon attacked.",
+    "chambermaid":
       "The Chambermaid learns if the Mathematician wakes tonight or not, even though the Chambermaid wakes first.",
   },
-  "philosopher": {
-    "bountyhunter":
-      "If the Philosopher gains the Bounty Hunter ability, a Townsfolk might turn evil.",
+  "butler": {
+    "organgrinder":
+      "If the Organ Grinder is causing eyes closed voting, the Butler may raise their hand to vote but their vote is only counted if their master voted too.",
   },
-  "lunatic": {
-    "mathematician":
-      "The Mathematician learns if the Lunatic attacks a different player(s) than the real Demon attacked.",
+  "heretic": {
+    "baron": "The Baron might only add 1 Outsider, not 2.",
+    "boffin": "The Demon cannot have the Heretic ability.",
+    "godfather": "Only 1 jinxed character can be in play.",
+    "lleech":
+      "If the Lleech has poisoned the Heretic then the Lleech dies, the Heretic remains poisoned.",
+    "pithag": "A Pit-Hag can not create a Heretic.",
+    "spy": "Only 1 jinxed character can be in play.",
+    "widow": "Only 1 jinxed character can be in play.",
   },
   "ogre": {
     "recluse":
       "If the Recluse registers as evil to the Ogre, the Ogre learns that they are evil.",
   },
-  "baron": {
-    "heretic": "The Baron might only add 1 Outsider, not 2.",
-    "plaguedoctor":
+  "plaguedoctor": {
+    "baron":
       "If the Storyteller gains the Baron ability, up to two players become not-in-play Outsiders.",
+    "boomdandy":
+      "If the Plague Doctor is executed and the Storyteller would gain the Boomdandy ability, the Boomdandy ability triggers immediately.",
+    "eviltwin":
+      "The Storyteller cannot gain the Evil Twin ability if the Plague Doctor dies.",
+    "fearmonger":
+      "If the Plague Doctor dies, a living Minion gains the Fearmonger ability in addition to their own ability, and learns this.",
+    "goblin":
+      "If the Plague Doctor dies, a living Minion gains the Goblin ability in addition to their own ability, and learns this.",
+    "marionette":
+      "If the Demon has a neighbor who is alive and a Townsfolk or Outsider when the Plague Doctor dies, that player becomes an evil Marionette. If there is already an extra evil player, this does not happen.",
+    "scarletwoman":
+      "If the Plague Doctor dies, a living Minion gains the Scarlet Woman ability in addition to their own ability, and learns this.",
+    "spy":
+      "If the Plague Doctor dies, a living Minion gains the Spy ability in addition to their own ability, and learns this.",
   },
   "boffin": {
     "alchemist":
@@ -2507,34 +2534,14 @@ export const jinxes = {
       "If the Demon would have the Drunk ability, the Boffin chooses a Townsfolk player to have this ability instead.",
     "goon":
       "If the Demon has the Goon ability, they can’t turn good due to this ability.",
-    "heretic": "The Demon cannot have the Heretic ability.",
     "ogre": "The Demon cannot have the Ogre ability.",
     "politician": "The Demon cannot have the Politician ability.",
     "villageidiot":
       "If there is a spare token, the Boffin can give the Demon the Village Idiot ability.",
   },
-  "boomdandy": {
-    "plaguedoctor":
-      "If the Plague Doctor is executed and the Storyteller would gain the Boomdandy ability, the Boomdandy ability triggers immediately.",
-  },
   "cerenovus": {
     "goblin":
       "The Cerenovus may choose to make a player mad that they are the Goblin.",
-  },
-  "eviltwin": {
-    "plaguedoctor":
-      "The Storyteller cannot gain the Evil Twin ability if the Plague Doctor dies.",
-  },
-  "fearmonger": {
-    "plaguedoctor":
-      "If the Plague Doctor dies, a living Minion gains the Fearmonger ability in addition to their own ability, and learns this.",
-  },
-  "goblin": {
-    "plaguedoctor":
-      "If the Plague Doctor dies, a living Minion gains the Goblin ability in addition to their own ability, and learns this.",
-  },
-  "godfather": {
-    "heretic": "Only 1 jinxed character can be in play.",
   },
   "marionette": {
     "balloonist":
@@ -2544,16 +2551,14 @@ export const jinxes = {
       "If the Marionette thinks that they are the Huntsman, the Damsel was added.",
     "lilmonsta":
       "The Marionette neighbors a Minion, not the Demon. The Marionette is not woken to choose who takes the Lil’ Monsta token, and does not learn they are the Marionette if they have the Lil’ Monsta token.",
-    "plaguedoctor":
-      "If the Demon has a neighbor who is alive and a Townsfolk or Outsider when the Plague Doctor dies, that player becomes an evil Marionette. If there is already an extra evil player, this does not happen.",
     "poppygrower":
       "When the Poppy Grower dies, the Demon learns the Marionette but the Marionette learns nothing.",
     "snitch":
       "The Marionette does not learn 3 not in-play characters. The Demon learns an extra 3 instead.",
   },
-  "organgrinder": {
-    "butler":
-      "If the Organ Grinder is causing eyes closed voting, the Butler may raise their hand to vote but their vote is only counted if their master voted too.",
+  "mastermind": {
+    "alhadikhia":
+      "If the Al-Hadikhia dies by execution, and the Mastermind is alive, the Al-Hadikhia chooses 3 good players tonight: if all 3 choose to live, evil wins. Otherwise, good wins.",
   },
   "pithag": {
     "cultleader":
@@ -2562,7 +2567,6 @@ export const jinxes = {
       "If a Pit-Hag creates a Damsel, the Storyteller chooses which player it is.",
     "goon":
       "If the Pit-Hag turns an evil player into the Goon, they can’t turn good due to their own ability.",
-    "heretic": "A Pit-Hag can not create a Heretic.",
     "ogre":
       "If the Pit-Hag turns an evil player into the Ogre, they can’t turn good due to their own ability.",
     "politician":
@@ -2571,19 +2575,18 @@ export const jinxes = {
       "If there is a spare token, the Pit-Hag can create an extra Village Idiot. If so, the drunk Village Idiot might change.",
   },
   "scarletwoman": {
-    "plaguedoctor":
-      "If the Plague Doctor dies, a living Minion gains the Scarlet Woman ability in addition to their own ability, and learns this.",
+    "alhadikhia":
+      "If there are two living Al-Hadikhias, the Scarlet Woman Al-Hadikhia becomes the Scarlet Woman again.",
+    "fanggu":
+      "If the Fang Gu chooses an Outsider and dies, the Scarlet Woman does not become the Fang Gu.",
   },
   "spy": {
     "alchemist":
       "If the Alchemist has the Spy ability, they do not see the Grimoire, and the real Spy cannot register falsely.",
     "damsel": "If the Spy is (or has been) in play, the Damsel is poisoned.",
-    "heretic": "Only 1 jinxed character can be in play.",
     "magician":
       "When the Spy sees the Grimoire, the Demon and Magician’s character tokens are removed.",
     "ogre": "The Spy registers as evil to the Ogre.",
-    "plaguedoctor":
-      "If the Plague Doctor dies, a living Minion gains the Spy ability in addition to their own ability, and learns this.",
     "poppygrower":
       "If the Poppy Grower is in play, the Spy does not see the Grimoire until the Poppy Grower dies.",
   },
@@ -2637,25 +2640,16 @@ export const jinxes = {
     "alchemist":
       "If the Alchemist has the Widow ability, they do not see the Grimoire.",
     "damsel": "If the Widow is (or has been) in play, the Damsel is poisoned.",
-    "heretic": "Only 1 jinxed character can be in play.",
     "magician":
       "When the Widow sees the Grimoire, the Demon and Magician’s character tokens are removed.",
     "poppygrower":
       "If the Poppy Grower is in play, the Widow does not see the Grimoire until the Poppy Grower dies.",
   },
   "alhadikhia": {
-    "scarletwoman":
-      "If there are two living Al-Hadikhias, the Scarlet Woman Al-Hadikhia becomes the Scarlet Woman again.",
     "princess":
       "If the Princess nominated & executed a player on their 1st day, no one dies to the Al-Hadikhia ability tonight.",
   },
-  "fanggu": {
-    "scarletwoman":
-      "If the Fang Gu chooses an Outsider and dies, the Scarlet Woman does not become the Fang Gu.",
-  },
   "kazali": {
-    "bountyhunter":
-      "An evil Townsfolk is only created if the Bounty Hunter is still in play after the Kazali acts.",
     "choirboy":
       "The Kazali can not choose the King to become a Minion if a Choirboy is in play.",
     "goon":
@@ -2718,16 +2712,14 @@ export const jinxes = {
       "The Vizier can die by execution if they are babysitting Lil’ Monsta.",
   },
   "lleech": {
-    "heretic":
-      "If the Lleech has poisoned the Heretic then the Lleech dies, the Heretic remains poisoned.",
     "mastermind":
       "If the Mastermind is alive and the Lleech’s host dies by execution, the Lleech lives but loses their ability.",
     "slayer": "If the Slayer slays the Lleech’s host, the host dies.",
   },
-  "psychopath": {
-    "golem":
-      "If the Psychopath is mad as the Golem, the Psychopath has the Golem ability instead.",
-  },
+  // "psychopath": {
+  //   "golem":
+  //     "If the Psychopath is mad as the Golem, the Psychopath has the Golem ability instead.",
+  // },
   "riot": {
     "banshee":
       "Each night*, Riot chooses an alive good player (different to previous nights): a chosen Banshee dies & gains their ability.",
@@ -2751,7 +2743,6 @@ export const jinxes = {
       "Each night*, Riot chooses an alive good player (different to previous nights): a chosen Sage uses their ability but does not die.",
     "soldier":
       "If Riot is in play, the Soldier is safe from all evil abilities.",
-    "towncrier": "Riot registers as a Minion to the Town Crier.",
   },
   "vortox": {
     "banshee":
