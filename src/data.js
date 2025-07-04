@@ -2244,9 +2244,9 @@ export const chars = [
     "ability":
       "You may choose to open your eyes at night. You wake when other evil players do.",
     "firstNightReminder":
-      "Remember to wake the Wraith when another evil player wakes.",
+      "Remember to wake the Wraith whenever another evil player wakes.",
     "otherNightReminder":
-      "Remember to wake the Wraith when another evil player wakes.",
+      "Remember to wake the Wraith whenever another evil player wakes.",
   },
 ];
 
