@@ -487,13 +487,12 @@ interpretations of `window.print()` in different browsers and operating systems.
 
 The character icons are a modified version of the unofficial icon SVGs Navean
 and Tom O created and uploaded to the unofficial Discord server, and which are
-now available [on GitHub](https://github.com/tomozbot/botc-icons). Most of the
-character data are taken directly from
+now available [on GitHub](https://github.com/tomozbot/botc-icons). The other
+icons are from [Font Awesome](https://fontawesome.com/). Most of the character
+data are taken directly from
 [clocktower.live](https://github.com/nicholas-eden/townsquare). Night reminders
-and other auxiliary text was originally written by
-[Ben Finney](http://bignose.whitetree.org/projects/botc/diy/) but very heavily
-edited by me for consistency, brevity, and accuracy. The other icons are from
-[Font Awesome](https://fontawesome.com/). The fonts are all in the
+and other auxiliary text is close to the official text, but I have added and
+changed some text to improve clarity. The fonts are all in the
 [IBM Plex family](https://www.ibm.com/plex/). The character text and jinxes are
 taken from the excellent
 [Blood on the Clocktower wiki](https://wiki.bloodontheclocktower.com).
