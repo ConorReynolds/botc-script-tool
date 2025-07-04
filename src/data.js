@@ -2234,6 +2234,20 @@ export const chars = [
     "otherNightReminder":
       "If the Princess nominated the player who was executed today, the Demon wakes as normal, but no one dies to the Demon's ability.",
   },
+  {
+    "id": "wraith",
+    "name": "Wraith",
+    "team": "minion",
+    "edition": "",
+    "reminders": [],
+    "setup": false,
+    "ability":
+      "You may choose to open your eyes at night. You wake when other evil players do.",
+    "firstNightReminder":
+      "Remember to wake the Wraith when another evil player wakes.",
+    "otherNightReminder":
+      "Remember to wake the Wraith when another evil player wakes.",
+  },
 ];
 
 export const commonHomebrew = [
@@ -2489,6 +2503,14 @@ export const jinxes = {
     "chambermaid":
       "The Chambermaid learns if the Mathematician wakes tonight or not, even though the Chambermaid wakes first.",
   },
+  "magician": {
+    "wraith":
+      "Each day, after executions, the living Magician may publicly guess a living player as the Wraith: if correct, the Demon must choose the Wraith tonight.",
+  },
+  "alchemist": {
+    "wraith":
+      "If the Alchemist has the Wraith ability, they do not, and a Wraith is in play. Each day, after executions, the living Alchemist may publicly guess a living player as the Wraith: if correct, the Demon must choose the Wraith tonight.",
+  },
   "butler": {
     "organgrinder":
       "If the Organ Grinder is causing eyes closed voting, the Butler may raise their hand to vote but their vote is only counted if their master voted too.",
@@ -2555,6 +2577,7 @@ export const jinxes = {
       "When the Poppy Grower dies, the Demon learns the Marionette but the Marionette learns nothing.",
     "snitch":
       "The Marionette does not learn 3 not in-play characters. The Demon learns an extra 3 instead.",
+    "wraith": "The Wraith does not wake with the Marionette.",
   },
   "mastermind": {
     "alhadikhia":
