@@ -2232,7 +2232,7 @@ export const chars = [
     "otherNight": 34,
     "firstNightReminder": "",
     "otherNightReminder":
-      "If the Princess nominated the player who was executed today, the Demon wakes as normal, but no one dies to the Demon's ability.",
+      "If the Princess nominated the player who was executed today, the Demon wakes as normal, but no one dies to the Demon’s ability.",
   },
   {
     "id": "wraith",
@@ -2247,6 +2247,19 @@ export const chars = [
       "Remember to wake the Wraith whenever another evil player wakes.",
     "otherNightReminder":
       "Remember to wake the Wraith whenever another evil player wakes.",
+  },
+  {
+    "id": "cacklejack",
+    "name": "Cacklejack",
+    "team": "traveler",
+    "edition": "",
+    "reminders": ["Not Me"],
+    "setup": false,
+    "ability":
+      "Each day, choose a player: a different player changes characters tonight.",
+    "firstNightReminder": "",
+    "otherNightReminder":
+      "At any time tonight, change the character token of any player not marked *NOT ME*. Wake them, show the *YOU ARE* token & their new character token.",
   },
 ];
 

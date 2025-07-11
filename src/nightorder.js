@@ -85,6 +85,7 @@ export const nightorder = {
     "dusk",
     "duchess",
     "toymaker",
+    "cacklejack",
     "wraith",
     "barista",
     "bureaucrat",
