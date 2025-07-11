@@ -2,9 +2,6 @@
   .nodisplay {
     display: none;
   }
-  @media print {
-    display: none;
-  }
   z-index: 999;
   position: fixed;
   top: 0;

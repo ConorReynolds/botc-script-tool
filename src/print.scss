@@ -1,0 +1,242 @@
+@mixin print-mode {
+  font-size: 9.5px;
+  background-color: white;
+
+  .noprint {
+    display: none;
+  }
+
+  .onlyprint {
+    display: initial;
+  }
+
+  #sidebar {
+    display: none;
+  }
+
+  #file-selector {
+    display: none;
+  }
+
+  #undo-redo-buttons {
+    display: none;
+  }
+
+  #footer {
+    text-align: left;
+    margin: auto;
+    width: var(--print-width);
+    color: #666;
+
+    .print-footer {
+      .copyright {
+        position: fixed;
+        left: calc(50% - var(--print-width) / 2);
+        bottom: 1rem;
+        padding-left: 0.25rem;
+      }
+      .page-one {
+        position: absolute;
+        bottom: 1rem;
+        right: calc(50% - var(--print-width) / 2);
+        padding-right: 0.25rem;
+      }
+    }
+  }
+
+
+
+  #title-container {
+    position: relative;
+    margin: auto;
+    margin-top: 2rem;
+    width: var(--print-width);
+    #fabled-icon-container {
+      position: absolute;
+      top: 0;
+      right: 0;
+      .tiny-fabled {
+        margin-top: 0.75rem;
+        margin-right: 1rem;
+        display: flex;
+        flex-direction: row;
+        column-gap: 0.5rem;
+        .item {
+          .icon {
+            width: 2rem;
+            height: 2rem;
+            object-fit: contain;
+          }
+        }
+      }
+    }
+  }
+
+  #script, .jinxes {
+    width: var(--print-width);
+    max-width: var(--print-width);
+    padding: 1rem;
+    // width: 70rem;
+    margin: auto;
+    h3 {
+      margin: 0;
+      padding: 0;
+      background-color: white;
+      span {
+        background-color: white;
+      }
+      &::after {
+        top: 1.2rem;
+        // border-top: 1px solid grey;
+      }
+    }
+    .townsfolk, .outsider, .minion, .demon, .travelers, .fabled {
+      column-gap: 3rem;
+      row-gap: 0.5rem;
+    }
+  }
+
+  #script h3.jinxes-heading, #script h3.travelers-and-fabled-heading, #script h3.bootlegger-rules-heading {
+    background-color: white;
+    span {
+      background-color: white;
+    }
+    padding-top: 3rem;
+  }
+  #script h3.jinxes-heading::after {
+    top: calc(1.2rem + 3rem);
+  }
+  #script h3.travelers-and-fabled-heading::after {
+    top: calc(1.25rem + 3rem);
+  }
+  #script h3.bootlegger-rules-heading::after {
+    top: calc(1.2rem + 3rem);
+  }
+  #script .night-sheet {
+    h3 {
+      background-color: white;
+      span {
+        background-color: white;
+      }
+      padding-top: 3rem;
+      &::after {
+        top: calc(1cap + 3rem);
+      }
+    }
+  }
+
+  #script {
+    // font-family: IBMPlexSans;
+    .townsfolk, .outsider, .minion, .demon {
+      margin-top: 0.5rem;
+      row-gap: 1.5rem;
+    }
+    .script, .travelers-and-fabled-container {
+      .item {
+        .name-and-summary {
+          margin-top: -0.4rem;
+        }
+
+        .character-name {
+          font-size: 1.2rem;
+        }
+        .character-summary {
+          font-size: 1.1rem;
+          margin-top: -0.3rem;
+          line-height: 1.25;
+        }
+      }
+    }
+  }
+
+  .jinxes {
+    font-size: 1.19rem;
+  }
+
+  .night-sheet.compact .jinxes {
+    font-size: 1.2rem;
+  }
+
+  .container {
+    padding-top: 0.5rem;
+  }
+
+  #script {
+    .night-sheet {
+      font-size: 1.19rem;
+      .night-sheet-char-name {
+        font-size: 1.2rem;
+      } 
+    }
+    .script {
+      .item {
+        .name-and-summary {
+          .character-summary {
+            line-height: 1.4;
+            font-size: 1.19rem;
+          }
+        }
+      }
+    }
+    .travelers-and-fabled-container {
+      .item {
+        .name-and-summary {
+          .character-summary {
+            font-size: 1.15rem;
+          }
+        }
+      }
+    }
+  }
+
+  .bootlegger-rules-container {
+    .bootlegger-rules {
+      .item {
+        font-size: 1.15rem;
+      }
+    }
+  }
+}
+
+@media print {
+  :root {
+    @include print-mode;
+  }
+
+  @page {
+    margin: 0;
+  }
+}
+
+:root[print-mode] {
+  @include print-mode;
+
+  #print-options {
+    display: initial !important;
+    font-family: IBMPlexSans;
+
+    .items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+  }
+
+  body {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 2rem;
+
+    .container {
+      margin: 4rem;
+    }
+
+    #print-options {
+      margin: 4rem;
+    }
+  }
+
+  #footer {
+    display: none;
+  }
+}
