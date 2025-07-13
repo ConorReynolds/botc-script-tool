@@ -61,7 +61,7 @@ export class AppState {
     }
 
     this.currentScriptIdx = this.scripts.length - 1;
-    if (this.scripts.length < this.capacity) {
+    if (this.scripts.length <= this.capacity) {
       return true;
     }
 
@@ -70,14 +70,6 @@ export class AppState {
     this.timelines.shift();
     this.currentScriptIdx = this.scripts.length - 1;
     return false;
-  }
-
-  addScriptAndFocus(script: Script) {
-    if (this.addScript(script)) {
-      return this.focusScript();
-    } else {
-      return false;
-    }
   }
 
   removeScript(idx: number): boolean {

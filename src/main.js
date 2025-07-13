@@ -27,7 +27,7 @@ function readFileDialog() {
         const localScript = new Script();
         localScript.loadFromJSON(JSON.parse(content));
         localScript.timeline.forget();
-        appState.addScriptAndFocus(localScript);
+        appState.addScript(localScript);
         renderScript();
       }
     };
@@ -295,7 +295,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(globalThis.location.search);
   if (urlParams.get("script")) {
     const script = decompressScript(urlParams.get("script"));
-    appState.addScriptAndFocus(script);
+    appState.addScript(script);
 
     // Normally don’t have to sort when loading from local storage since it is
     // always stored sorted, but URL param scripts are not sorted.
@@ -422,7 +422,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   document.querySelector("#new-script-button").addEventListener(
     "click",
     function (event) {
-      appState.addScriptAndFocus(new Script());
+      appState.addScript(new Script());
       renderScript();
     },
   );
@@ -432,56 +432,57 @@ globalThis.addEventListener("DOMContentLoaded", () => {
 
   scriptNameInput.addEventListener("focus", function (_) {
     onFocusScriptName = scriptNameInput.value;
-    appState.currentScript.isRecording = false;
   });
 
   scriptNameInput.addEventListener("blur", function (_) {
-    appState.currentScript.isRecording = true;
     if (scriptNameInput.value !== onFocusScriptName) {
       appState.currentScript.name = scriptNameInput.value;
+      localStorage.setItem("app-state", appState.serialize());
       renderFileSelector();
       updateScriptLink();
-      localStorage.setItem("app-state", appState.serialize());
+      h1.innerHTML =
+        `${appState.currentScript.name}<span>by ${appState.currentScript.author}</span>`;
     }
   });
 
   scriptNameInput.addEventListener("keydown", function (event) {
     if (event.key === "Enter" && scriptNameInput.value !== onFocusScriptName) {
-      appState.currentScript.isRecording = true;
       appState.currentScript.name = scriptNameInput.value;
+      localStorage.setItem("app-state", appState.serialize());
       renderFileSelector();
       updateScriptLink();
-      appState.currentScript.isRecording = false;
-      onFocusScriptName = scriptNameInput.value;
+      h1.innerHTML =
+        `${appState.currentScript.name}<span>by ${appState.currentScript.author}</span>`;
       scriptNameInput.blur();
     }
   });
 
   scriptAuthorInput.addEventListener("focus", function (_) {
     onFocusScriptAuthor = scriptAuthorInput.value;
-    appState.currentScript.isRecording = false;
   });
 
   scriptAuthorInput.addEventListener("blur", function (_) {
-    appState.currentScript.isRecording = true;
     if (scriptAuthorInput.value !== onFocusScriptAuthor) {
       appState.currentScript.author = scriptAuthorInput.value;
+      localStorage.setItem("app-state", appState.serialize());
       renderFileSelector();
       updateScriptLink();
-      localStorage.setItem("app-state", appState.serialize());
+      h1.innerHTML =
+        `${appState.currentScript.name}<span>by ${appState.currentScript.author}</span>`;
     }
   });
 
   scriptAuthorInput.addEventListener("keydown", function (event) {
+    console.log(`key pressed: ${event.key}`);
     if (
       event.key === "Enter" && scriptAuthorInput.value !== onFocusScriptAuthor
     ) {
-      appState.currentScript.isRecording = true;
       appState.currentScript.author = scriptAuthorInput.value;
+      localStorage.setItem("app-state", appState.serialize());
       renderFileSelector();
       updateScriptLink();
-      appState.currentScript.isRecording = false;
-      onFocusScriptAuthor = scriptNameInput.value;
+      h1.innerHTML =
+        `${appState.currentScript.name}<span>by ${appState.currentScript.author}</span>`;
       scriptAuthorInput.blur();
     }
   });
@@ -490,9 +491,6 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     "input",
     function (event) {
       event.preventDefault();
-      appState.currentScript.name = scriptNameInput.value;
-      h1.innerHTML =
-        `${appState.currentScript.name}<span>by ${appState.currentScript.author}</span>`;
     },
   );
 
@@ -500,9 +498,6 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     "input",
     function (event) {
       event.preventDefault();
-      appState.currentScript.author = scriptAuthorInput.value;
-      h1.innerHTML =
-        `${appState.currentScript.name}<span>by ${appState.currentScript.author}</span>`;
     },
   );
 
