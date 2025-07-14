@@ -144,6 +144,12 @@ label {
     padding-bottom: -0.1rem;
     border-radius: 8px;
 
+    >button {
+      all: unset;
+      margin-top: 0.25rem;
+      cursor: pointer;
+    }
+
     a {
       color: #666;
       text-decoration: underline;
@@ -156,6 +162,46 @@ label {
         transition-delay: 0.05s;
       }
     }
+  }
+}
+
+dialog {
+  background-color: var(--bg-color);
+  font-size: 1.1rem;
+  font-family: IBMPlexSans;
+  max-width: min(50ch, calc(100% - 4rem));
+
+  // @media (max-width: 635px) {
+  //   font-size: 1.1rem;
+  // }
+
+  @media not all and (max-width: 635px) {
+    padding: 2rem;
+  }
+
+  border-width: 2px;
+
+  h2 {
+    font-family: IBMPlexSerif;
+    font-weight: normal;
+    font-size: 1.5em;
+    line-height: 1.2;
+    margin-top: 0.5rem;
+  }
+
+  ul {
+    padding-left: 1.5em;
+    li {
+      margin-top: 0.75em;
+    }
+  }
+
+  &::backdrop {
+    backdrop-filter: blur(2px);
+  }
+
+  &:focus {
+    outline: none;
   }
 }
 

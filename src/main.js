@@ -1065,4 +1065,18 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       renderScript();
     }
   });
+
+  const helpDialog = document.querySelector("#help-dialog");
+  const showHelpDialogButton = document.querySelector(
+    "#help-dialog + button",
+  );
+  const closeHelpDialogButton = document.querySelector("#help-dialog button");
+
+  showHelpDialogButton.addEventListener("click", function (_event) {
+    helpDialog.showModal();
+  });
+
+  closeHelpDialogButton.addEventListener("click", function (_event) {
+    helpDialog.close();
+  });
 });
