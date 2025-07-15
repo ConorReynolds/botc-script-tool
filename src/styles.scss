@@ -762,6 +762,12 @@ img.imported-icon {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
+
+    @media (max-width: 650px) {
+      grid-template-columns: 1fr;
+      row-gap: 1rem;
+    }
+
     .item {
       display: grid;
       justify-content: center;
