@@ -123,6 +123,11 @@ function toggleLock(width) {
     elem.classList.toggle("uninteractable");
   });
 
+  document.querySelector("#add-bootlegger-rule").classList.toggle("hidden");
+  document.querySelector(".bootlegger-rules").classList.toggle(
+    "uninteractable",
+  );
+
   const metadata = document.querySelector("#metadata");
   metadata.style.width = width;
 }
