@@ -110,6 +110,7 @@ label {
   }
 
   position: fixed;
+  z-index: 1;
   font-size: 0.9rem;
   width: var(--width);
   display: flex;
@@ -711,13 +712,38 @@ img.imported-icon {
   margin-left: 0;
   background-color: #f6f6f6;
   text-align: center;
+  pointer-events: none;
+  z-index: 0;
   // border-top: 0.5px solid black;
   // letter-spacing: 1.3px;
   span {
     position: relative;
-    z-index: 1;
+    z-index: 0;
     background-color: #f6f6f6;
     padding: 0 1em;
+
+    button {
+      all: unset;
+      pointer-events: auto;
+      cursor: pointer;
+      position: relative;
+      padding-left: 0.5em;
+      z-index: 999;
+      color: #999;
+      // margin-left: 0.5em;
+      // padding-left: 0.25em;
+      // padding-right: 0.25em;
+      // text-align: center;
+      // vertical-align: middle;
+      // border: solid;
+      // border-width: 0.5px;
+
+      &:hover {
+        transition-property: color;
+        transition-duration: 0.2s;
+        color: #0f0f0f;
+      }
+    }
   }
   &::after {
     content: "";
@@ -727,7 +753,7 @@ img.imported-icon {
     top: 1.4rem;
     width: 100%;
     left: 0%;
-    z-index: 0;
+    z-index: -1;
   }
 }
 
@@ -750,6 +776,11 @@ img.imported-icon {
       .rule {
         margin-top: auto;
         margin-bottom: auto;
+
+        &:empty:not(:focus):before {
+          content: attr(placeholder);
+          color: #999;
+        }
       }
     }
   }

@@ -224,6 +224,66 @@ function renderScript(postEvent = true) {
       }, 0);
     },
   });
+
+  // Register bootlegger button functionality
+  const bootleggerRuleButton = document.querySelector("#add-bootlegger-rule");
+  const bootleggerRules = document.querySelector(".bootlegger-rules");
+
+  bootleggerRules.querySelectorAll(".item").forEach(function (item) {
+    item.querySelector("img").addEventListener("click", function (_event) {
+      const idx = parseInt(item.getAttribute("data-idx"));
+      appState.currentScript.removeBootleggerRule(idx);
+      // item.remove();
+      renderScript();
+    });
+
+    item.querySelector(".rule").addEventListener(
+      "keydown",
+      function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          this.blur();
+        }
+      },
+    );
+
+    item.querySelector(".rule").addEventListener("blur", function (event) {
+      // Update the state – need to keep track of index
+      const idx = parseInt(item.getAttribute("data-idx"));
+      const newRule = item.querySelector(".rule").textContent;
+      if (appState.currentScript.bootlegger[idx] !== newRule) {
+        appState.currentScript.setBootleggerRule(
+          idx,
+          item.querySelector(".rule").textContent,
+        );
+        renderScript();
+      }
+    });
+  });
+
+  bootleggerRuleButton.addEventListener(
+    "click",
+    function (_event) {
+      // currentRules = appState.currentScript.bootlegger ?? [];
+      // currentRules.push("");
+
+      appState.currentScript.addBootleggerRule("");
+
+      const item = document.createElement("div");
+
+      item.classList.add("item");
+      item.setAttribute(
+        "data-idx",
+        appState.currentScript.bootlegger.length - 1,
+      );
+
+      item.innerHTML =
+        `<img class="icon" src="src/assets/custom-icons/Icon_bootlegger.webp"><div class="rule" contenteditable="plaintext-only" placeholder="New bootlegger rule …"></div>`;
+
+      bootleggerRules.append(item);
+      renderScript();
+    },
+  );
 }
 
 function updateScriptLink() {

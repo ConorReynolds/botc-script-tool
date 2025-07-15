@@ -141,6 +141,13 @@ export class Script {
       }
     }
 
+    if (
+      this.bootlegger && this.bootlegger.length > 0 &&
+      !this.charSet.has("bootlegger")
+    ) {
+      this.add(new Character("bootlegger"));
+    }
+
     this.sort();
 
     // If the script is a bloodstar import and has no explicit night order,
@@ -356,6 +363,31 @@ export class Script {
     }
   }
 
+  addBootleggerRule(rule) {
+    if (!this.bootlegger) {
+      this.bootlegger = [];
+    }
+
+    this.bootlegger.push(rule);
+    if (this.isRecording) {
+      this.timeline.addInstant(this.toJSON());
+    }
+  }
+
+  removeBootleggerRule(idx) {
+    this.bootlegger.splice(idx, 1);
+    if (this.isRecording) {
+      this.timeline.addInstant(this.toJSON());
+    }
+  }
+
+  setBootleggerRule(idx, rule) {
+    this.bootlegger[idx] = rule;
+    if (this.isRecording) {
+      this.timeline.addInstant(this.toJSON());
+    }
+  }
+
   loadTimeline(str) {
     const obj = JSON.parse(str);
     this.timeline = obj;
@@ -540,22 +572,32 @@ export class Script {
     str += `</div>`; // end travelers-and-fabled
     str += `</div>`; // end travelers-and-fabled-container
 
-    if (this.bootlegger) {
-      str += `<div class="bootlegger-rules-container">`;
-      str +=
-        `<h3 class="bootlegger-rules-heading"><span>BOOTLEGGER RULES</span></h3>`;
-      str += `<div class="bootlegger-rules">`;
-      for (const rule of this.bootlegger) {
-        str += `<div class="item">`;
-        str +=
-          `<img class="icon" src="src/assets/custom-icons/Icon_bootlegger.webp"/>`;
-        str += `<div class="rule">${rule}</div>`;
-        str += `</div>`;
-      }
-      str += `</div>`;
+    // if (
+    //   (this.bootlegger && this.bootlegger.length > 0) ||
+    //   this.charSet.has("bootlegger")
+    // ) {
+    const hasRules = (this.bootlegger && this.bootlegger.length > 0) ||
+      this.charSet.has("bootlegger");
 
+    str += `<div class="bootlegger-rules-container ${
+      !hasRules ? "hidden" : ""
+    }">`;
+    str +=
+      `<h3 class="bootlegger-rules-heading"><span>BOOTLEGGER RULES<button id="add-bootlegger-rule"><i class="fa-solid fa-plus"></i></button></span></h3>`;
+    str += `<div class="bootlegger-rules">`;
+
+    for (const [idx, rule] of (this.bootlegger ?? []).entries()) {
+      str += `<div class="item" data-idx="${idx}">`;
+      str +=
+        `<img class="icon" src="src/assets/custom-icons/Icon_bootlegger.webp"/>`;
+      str +=
+        `<div class="rule" contenteditable="plaintext-only" placeholder="New bootlegger rule …">${rule}</div>`;
       str += `</div>`;
     }
+    str += `</div>`;
+
+    str += `</div>`;
+    // }
 
     str += `<div class="night-sheet">`;
 
