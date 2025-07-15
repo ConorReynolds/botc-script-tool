@@ -393,7 +393,14 @@ example, suppose you upload a script JSON with the following character:
 This script (and only this script) will contain a new instance of the Huntsman
 with an additional jinx with the Village Idiot.
 
-Bootlegger rules are also simple to add:
+Bootlegger rules are simple to add. First, add the Bootlegger fabled normally.
+You’ll see a new section pop up called ‘Bootlegger Rules’ with a plus button –
+click it to add a new editable rule. To remove a rule, click the small
+bootlegger icon next to it. (These changes can be undone/redone as usual.)
+
+https://github.com/user-attachments/assets/050841fc-ce77-40c5-87ed-9e49cd152165
+
+Alternatively, you can add rules directly to the JSON:
 
 ```json
 {
