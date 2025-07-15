@@ -166,18 +166,24 @@ label {
 }
 
 dialog {
+  --pad-x: 2rem;
+
+  @media (max-width: 520px) {
+    --pad-x: 1rem;
+  }
+
   background-color: var(--bg-color);
   font-size: 1.1rem;
   font-family: IBMPlexSans;
-  max-width: min(55ch, calc(100% - 4rem));
+  max-width: min(55ch, calc(100% - 4rem - var(--pad-x)));
+  max-height: calc(100% - 4rem);
 
   // @media (max-width: 635px) {
   //   font-size: 1.1rem;
   // }
 
-  @media not all and (max-width: 635px) {
-    padding: 2rem;
-  }
+  padding-left: var(--pad-x);
+  padding-right: var(--pad-x);
 
   border-width: 2px;
 
