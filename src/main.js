@@ -283,7 +283,7 @@ function renderScript(postEvent = true) {
       );
 
       item.innerHTML =
-        `<img class="icon" src="src/assets/custom-icons/Icon_bootlegger.webp"><div class="rule" contenteditable="plaintext-only" placeholder="New bootlegger rule …"></div>`;
+        `<img class="icon" src="src/assets/custom-icons/Icon_bootlegger.webp"><div class="rule" contenteditable="plaintext-only" spellcheck="false" placeholder="New bootlegger rule …"></div>`;
 
       bootleggerRules.append(item);
       renderScript();

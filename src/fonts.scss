@@ -150,3 +150,12 @@
     font-display: auto;
     src: url(assets/fonts/IBMPlexSans-Condensed/IBMPlexSansCondensed-BoldItalic.woff2) format("woff2");
 }
+
+@font-face {
+    font-family: IBMPlexSansCondensed;
+    font-style: normal;
+    font-weight: 600;
+    font-stretch: normal;
+    font-display: auto;
+    src: url(assets/fonts/IBMPlexSans-Condensed/IBMPlexSansCondensed-SemiBold.woff2) format("woff2");
+}

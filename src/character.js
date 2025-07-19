@@ -91,7 +91,14 @@ export class Character {
   }
 
   get summary() {
-    return this.index("ability");
+    let text = this.index("ability");
+    const setup = /\[(.*?)\]/g;
+    text = text.replaceAll(
+      setup,
+      (_, match) => `<span class="setup-text">[${match}]</span>`,
+    );
+
+    return text;
   }
 
   get type() {
