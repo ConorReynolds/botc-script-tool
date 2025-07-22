@@ -492,7 +492,6 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   );
 
   scriptNameInput.addEventListener("change", function (_) {
-    console.log(`changed name: ${scriptNameInput.value}`);
     appState.currentScript.name = scriptNameInput.value;
     localStorage.setItem("app-state", appState.serialize());
     renderFileSelector();
@@ -501,14 +500,25 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       `${appState.currentScript.name}<span>by ${appState.currentScript.author}</span>`;
   });
 
+  scriptNameInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      scriptNameInput.blur();
+    }
+  });
+
   scriptAuthorInput.addEventListener("change", function (_) {
-    console.log(`changed name: ${scriptAuthorInput.value}`);
     appState.currentScript.author = scriptAuthorInput.value;
     localStorage.setItem("app-state", appState.serialize());
     renderFileSelector();
     updateScriptLink();
     h1.innerHTML =
       `${appState.currentScript.name}<span>by ${appState.currentScript.author}</span>`;
+  });
+
+  scriptAuthorInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+      scriptAuthorInput.blur();
+    }
   });
 
   document.getElementById("script-name-form").addEventListener(
