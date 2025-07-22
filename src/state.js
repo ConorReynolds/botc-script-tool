@@ -38,10 +38,6 @@ export class AppState {
     addScript(script) {
         this.scripts.push(script);
         this.timelines.push(script.timeline);
-        if (this.scripts[0].isEmpty() && this.scripts.length == 2) {
-            this.scripts.shift();
-            this.timelines.shift();
-        }
         this.currentScriptIdx = this.scripts.length - 1;
         if (this.scripts.length <= this.capacity) {
             return true;
