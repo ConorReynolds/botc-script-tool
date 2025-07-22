@@ -500,8 +500,10 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   });
 
   scriptNameInput.addEventListener("blur", function (_) {
-    if (scriptNameInput.value !== onFocusScriptName) {
-      appState.currentScript.name = scriptNameInput.value;
+    const scriptName = scriptNameInput.value;
+    if (scriptName !== onFocusScriptName) {
+      onFocusScriptName = scriptName;
+      appState.currentScript.name = scriptName;
       localStorage.setItem("app-state", appState.serialize());
       renderFileSelector();
       updateScriptLink();
@@ -511,13 +513,8 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   });
 
   scriptNameInput.addEventListener("keydown", function (event) {
-    if (event.key === "Enter" && scriptNameInput.value !== onFocusScriptName) {
-      appState.currentScript.name = scriptNameInput.value;
-      localStorage.setItem("app-state", appState.serialize());
-      renderFileSelector();
-      updateScriptLink();
-      h1.innerHTML =
-        `${appState.currentScript.name}<span>by ${appState.currentScript.author}</span>`;
+    const scriptName = scriptNameInput.value;
+    if (event.key === "Enter" && scriptName !== onFocusScriptName) {
       scriptNameInput.blur();
     }
   });
@@ -527,8 +524,9 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   });
 
   scriptAuthorInput.addEventListener("blur", function (_) {
-    if (scriptAuthorInput.value !== onFocusScriptAuthor) {
-      appState.currentScript.author = scriptAuthorInput.value;
+    const scriptAuthor = scriptAuthorInput.value;
+    if (scriptAuthor !== onFocusScriptAuthor) {
+      appState.currentScript.author = scriptAuthor;
       localStorage.setItem("app-state", appState.serialize());
       renderFileSelector();
       updateScriptLink();
@@ -538,16 +536,8 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   });
 
   scriptAuthorInput.addEventListener("keydown", function (event) {
-    console.log(`key pressed: ${event.key}`);
-    if (
-      event.key === "Enter" && scriptAuthorInput.value !== onFocusScriptAuthor
-    ) {
-      appState.currentScript.author = scriptAuthorInput.value;
-      localStorage.setItem("app-state", appState.serialize());
-      renderFileSelector();
-      updateScriptLink();
-      h1.innerHTML =
-        `${appState.currentScript.name}<span>by ${appState.currentScript.author}</span>`;
+    const scriptAuthor = scriptAuthorInput.value;
+    if (event.key === "Enter" && scriptAuthor !== onFocusScriptAuthor) {
       scriptAuthorInput.blur();
     }
   });
