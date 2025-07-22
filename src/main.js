@@ -242,18 +242,7 @@ function renderScript(postEvent = true) {
       renderScript();
     });
 
-    item.querySelector(".rule").addEventListener(
-      "keydown",
-      function (event) {
-        if (event.key === "Enter") {
-          event.preventDefault();
-          this.blur();
-        }
-      },
-    );
-
-    item.querySelector(".rule").addEventListener("blur", function (event) {
-      // Update the state – need to keep track of index
+    item.querySelector(".rule").addEventListener("change", function (_event) {
       const idx = parseInt(item.getAttribute("data-idx"));
       const newRule = item.querySelector(".rule").textContent;
       if (appState.currentScript.bootlegger[idx] !== newRule) {
@@ -264,6 +253,16 @@ function renderScript(postEvent = true) {
         renderScript();
       }
     });
+
+    item.querySelector(".rule").addEventListener(
+      "keydown",
+      function (event) {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          this.blur();
+        }
+      },
+    );
   });
 
   bootleggerRuleButton.addEventListener(
@@ -492,54 +491,24 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     },
   );
 
-  let onFocusScriptName;
-  let onFocusScriptAuthor;
-
-  scriptNameInput.addEventListener("focus", function (_) {
-    onFocusScriptName = scriptNameInput.value;
+  scriptNameInput.addEventListener("change", function (_) {
+    console.log(`changed name: ${scriptNameInput.value}`);
+    appState.currentScript.name = scriptNameInput.value;
+    localStorage.setItem("app-state", appState.serialize());
+    renderFileSelector();
+    updateScriptLink();
+    h1.innerHTML =
+      `${appState.currentScript.name}<span>by ${appState.currentScript.author}</span>`;
   });
 
-  scriptNameInput.addEventListener("blur", function (_) {
-    const scriptName = scriptNameInput.value;
-    if (scriptName !== onFocusScriptName) {
-      onFocusScriptName = scriptName;
-      appState.currentScript.name = scriptName;
-      localStorage.setItem("app-state", appState.serialize());
-      renderFileSelector();
-      updateScriptLink();
-      h1.innerHTML =
-        `${appState.currentScript.name}<span>by ${appState.currentScript.author}</span>`;
-    }
-  });
-
-  scriptNameInput.addEventListener("keydown", function (event) {
-    const scriptName = scriptNameInput.value;
-    if (event.key === "Enter" && scriptName !== onFocusScriptName) {
-      scriptNameInput.blur();
-    }
-  });
-
-  scriptAuthorInput.addEventListener("focus", function (_) {
-    onFocusScriptAuthor = scriptAuthorInput.value;
-  });
-
-  scriptAuthorInput.addEventListener("blur", function (_) {
-    const scriptAuthor = scriptAuthorInput.value;
-    if (scriptAuthor !== onFocusScriptAuthor) {
-      appState.currentScript.author = scriptAuthor;
-      localStorage.setItem("app-state", appState.serialize());
-      renderFileSelector();
-      updateScriptLink();
-      h1.innerHTML =
-        `${appState.currentScript.name}<span>by ${appState.currentScript.author}</span>`;
-    }
-  });
-
-  scriptAuthorInput.addEventListener("keydown", function (event) {
-    const scriptAuthor = scriptAuthorInput.value;
-    if (event.key === "Enter" && scriptAuthor !== onFocusScriptAuthor) {
-      scriptAuthorInput.blur();
-    }
+  scriptAuthorInput.addEventListener("change", function (_) {
+    console.log(`changed name: ${scriptAuthorInput.value}`);
+    appState.currentScript.author = scriptAuthorInput.value;
+    localStorage.setItem("app-state", appState.serialize());
+    renderFileSelector();
+    updateScriptLink();
+    h1.innerHTML =
+      `${appState.currentScript.name}<span>by ${appState.currentScript.author}</span>`;
   });
 
   document.getElementById("script-name-form").addEventListener(
