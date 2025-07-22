@@ -96,6 +96,10 @@
     }
   }
 
+  .bootlegger-rules-container:has(> .bootlegger-rules:empty) {
+    display: none;
+  }
+
   #script h3.jinxes-heading, #script h3.travelers-and-fabled-heading, #script h3.bootlegger-rules-heading {
     background-color: white;
     span {
