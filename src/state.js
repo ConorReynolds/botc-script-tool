@@ -35,9 +35,13 @@ export class AppState {
             return false;
         }
     }
-    addScript(script) {
+    addScript(script, opts) {
         this.scripts.push(script);
         this.timelines.push(script.timeline);
+        if (!(opts === null || opts === void 0 ? void 0 : opts.force) && this.scripts[0].isEmpty() && this.scripts.length == 2) {
+            this.scripts.shift();
+            this.timelines.shift();
+        }
         this.currentScriptIdx = this.scripts.length - 1;
         if (this.scripts.length <= this.capacity) {
             return true;

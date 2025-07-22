@@ -50,9 +50,14 @@ export class AppState {
     }
   }
 
-  addScript(script: Script): boolean {
+  addScript(script: Script, opts?: { force: boolean }): boolean {
     this.scripts.push(script);
     this.timelines.push(script.timeline);
+
+    if (!opts?.force && this.scripts[0].isEmpty() && this.scripts.length == 2) {
+      this.scripts.shift();
+      this.timelines.shift();
+    }
 
     this.currentScriptIdx = this.scripts.length - 1;
     if (this.scripts.length <= this.capacity) {

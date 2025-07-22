@@ -487,7 +487,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   document.querySelector("#new-script-button").addEventListener(
     "click",
     function (event) {
-      appState.addScript(new Script());
+      appState.addScript(new Script(), { force: true });
       renderScript();
     },
   );
