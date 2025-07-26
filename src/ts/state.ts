@@ -13,7 +13,7 @@ export class AppState {
     }
     this.scripts = scripts;
     this.timelines = scripts.map((s) => s.timeline);
-    this.currentScriptIdx = 0;
+    this.currentScriptIdx = scripts.length - 1;
     this.capacity = 25;
   }
 

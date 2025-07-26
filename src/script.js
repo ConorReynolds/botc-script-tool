@@ -31,6 +31,8 @@ export class Script {
   timeline;
   isRecording;
 
+  settings;
+
   // official night order
   static nightorder = nightorder;
 
@@ -45,8 +47,10 @@ export class Script {
     this._author = "";
     this.charSet = new Set();
     this.jinxList = [];
-    this.timeline = new Timeline(this.toJSON());
+    this.settings = { autosort: true };
     this.isRecording = true;
+
+    this.timeline = new Timeline(this.toJSON());
   }
 
   clear() {
@@ -63,10 +67,9 @@ export class Script {
     this.almanac = undefined;
     this.firstNightOrder = undefined;
     this.otherNightOrder = undefined;
+    this.settings = { autosort: true };
 
-    if (this.isRecording) {
-      this.timeline.addInstant(this.toJSON());
-    }
+    this.recordState();
   }
 
   isEmpty() {
@@ -74,6 +77,12 @@ export class Script {
     const noName = this._name === "";
     const noAuthor = this._author === "";
     return noName && noAuthor && nchars === 0;
+  }
+
+  recordState() {
+    if (this.isRecording) {
+      this.timeline.addInstant(this.toJSON());
+    }
   }
 
   loadFromJSON(obj) {
@@ -95,6 +104,7 @@ export class Script {
         this.firstNightOrder = item["firstNight"];
         this.otherNightOrder = item["otherNight"];
         this.bootlegger = item["bootlegger"];
+        this.settings.autosort = item["autosort"];
       }
 
       if (typeof item === "object" && item["id"] !== "_meta") {
@@ -148,11 +158,15 @@ export class Script {
       this.add(new Character("bootlegger"));
     }
 
-    this.sort();
+    if (this.settings.autosort === undefined) {
+      this.settings.autosort = this.isSorted();
+    }
 
     // If the script is a bloodstar import and has no explicit night order,
     // create one
-    if (this.almanac && (!this.firstNightOrder && !this.otherNightOrder)) {
+    if (
+      this.isBloodstar() && (!this.firstNightOrder && !this.otherNightOrder)
+    ) {
       this.firstNightOrder = [];
       this.otherNightOrder = [];
       for (const id of this.charSet.values()) {
@@ -179,9 +193,7 @@ export class Script {
     }
 
     this.isRecording = wasRecording;
-    if (this.isRecording) {
-      this.timeline.addInstant(this.toJSON());
-    }
+    this.recordState();
   }
 
   static asType(n) {
@@ -235,9 +247,7 @@ export class Script {
       this.jinxList.splice(idx, 1);
     }
 
-    if (this.isRecording) {
-      this.timeline.addInstant(this.toJSON());
-    }
+    this.recordState();
   }
 
   add(newChar) {
@@ -336,9 +346,18 @@ export class Script {
       }
     }
 
-    if (this.isRecording) {
-      this.timeline.addInstant(this.toJSON());
-    }
+    this.recordState();
+  }
+
+  get allCharacters() {
+    return [].concat(
+      this.townsfolk,
+      this.outsiders,
+      this.minions,
+      this.demons,
+      this.travelers,
+      this.fabled,
+    ).map((c) => c.id);
   }
 
   get name() {
@@ -347,9 +366,7 @@ export class Script {
 
   set name(newName) {
     this._name = newName;
-    if (this.isRecording) {
-      this.timeline.addInstant(this.toJSON());
-    }
+    this.recordState();
   }
 
   get author() {
@@ -358,9 +375,7 @@ export class Script {
 
   set author(newAuthor) {
     this._author = newAuthor;
-    if (this.isRecording) {
-      this.timeline.addInstant(this.toJSON());
-    }
+    this.recordState();
   }
 
   addBootleggerRule(rule) {
@@ -369,23 +384,22 @@ export class Script {
     }
 
     this.bootlegger.push(rule);
-    if (this.isRecording) {
-      this.timeline.addInstant(this.toJSON());
-    }
+    this.recordState();
   }
 
   removeBootleggerRule(idx) {
     this.bootlegger.splice(idx, 1);
-    if (this.isRecording) {
-      this.timeline.addInstant(this.toJSON());
-    }
+    this.recordState();
   }
 
   setBootleggerRule(idx, rule) {
     this.bootlegger[idx] = rule;
-    if (this.isRecording) {
-      this.timeline.addInstant(this.toJSON());
-    }
+    this.recordState();
+  }
+
+  isBloodstar() {
+    return this.almanac && typeof this.almanac === "string" &&
+      this.almanac.startsWith("https://www.bloodstar.xyz/");
   }
 
   loadTimeline(str) {
@@ -394,17 +408,27 @@ export class Script {
   }
 
   loadPrevious() {
+    if (this.timeline.past.length === 1) {
+      return false;
+    }
+
     this.timeline.back();
     this.isRecording = false;
     this.loadFromJSON(JSON.parse(this.timeline.now()));
     this.isRecording = true;
+    return true;
   }
 
   loadNext() {
+    if (this.timeline.future.length === 0) {
+      return false;
+    }
+
     this.timeline.forward();
     this.isRecording = false;
     this.loadFromJSON(JSON.parse(this.timeline.now()));
     this.isRecording = true;
+    return true;
   }
 
   sort() {
@@ -422,13 +446,24 @@ export class Script {
     );
   }
 
+  isSorted() {
+    const result = [this.townsfolk, this.outsiders, this.minions, this.demons]
+      .every(
+        (ls) =>
+          ls.every((c, idx, cs) =>
+            idx === 0 || Character.compare(cs[idx - 1], c) <= 0
+          ),
+      );
+    return result;
+  }
+
   render() {
     const iconCls = (c) => {
       let str = "";
       if (c.index("image")) {
         str += "imported-icon ";
       }
-      if (this.almanac !== undefined) {
+      if (this.isBloodstar()) {
         str += "bloodstar";
       }
       return str.trim();
@@ -436,7 +471,7 @@ export class Script {
     const wikilink = (c) => {
       if (!c.isCustom && !c.isHomebrew) {
         return c.wikilink;
-      } else if (this.almanac) {
+      } else if (this.isBloodstar()) {
         return `${this.almanac}#${c.id}`;
       } else {
         return `#`;
@@ -602,7 +637,13 @@ export class Script {
     str += `<div class="night-sheet">`;
 
     str += `<div class="first-night-container">`;
-    str += `<h3><span>FIRST NIGHT</span></h3>`;
+    str += `<h3><span>FIRST NIGHT <span class="selector">[`;
+    str +=
+      `<select id="first-night-sheet-verbosity" class="night-sheet-verbosity" name="Night Sheet Verbosity">`;
+    str += `<option value="verbose" selected>Verbose</option>`;
+    str += `<option value="compact">Compact</option>`;
+    str += `</select>]</span>`;
+    str += `</span></h3>`;
     str += `<div class="first-night">`;
 
     const firstNightOrder = this.firstNightOrder ||
@@ -688,7 +729,13 @@ export class Script {
     str += `</div>`;
 
     str += `<div class="other-night-container">`;
-    str += `<h3><span>OTHER NIGHTS</span></h3>`;
+    str += `<h3><span>OTHER NIGHTS <span class="selector">[`;
+    str +=
+      `<select id="other-night-sheet-verbosity" class="night-sheet-verbosity" name="Night Sheet Verbosity">`;
+    str += `<option value="verbose" selected>Verbose</option>`;
+    str += `<option value="compact">Compact</option>`;
+    str += `</select>]</span>`;
+    str += `</span></h3>`;
     str += `<div class="other-night">`;
 
     let otherNightOrder;
@@ -772,7 +819,7 @@ export class Script {
       if (c.index("image")) {
         str += "imported-icon ";
       }
-      if (this.almanac !== undefined) {
+      if (this.isBloodstar()) {
         str += "bloodstar";
       }
       return str.trim();
@@ -810,6 +857,9 @@ export class Script {
       ...this.travelers.map((c) => c.toJSON({ exporting: opts.exporting })),
       ...this.fabled.map((c) => c.toJSON({ exporting: opts.exporting })),
     ];
+    if (opts.exporting === undefined || opts.exporting === false) {
+      obj[0]["autosort"] = this.settings.autosort;
+    }
     if (this.almanac) {
       obj[0]["almanac"] = this.almanac;
     }

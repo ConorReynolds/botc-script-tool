@@ -88,13 +88,17 @@ let redoButtonElem;
 let lockButtonElem;
 
 function undo() {
-  appState.currentScript.loadPrevious();
-  renderScript();
+  const success = appState.currentScript.loadPrevious();
+  if (success) {
+    renderScript();
+  }
 }
 
 function redo() {
-  appState.currentScript.loadNext();
-  renderScript();
+  const success = appState.currentScript.loadNext();
+  if (success) {
+    renderScript();
+  }
 }
 
 // Essentially toggles between view and edit mode.
@@ -204,6 +208,20 @@ function renderScript(postEvent = true) {
     new Sortable(list, {
       handle: ".handle",
       animation: 250,
+      onUpdate: function (event) {
+        moveElem(
+          appState.currentScript[
+            category === "townsfolk" ? category : category + "s"
+          ],
+          event.oldIndex,
+          event.newIndex,
+        );
+        appState.currentScript.settings.autosort = false;
+        appState.currentScript.recordState();
+        setTimeout(function () {
+          globalThis.dispatchEvent(new Event("scriptrendered"));
+        }, 0);
+      },
     });
   }
 
@@ -238,11 +256,12 @@ function renderScript(postEvent = true) {
     item.querySelector("img").addEventListener("click", function (_event) {
       const idx = parseInt(item.getAttribute("data-idx"));
       appState.currentScript.removeBootleggerRule(idx);
-      // item.remove();
-      renderScript();
+      setTimeout(function () {
+        globalThis.dispatchEvent(new Event("scriptrendered"));
+      }, 0);
     });
 
-    item.querySelector(".rule").addEventListener("change", function (_event) {
+    item.querySelector(".rule").addEventListener("blur", function (_event) {
       const idx = parseInt(item.getAttribute("data-idx"));
       const newRule = item.querySelector(".rule").textContent;
       if (appState.currentScript.bootlegger[idx] !== newRule) {
@@ -250,7 +269,9 @@ function renderScript(postEvent = true) {
           idx,
           item.querySelector(".rule").textContent,
         );
-        renderScript();
+        setTimeout(function () {
+          globalThis.dispatchEvent(new Event("scriptrendered"));
+        }, 0);
       }
     });
 
@@ -294,6 +315,7 @@ function updateScriptLink() {
   const url = new URL(globalThis.location.href);
   if (url.searchParams.has("script")) {
     const encodedScript = compressScript(appState.currentScript);
+    const encodedBLRs = JSON.stringify(appState.currentScript.bootlegger);
     globalThis.history.replaceState(
       null,
       "",
@@ -301,7 +323,8 @@ function updateScriptLink() {
       // but characters requiring encoding in the script name/author fields
       // *are* encoded.
       new URL(
-        globalThis.location.href.split("?")[0] + `?script=${encodedScript}`,
+        globalThis.location.href.split("?")[0] +
+          `?script=${encodedScript}&bootlegger=${encodedBLRs}`,
       ),
     );
   }
@@ -359,11 +382,15 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(globalThis.location.search);
   if (urlParams.get("script")) {
     const script = decompressScript(urlParams.get("script"));
+    const bootleggerRules = urlParams.get("bootlegger");
+    if (bootleggerRules) {
+      script.bootlegger = JSON.parse(bootleggerRules);
+    }
+
+    script.settings.autosort = script.isSorted();
+
     appState.addScript(script);
 
-    // Normally don’t have to sort when loading from local storage since it is
-    // always stored sorted, but URL param scripts are not sorted.
-    appState.currentScript.sort();
     globalThis.history.replaceState(null, "", globalThis.location.pathname);
   }
 
@@ -564,7 +591,9 @@ globalThis.addEventListener("DOMContentLoaded", () => {
 
       try {
         appState.currentScript.add(match);
-        appState.currentScript.sort();
+        if (appState.currentScript.settings.autosort) {
+          appState.currentScript.sort();
+        }
         renderScript();
 
         document.querySelector("#current-matches").innerHTML = "";
@@ -592,7 +621,9 @@ globalThis.addEventListener("DOMContentLoaded", () => {
 
       function addToScript(i) {
         appState.currentScript.add(new Character(res[i][0].id));
-        appState.currentScript.sort();
+        if (appState.currentScript.settings.autosort) {
+          appState.currentScript.sort();
+        }
         renderScript();
 
         document.querySelector("#current-matches").innerHTML = "";
@@ -704,6 +735,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
         globalThis.history.replaceState(null, "", globalThis.location.pathname);
       } else {
         const encodedScript = compressScript(appState.currentScript);
+        const encodedBLRs = JSON.stringify(appState.currentScript.bootlegger);
         globalThis.history.replaceState(
           null,
           "",
@@ -711,7 +743,8 @@ globalThis.addEventListener("DOMContentLoaded", () => {
           // but characters requiring encoding in the script name/author fields
           // *are* encoded.
           new URL(
-            globalThis.location.href.split("?")[0] + `?script=${encodedScript}`,
+            globalThis.location.href.split("?")[0] +
+              `?script=${encodedScript}&bootlegger=${encodedBLRs}`,
           ),
         );
       }
@@ -777,6 +810,21 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       } else {
         document.querySelector(".night-sheet").classList.remove("compact");
         localStorage.setItem("compact-night-sheet", "false");
+      }
+    },
+  );
+
+  document.querySelector("#autosort-form").addEventListener(
+    "change",
+    function (event) {
+      event.preventDefault();
+      if (event.target.checked === true) {
+        appState.currentScript.settings.autosort = true;
+        appState.currentScript.sort();
+        appState.currentScript.recordState();
+        renderScript();
+      } else {
+        appState.currentScript.settings.autosort = false;
       }
     },
   );
@@ -873,7 +921,9 @@ globalThis.addEventListener("DOMContentLoaded", () => {
           appState.currentScript.remove(character.id);
         } else {
           appState.currentScript.add(character);
-          appState.currentScript.sort();
+          if (appState.currentScript.settings.autosort) {
+            appState.currentScript.sort();
+          }
         }
         renderScript();
       });
@@ -885,7 +935,9 @@ globalThis.addEventListener("DOMContentLoaded", () => {
             appState.currentScript.remove(character.id);
           } else {
             appState.currentScript.add(character);
-            appState.currentScript.sort();
+            if (appState.currentScript.settings.autosort) {
+              appState.currentScript.sort();
+            }
           }
           renderScript();
         }
@@ -926,7 +978,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   const fabledForm = document.querySelector("#fabled-form");
   const base3Form = document.querySelector("#base-three-form");
   const kickstarterForm = document.querySelector("#kickstarter-form");
-  const experimentalForm = document.querySelector("#experimental-form");
+  const carouselForm = document.querySelector("#carousel-form");
   const homebrewForm = document.querySelector("#homebrew-form");
   const customForm = document.querySelector("#custom-form");
   const toggleAllForm = document.querySelector("#toggle-all-form");
@@ -939,7 +991,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
   const fabledCheckbox = document.querySelector("#fabled-checkbox");
   const base3Checkbox = document.querySelector("#base-three-checkbox");
   const kickstarterCheckbox = document.querySelector("#kickstarter-checkbox");
-  const experimentalCheckbox = document.querySelector("#experimental-checkbox");
+  const carouselCheckbox = document.querySelector("#carousel-checkbox");
   const homebrewCheckbox = document.querySelector("#homebrew-checkbox");
   const customCheckbox = document.querySelector("#custom-checkbox");
   const toggleAllCheckbox = document.querySelector("#toggle-all-checkbox");
@@ -953,7 +1005,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     fabledForm,
     base3Form,
     kickstarterForm,
-    experimentalForm,
+    carouselForm,
     homebrewForm,
     customForm,
     toggleAllForm,
@@ -969,7 +1021,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     fabledCheckbox,
     base3Checkbox,
     kickstarterCheckbox,
-    experimentalCheckbox,
+    carouselCheckbox,
     homebrewCheckbox,
     customCheckbox,
   ];
@@ -978,7 +1030,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     function predicate(character) {
       const isBase3 = (x) => x === "tb" || x === "snv" || x === "bmr";
       const isKickstarter = (x) => x === "kickstarter";
-      const isExperimental = (x) => x === "";
+      const isCarousel = (x) => x === "";
       const isHomebrew = (x) => x === "homebrew";
       const isCustom = (obj) => new Character(obj.id).isCustom;
       if (character.team === "townsfolk" && !townsfolkCheckbox.checked) {
@@ -1005,7 +1057,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       if (isKickstarter(character.edition) && !kickstarterCheckbox.checked) {
         return false;
       }
-      if (isExperimental(character.edition) && !experimentalCheckbox.checked) {
+      if (isCarousel(character.edition) && !carouselCheckbox.checked) {
         return false;
       }
       if (isHomebrew(character.edition) && !homebrewCheckbox.checked) {
@@ -1035,11 +1087,16 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       "data-canredo",
       appState.currentScript.timeline.future.length === 0 ? "false" : "true",
     );
+    document.querySelector("#autosort-checkbox").checked =
+      appState.currentScript.settings.autosort;
   }
 
   globalThis.addEventListener("scriptrendered", (_) => {
     onScriptRenderEvent();
-    channel.postMessage({ name: "scriptrendered", data: appState.serialize() });
+    channel.postMessage({
+      name: "scriptrendered",
+      data: localStorage.getItem("app-state"),
+    });
   });
 
   channel.onmessage = function (event) {
@@ -1094,7 +1151,9 @@ globalThis.addEventListener("DOMContentLoaded", () => {
         appState.currentScript.remove(character.id);
       } else {
         appState.currentScript.add(character);
-        appState.currentScript.sort();
+        if (appState.currentScript.settings.autosort) {
+          appState.currentScript.sort();
+        }
       }
       renderScript();
     }

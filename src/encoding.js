@@ -37,9 +37,7 @@ export function compressScript(script) {
   // Only works for non-custom scripts
   const name = script.name;
   const author = script.author;
-  const chars = Array.from(script.charSet);
-
-  chars.sort();
+  const chars = script.allCharacters;
 
   const charsMap = {};
   for (const [i, c] of Character.flat.map((o) => o.id).entries()) {
