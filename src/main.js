@@ -311,22 +311,28 @@ function renderScript(postEvent = true) {
   );
 }
 
+function setScriptLink() {
+  const encodedScript = compressScript(appState.currentScript);
+  const encodedBLRs = JSON.stringify(appState.currentScript.bootlegger)
+    .slice(1, -1);
+
+  globalThis.history.replaceState(
+    null,
+    "",
+    // Doing it this way specifically ensures that tildes are not encoded
+    // but characters requiring encoding in the script name/author fields
+    // *are* encoded.
+    new URL(
+      globalThis.location.href.split("?")[0] +
+        `?script=${encodedScript}&bootlegger=${encodedBLRs}`,
+    ),
+  );
+}
+
 function updateScriptLink() {
   const url = new URL(globalThis.location.href);
   if (url.searchParams.has("script")) {
-    const encodedScript = compressScript(appState.currentScript);
-    const encodedBLRs = JSON.stringify(appState.currentScript.bootlegger);
-    globalThis.history.replaceState(
-      null,
-      "",
-      // Doing it this way specifically ensures that tildes are not encoded
-      // but characters requiring encoding in the script name/author fields
-      // *are* encoded.
-      new URL(
-        globalThis.location.href.split("?")[0] +
-          `?script=${encodedScript}&bootlegger=${encodedBLRs}`,
-      ),
-    );
+    setScriptLink();
   }
 }
 
@@ -384,7 +390,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     const script = decompressScript(urlParams.get("script"));
     const bootleggerRules = urlParams.get("bootlegger");
     if (bootleggerRules) {
-      script.bootlegger = JSON.parse(bootleggerRules);
+      script.bootlegger = JSON.parse(`[${bootleggerRules}]`);
     }
 
     script.settings.autosort = script.isSorted();
@@ -734,19 +740,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       if (url.searchParams.has("script")) {
         globalThis.history.replaceState(null, "", globalThis.location.pathname);
       } else {
-        const encodedScript = compressScript(appState.currentScript);
-        const encodedBLRs = JSON.stringify(appState.currentScript.bootlegger);
-        globalThis.history.replaceState(
-          null,
-          "",
-          // Doing it this way specifically ensures that tildes are not encoded
-          // but characters requiring encoding in the script name/author fields
-          // *are* encoded.
-          new URL(
-            globalThis.location.href.split("?")[0] +
-              `?script=${encodedScript}&bootlegger=${encodedBLRs}`,
-          ),
-        );
+        setScriptLink();
       }
     },
   );
