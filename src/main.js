@@ -256,9 +256,7 @@ function renderScript(postEvent = true) {
     item.querySelector("img").addEventListener("click", function (_event) {
       const idx = parseInt(item.getAttribute("data-idx"));
       appState.currentScript.removeBootleggerRule(idx);
-      setTimeout(function () {
-        globalThis.dispatchEvent(new Event("scriptrendered"));
-      }, 0);
+      renderScript();
     });
 
     item.querySelector(".rule").addEventListener("blur", function (_event) {
