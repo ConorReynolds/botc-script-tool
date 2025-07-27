@@ -208,6 +208,9 @@ function renderScript(postEvent = true) {
     new Sortable(list, {
       handle: ".handle",
       animation: 250,
+      swapThreshold: 0.65,
+      delay: 100,
+      delayOnTouchOnly: true,
       onUpdate: function (event) {
         moveElem(
           appState.currentScript[
@@ -1071,14 +1074,12 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     updateScriptLink();
 
     localStorage.setItem("app-state", appState.serialize());
-    undoButtonElem.setAttribute(
-      "data-canundo",
-      appState.currentScript.timeline.past.length === 1 ? "false" : "true",
-    );
-    redoButtonElem.setAttribute(
-      "data-canredo",
-      appState.currentScript.timeline.future.length === 0 ? "false" : "true",
-    );
+    const canUndo = appState.currentScript.timeline.past.length > 1;
+    const canRedo = appState.currentScript.timeline.future.length > 0;
+
+    undoButtonElem.disabled = !canUndo;
+    redoButtonElem.disabled = !canRedo;
+
     document.querySelector("#autosort-checkbox").checked =
       appState.currentScript.settings.autosort;
   }

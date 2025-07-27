@@ -56,7 +56,7 @@
 }
 
 .handle {
-  cursor: move;
+  cursor: grab;
 }
 
 .setup-text {
@@ -66,6 +66,47 @@
 
 @import "sidebar.scss";
 @import "fileselector.scss";
+
+input,
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 0.9em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  color: #0f0f0f;
+  background-color: #ffffff;
+  transition: border-color 0.25s;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+button {
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: #396cd8;
+}
+
+button:active {
+  border-color: #396cd8;
+  background-color: #e8e8e8;
+}
+
+input {
+  outline: none;
+}
+
+[type="checkbox"]:focus-visible {
+  outline: auto;
+}
+
+@media not print {
+  .onlyprint {
+    display: none;
+  }
+}
 
 label {
   user-select: none;
@@ -88,19 +129,41 @@ label {
   // }
   
   pointer-events: none;
-  * {
-    pointer-events: auto;
-  }
+
 
   #undo-button {
-    &[data-canundo=false] {
+    pointer-events: auto;
+    &:disabled {
       color: #999;
+      cursor: not-allowed;
+      
+      &:hover {
+        border: 1px solid transparent;
+        background-color: #ffffff;
+      }
+
+      &:active {
+        border: 1px solid transparent;
+        background-color: #ffffff;
+      }
     }
   }
 
   #redo-button {
-    &[data-canredo=false] {
+    pointer-events: auto;
+    &:disabled {
       color: #999;
+      cursor: not-allowed;
+
+      &:hover {
+        border: 1px solid transparent;
+        background-color: #ffffff;
+      }
+
+      &:active {
+        border: 1px solid transparent;
+        background-color: #ffffff;
+      }
     }
   }
 }
@@ -384,47 +447,6 @@ a:hover {
   display: flex;
   flex-flow: row wrap;
   // flex-direction:column;
-}
-
-input,
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 0.9em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  color: #0f0f0f;
-  background-color: #ffffff;
-  transition: border-color 0.25s;
-  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
-}
-
-button {
-  cursor: pointer;
-}
-
-button:hover {
-  border-color: #396cd8;
-}
-
-button:active {
-  border-color: #396cd8;
-  background-color: #e8e8e8;
-}
-
-input {
-  outline: none;
-}
-
-[type="checkbox"]:focus-visible {
-  outline: auto;
-}
-
-@media not print {
-  .onlyprint {
-    display: none;
-  }
 }
 
 // @media print {

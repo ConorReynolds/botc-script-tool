@@ -618,7 +618,7 @@ export class Script {
       !hasRules ? "hidden" : ""
     }">`;
     str +=
-      `<h3 class="bootlegger-rules-heading"><span>BOOTLEGGER RULES<button id="add-bootlegger-rule" class="noprint"><i class="fa-solid fa-plus"></i></button></span></h3>`;
+      `<h3 class="bootlegger-rules-heading"><span>BOOTLEGGER RULES<button id="add-bootlegger-rule" class="noprint" title="Add bootlegger rule"><i class="fa-solid fa-plus"></i></button></span></h3>`;
     str += `<div class="bootlegger-rules">`;
 
     for (const [idx, rule] of (this.bootlegger ?? []).entries()) {
