@@ -129,10 +129,12 @@ label {
   // }
   
   pointer-events: none;
+  >* {
+    pointer-events: auto;
+  }
 
 
   #undo-button {
-    pointer-events: auto;
     &:disabled {
       color: #999;
       cursor: not-allowed;
@@ -150,7 +152,6 @@ label {
   }
 
   #redo-button {
-    pointer-events: auto;
     &:disabled {
       color: #999;
       cursor: not-allowed;
