@@ -95,11 +95,11 @@
     // height: 80%;
 
     &:not(.filtered) {
-      .item[data-type=townsfolk] + .item[data-type=outsider],
-      .item[data-type=outsider] + .item[data-type=minion],
-      .item[data-type=minion] + .item[data-type=demon],
-      .item[data-type=demon] + .item[data-type=traveler],
-      .item[data-type=traveler] + .item[data-type=fabled]
+      .item[data-type=townsfolk] + .item[data-type]:not(.item[data-type=townsfolk]),
+      .item[data-type=outsider] + .item[data-type]:not(.item[data-type=outsider]),
+      .item[data-type=minion] + .item[data-type]:not(.item[data-type=minion]),
+      .item[data-type=demon] + .item[data-type]:not(.item[data-type=demon]),
+      .item[data-type=traveler] + .item[data-type]:not(.item[data-type=traveler])
       {
         border-top: 2px solid rgba($color: #bbb, $alpha: 1);
         border-radius: initial;
