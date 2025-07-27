@@ -211,6 +211,10 @@ function renderScript(postEvent = true) {
       swapThreshold: 0.65,
       delay: 100,
       delayOnTouchOnly: true,
+      // Seems like the swap threshold only works if this specifies a function. Strange.
+      direction: function (_event, _target, _dragElem) {
+        return "vertical";
+      },
       onUpdate: function (event) {
         moveElem(
           appState.currentScript[
