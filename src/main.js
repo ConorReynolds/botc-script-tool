@@ -233,6 +233,9 @@ function renderScript(postEvent = true) {
   new Sortable(firstNightList, {
     handle: ".handle",
     animation: 250,
+    swapThreshold: 0.65,
+    delay: 100,
+    delayOnTouchOnly: true,
     onUpdate: function (event) {
       firstNightUpdate(appState.currentScript, event);
       setTimeout(function () {
@@ -243,6 +246,9 @@ function renderScript(postEvent = true) {
   new Sortable(otherNightList, {
     handle: ".handle",
     animation: 250,
+    swapThreshold: 0.65,
+    delay: 100,
+    delayOnTouchOnly: true,
     onUpdate: function (event) {
       otherNightUpdate(appState.currentScript, event);
       setTimeout(function () {
@@ -463,8 +469,11 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     scriptListElem.innerHTML = appState.renderFileSelector();
 
     new Sortable(scriptListElem.querySelector(".file-selector-container"), {
-      animation: 250,
       handle: ".script-name",
+      animation: 250,
+      swapThreshold: 0.65,
+      delay: 100,
+      delayOnTouchOnly: true,
       onUpdate: function (event) {
         const from = appState.size - event.oldIndex - 1;
         const to = appState.size - event.newIndex - 1;
