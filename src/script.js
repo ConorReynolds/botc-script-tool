@@ -637,13 +637,7 @@ export class Script {
     str += `<div class="night-sheet">`;
 
     str += `<div class="first-night-container">`;
-    str += `<h3><span>FIRST NIGHT <span class="selector">[`;
-    str +=
-      `<select id="first-night-sheet-verbosity" class="night-sheet-verbosity" name="Night Sheet Verbosity">`;
-    str += `<option value="verbose" selected>Verbose</option>`;
-    str += `<option value="compact">Compact</option>`;
-    str += `</select>]</span>`;
-    str += `</span></h3>`;
+    str += `<h3><span>FIRST NIGHT</span></h3>`;
     str += `<div class="first-night">`;
 
     const firstNightOrder = this.firstNightOrder ||
@@ -729,13 +723,7 @@ export class Script {
     str += `</div>`;
 
     str += `<div class="other-night-container">`;
-    str += `<h3><span>OTHER NIGHTS <span class="selector">[`;
-    str +=
-      `<select id="other-night-sheet-verbosity" class="night-sheet-verbosity" name="Night Sheet Verbosity">`;
-    str += `<option value="verbose" selected>Verbose</option>`;
-    str += `<option value="compact">Compact</option>`;
-    str += `</select>]</span>`;
-    str += `</span></h3>`;
+    str += `<h3><span>OTHER NIGHTS</span></h3>`;
     str += `<div class="other-night">`;
 
     let otherNightOrder;
