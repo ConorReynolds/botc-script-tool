@@ -324,8 +324,13 @@ function renderScript(postEvent = true) {
 
 function setScriptLink() {
   const encodedScript = compressScript(appState.currentScript);
-  const encodedBLRs = JSON.stringify(appState.currentScript.bootlegger)
-    .slice(1, -1);
+  const encodedBLRs = JSON.stringify(appState.currentScript.bootlegger);
+
+  let params = `?script=${encodedScript}`;
+
+  if (encodedBLRs) {
+    params += `&bootlegger=${encodedBLRs.slice(1, -1)}`;
+  }
 
   globalThis.history.replaceState(
     null,
@@ -334,8 +339,7 @@ function setScriptLink() {
     // but characters requiring encoding in the script name/author fields
     // *are* encoded.
     new URL(
-      globalThis.location.href.split("?")[0] +
-        `?script=${encodedScript}&bootlegger=${encodedBLRs}`,
+      globalThis.location.href.split("?")[0] + params,
     ),
   );
 }

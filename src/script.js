@@ -626,7 +626,7 @@ export class Script {
       str +=
         `<img class="icon" src="src/assets/custom-icons/Icon_bootlegger.webp"/>`;
       str +=
-        `<div class="rule" contenteditable="plaintext-only" placeholder="New bootlegger rule …">${rule}</div>`;
+        `<div class="rule" contenteditable="plaintext-only" placeholder="New bootlegger rule …" spellcheck="false">${rule}</div>`;
       str += `</div>`;
     }
     str += `</div>`;
