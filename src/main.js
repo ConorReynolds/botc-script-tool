@@ -854,9 +854,11 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       event.preventDefault();
       if (event.target.checked === true) {
         appState.currentScript.settings.autosort = true;
-        appState.currentScript.sort();
-        appState.currentScript.recordState();
-        renderScript();
+        if (!appState.currentScript.isSorted()) {
+          appState.currentScript.sort();
+          appState.currentScript.recordState();
+          renderScript();
+        }
       } else {
         appState.currentScript.settings.autosort = false;
       }

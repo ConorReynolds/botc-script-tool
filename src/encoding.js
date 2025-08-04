@@ -28,6 +28,8 @@ export function decompressScript(str) {
     }
   }
 
+  localScript.settings.autosort = localScript.isSorted();
+
   localScript.timeline.addInstant(localScript.toJSON());
   localScript.timeline.forget();
   localScript.isRecording = true;
