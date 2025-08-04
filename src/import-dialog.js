@@ -27,8 +27,6 @@ export class ImportDialog extends HTMLElement {
       event.stopPropagation();
       dialog.close();
     });
-
-    document.addEventListener("paste", this.pasteHandler.bind(root));
   }
 
   disconnectedCallback() {
@@ -83,10 +81,6 @@ export class ImportDialog extends HTMLElement {
       });
     }
 
-    this.querySelector("dialog").close();
-  }
-
-  pasteHandler(_event) {
     this.querySelector("dialog").close();
   }
 

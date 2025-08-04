@@ -698,6 +698,8 @@ globalThis.addEventListener("DOMContentLoaded", () => {
         appState.addScript(localScript);
         renderScript();
       }
+
+      importDialog.querySelector("dialog").close();
     }
   });
 
