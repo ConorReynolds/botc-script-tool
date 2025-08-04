@@ -2,6 +2,7 @@ import { AppState } from "./state.js";
 import { Character } from "./character.js";
 import { Script } from "./script.js";
 import { compressScript, decompressScript } from "./encoding.js";
+import { ImportDialog } from "./import-dialog.js";
 import { compareOn, moveElem } from "./utils.js";
 
 let h1;
@@ -11,29 +12,6 @@ let scriptAuthorInput;
 
 const appName = "Unofficial BotC Script Tool";
 const appVersion = "0.1.0";
-
-function readFileDialog() {
-  const input = document.createElement("input");
-  input.type = "file";
-
-  let file;
-  input.addEventListener("change", function (event) {
-    file = event.target.files[0];
-    const reader = new FileReader();
-    reader.readAsText(file, "UTF-8");
-    reader.onload = function (readerEvent) {
-      const content = readerEvent.target.result;
-      if (typeof content === "string") {
-        const localScript = new Script();
-        localScript.loadFromJSON(JSON.parse(content));
-        localScript.timeline.forget();
-        appState.addScript(localScript);
-        renderScript();
-      }
-    };
-  });
-  input.click();
-}
 
 function writeDialogJSON(filename, contents) {
   const anchor = document.createElement("a");
@@ -673,13 +651,55 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     },
   );
 
-  document.querySelector("#import-form").addEventListener(
+  const importForm = document.querySelector("#import-form");
+
+  importForm.addEventListener(
     "submit",
     function (event) {
       event.preventDefault();
-      readFileDialog();
+      const importDialog = new ImportDialog();
+      importDialog.appState = appState;
+      importForm.append(importDialog);
     },
   );
+
+  document.addEventListener("paste", function (event) {
+    const importDialog = document.querySelector("import-dialog");
+    if (importDialog) {
+      event.preventDefault();
+
+      const data = (globalThis.clipboardData || event.clipboardData)
+        .getData("text");
+
+      let json;
+      // Can be a JSON string or a URL
+      if (URL.canParse(data)) {
+        const url = new URL(data);
+        fetch(url).then((response) => {
+          if (!response.ok) {
+            throw new Error(`${response.status} error on ${response.url}`);
+          }
+
+          return response.json();
+        }).then((response) => {
+          json = response;
+          const localScript = new Script();
+          localScript.loadFromJSON(json);
+          localScript.timeline.forget();
+          appState.addScript(localScript);
+          renderScript();
+        });
+      } else {
+        json = JSON.parse(data);
+
+        const localScript = new Script();
+        localScript.loadFromJSON(json);
+        localScript.timeline.forget();
+        appState.addScript(localScript);
+        renderScript();
+      }
+    }
+  });
 
   let isMetaOrCtrlPressed = false;
   const onMac = navigator.userAgent.includes("Mac");
@@ -1100,6 +1120,10 @@ globalThis.addEventListener("DOMContentLoaded", () => {
     document.querySelector("#autosort-checkbox").checked =
       appState.currentScript.settings.autosort;
   }
+
+  globalThis.addEventListener("shouldrender", (_) => {
+    renderScript();
+  });
 
   globalThis.addEventListener("scriptrendered", (_) => {
     onScriptRenderEvent();
