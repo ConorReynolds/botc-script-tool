@@ -332,11 +332,6 @@ export class Character {
   }
 
   static compare(c1, c2) {
-    // Ignore custom characters entirely
-    if (c1.isCustom || c2.isCustom) {
-      return 0;
-    }
-
     // Sort teams and types.
     const type1 = Character.typeRank(c1.type);
     const type2 = Character.typeRank(c2.type);
