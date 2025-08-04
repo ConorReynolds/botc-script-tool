@@ -30,6 +30,8 @@ export function decompressScript(str) {
 
   localScript.timeline.addInstant(localScript.toJSON());
   localScript.timeline.forget();
+  localScript.isRecording = true;
+
   return localScript;
 }
 
