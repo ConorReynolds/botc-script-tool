@@ -346,6 +346,10 @@ export class Script {
       }
     }
 
+    if (this.settings.autosort === true) {
+      this.sort();
+    }
+
     this.recordState();
   }
 

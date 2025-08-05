@@ -593,9 +593,6 @@ globalThis.addEventListener("DOMContentLoaded", () => {
 
       try {
         appState.currentScript.add(match);
-        if (appState.currentScript.settings.autosort) {
-          appState.currentScript.sort();
-        }
         renderScript();
 
         document.querySelector("#current-matches").innerHTML = "";
@@ -623,9 +620,6 @@ globalThis.addEventListener("DOMContentLoaded", () => {
 
       function addToScript(i) {
         appState.currentScript.add(new Character(res[i][0].id));
-        if (appState.currentScript.settings.autosort) {
-          appState.currentScript.sort();
-        }
         renderScript();
 
         document.querySelector("#current-matches").innerHTML = "";
@@ -957,9 +951,6 @@ globalThis.addEventListener("DOMContentLoaded", () => {
           appState.currentScript.remove(character.id);
         } else {
           appState.currentScript.add(character);
-          if (appState.currentScript.settings.autosort) {
-            appState.currentScript.sort();
-          }
         }
         renderScript();
       });
@@ -971,9 +962,6 @@ globalThis.addEventListener("DOMContentLoaded", () => {
             appState.currentScript.remove(character.id);
           } else {
             appState.currentScript.add(character);
-            if (appState.currentScript.settings.autosort) {
-              appState.currentScript.sort();
-            }
           }
           renderScript();
         }
@@ -1189,9 +1177,6 @@ globalThis.addEventListener("DOMContentLoaded", () => {
         appState.currentScript.remove(character.id);
       } else {
         appState.currentScript.add(character);
-        if (appState.currentScript.settings.autosort) {
-          appState.currentScript.sort();
-        }
       }
       renderScript();
     }
