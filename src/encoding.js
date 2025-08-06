@@ -59,6 +59,6 @@ export function compressScript(script) {
   str = str.replaceAll('"', "");
   str = str.replaceAll(",", "~");
   str = str.replaceAll(/\[|\]/g, "");
-  str = `${name}~${author}~${str}`;
+  str = `${encodeURIComponent(name)}~${encodeURIComponent(author)}~${str}`;
   return str;
 }
