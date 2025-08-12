@@ -506,7 +506,7 @@ export class Script {
         str +=
           `<img id="${c.id}-icon-script" title="Remove the ${c.name}" class="icon ${
             iconCls(c)
-          }" src="${c.icon}"/>`;
+          }" src="${Array.isArray(c.icon) ? c.icon[0] : c.icon}"/>`;
         str += `<div class="name-and-summary">`;
         str += `<h4 class="character-name">`;
         const wiki = wikilink(c);
@@ -518,11 +518,16 @@ export class Script {
         }
         for (const otherID of this.charSet) {
           const other = new Character(otherID);
+          const otherIcon = Array.isArray(other.tinyIcon)
+            ? other.tinyIcon[0]
+            : other.tinyIcon;
+
           const jinx = c.jinx(other);
+
           if (jinx) {
             str += `<img title="${jinx}" class="jinx-icon ${
               iconCls(c)
-            }" onclick="location.assign('#${c.id}-${other.id}-jinx')" src="${other.tinyIcon}"/>`;
+            }" onclick="location.assign('#${c.id}-${other.id}-jinx')" src="${otherIcon}"/>`;
           }
         }
         str += `</h4>`;
@@ -542,12 +547,12 @@ export class Script {
       const c2 = new Character(jinx.char2);
       str += `<div id="${c1.id}-${c2.id}-jinx" class="item">`;
       str += `<div class="icons">`;
-      str += `<img id="${c1.id}-icon-jinxes" class="icon ${
-        iconCls(c1)
-      }" src="${c1.icon}"/>`;
-      str += `<img id="${c2.id}-icon-jinxes" class="icon ${
-        iconCls(c2)
-      }" src="${c2.icon}"/>`;
+      str += `<img id="${c1.id}-icon-jinxes" class="icon ${iconCls(c1)}" src="${
+        Array.isArray(c1.icon) ? c1.icon[0] : c1.icon
+      }"/>`;
+      str += `<img id="${c2.id}-icon-jinxes" class="icon ${iconCls(c2)}" src="${
+        Array.isArray(c2.icon) ? c2.icon[0] : c2.icon
+      }"/>`;
       str += `</div>`;
 
       str += `<div class="jinx-text">`;
@@ -570,7 +575,7 @@ export class Script {
       str +=
         `<img id="${c.id}-icon-script" title="Remove the ${c.name}" class="icon ${
           iconCls(c)
-        }" src="${c.icon}"/>`;
+        }" src="${Array.isArray(c.icon) ? c.icon[0] : c.icon}"/>`;
       str += `<div class="name-and-summary">`;
       str += `<h4 class="character-name">`;
       const wiki = wikilink(c);
@@ -593,7 +598,7 @@ export class Script {
       str +=
         `<img id="${c.id}-icon-script" title="Remove the ${c.name}" class="icon ${
           iconCls(c)
-        }" src="${c.icon}"/>`;
+        }" src="${Array.isArray(c.icon) ? c.icon[0] : c.icon}"/>`;
       str += `<div class="name-and-summary">`;
       str += `<h4 class="character-name">`;
       const wiki = wikilink(c);
@@ -652,7 +657,9 @@ export class Script {
         const char = new Character(id);
         if (char.firstNightReminder) {
           str += `<div class="item">`;
-          str += `<img class="${iconCls(char)} handle" src="${char.icon}"/>`;
+          str += `<img class="${iconCls(char)} handle" src="${
+            Array.isArray(char.icon) ? char.icon[0] : char.icon
+          }"/>`;
           str += `<div>`;
           str += `<div class="night-sheet-char-name">`;
           const wiki = wikilink(char);
@@ -704,7 +711,9 @@ export class Script {
         const char = new Character(charID);
         if (char.firstNightOrder === position && !Character.data[charID]) {
           str += `<div class="item">`;
-          str += `<img class="${iconCls(char)} handle" src="${char.icon}"/>`;
+          str += `<img class="${iconCls(char)} handle" src="${
+            Array.isArray(char.icon) ? char.icon[0] : char.icon
+          }"/>`;
           str += `<div>`;
           str += `<div class="night-sheet-char-name">`;
           const wiki = wikilink(char);
@@ -742,7 +751,9 @@ export class Script {
         const char = new Character(id);
         if (char.otherNightReminder) {
           str += `<div class="item">`;
-          str += `<img class="${iconCls(char)} handle" src="${char.icon}"/>`;
+          str += `<img class="${iconCls(char)} handle" src="${
+            Array.isArray(char.icon) ? char.icon[0] : char.icon
+          }"/>`;
           str += `<div>`;
           str += `<div class="night-sheet-char-name">`;
           const wiki = wikilink(char);
@@ -779,7 +790,9 @@ export class Script {
         const char = new Character(charID);
         if (char.otherNightOrder === position && !Character.data[charID]) {
           str += `<div class="item">`;
-          str += `<img class="${iconCls(char)} handle" src="${char.icon}"/>`;
+          str += `<img class="${iconCls(char)} handle" src="${
+            Array.isArray(char.icon) ? char.icon[0] : char.icon
+          }"/>`;
           str += `<div>`;
           str += `<div class="night-sheet-char-name">`;
           const wiki = wikilink(char);
@@ -824,7 +837,9 @@ export class Script {
     let str = `<div class="tiny-fabled">`;
     for (const c of fabled) {
       str += `<div class="item">`;
-      str += `<img class="icon ${iconCls(c)}" src="${c.icon}" />`;
+      str += `<img class="icon ${iconCls(c)}" src="${
+        Array.isArray(c.icon) ? c.icon[0] : c.icon
+      }" />`;
       str += `</div>`;
     }
     str += `</div>`;

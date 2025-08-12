@@ -65,6 +65,20 @@
   color: rgba(#0f0f0f, 0.9)
 }
 
+// These are not perfect but they are good enough. If you have a pointing
+// device you’re probably on a computer and have a physical keyboard.
+@media (hover: none) {
+  .kb-only {
+    display: none;
+  }
+}
+
+@media (hover: hover) {
+  .no-kb {
+    display: none;
+  }
+}
+
 @import "sidebar.scss";
 @import "fileselector.scss";
 
@@ -359,6 +373,12 @@ import-dialog > dialog {
 
   &:focus {
     outline: none;
+  }
+
+  #mobile-paste-form {
+    display: flex;
+    flex-direction: column;
+    justify-self: left;
   }
 }
 

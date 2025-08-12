@@ -612,8 +612,11 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       let html = "";
       for (let i = 0; i < res.length; i++) {
         const char = new Character(res[i][0].id);
+        const charIcon = Array.isArray(char.tinyIcon)
+          ? char.tinyIcon[0]
+          : char.tinyIcon;
         html +=
-          `<div class="match"><img class="thumbnail" src="${char.tinyIcon}"/>` +
+          `<div class="match"><img class="thumbnail" src="${charIcon}"/>` +
           (result.key === "name" ? res[i][1] : char.name) + `</div>`;
       }
       document.querySelector("#current-matches").innerHTML = html;
@@ -653,7 +656,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       event.preventDefault();
       const importDialog = new ImportDialog();
       importDialog.appState = appState;
-      importForm.append(importDialog);
+      document.body.append(importDialog);
     },
   );
 
@@ -921,6 +924,10 @@ globalThis.addEventListener("DOMContentLoaded", () => {
 
     for (const result of filteredChars) {
       const character = new Character(result.obj.id);
+      const characterIcon = Array.isArray(character.tinyIcon)
+        ? character.tinyIcon[0]
+        : character.tinyIcon;
+
       const selected = appState.currentScript.contains(character)
         ? "selected"
         : "";
@@ -929,7 +936,7 @@ globalThis.addEventListener("DOMContentLoaded", () => {
       let html =
         `<div class="item ${selected}" data-id="${character.id}" data-team="${character.team}" data-type="${character.type}" tabindex=0>`;
       // html += `<div class=>`
-      html += `<img class="icon ${imported}" src="${character.tinyIcon}"/>`;
+      html += `<img class="icon ${imported}" src="${characterIcon}"/>`;
       html += `<div class="character-name">${
         hasQuery ? character.name : result.highlight("<b>", "</b>")
       }</div>`;

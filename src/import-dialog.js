@@ -10,7 +10,7 @@ export class ImportDialog extends HTMLElement {
 
     const root = this;
     const dialog = root.querySelector("dialog");
-    const button = root.querySelector("button");
+    const button = root.querySelector("button.x-button");
 
     dialog.showModal();
 
@@ -26,6 +26,11 @@ export class ImportDialog extends HTMLElement {
       event.preventDefault();
       event.stopPropagation();
       dialog.close();
+    });
+
+    const mobileInput = root.querySelector("#mobile-paste-box");
+    mobileInput.addEventListener("click", function (event) {
+      event.stopPropagation();
     });
   }
 
@@ -98,10 +103,16 @@ export class ImportDialog extends HTMLElement {
 
   render() {
     this.innerHTML = `
-      <dialog id="import-form" closedby="any">
+      <dialog id="import-dialog" closedby="any">
       <p>
-      Click or drag & drop to import the script JSON, or paste JSON / URL (Ctrl+V / ⌘V)
+      Click or drag & drop to import the script JSON<span class="kb-only">, or paste JSON / URL (Ctrl+V / ⌘V)</span>
       </p>
+      <div class="no-kb">
+        <p>… or paste URL/JSON here:</p>
+        <form id="mobile-paste-form">
+          <input id="mobile-paste-box" />
+        </form>
+      </div>
       <button class="x-button" title="Close" autofocus><i class="fa-solid fa-xmark"></i></button>
       </dialog>
       `;
